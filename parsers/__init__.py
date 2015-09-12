@@ -9,6 +9,7 @@
 
 parsers = """
 nosnl.NOSNLParser
+nunl.NuNLParser
 """.split()
 
 parser_dict = {}
