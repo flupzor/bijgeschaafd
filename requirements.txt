@@ -5,3 +5,5 @@ beautifulsoup
 South
 html5lib
 pyquery==1.2.9
+factory-boy==2.5.2
+fake-factory==0.5.3
