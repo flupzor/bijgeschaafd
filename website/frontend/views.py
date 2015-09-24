@@ -12,6 +12,7 @@ import django.db
 import time
 from django.template import Context, RequestContext, loader
 from django.views.decorators.cache import cache_page
+from django.db.models import Count, Max
 
 OUT_FORMAT = '%B %d, %Y at %l:%M%P EDT'
 
@@ -60,34 +61,14 @@ def get_articles(source=None, distance=0):
     end_date = datetime.datetime.now() - distance * pagelength
     start_date = end_date - pagelength
 
-    print 'Asking query'
-    version_query = '''SELECT
-    version.id, version.article_id, version.v, version.title,
-      version.byline, version.date, version.boring, version.diff_json,
-      T.age as age,
-      Articles.url as a_url, Articles.initial_date as a_initial_date,
-      Articles.last_update as a_last_update, Articles.last_check as a_last_check
-    FROM version,
-     (SELECT Articles.id as article_id, MAX(T3.date) AS age, COUNT(T3.id) AS num_vs
-      FROM Articles LEFT OUTER JOIN version T3 ON (Articles.id = T3.article_id)
-      WHERE (T3.boring=0) GROUP BY Articles.id
-      HAVING (age > %s  AND age < %s  AND num_vs > 1 )) T, Articles
-    WHERE (version.article_id = Articles.id) and
-          (version.article_id = T.article_id) and
-          NOT version.boring
-    ORDER BY date'''
+    article_qs = Article.objects.all().annotate(
+        version_count=Count('version'), age=Max('version__date')
+    ).filter(
+        age__gt=start_date, age__lt=end_date,
+        version_count__gte=2, version__boring=False
+    ).prefetch_related('version_set')
 
-    all_versions = models.Version.objects.raw(version_query,
-                                              (start_date, end_date))
-    article_dict = {}
-    for v in all_versions:
-        a=models.Article(id=v.article_id,
-                         url=v.a_url, initial_date=v.a_initial_date,
-                         last_update=v.a_last_update, last_check=v.a_last_check)
-        v.article = a
-        article_dict.setdefault(v.article, []).append(v)
-
-    for article, versions in article_dict.items():
+    for article in article_qs:
         url = article.url
         if not rx.match(url):
             print 'REJECTING', url
@@ -95,14 +76,15 @@ def get_articles(source=None, distance=0):
         if 'blogs.nytimes.com' in url: #XXX temporary
             continue
 
+        versions = [version for version in article.version_set.all() if not version.boring]
+
         if len(versions) < 2:
             continue
         rowinfo = get_rowinfo(article, versions)
         articles.append((article, versions[-1], rowinfo))
-    print 'Queries:', len(django.db.connection.queries), django.db.connection.queries
     articles.sort(key = lambda x: x[-1][0][1].date, reverse=True)
-    return articles
 
+    return articles
 
 SOURCES = '''nytimes.com cnn.com politico.com washingtonpost.com
 bbc.co.uk nos.nl nu.nl'''.split()
