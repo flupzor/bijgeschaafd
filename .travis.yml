@@ -9,4 +9,4 @@ install:
   - pip install $DJANGO --use-mirrors
   - pip install -r requirements.txt --use-mirrors
 
-script: build.sh
+script: ./build.sh
