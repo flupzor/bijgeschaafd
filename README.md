@@ -1,6 +1,8 @@
 NewsDiffs
 ==========
 
+[![Travis status](https://api.travis-ci.org/flupzor/newsdiffs.svg)](https://travis-ci.org/flupzor/newsdiffs)
+
 A website and framework that tracks changes in online news articles over time.
 
 Original installation at newsdiffs.org.
