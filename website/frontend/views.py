@@ -76,7 +76,11 @@ def get_articles(source=None, distance=0):
         if 'blogs.nytimes.com' in url: #XXX temporary
             continue
 
-        versions = [version for version in article.version_set.all() if not version.boring]
+        versions = sorted(
+            [version for version in article.version_set.all() if not version.boring],
+            key=lambda version: version,
+            reverse=True
+        )
 
         if len(versions) < 2:
             continue

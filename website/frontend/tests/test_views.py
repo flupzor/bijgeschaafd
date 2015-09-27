@@ -9,7 +9,6 @@ from ..models import Article, Version
 
 
 class ViewTests(TestCase):
-    @skip("Broke on SQLITE")
     def test_get_articles(self):
         """
         Retrieve the articles and versions which should
@@ -76,7 +75,6 @@ class ViewTests(TestCase):
             last_check=update_time,
             last_update=update_time,
         )
-
 
         # Two versions exists, but one is boring,
         # so it should be ignored.
