@@ -78,8 +78,7 @@ def get_articles(source=None, distance=0):
 
         versions = sorted(
             [version for version in article.version_set.all() if not version.boring],
-            key=lambda version: version,
-            reverse=True
+            key=lambda version: version.date,
         )
 
         if len(versions) < 2:
@@ -97,7 +96,7 @@ def is_valid_domain(domain):
     """Cheap method to tell whether a domain is being tracked."""
     return any(domain.endswith(source) for source in SOURCES)
 
-@cache_page(60 * 30)  #30 minute cache
+#@cache_page(60 * 30)  #30 minute cache
 def browse(request, source=''):
     if source not in SOURCES + ['']:
         raise Http404
