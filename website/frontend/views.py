@@ -61,11 +61,11 @@ def get_articles(source=None, distance=0):
     end_date = datetime.datetime.now() - distance * pagelength
     start_date = end_date - pagelength
 
-    article_qs = Article.objects.all().annotate(
+    article_qs = Article.objects.filter(version__boring=False).annotate(
         version_count=Count('version'), age=Max('version__date')
     ).filter(
         age__gt=start_date, age__lt=end_date,
-        version_count__gte=2, version__boring=False
+        version_count__gte=2,
     ).prefetch_related('version_set')
 
     for article in article_qs:
