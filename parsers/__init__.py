@@ -10,6 +10,7 @@
 parsers = """
 nosnl.NOSNLParser
 nunl.NuNLParser
+telegraaf.TelegraafParser
 """.split()
 
 parser_dict = {}
