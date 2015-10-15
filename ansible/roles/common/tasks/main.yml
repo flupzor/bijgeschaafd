@@ -1,0 +1,3 @@
+- name: Creating the system user for the application.
+  become: yes
+  user: name={{ application_user }} shell=/bin/false

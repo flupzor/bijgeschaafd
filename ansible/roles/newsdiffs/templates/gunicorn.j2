@@ -1,0 +1,17 @@
+CONFIG = {
+    'environment': {
+       'VIRTUAL_ENV': '/usr/django/newsdiffs/env',
+       'PATH': '/usr/django/newsdiffs/env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',
+    },
+    'python': '/usr/django/newsdiffs/env/bin/python',
+    'mode': 'wsgi',
+    'working_dir': '/usr/django/newsdiffs/',
+    'user': 'newsdiffs',
+    'group': 'newsdiffs',
+    'args': (
+        '--bind=127.0.0.1:8000',
+        '--workers=4',
+        'website.wsgi',
+    ),
+}
+

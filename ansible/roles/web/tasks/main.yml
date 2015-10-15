@@ -1,0 +1,9 @@
+- name: make sure nginx is installed
+  apt: name=nginx state=present
+- name: Add nignx configuration
+  become: yes
+  template: src=newsdiffs.j2 dest=/etc/nginx/sites-available/newsdiffs
+- name: Enable nginx configuration
+  become: yes
+  file: src=/etc/nginx/sites-available/newsdiffs dest=/etc/nginx/sites-enabled/newsdiffs state=link
+  notify: restart nginx

@@ -1,0 +1,29 @@
+- name: Install Postgresql package
+  become: yes
+  apt: name={{ item }} state=installed
+  with_items:
+    - postgresql-9.3
+    - python-psycopg2
+
+- name: Create PostgreSQL database
+  sudo: yes
+  sudo_user: postgres
+  postgresql_db: name={{ dbname }}
+
+- name: Create PostgreSQL user
+  sudo: yes
+  sudo_user: postgres
+  postgresql_user: db={{ dbname }} name={{ dbuser }} password={{ dbpassword }} priv=ALL
+
+#- name: Install MySQL package
+#  apt: name={{ item }} state=installed
+#  with_items:
+#    mysql-server
+#    mysql-common
+#    mysql-client
+#
+#- name: Create MySQL database
+#  mysql_db: name={{ dbname }} state=present
+#
+#- name: Create MySQL user
+#  mysql_user: name={{ dbuser }} password={{ dbpassword }} priv=*.*:ALL host='%' state=present

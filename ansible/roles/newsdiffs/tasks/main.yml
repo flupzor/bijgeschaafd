@@ -1,0 +1,53 @@
+- name: Create directory for Django sites.
+  become: yes
+  file: path=/usr/django/ state=directory mode="u=rwx,g=rw,o=rw" owner={{ application_user }}
+- name: Make sure the git repository exists and is up to date.
+  become: yes
+  become_user: "{{ application_user }}"
+  git: repo=https://github.com/flupzor/newsdiffs.git dest=/usr/django/newsdiffs version=dutch
+  notify: restart gunicorn
+- name: setup virtualenv
+  become: yes
+  become_user: "{{ application_user }}"
+  pip: requirements=/usr/django/newsdiffs/requirements.txt virtualenv=/usr/django/newsdiffs/env/ virtualenv_site_packages=yes
+- name: setup newsdiffs configuration
+  become: yes
+  become_user: "{{ application_user }}"
+  template: src=settings.py.j2 dest=/usr/django/newsdiffs/website/settings.py
+  notify: restart gunicorn
+# syncdb is needed for Django 1.5
+- name: run newsdiffs db syncdb
+  become: yes
+  become_user: "{{ application_user }}"
+  django_manage: >
+      command=syncdb
+      app_path=/usr/django/newsdiffs/website/
+      settings=website.settings
+      pythonpath=/usr/django/newsdiffs/website/
+      virtualenv=/usr/django/newsdiffs/env/
+- name: run newsdiffs db migrations
+  become: yes
+  become_user: "{{ application_user }}"
+  django_manage: >
+      command=migrate
+      app_path=/usr/django/newsdiffs/website/
+      settings=website.settings
+      pythonpath=/usr/django/newsdiffs/website/
+      virtualenv=/usr/django/newsdiffs/env/
+- name: make sure gunicorn is installed
+  apt: name=gunicorn state=present
+- name: setup gunicorn configuration
+  become: yes
+  template: src=gunicorn.j2 dest=/etc/gunicorn.d/newsdiffs
+  notify: restart gunicorn
+- name: install gitconfig
+  become: yes
+  become_user: "{{ application_user }}"
+  template: src=gitconfig.j2 dest=/home/newsdiffs/.gitconfig
+- name: install crontab
+  become: yes
+  become_user: "{{ application_user }}"
+  cron:
+    name: "newsdiff crontab"
+    job: PATH="{{ app_path }}/env/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" PYTHONPATH="{{ app_path }}" VIRTUAL_ENV="{{ app_path }}/env/" {{ app_path }}/website/manage.py scraper
+    minute: "7"

@@ -1,0 +1,11 @@
+---
+
+- hosts: newsdiffs_servers
+  vars:
+    app_path: "/usr/django/newsdiffs"
+  roles:
+   - common
+   - db
+   - web
+   - newsdiffs
+
