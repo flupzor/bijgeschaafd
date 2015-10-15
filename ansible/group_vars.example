@@ -1,0 +1,11 @@
+dbuser: newsdiffs
+dbname: newsdiffs
+dbpassword: A DB PASSWORD
+application_user: newsdiffs
+
+secret_key: A SECRET KEY
+admin_name: WHAT PEOPLE CALL YOU
+admin_email: A EMAIL ADDRESS
+server_email: A EMAIL ADDRESS
+
+server_hostname: A HOSTNAME
