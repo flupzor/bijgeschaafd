@@ -11,10 +11,14 @@ class MockParser(BaseParser):
 
     version_counter = {}
 
+    updates = True
+
     def __init__(self, url):
 
         MockParser.version_counter.setdefault(url, 0)
-        MockParser.version_counter[url] += 1
+
+        if self.updates:
+            MockParser.version_counter[url] += 1
 
         current_article = MockParser.version_counter[url]
         self.title = 'Article {} {}'.format(url, current_article)
