@@ -50,4 +50,5 @@
   cron:
     name: "newsdiff crontab"
     job: PATH="{{ app_path }}/env/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" PYTHONPATH="{{ app_path }}" VIRTUAL_ENV="{{ app_path }}/env/" {{ app_path }}/website/manage.py scraper
+    hour: "*/3"
     minute: "7"
