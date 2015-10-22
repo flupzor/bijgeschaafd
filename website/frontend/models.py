@@ -80,6 +80,8 @@ class Version(models.Model):
     date = models.DateTimeField(blank=False)
     boring = models.BooleanField(blank=False, default=False)
     diff_json = models.CharField(max_length=255, null=True)
+
+    content_sha1 = models.CharField(max_length=40, null=True)
     content = models.TextField(default="")
 
     def text(self):
