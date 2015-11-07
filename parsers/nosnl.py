@@ -3,15 +3,12 @@ from pyquery import PyQuery as pq
 from baseparser import BaseParser
 
 
-#from BeautifulSoup import BeautifulSoup, Tag
-
-
 class NOSNLParser(BaseParser):
     domains = ['www.nos.nl']
 
     feeder_base = 'http://www.nos.nl'
-    feeder_pat  = '^http://www.nos.nl/artikel/'
-    feeder_pages  = ['http://www.nos.nl/', ]
+    feeder_pat = '^http://www.nos.nl/artikel/'
+    feeder_pages = ['http://www.nos.nl/', ]
 
     def _parse(self, html):
         d = pq(html)

@@ -6,8 +6,8 @@ class MockParser(BaseParser):
     domains = ['www.mock.nl']
 
     feeder_base = 'http://www.mock.nl/'
-    feeder_pat  = '^http://www.mock.nl/\w+/'
-    feeder_pages  = ['http://www.mock.nl/', ]
+    feeder_pat = '^http://www.mock.nl/\w+/'
+    feeder_pages = ['http://www.mock.nl/', ]
 
     version_counter = {}
 

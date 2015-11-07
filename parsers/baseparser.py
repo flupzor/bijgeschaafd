@@ -29,7 +29,6 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-
 # Utility functions
 
 def grab_url(url, max_depth=5, opener=None):
@@ -51,8 +50,6 @@ def grab_url(url, max_depth=5, opener=None):
     return text
 
 
-
-
 def bs_fixed_getText(self, separator=u""):
     bsmod = sys.modules[BeautifulSoup.__module__]
     if not len(self.contents):
@@ -68,6 +65,7 @@ def bs_fixed_getText(self, separator=u""):
 sys.modules[BeautifulSoup.__module__].Tag.getText = bs_fixed_getText
 # End fix
 
+
 def strip_whitespace(text):
     lines = text.split('\n')
     return '\n'.join(x.strip().rstrip(u'\xa0') for x in lines).strip() + '\n'
@@ -82,11 +80,14 @@ def parse_double_utf8(txt):
             return m.group(0)
     return re.sub(ur'[\xc2-\xf4][\x80-\xbf]+', parse, txt)
 
+
 def canonicalize(text):
     return strip_whitespace(parse_double_utf8(text))
 
+
 def concat(domain, url):
     return domain + url if url.startswith('/') else domain + '/' + url
+
 
 # End utility functions
 
@@ -94,7 +95,7 @@ def concat(domain, url):
 # To create a new parser, subclass and define _parse(html).
 class BaseParser(object):
     url = None
-    domains = [] # List of domains this should parse
+    domains = []  # List of domains this should parse
 
     # These should be filled in by self._parse(html)
     date = None
@@ -102,16 +103,16 @@ class BaseParser(object):
     byline = None
     body = None
 
-    real_article = True # If set to False, ignore this article
-    SUFFIX = ''         # append suffix, like '?fullpage=yes', to urls
+    real_article = True  # If set to False, ignore this article
+    SUFFIX = ''          # append suffix, like '?fullpage=yes', to urls
 
     meta = []  # Currently unused.
 
     # Used when finding articles to parse
-    feeder_pat   = None # Look for links matching this regular expression
-    feeder_pages = []   # on these pages
+    feeder_pat = None  # Look for links matching this regular expression
+    feeder_pages = []  # on these pages
 
-    feeder_bs = BeautifulSoup #use this version of beautifulsoup for feed
+    feeder_bs = BeautifulSoup  # use this version of beautifulsoup for feed
 
     def __init__(self, url):
         self.url = url
@@ -151,7 +152,9 @@ class BaseParser(object):
 
             # If no http://, prepend domain name
             domain = '/'.join(feeder_url.split('/')[:3])
-            urls = [url if '://' in url else concat(domain, url) for url in urls]
+            urls = [
+                url if '://' in url else concat(domain, url) for url in urls
+            ]
 
             all_urls = all_urls + [url for url in urls if
                                    re.search(cls.feeder_pat, url)]

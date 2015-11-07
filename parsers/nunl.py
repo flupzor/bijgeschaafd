@@ -8,15 +8,19 @@ class NuNLParser(BaseParser):
     domains = ['www.nu.nl']
 
     feeder_base = 'http://www.nu.nl/'
-    feeder_pat  = '^http://www.nu.nl/\w+/\d+/'
-    feeder_pages  = ['http://www.nu.nl/', ]
+    feeder_pat = '^http://www.nu.nl/\w+/\d+/'
+    feeder_pages = ['http://www.nu.nl/', ]
 
     def _parse(self, html):
         d = pq(html)
 
-        self.title = d.find("div[data-sac-marker='block.article.header'] div.title").text()
+        self.title = d.find(
+            "div[data-sac-marker='block.article.header'] div.title"
+        ).text()
 
-        excerpt = d.find("div[data-sac-marker='block.article.header'] div.item-excerpt").text()
+        excerpt = d.find(
+            "div[data-sac-marker='block.article.header'] div.item-excerpt"
+        ).text()
         content = d.find("div[data-sac-marker='block.article.body']").text()
         self.body = excerpt + content
 

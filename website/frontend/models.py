@@ -1,11 +1,9 @@
 import json
-import os
 import re
-import subprocess
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
-from django.db import IntegrityError, models
+from django.db import models
 
 
 def strip_prefix(string, prefix):
@@ -25,7 +23,7 @@ PublicationDict = {'www.nytimes.com': 'NYT',
 
 ancient = datetime(1901, 1, 1)
 
-# Create your models here.
+
 class Article(models.Model):
     class Meta:
         db_table = 'Articles'
@@ -77,6 +75,7 @@ class Article(models.Model):
         delta = datetime.now() - self.last_check
         return delta.seconds // 60 + 24*60*delta.days
 
+
 class Version(models.Model):
     class Meta:
         db_table = 'version'
@@ -84,7 +83,7 @@ class Version(models.Model):
 
     article = models.ForeignKey('Article', null=False)
     title = models.CharField(max_length=255, blank=False)
-    byline = models.CharField(max_length=255,blank=False)
+    byline = models.CharField(max_length=255, blank=False)
     date = models.DateTimeField(blank=False)
     boring = models.BooleanField(blank=False, default=False)
     diff_json = models.CharField(max_length=255, null=True)
@@ -99,6 +98,7 @@ class Version(models.Model):
         if self.diff_json is None:
             return {}
         return json.loads(self.diff_json)
+
     def set_diff_info(self, val=None):
         if val is None:
             self.diff_json = None
