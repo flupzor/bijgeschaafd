@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 import json
 from django.db import models, IntegrityError
+from django.conf import settings
 
 
 def strip_prefix(string, prefix):
@@ -34,6 +35,24 @@ class Article(models.Model):
     initial_date = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(default=ancient)
     last_check = models.DateTimeField(default=ancient)
+
+    source = models.CharField(max_length=255, blank=False, db_index=True)
+
+    def save(self, *args, **kwargs):
+        self.source = self.get_source(is_cached=False)
+
+        super(Article, self).save(*args, **kwargs)
+
+    def get_source(self, is_cached=True):
+        if is_cached:
+            return self.source
+
+        for source in settings.NEWS_SOURCES:
+            rx = re.compile(r'^https?://(?:[^/]*\.)%s/' % source)
+            if rx.match(self.url):
+                return source
+
+        return 'no_source'
 
     def filename(self):
         return self.url[len('http://'):].rstrip('/')
@@ -70,7 +89,7 @@ class Version(models.Model):
     boring = models.BooleanField(blank=False, default=False)
     diff_json = models.CharField(max_length=255, null=True)
 
-    content_sha1 = models.CharField(max_length=40, null=True)
+    content_sha1 = models.CharField(max_length=40, null=True, db_index=True)
     content = models.TextField(default="")
 
     def text(self):

@@ -2,6 +2,7 @@ import datetime
 import re
 
 from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.conf import settings
 from models import Article, Version
 import models
 import json
@@ -55,13 +56,17 @@ def get_last_update(source):
 
 def get_articles(source=None, distance=0):
     articles = []
-    rx = re.compile(r'^https?://(?:[^/]*\.)%s/' % source if source else '')
 
     pagelength = datetime.timedelta(days=1)
     end_date = datetime.datetime.now() - distance * pagelength
     start_date = end_date - pagelength
 
-    article_qs = Article.objects.filter(version__boring=False).annotate(
+    article_qs = Article.objects.filter(version__boring=False)
+
+    if source:
+        article_qs = article_qs.filter(source=source)
+
+    article_qs = article_qs.annotate(
         version_count=Count('version'), age=Max('version__date')
     ).filter(
         age__gt=start_date, age__lt=end_date,
@@ -69,13 +74,6 @@ def get_articles(source=None, distance=0):
     ).prefetch_related('version_set')
 
     for article in article_qs:
-        url = article.url
-        if not rx.match(url):
-            print 'REJECTING', url
-            continue
-        if 'blogs.nytimes.com' in url: #XXX temporary
-            continue
-
         versions = sorted(
             [version for version in article.version_set.all() if not version.boring],
             key=lambda version: version.date,
@@ -85,12 +83,12 @@ def get_articles(source=None, distance=0):
             continue
         rowinfo = get_rowinfo(article, versions)
         articles.append((article, versions[-1], rowinfo))
+
     articles.sort(key = lambda x: x[-1][0][1].date, reverse=True)
 
     return articles
 
-SOURCES = '''nytimes.com cnn.com politico.com washingtonpost.com
-bbc.co.uk nos.nl nu.nl telegraaf.nl'''.split()
+SOURCES = settings.NEWS_SOURCES
 
 def is_valid_domain(domain):
     """Cheap method to tell whether a domain is being tracked."""
@@ -235,6 +233,7 @@ def get_rowinfo(article, version_lst=None):
     rowinfo = []
     lastv = None
     urlarg = article.filename()
+
     for version in version_lst:
         date = version.date
         if lastv is None:
@@ -245,6 +244,7 @@ def get_rowinfo(article, version_lst=None):
                                                     urlarg=urlarg))
         rowinfo.append((diffl, version))
         lastv = version
+
     rowinfo.reverse()
     return rowinfo
 

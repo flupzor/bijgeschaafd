@@ -86,3 +86,7 @@ INSTALLED_APPS = (
     'south',
     'frontend',
 )
+
+NEWS_SOURCES = [
+    'nos.nl', 'nu.nl', 'telegraaf.nl'
+]

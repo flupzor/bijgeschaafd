@@ -112,3 +112,7 @@ CACHES = {
         'LOCATION': 'cache_table',
     }
 }
+
+NEWS_SOURCES = [
+    'nos.nl', 'nu.nl', 'telegraaf.nl'
+]
