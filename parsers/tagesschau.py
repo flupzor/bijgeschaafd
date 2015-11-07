@@ -1,5 +1,7 @@
-from baseparser import BaseParser
 import bs4
+
+from baseparser import BaseParser
+
 
 class TagesschauParser(BaseParser):
     SUFFIX = ''

@@ -6,6 +6,11 @@ import sys
 import time
 import urllib2
 
+# Begin hot patch for https://bugs.launchpad.net/bugs/788986
+# Ick.
+from BeautifulSoup import BeautifulSoup
+
+
 # Define a logger
 
 # This formatter is like the default but uses a period rather than a comma
@@ -48,9 +53,6 @@ def grab_url(url, max_depth=5, opener=None):
 
 
 
-# Begin hot patch for https://bugs.launchpad.net/bugs/788986
-# Ick.
-from BeautifulSoup import BeautifulSoup
 def bs_fixed_getText(self, separator=u""):
     bsmod = sys.modules[BeautifulSoup.__module__]
     if not len(self.contents):

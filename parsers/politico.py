@@ -1,12 +1,14 @@
-from baseparser import BaseParser, grab_url, logger
+import re
 
+# This is BeautifulSoup 4
+import bs4
 # Different versions of BeautifulSoup have different properties.
 # Some work with one site, some with another.
 # This is BeautifulSoup 3.2.
 from BeautifulSoup import BeautifulSoup
-# This is BeautifulSoup 4
-import bs4
-import re
+
+from baseparser import BaseParser, grab_url, logger
+
 
 class PoliticoParser(BaseParser):
     domains = ['www.politico.com']

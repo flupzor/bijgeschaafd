@@ -1,9 +1,7 @@
 #!/usr/bin/python
 
-import hashlib
-from datetime import datetime
 import errno
-from frontend import models
+import hashlib
 import httplib
 import logging
 import os
@@ -12,14 +10,16 @@ import sys
 import time
 import traceback
 import urllib2
-
-import diff_match_patch
-
-import parsers
-from parsers.baseparser import canonicalize, formatter, logger
+from datetime import datetime
+from optparse import make_option
 
 from django.core.management.base import BaseCommand
-from optparse import make_option
+
+import diff_match_patch
+import parsers
+from frontend import models
+from parsers.baseparser import canonicalize, formatter, logger
+
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (

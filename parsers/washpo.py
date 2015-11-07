@@ -1,7 +1,9 @@
-from baseparser import BaseParser
-from bs4 import BeautifulSoup
-import re
 import datetime
+import re
+
+from bs4 import BeautifulSoup
+
+from baseparser import BaseParser
 
 DATE_FORMAT = '%A, %B %e %Y, %l:%M %p'
 

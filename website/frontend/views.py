@@ -1,19 +1,20 @@
 import datetime
-import re
-
-from django.shortcuts import render_to_response, get_object_or_404, redirect
-from django.conf import settings
-from models import Article, Version
-import models
 import json
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.core.urlresolvers import reverse
-import urllib
-import django.db
+import re
 import time
+import urllib
+
+import django.db
+from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.db.models import Count, Max
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import Context, RequestContext, loader
 from django.views.decorators.cache import cache_page
-from django.db.models import Count, Max
+
+import models
+from models import Article, Version
 
 OUT_FORMAT = '%B %d, %Y at %l:%M%P EDT'
 
@@ -353,4 +354,3 @@ def subscribe(request):
 
 def press(request):
     return render_to_response('press.html', {})
-

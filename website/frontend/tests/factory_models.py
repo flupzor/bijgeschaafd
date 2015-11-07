@@ -1,6 +1,7 @@
 import factory
 
-from ..models import Article, Version, Upvote
+from ..models import Article, Upvote, Version
+
 
 class ArticleFactory(factory.django.DjangoModelFactory):
     url = factory.Faker('url')

@@ -1,17 +1,15 @@
-import mock
-from tempfile import mkdtemp
-from shutil import rmtree
-
 from datetime import timedelta
+from shutil import rmtree
+from tempfile import mkdtemp
 
+import mock
+from django.core.management import call_command
 from django.test import TestCase
 
-from django.core.management import call_command
-
 import parsers
-
-from parsers.mock import MockParser
 from frontend.models import Article, Version
+from parsers.mock import MockParser
+
 
 class ParserTests(TestCase):
 

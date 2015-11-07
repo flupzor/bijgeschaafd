@@ -1,11 +1,11 @@
+import json
+import os
 import re
 import subprocess
-import os
 from datetime import datetime, timedelta
 
-import json
-from django.db import models, IntegrityError
 from django.conf import settings
+from django.db import IntegrityError, models
 
 
 def strip_prefix(string, prefix):
@@ -116,4 +116,3 @@ class Upvote(models.Model):
     diff_v2 = models.CharField(max_length=255, blank=False)
     creation_time = models.DateTimeField(blank=False)
     upvoter_ip = models.CharField(max_length=255)
-

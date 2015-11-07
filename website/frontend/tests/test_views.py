@@ -1,11 +1,11 @@
-from unittest import skip
 from datetime import datetime, timedelta
+from unittest import skip
 
 from django.test import TestCase
 
-from .factory_models import ArticleFactory, VersionFactory
-from ..views import get_articles
 from ..models import Article, Version
+from ..views import get_articles
+from .factory_models import ArticleFactory, VersionFactory
 
 
 class ViewTests(TestCase):
