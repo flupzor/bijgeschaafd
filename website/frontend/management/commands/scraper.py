@@ -144,11 +144,12 @@ def load_article(url):
 #Update url in git
 #Return whether it changed
 def update_article(article):
+
     parsed_article = load_article(article.url)
     if parsed_article is None:
         return
-    to_store = unicode(parsed_article).encode('utf8')
-    to_store_sha1 = hashlib.sha1(to_store.encode('utf-8')).hexdigest()
+    to_store = unicode(parsed_article).encode('utf-8')
+    to_store_sha1 = hashlib.sha1(to_store).hexdigest()
     t = datetime.now()
     logger.debug('Article parsed; trying to store')
 
@@ -161,16 +162,18 @@ def update_article(article):
         latest_version = None
 
     if latest_version:
-        if latest_version.content == to_store:
+        latest_version_content = latest_version.content.encode('utf-8')
+
+        if latest_version_content == to_store:
             return
 
         if article.version_set.filter(content_sha1=to_store_sha1).count() >= 2:
             return
 
-        if is_boring(latest_version.content, to_store):
+        if is_boring(latest_version_content, to_store):
             boring = True
         else:
-            diff_info = get_diff_info(latest_version.content, to_store)
+            diff_info = get_diff_info(latest_version_content, to_store)
 
     v_row = models.Version(
         boring=boring,

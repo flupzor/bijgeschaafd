@@ -21,10 +21,10 @@ class MockParser(BaseParser):
             MockParser.version_counter[url] += 1
 
         current_article = MockParser.version_counter[url]
-        self.title = 'Article {} {}'.format(url, current_article)
-        self.date = 'Date {}'.format(current_article)
+        self.title = u'\u1d90rticle {} {}'.format(url, current_article)
+        self.date = u'\u1d81ate {}'.format(current_article)
         self.byline = ''
-        self.body = 'Body {} {}'.format(url, current_article)
+        self.body = u'Body \u1d00 {} {}'.format(url, current_article)
         self.boring = False
 
     @classmethod

@@ -32,7 +32,7 @@ class ParserTests(TestCase):
         v1 = Version.objects.get(
             boring=False,
             byline='',
-            title=u'Article http://www.mock.nl/mock_article1.html 1',
+            title=u'\u1d90rticle http://www.mock.nl/mock_article1.html 1',
             diff_json=None,
         )
         a1 = v1.article
@@ -40,30 +40,30 @@ class ParserTests(TestCase):
         v2 = Version.objects.get(
             boring=False,
             byline='',
-            title=u'Article http://www.mock.nl/mock_article2.html 1',
+            title=u'\u1d90rticle http://www.mock.nl/mock_article2.html 1',
             diff_json=None,
         )
         a2 = v2.article
+
+        self.assertEquals(
+            v1.text(),
+            u"\u1d81ate 1\n"
+            u"\u1d90rticle http://www.mock.nl/mock_article1.html 1\n"
+            u"\n"
+            u"Body \u1d00 http://www.mock.nl/mock_article1.html 1\n"
+        )
+        self.assertEquals(
+            v2.text(),
+            u"\u1d81ate 1\n"
+            u"\u1d90rticle http://www.mock.nl/mock_article2.html 1\n"
+            u"\n"
+            u"Body \u1d00 http://www.mock.nl/mock_article2.html 1\n"
+        )
 
         self._reset_update_time(a1, a2)
 
         # Get the updates.
         call_command('scraper')
-
-        self.assertEquals(
-            v1.text(),
-            "Date 1\n"
-            "Article http://www.mock.nl/mock_article1.html 1\n"
-            "\n"
-            "Body http://www.mock.nl/mock_article1.html 1\n"
-        )
-        self.assertEquals(
-            v2.text(),
-            "Date 1\n"
-            "Article http://www.mock.nl/mock_article2.html 1\n"
-            "\n"
-            "Body http://www.mock.nl/mock_article2.html 1\n"
-        )
 
         self.assertEquals(a1.version_set.count(), 2)
         self.assertEquals(a2.version_set.count(), 2)
@@ -72,14 +72,14 @@ class ParserTests(TestCase):
             boring=False,
             byline='',
             diff_json=u'{"chars_removed": 3, "chars_added": 3}',
-            title=u'Article http://www.mock.nl/mock_article1.html 2'
+            title=u'\u1d90rticle http://www.mock.nl/mock_article1.html 2'
         ).count(), 1)
 
         self.assertEquals(a2.version_set.exclude(pk=v2.pk).filter(
             boring=False,
             byline='',
             diff_json=u'{"chars_removed": 3, "chars_added": 3}',
-            title=u'Article http://www.mock.nl/mock_article2.html 2'
+            title=u'\u1d90rticle http://www.mock.nl/mock_article2.html 2'
         ).count(), 1)
 
         self._reset_update_time(a1, a2)
@@ -130,8 +130,8 @@ class ParserTests(TestCase):
         a1 = Article.objects.get(url=a1_url)
         a2 = Article.objects.get(url=a2_url)
 
-        Version.objects.get(title='Article {} {}'.format(a1.url, 1))
-        Version.objects.get(title='Article {} {}'.format(a2.url, 1))
+        Version.objects.get(title=u'\u1d90rticle {} {}'.format(a1.url, 1))
+        Version.objects.get(title=u'\u1d90rticle {} {}'.format(a2.url, 1))
 
         # Download version 2 of article 1 and 2
         self._reset_update_time(a1, a2)
