@@ -76,11 +76,11 @@ def get_articles(source=None, distance=0):
     ).filter(
         age__gt=start_date, age__lt=end_date,
         version_count__gte=2,
-    ).prefetch_related('version_set')
+    )
 
     for article in article_qs:
         versions = sorted(
-            [version for version in article.version_set.all()
+            [version for version in article.version_set.all()[:10]
                 if not version.boring],
             key=lambda version: version.date,
         )
@@ -256,6 +256,7 @@ def get_rowinfo(article, version_lst=None):
         lastv = version
 
     rowinfo.reverse()
+
     return rowinfo
 
 

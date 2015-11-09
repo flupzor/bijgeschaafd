@@ -27,9 +27,14 @@
         {% if difflink %}
         <td><a href="{{difflink}}">(Compare)</a></td></tr><tr>
         {% else %}
-        <td></td></tr>
+        <td></td><td></td></tr>
         {% endif %}
         {% endfor %}
+
+       {% if article.version_count > versions|length %}
+       <tr><td></td><td></td><td>...</td></tr>
+       {% else %}
+       {% endif %}
       {% endfor %}
     </table>
     {% for i in page_list %}
