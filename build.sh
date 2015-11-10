@@ -1,1 +1,1 @@
-python ./manage.py test --settings=settings_dev
+python ./manage.py test --settings=website.settings_dev
