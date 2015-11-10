@@ -14,7 +14,6 @@ class MockParser(BaseParser):
     updates = True
 
     def __init__(self, url):
-
         MockParser.version_counter.setdefault(url, 0)
 
         if self.updates:

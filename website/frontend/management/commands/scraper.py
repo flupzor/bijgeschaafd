@@ -15,9 +15,9 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand
 
-import diff_match_patch
+from website import diff_match_patch
 import parsers
-from frontend import models
+from website.frontend import models
 from parsers.baseparser import canonicalize, formatter, logger
 
 

@@ -102,8 +102,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'south',
-    'frontend',
+    'website.frontend',
 )
 
 CACHES = {

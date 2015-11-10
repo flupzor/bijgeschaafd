@@ -83,9 +83,10 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'south',
-    'frontend',
+    'website.frontend',
 )
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 NEWS_SOURCES = [
     'nos.nl', 'nu.nl', 'telegraaf.nl'
