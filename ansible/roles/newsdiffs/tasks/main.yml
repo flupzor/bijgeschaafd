@@ -21,18 +21,18 @@
   become_user: "{{ application_user }}"
   django_manage: >
       command=syncdb
-      app_path=/usr/django/newsdiffs/website/
+      app_path=/usr/django/newsdiffs/
       settings=website.settings
-      pythonpath=/usr/django/newsdiffs/website/
+      pythonpath=/usr/django/newsdiffs/
       virtualenv=/usr/django/newsdiffs/env/
 - name: run newsdiffs db migrations
   become: yes
   become_user: "{{ application_user }}"
   django_manage: >
       command=migrate
-      app_path=/usr/django/newsdiffs/website/
+      app_path=/usr/django/newsdiffs/
       settings=website.settings
-      pythonpath=/usr/django/newsdiffs/website/
+      pythonpath=/usr/django/newsdiffs/
       virtualenv=/usr/django/newsdiffs/env/
 - name: make sure gunicorn is installed
   apt: name=gunicorn state=present
