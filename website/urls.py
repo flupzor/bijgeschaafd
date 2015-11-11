@@ -15,8 +15,8 @@ urlpatterns = [
    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': ROOT_DIR+'/website/static',
         }, name='static'),
-  url(r'^(assets/ico/)?favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico')),
-  url(r'^robots.txt$', RedirectView.as_view(url='/static/robots.txt')),
+  url(r'^(assets/ico/)?favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico', permanent=False)),
+  url(r'^robots.txt$', RedirectView.as_view(url='/static/robots.txt', permanent=False)),
   url(r'^', include('website.frontend.urls')),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

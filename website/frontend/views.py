@@ -107,7 +107,7 @@ def is_valid_domain(domain):
 def browse(request, source=''):
     if source not in SOURCES + ['']:
         raise Http404
-    pagestr = request.REQUEST.get('page', '1')
+    pagestr = request.GET.get('page', '1')
     try:
         page = int(pagestr)
     except ValueError:
@@ -131,7 +131,7 @@ def browse(request, source=''):
 def feed(request, source=''):
     if source not in SOURCES + ['']:
         raise Http404
-    pagestr = request.REQUEST.get('page', '1')
+    pagestr = request.GET.get('page', '1')
     try:
         page = int(pagestr)
     except ValueError:
@@ -158,9 +158,9 @@ def feed(request, source=''):
 
 def old_diffview(request):
     """Support for legacy diff urls"""
-    url = request.REQUEST.get('url')
-    v1tag = request.REQUEST.get('v1')
-    v2tag = request.REQUEST.get('v2')
+    url = request.GET.get('url')
+    v1tag = request.GET.get('v1')
+    v2tag = request.GET.get('v2')
     if url is None or v1tag is None or v2tag is None:
         return HttpResponseRedirect(reverse(front))
 
@@ -278,7 +278,7 @@ def prepend_http(url):
 
 
 def article_history(request, urlarg=''):
-    url = request.REQUEST.get('url') # this is the deprecated interface.
+    url = request.GET.get('url') # this is the deprecated interface.
     if url is None:
         url = urlarg
     if len(url) == 0:
@@ -345,9 +345,9 @@ def json_view(request, vid):
 
 
 def upvote(request):
-    article_url = request.REQUEST.get('article_url')
-    diff_v1 = request.REQUEST.get('diff_v1')
-    diff_v2 = request.REQUEST.get('diff_v2')
+    article_url = request.GET.get('article_url')
+    diff_v1 = request.GET.get('diff_v1')
+    diff_v2 = request.GET.get('diff_v2')
     remote_ip = request.META.get('REMOTE_ADDR')
     article_id = Article.objects.get(url=article_url).id
     models.Upvote(article_id=article_id, diff_v1=diff_v1, diff_v2=diff_v2, creation_time=datetime.datetime.now(), upvoter_ip=remote_ip).save()
