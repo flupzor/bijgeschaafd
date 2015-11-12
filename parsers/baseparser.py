@@ -114,16 +114,20 @@ class BaseParser(object):
 
     feeder_bs = BeautifulSoup  # use this version of beautifulsoup for feed
 
-    def __init__(self, url):
+    def __init__(self, url, html=None):
         self.url = url
-        try:
-            self.html = grab_url(self._printableurl())
-        except urllib2.HTTPError as e:
-            if e.code == 404:
-                self.real_article = False
-                return
-            raise
-        logger.debug('got html')
+        self.html = html
+
+        if not html:
+            try:
+                self.html = grab_url(self._printableurl())
+            except urllib2.HTTPError as e:
+                if e.code == 404:
+                    self.real_article = False
+                    return
+                raise
+            logger.debug('got html')
+
         self._parse(self.html)
 
     def _printableurl(self):

@@ -2,6 +2,8 @@ from pyquery import PyQuery as pq
 
 from baseparser import BaseParser
 
+from .utils import html_to_text
+
 
 class NuNLParser(BaseParser):
     SUFFIX = ''
@@ -18,10 +20,12 @@ class NuNLParser(BaseParser):
             "div[data-sac-marker='block.article.header'] div.title"
         ).text()
 
-        excerpt = d.find(
-            "div[data-sac-marker='block.article.header'] div.item-excerpt"
-        ).text()
-        content = d.find("div[data-sac-marker='block.article.body']").text()
+        # Filter out:
+        # data-sac-marker="block.slideshow"
+
+        excerpt = html_to_text(d.find("div[data-sac-marker='block.article.header'] div.item-excerpt"))
+        content = html_to_text(d.find("div[data-sac-marker='block.article.body']"))
+
         self.body = excerpt + content
 
         self.date = d.find("div[data-sac-marker='block.article.header'] div.dates span.published span.small").text()
