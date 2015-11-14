@@ -3,10 +3,16 @@ import lxml
 
 def _html_to_text(element):
     if element.tag == 'script':
-        return [element.tail, ]
+        if element.tail:
+            return [element.tail, ]
+        else:
+            return []
 
     if isinstance(element, lxml.etree._Comment):
-        return [element.tail, ]
+        if element.tail:
+            return [element.tail, ]
+        else:
+            return []
 
     text = []
 
@@ -35,4 +41,4 @@ def html_to_text(elements):
     for element in elements:
         text += _html_to_text(element)
 
-    return ' '.join([p.strip() for p in text])
+    return '\n'.join([p.strip() for p in text if p.strip()])
