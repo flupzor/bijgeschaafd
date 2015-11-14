@@ -1,0 +1,4211 @@
+
+
+<!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js "> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UgIPVVRWGwAJXFNXAQc="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),f=c.length,u=i(a,o,r),d=0;f>d;d++)c[d].apply(u,n);return u}function a(t,e){f[t]=s(t).concat(e)}function s(t){return f[t]||[]}function c(){return n(e)}var f={};return{on:a,emit:e,create:c,listeners:s,_events:f}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:24,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(f){try{r("ierr",[f,(new Date).getTime(),!0])}catch(u){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(5),window.onerror=e;try{throw new Error}catch(f){"stack"in f&&(t(1),t(2),"addEventListener"in window&&t(3),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(4),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:11,2:10,3:8,4:12,5:3,6:25,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t){if(window.addEventListener){var e=t("handle"),n=t("ee");t(1),window.addEventListener("click",function(){e("inc",["ck"])},!1),window.addEventListener("hashchange",function(){e("inc",["hc"])},!1),n.on("pushState-start",function(){e("inc",["ps"])})}},{1:9,ee:"QJf3ax",handle:"D5DuLP"}],6:[function(t){t("loader").features.ins=!0},{loader:"G9z0Bl"}],7:[function(t){function e(){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var n=t("ee"),r=t("handle"),o=t(1),i=t(2);t("loader").features.stn=!0,t(3);var a=Event;n.on("fn-start",function(t){var e=t[0];e instanceof a&&(this.bstStart=Date.now())}),n.on("fn-end",function(t,e){var n=t[0];n instanceof a&&r("bst",[n,e,this.bstStart,Date.now()])}),o.on("fn-start",function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),o.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),this.bstType])}),i.on("fn-start",function(){this.bstStart=Date.now()}),i.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),n.on("pushState-start",function(){this.time=Date.now(),this.startPath=location.pathname+location.hash}),n.on("pushState-end",function(){r("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),"addEventListener"in window.performance&&(window.performance.addEventListener("webkitresourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.webkitClearResourceTimings()},!1),window.performance.addEventListener("resourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.clearResourceTimings()},!1)),document.addEventListener("scroll",e,!1),document.addEventListener("keypress",e,!1),document.addEventListener("click",e,!1)}},{1:11,2:10,3:9,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],8:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=t("ee").create(),i=t(1)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t,e){function n(){return s}if(t[1]){var r=t[1];if("function"==typeof r){var s=a(r,"nr@wrapped",function(){return i(r,"fn-",n,r.name||"anonymous")});this.wrapped=t[1]=s,o.emit("initEventContext",[t,e],this.wrapped)}else"function"==typeof r.handleEvent&&i.inPlace(r,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:26,ee:"QJf3ax",gos:"7eSDFh"}],9:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window.history,["pushState","replaceState"],"-")},{1:26,ee:"QJf3ax"}],10:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:26,ee:"QJf3ax"}],11:[function(t,e){function n(t,e,n){t[0]=i(t[0],"fn-",null,n)}function r(t,e,n){function r(){return a}this.ctx={};var a={"nr@context":this.ctx};o.emit("initTimerContext",[t,n],a),t[0]=i(t[0],"fn-",r,n)}var o=t("ee").create(),i=t(1)(o);e.exports=o,i.inPlace(window,["setTimeout","setImmediate"],"setTimer-"),i.inPlace(window,["setInterval"],"setInterval-"),i.inPlace(window,["clearTimeout","clearImmediate"],"clearTimeout-"),o.on("setInterval-start",n),o.on("setTimer-start",r)},{1:26,ee:"QJf3ax"}],12:[function(t,e){function n(){f.inPlace(this,p,"fn-",o)}function r(t,e){f.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),f=c(a),u=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),e.hasOwnProperty("addEventListener")&&u.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,f.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:8,2:26,ee:"QJf3ax"}],13:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,f="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,u=n(f);if(u&&(r.rxSize=u),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,f=t(1),u=window.XMLHttpRequest;t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var f=n(o);f&&(r.txSize=f)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var u=0;c>u;u++)e.addEventListener(s[u],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof u&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof u&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof u&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:14,3:12,4:8,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],14:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],15:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:24,2:25,handle:"D5DuLP"}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):void(r.q&&(r.q[t]||(r.q[t]=[]),r.q[t].push(e)))}var r=t("ee").create();e.exports=n,n.ee=r,r.q={}},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=f.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===u.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=f.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=window,f=c.document;t(2);var u=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-768.min.js"},p=e.exports={offset:i(),origin:u,features:{}};f.addEventListener?(f.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(f.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:24,2:15,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],24:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],25:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],26:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@original",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,f;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){u([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return f=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,f],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=t,f(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,f?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){u([o,e,n,r])}}function f(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){u([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function u(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:25,ee:"QJf3ax"}]},{},["G9z0Bl",4,13,7,6,5]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"4702f272e2","agent":"js-agent.newrelic.com/nr-768.min.js","transactionName":"YgdVbUYHW0tWURFYXVtNcUxaBUFRWFxKUkdHEFJXQDlGUUNXS0dbUBVEF1cJR10NcxdFW1YOUm9dA0I=","applicationID":"3982566","errorBeacon":"bam.nr-data.net","applicationTime":2654}</script>
+        <title>Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem | NU - Het laatste nieuws het eerst op NU.nl</title>
+        <meta name="author" content="" />
+        <meta name="apple-itunes-app" content="app-id=382059927, app-argument=nunl://article/4163338" />
+        <meta name="google-play-app" content="app-id=nl.sanomamedia.android.nu" />
+        <meta name="google-site-verification" content="tRpopkLA7bauR1j8Ndzqrf9vyTjq-MEcNXh7MiApp34" />
+        <meta name="DC.date.issued" content="2015-11-12" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
+        <meta name="format-detection" content="telephone=yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta name="keywords" content="Commissie-Stiekem" />
+        <meta name="description" content="Het presidium, het dagelijks bestuur van de Tweede Kamer, stelt een onderzoekscommissie in naar het lekken uit de zogenoemde commissie-Stiekem." /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="http://media.nu.nl/m/iq2xizpaz50h_wd1280.jpg/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.jpg" /><meta name="twitter:description" content="Het presidium, het dagelijks bestuur van de Tweede Kamer, stelt een onderzoekscommissie in naar het lekken uit de zogenoemde commissie-Stiekem." /><meta name="title" content="Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem" /><meta name="twitter:site" content="@NUnl" /><meta name="twitter:title" content="Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem" /><meta name="twitter:url" content="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" />
+        <meta property="og:url" content="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" /><meta property="og:image" content="http://media.nu.nl/m/iq2xizpaz50h_wd1280.jpg/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.jpg" /><meta property="og:site_name" content="NU" /><meta property="og:title" content="Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem" /><meta property="og:locale" content="nl_NL" /><meta property="og:description" content="Het presidium, het dagelijks bestuur van de Tweede Kamer, stelt een onderzoekscommissie in naar het lekken uit de zogenoemde commissie-Stiekem." /><meta property="og:type" content="article" />
+            <link rel="canonical" href="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" />
+            <link rel="alternate" href="android-app://nl.sanomamedia.android.nu/http/www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" />
+        <link rel="icon" type="image/png" href="/static/img/atoms/images/logos/favicon.ico" />
+        <link rel="apple-touch-icon" href="/static/img/atoms/images/logos/apple-touch-icon.png" />
+        <link href="https://plus.google.com/+NUnl" rel="publisher" />
+        <meta http-equiv="cleartype" content="on" />
+        <script type="text/javascript">
+var context_dc_params = 'CATEGORY=algemeen;KEYWORDS=commissie-stiekem;',
+    context = {
+        'dc_params': context_dc_params,
+        'category' : 'algemeen',
+        'subcategory' : 'politiek',
+        'article_id' : '4163338',
+        'article_name' : 'bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem',
+        'article_author' : 'nu.nl/NU.nl'
+    };
+</script>
+        <!--[if gte IE 10]><!-->
+        <link rel="stylesheet" href="/static/CACHE/css/b1378890e4d1.css" type="text/css" media="all" />
+        <!--<![endif]-->
+        <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/static/CACHE/css/f4a50497ad4e.css" type="text/css" />
+        <link rel="stylesheet" href="/static/CACHE/css/e37857e531e1.css" type="text/css" />
+        <link rel="stylesheet" href="/static/CACHE/css/e3fc70f6f3f4.css" type="text/css" />
+        <![endif]-->
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="/static/CACHE/css/e2eec03b764e.css" type="text/css" />
+        <![endif]-->
+<!-- Block CSS -->
+        <!--[if (lt IE 9) & (!IEMobile)]>
+            <script type="text/javascript" src="/static/CACHE/js/dd1c023be6b2.js"></script>
+        <![endif]-->
+<script type="text/javascript" src="/static/CACHE/js/80d6581f1f94.js"></script>
+        <script type="text/javascript">
+            var app_name = 'NU';
+            var app_stage = 'production';
+            var FULL_PATH = '/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html';
+        </script>
+        <script type="text/javascript" src="http://cts.snmmd.nl/service/js/nunl/politiek-artikel/"></script><script type="text/javascript">   var wlrcmd = ""; var context = context || {};   tagging = new Tagging(context);</script>
+        <script type="text/javascript"> try {    if(true) {        tagging.render("head");    } } catch(err) {    console.log(err) } </script>
+        <script src="/static/js/organisms/ntv.advertorial.js"></script>
+        <script type="text/javascript">
+    // contain variables
+    (function() {
+        // Get the viewsize
+        var viewsize = '1-kolom-smal';
+        if (min320) {
+            viewsize = '1-kolom-medium';
+        }
+        if (min480) {
+            viewsize = '1-kolom-breed';
+        }
+        if (min600) {
+            viewsize = '2-kolom-smal';
+        }
+        if (min768) {
+            viewsize = '2-kolom-medium';
+        }
+        if (min992) {
+            viewsize = '3-kolom';
+        }
+        // Get the mobile/ipad/desktop detection
+        if (typeof(Consent) != 'undefined' && !Consent.has_optin('stats')) {
+            window['ga-disable-UA-10557259-1'] = true;
+        }
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        var _ga_options = {};
+        _ga_options['allowAnchor'] = true;
+        ga('create', 'UA-10557259-1', '.www.nu.nl', _ga_options);
+        ga('set', 'dimension1', viewsize);
+        ga('set', 'dimension2', getOrientation());
+        ga('send', 'pageview');
+    })();
+    if(window.addEventListener) {
+        window.addEventListener('orientationchange', function () {
+            NU.log('_trackEvent', 'default', 'orientationchange', 'switch_to_' + getOrientation());
+            ga('send', 'event', 'default', 'orientationchange', 'switch_to_' + getOrientation());
+        }, true);
+    }
+</script>
+        <!-- Advertorial styling -->
+    </head>
+
+    <body id="nu" class="three-columns page-article  nu" data-pagetype="article" data-section="politiek">
+        <div class="skip dispnone"><a href="#main">Skip to main content</a></div>
+
+        <div id="wrapper">
+            
+                <!-- zone|body_top start -->
+<div class="zone" data-zone="body_top" data-vr-zone="body_top">
+    
+        <!-- block|webring start -->
+<div
+    id="block-332813"
+    data-id="block-332813"
+    data-position=""
+    data-type="webring"
+    class="block webring "
+    data-sac-marker="block.webring"
+>
+    <div class="block-wrapper horizontal">
+    <div class="block-content">
+
+        <div class="ring">
+            
+                
+                    
+    <a href="http://www.nu.nl" target="_self" class="nav-item nav-main nav-hasimage item-nu current trackevent" title="NU" rel="nofollow">
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nu">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NU" />
+            </div>
+        </div>
+        <span class="nav-item-text">NU</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/economie" target="_self" class="nav-item nav-main nav-hasimage item-nuzakelijk trackevent" title="NUzakelijk" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuzakelijk">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUzakelijk" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUzakelijk</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/sport" target="_self" class="nav-item nav-main nav-hasimage item-nusport trackevent" title="NUsport" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nusport">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUsport" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUsport</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/tech" target="_self" class="nav-item nav-main nav-hasimage item-nutech trackevent" title="NUtech" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nutech">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUtech" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUtech</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/entertainment" target="_self" class="nav-item nav-main nav-hasimage item-nuentertainment trackevent" title="NUentertainment" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuentertainment">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUentertainment" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUentertainment</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/lifestyle" target="_self" class="nav-item nav-main nav-hasimage item-nulifestyle trackevent" title="NUlifestyle" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nulifestyle">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUlifestyle" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUlifestyle</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/geldzaken" target="_self" class="nav-item nav-main nav-hasimage item-nugeld trackevent" title="NUgeld" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nugeld">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUgeld" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUgeld</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nuwerk.nl" target="_blank" class="nav-item nav-main nav-hasimage item-nuwerk trackevent" title="NUwerk" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuwerk">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUwerk" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUwerk</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+        </div>
+
+        <div class="btn account" style="display: none;">
+    <div class="accountimage"></div>
+    <div class="loginbutton">
+        Inloggen
+    </div>
+    <div class="accountname">
+        <span class="firstname"></span>
+        <span class="lastname"></span>
+    </div>
+    <ul class="dropdown">
+        <li>
+            <a class=" trackevent account_profile">Mijn account</a>
+        </li>
+        <li>
+            <a class=" trackevent account_logout">Uitloggen</a>
+        </li>
+        <li>
+            <span class=" trackevent accounttagline">Powered by Sanoma</span>
+        </li>
+    </ul>
+</div>
+
+        <div class="menutrigger">
+            <div class="molecule-webring-menutrigger">
+    <button class="btn toggle-menu menu-left" type="button"></button>
+
+    <div class="nav-branding">
+        <a href="/algemeen" class="logo trackevent" data-trackeventlabel="logo">
+    <div class="svg-icon icon-main icon-nu">
+    <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="nu logo" />
+</div>
+</a>
+        
+            <h3><a href="/politiek">Politiek</a></h3>
+        
+    </div>
+</div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+</div>
+<!-- block|webring end -->
+
+
+    
+</div>
+<!-- zone|body_top end -->
+            
+
+            <div id="container">
+                <div id="header">
+                    
+                        <!-- zone|header start -->
+<div class="zone" data-zone="header" data-vr-zone="header">
+    
+        <!-- block|smartbanner start -->
+<div
+    id="block-332815"
+    data-id="block-332815"
+    data-position=""
+    data-type="smartbanner"
+    class="block smartbanner "
+    data-sac-marker="block.smartbanner"
+>
+    <div class="block-wrapper">
+    <div class="block-content">
+
+    </div>
+</div>
+</div>
+<!-- block|smartbanner end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332817"
+    data-id="block-332817"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper mtop_320">
+    <div class="block-content">
+        
+            <div id="cts_d830592a05de42bb972d4b204ad5413d" class="cts-wrapper min320 max480 set-block"><script type="text/javascript"> try {    if(min320 && max480) {        tagging.render("mtop_320");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332819"
+    data-id="block-332819"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dtop_468">
+    <div class="block-content">
+        
+            <div id="cts_38ee70a461b9425ba79661170e7614b4" class="cts-wrapper min480 max768 set-block"><script type="text/javascript"> try {    if(min480 && max768) {        tagging.render("dtop_468");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332821"
+    data-id="block-332821"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dtop_728">
+    <div class="block-content">
+        
+            <div id="cts_521acff31672466dbccae40f6b4d0e3c" class="cts-wrapper min768 max992 set-block"><script type="text/javascript"> try {    if(min768 && max992) {        tagging.render("dtop_728");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332823"
+    data-id="block-332823"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dtop_970_728">
+    <div class="block-content">
+        
+            <div id="cts_0ec63e58c1b64615814ff9b4077bf5e1" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dtop_970_728");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|header end -->
+                    
+                </div>
+                <div id="content_container">
+                    <div id="menu" class="column first nu-main-menu nu-main-menu-left">
+                        <div class="column-content">
+                            
+                                <!-- zone|menu start -->
+<div class="zone" data-zone="menu" data-vr-zone="menu">
+    
+        <!-- block|menu start -->
+<div
+    id="block-332827"
+    data-id="block-332827"
+    data-position=""
+    data-type="menu"
+    class="block menu compact"
+    data-sac-marker="block.menu"
+>
+    <!-- Left menu element-->
+<nav>
+	<div class="nav-branding">
+        <div class="nav-item nav-title">
+            <a href="http://www.nu.nl" class="logo trackevent" data-trackeventlabel="logo">
+    <div class="svg-icon icon-main icon-nu">
+    <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="nu logo" />
+</div>
+</a>
+            <h3>NU</h3>
+            <div class="clear"></div>
+        </div>
+        <button class="btn nav-close" type="button"></button>
+    </div>
+
+    <div class="nav-content">
+        
+            
+
+    
+
+    <a href="/" class="nav-item nav-main   first trackevent" >
+        Voorpagina
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/net-binnen/" class="nav-item nav-main    trackevent" >
+        Net binnen
+    </a>
+
+    
+
+    
+
+
+
+    <div class="nav-group">
+
+    <a href="/algemeen" class="nav-item nav-main    trackevent" >
+        Algemeen
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/binnenland" class="nav-item nav-sub   first trackevent" >
+        Binnenland
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/buitenland" class="nav-item nav-sub    trackevent" >
+        Buitenland
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/politiek" class="nav-item nav-sub   last trackevent" >
+        Politiek
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/economie" class="nav-item nav-main    trackevent" >
+        Economie
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/geldzaken" class="nav-item nav-sub   first trackevent" >
+        Geld
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/ondernemen" class="nav-item nav-sub    trackevent" >
+        Ondernemen
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/beurs" class="nav-item nav-sub    trackevent" >
+        Beurs
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/volkswagen-schandaal" class="nav-item nav-sub   last trackevent" >
+        VW-schandaal
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/sport" class="nav-item nav-main    trackevent" >
+        Sport
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/voetbal" class="nav-item nav-sub   first trackevent" >
+        Voetbal
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/champions-league" class="nav-item nav-sub    trackevent" >
+        Champions League
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/formule-1" class="nav-item nav-sub    trackevent" >
+        Formule 1
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="http://www.nu.nl/redirect-for-cookie.html?redirect_to=https%3A%2F%2Fmijnteam.nu.nl%2F%3Faccepted%3D1" class="nav-item nav-sub   last trackevent" >
+        MijnTeam
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/tech" class="nav-item nav-main    trackevent" >
+        Tech
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/internet" class="nav-item nav-sub   first trackevent" >
+        Internet
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/mobiel" class="nav-item nav-sub    trackevent" >
+        Mobiel
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/gadgets" class="nav-item nav-sub    trackevent" >
+        Gadgets
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/games" class="nav-item nav-sub   last trackevent" >
+        Games
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/entertainment" class="nav-item nav-main    trackevent" >
+        Entertainment
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/achterklap" class="nav-item nav-sub   first trackevent" >
+        Achterklap
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/film" class="nav-item nav-sub    trackevent" >
+        Films en series
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/muziek" class="nav-item nav-sub    trackevent" >
+        Muziek
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/cultuur-overig" class="nav-item nav-sub    trackevent" >
+        Boek en cultuur
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/media" class="nav-item nav-sub   last trackevent" >
+        Media
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/lifestyle" class="nav-item nav-main    trackevent" >
+        Lifestyle
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/gezondheid" class="nav-item nav-sub   first trackevent" >
+        Gezondheid
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/eten-en-drinken" class="nav-item nav-sub    trackevent" >
+        Eten &amp; Drinken
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/werk-en-prive" class="nav-item nav-sub    trackevent" >
+        Werk &amp; Privé
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/wonen-en-interieur" class="nav-item nav-sub    trackevent" >
+        Wonen
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/reizen" class="nav-item nav-sub   last trackevent" >
+        Reizen
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/overig" class="nav-item nav-main    trackevent" >
+        Overig
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/wetenschap" class="nav-item nav-sub   first trackevent" >
+        Wetenschap
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/opmerkelijk" class="nav-item nav-sub    trackevent" >
+        Opmerkelijk
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/dieren" class="nav-item nav-sub    trackevent" >
+        Dieren
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/auto" class="nav-item nav-sub    trackevent" >
+        Auto
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/videos" class="nav-item nav-sub   last trackevent" >
+        Video&#39;s
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    
+
+    <a href="/regio" class="nav-item nav-main   last trackevent" >
+        Regionaal
+    </a>
+
+    
+
+    
+
+
+
+        
+        <div class="clear"></div>
+    </div>
+
+    <div class="nav-separator"></div>
+
+	<div class="nav-content nav-webring">
+        
+            
+                
+    <a href="http://www.nu.nl" target="_self" class="nav-item nav-main nav-hasimage item-nu current trackevent" title="NU" rel="nofollow">
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nu">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NU" />
+            </div>
+        </div>
+        <span class="nav-item-text">NU</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/economie" target="_self" class="nav-item nav-main nav-hasimage item-nuzakelijk trackevent" title="NUzakelijk" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuzakelijk">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUzakelijk" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUzakelijk</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/sport" target="_self" class="nav-item nav-main nav-hasimage item-nusport trackevent" title="NUsport" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nusport">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUsport" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUsport</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/tech" target="_self" class="nav-item nav-main nav-hasimage item-nutech trackevent" title="NUtech" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nutech">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUtech" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUtech</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/entertainment" target="_self" class="nav-item nav-main nav-hasimage item-nuentertainment trackevent" title="NUentertainment" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuentertainment">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUentertainment" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUentertainment</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/lifestyle" target="_self" class="nav-item nav-main nav-hasimage item-nulifestyle trackevent" title="NUlifestyle" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nulifestyle">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUlifestyle" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUlifestyle</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/geldzaken" target="_self" class="nav-item nav-main nav-hasimage item-nugeld trackevent" title="NUgeld" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nugeld">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUgeld" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUgeld</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nuwerk.nl" target="_blank" class="nav-item nav-main nav-hasimage item-nuwerk trackevent" title="NUwerk" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuwerk">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUwerk" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUwerk</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+        <div class="clear"></div>
+    </div>
+</nav>
+</div>
+<!-- block|menu end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332829"
+    data-id="block-332829"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_160_120">
+    <div class="block-content">
+        
+            <div id="cts_8c1e042a5c804f8b905a7d28420e9e8e" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dmid_160_120");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|menu end -->
+                            
+                        </div>
+                    </div>
+                    <div id="main" class="column two last">
+                        <div class="column-content">
+
+                            <!-- zone|top start -->
+<div class="zone" data-zone="top" data-vr-zone="top">
+    
+        <!-- block|topbar start -->
+<div
+    id="block-332825"
+    data-id="block-332825"
+    data-position=""
+    data-type="topbar"
+    class="block topbar "
+    data-sac-marker="block.topbar"
+>
+    <div class="block-wrapper clearfix">
+    <div class="column first clearfix">
+        <div class="consent_required" data-encoded_content="CjxkaXYgY2xhc3M9InNlYXJjaC1ib3gtbW9sZWN1bGUgY2xvc2VkIj4KICAgIDxkaXYgY2xhc3M9InNlYXJjaC1ib3giPgogICAgICAgPGZvcm0gYWN0aW9uPSIvem9la2VuIj4KICAgICAgICAgICAgPGJ1dHRvbiB0eXBlPSJzdWJtaXQiIGNsYXNzPSJ0cmFja2V2ZW50IiBkYXRhLXRyYWNrZXZlbnRsYWJlbD0ic3VibWl0LXNlYXJjaCI+PGkgY2xhc3M9ImZhIGZhLXNlYXJjaCI+PC9pPjwvYnV0dG9uPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2gtaW5wdXQiPgogICAgICAgICAgICAgICAgPGlucHV0IGlkPSJzZWFyY2gtaW5wdXQtcSIgbmFtZT0icSIgdHlwZT0ic2VhcmNoIiBwbGFjZWhvbGRlcj0iWm9la2VuIiAvPgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Zvcm0+CiAgICA8L2Rpdj4KICAgIDxidXR0b24gY2xhc3M9ImJ0biBzZWFyY2gtYnV0dG9uIHRyYWNrZXZlbnQiIGRhdGEtdHJhY2tldmVudGxhYmVsPSJ0b2dnbGUtc2VhcmNoIiB0eXBlPSJidXR0b24iPgogICAgICAgIDxpIGNsYXNzPSJmYSBmYS1zZWFyY2giPjwvaT4KICAgICAgICA8aSBjbGFzcz0iZmEgZmEtdGltZXMiPjwvaT4KICAgIDwvYnV0dG9uPgo8L2Rpdj4K"></div>
+        <div class="block slogan">
+    <div class="block-wrapper">
+        <div class="block-content">
+            Donderdag 12 november 2015
+            <div class="min600 set-inline">
+                <div class="divider dotted vertical">|</div>
+                <span>Het laatste nieuws het eerst op NU.nl</span>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    <div class="column last">
+        <div class="block widgets">
+    <div class="block-wrapper">
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget weather">
+                <a href="/weer" class="btn-content trackevent" data-trackeventlabel="weather" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="dispnone">Temperatuur</span>
+                        
+                            <i class="btn-icon fc fc-weather-b"></i>
+                            <span class="btn-text">14 &deg;C</span>
+                        
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget traffic">
+                <a href="/verkeer" class="btn-content trackevent" data-trackeventlabel="traffic" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="btn-icon"></span>
+                        <span class="dispnone">Vervoer</span>
+                        <span class="btn-text">
+                            
+                                2
+                            
+                             Files
+                        </span>
+                        <span class="btn-text dispnone">
+                            
+                                2
+                             NS
+                        </span>
+                        <span class="btn-text dispnone">
+                            &euro; 1,623
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget stocks">
+                <a href="/aandelen" class="btn-content trackevent" data-trackeventlabel="stocks" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="btn-icon"></span>
+                        <span class="dispnone">AEX</span>
+                        <span class="btn-text">463,01</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget tvguide">
+                <a href="/tvgids" class="btn-content trackevent" data-trackeventlabel="tvguide" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="btn-icon"></span>
+                        <span class="btn-text">TV gids</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget sports">
+                <a href="/live/voetbal" class="btn-content trackevent" data-trackeventlabel="sports" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="btn-icon"></span>
+                        <span class="dispnone">Live voetbalwedstrijden</span>
+                        <span class="btn-text">0 Live</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+<!-- block|topbar end -->
+
+
+    <script type="text/javascript">
+        jQuery('#block-332825').data({"url": "/block/json/topbar?section=politiek", "refresh": 60});
+    </script>
+
+    
+</div>
+<!-- zone|top end -->
+
+                            <div class="clear"></div>
+
+                            <div class="column first">
+                                <div class="column-content">
+                                    <div class="column-content-background">
+                                        
+
+    
+        <!-- zone|main start -->
+<div class="zone" data-zone="main" data-vr-zone="main">
+    
+        <!-- block|breadcrumb start -->
+<div
+    id="block-332831"
+    data-id="block-332831"
+    data-position=""
+    data-type="breadcrumb"
+    class="block breadcrumb "
+    data-sac-marker="block.breadcrumb"
+>
+    <div class="block-wrapper section-nu">
+    <div class="block-content">
+        <ul class="inline">
+            
+                <li class="first">
+                    
+                        <a href="/" class="trackevent" data-trackeventlabel="nu.nl">NU.nl</a>
+                    
+                </li>
+            
+                <li class="">
+                    
+                        <a href="/algemeen" class="trackevent" data-trackeventlabel="algemeen">Algemeen</a>
+                    
+                </li>
+            
+                <li class=" active">
+                    
+                        <a href="/politiek" class="trackevent" data-trackeventlabel="politiek">Politiek</a>
+                    
+                </li>
+            
+                <li class="last hidden">
+                    
+                        <a href="#">Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem</a>
+                    
+                </li>
+            
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+</div>
+<!-- block|breadcrumb end -->
+
+
+    
+        <!-- block|article.header start -->
+<div
+    id="block-332833"
+    data-id="block-332833"
+    data-position=""
+    data-type="article.header"
+    class="block article header "
+    data-sac-marker="block.article.header"
+>
+    <div class="block-wrapper ">
+    <div class="block-content clearfix">
+        <div class=" hasslideshow ">
+            <div class="articleheader-image">
+                <div class="image-wrapper">
+                    <div class="item-image">
+                        
+                            <noscript>
+                               <img src="http://media.nu.nl/m/iq2xizpaz50h_wd640.jpg/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.jpg" alt="Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem" />
+                            </noscript>
+                            <img data-src="http://media.nu.nl/m/iq2xizpaz50h_wd640.jpg/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.jpg" src="/static/img/placeholders/wd640-o.png" class="image lazy-unveil" alt="" />
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-overlay">
+                <div class="title-container">
+                    
+                    
+                    <div class="title">
+    
+        <h1 class="fluid">
+            Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem
+            <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+        </h1>
+    
+</div>
+                </div>
+                
+<div class="copyright">
+    <span>Foto: <span class="photographer">ANP</span></span>
+</div>
+
+            </div>
+
+            <div class="clear"></div>
+            <div class="footer">
+    <div class="left">
+        <div class="dates">
+            <span class="published">Gepubliceerd: <span class="large">12 november 2015 12:07</span><span class="small">12-11-15 12:07</span></span>
+            <span class="update">Laatste update:
+                
+                    <span class="large">12 november 2015 13:20</span><span class="small">12-11-15 13:20</span>
+                
+            </span>
+        </div>
+    </div>
+
+    <div class="socialbuttons right">
+        <div class="badges">
+            
+<ul class="social-badges">
+    <li class="nujij last">
+        <a href="http://www.nujij.nl/jij.lynkx/?i=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fiq2xizpaz50h.jpg&x=Commissie-Stiekem&b=Het+presidium%2C+het+dagelijks+bestuur+van+de+Tweede+Kamer%2C+stelt+een+onderzoekscommissie+in+naar+het+lekken+uit+de+zogenoemde+commissie-Stiekem.&u=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&t=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="nujij" data-tracksocialaction="send1">
+            <i class="fc fc-nujij fa-lg"></i>
+        </a>
+    </li>
+    <li class="facebook first">
+        <a href="http://www.facebook.com/sharer.php?p%5Btitle%5D=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem&p%5Burl%5D=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&s=100&p%5Bimages%5D%5B0%5D=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fiq2xizpaz50h_wd1280.jpg&p%5Bsummary%5D=Het+presidium%2C+het+dagelijks+bestuur+van+de+Tweede+Kamer%2C+stelt+een+onderzoekscommissie+in+naar+het+lekken+uit+de+zogenoemde+commissie-Stiekem." rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="facebook" data-tracksocialaction="like">
+            <i class="fa fa-facebook fa-lg"></i>
+        </a>
+    </li>
+    <li class="twitter">
+        <a href="http://twitter.com/intent/tweet/?url=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&text=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem&via=NUnl" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="twitter" data-tracksocialaction="tweet">
+            <i class="fa fa-twitter fa-lg"></i>
+        </a>
+    </li>
+    <li class="googleplus">
+        <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="google" data-tracksocialaction="send">
+            <i class="fa fa-google-plus fa-lg"></i>
+        </a>
+    </li>
+</ul>
+        </div>
+        <a href="#" class="button">
+            Deel
+        </a>
+        <div class="tooltip-badges">
+            <div class="box">
+                
+<ul class="social-badges">
+    <li class="nujij last">
+        <a href="http://www.nujij.nl/jij.lynkx/?i=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fiq2xizpaz50h.jpg&x=Commissie-Stiekem&b=Het+presidium%2C+het+dagelijks+bestuur+van+de+Tweede+Kamer%2C+stelt+een+onderzoekscommissie+in+naar+het+lekken+uit+de+zogenoemde+commissie-Stiekem.&u=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&t=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="nujij" data-tracksocialaction="send1">
+            <i class="fc fc-nujij fa-lg"></i>
+        </a>
+    </li>
+    <li class="facebook first">
+        <a href="http://www.facebook.com/sharer.php?p%5Btitle%5D=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem&p%5Burl%5D=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&s=100&p%5Bimages%5D%5B0%5D=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fiq2xizpaz50h_wd1280.jpg&p%5Bsummary%5D=Het+presidium%2C+het+dagelijks+bestuur+van+de+Tweede+Kamer%2C+stelt+een+onderzoekscommissie+in+naar+het+lekken+uit+de+zogenoemde+commissie-Stiekem." rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="facebook" data-tracksocialaction="like">
+            <i class="fa fa-facebook fa-lg"></i>
+        </a>
+    </li>
+    <li class="twitter">
+        <a href="http://twitter.com/intent/tweet/?url=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&text=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem&via=NUnl" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="twitter" data-tracksocialaction="tweet">
+            <i class="fa fa-twitter fa-lg"></i>
+        </a>
+    </li>
+    <li class="googleplus">
+        <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="google" data-tracksocialaction="send">
+            <i class="fa fa-google-plus fa-lg"></i>
+        </a>
+    </li>
+</ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+        </div>
+
+        <div class="item-excerpt">
+    
+        Het presidium, het dagelijks bestuur van de Tweede Kamer, stelt een onderzoekscommissie in naar het lekken uit de zogenoemde commissie-Stiekem.
+        <div class="clear"></div>
+    
+</div>
+    </div>
+</div>
+</div>
+<!-- block|article.header end -->
+
+
+    
+        <!-- block|article.body start -->
+<div
+    id="block-332835"
+    data-id="block-332835"
+    data-position=""
+    data-type="article.body"
+    class="block article body "
+    data-sac-marker="block.article.body"
+>
+    
+    <div class="block-wrapper">
+        <div class="block-content">
+            <p>Dat is donderdag bekendgemaakt door Kamervoorzitter Anouchka van Miltenburg na afloop van een vergadering van het presidium. <br/><br/> Eerder deze week werd bekend dat er aangifte is gedaan wegens het lekken uit de Commissie voor de Inlichtingen- en Veiligheidsdiensten, oftewel de commissie-Stiekem, <a href="http://www.nrc.nl/handelsblad/2014/02/18/afluisterzaak-al-in-december-besproken-in-commiss-1349492" target="_blank">naar</a> <em>NRC Handelsblad</em>. De commissie-Stiekem bestaat uit de fractievoorzitters van de gekozen partijen. Lekken uit deze commissie geldt als een ambtsmisdrijf.<br/><br/> Woensdag <a href="http://www.nu.nl/politiek/4163073/legt-onderzoek-commissie-stiekem-neer-mogelijk-ambtsmisdrijf.html" target="_blank">liet</a> het OM weten dat zij de zaak, die al anderhalf jaar speelt, niet verder behandelt en neerlegt bij de Kamer. De Grondwet bepaalt dat de opdracht tot vervolging van een Kamerlid alleen door de regering of de Tweede Kamer kan worden gegeven.</p> <!-- block|slideshow start -->
+<div
+    id="block-222727"
+    data-id="block-222727"
+    data-position=""
+    data-type="slideshow"
+    class="block slideshow "
+    data-sac-marker="block.slideshow"
+>
+    
+    <div class="block-wrapper">
+        
+            <div class="block-title">
+                <a id="anchor-i-classmediaicon-slideshowi-onderzoek-naar-lek-commissie-stiekem"></a><h2><i class="mediaicon-slideshow"></i> Onderzoek naar lek commissie-Stiekem </h2>
+            </div>
+        
+        <div class="block-content clearfix">
+            <img src="/static/img/placeholders/wd640-o.png" class="placeholder-image" alt="" />
+            <div class="royalSlider rsNunl "  style="width: 100%;" data-slideshowtitle="onderzoek naar lek commissie-stiekem " data-slug="onderzoek-naar-lek-commissie-stiekem" >
+                
+                    <a
+	class="rsImg"
+	data-rsBigImg="http://media.nu.nl/m/rflxjqmapluj_wd1280.jpg"
+	href="http://media.nu.nl/m/rflxjqmapluj_wd640.jpg"
+>
+	<div class="rsCaption">
+        
+        
+    </div>
+</a>
+                
+                    <a
+	class="rsImg"
+	data-rsBigImg="http://media.nu.nl/m/316xsvxadzwy_wd1280.jpg"
+	href="http://media.nu.nl/m/316xsvxadzwy_wd640.jpg"
+>
+	<div class="rsCaption">
+        
+            Dat is donderdag bekendgemaakt door Kamervoorzitter Anouchka van Miltenburg na afloop van een vergadering van het presidium. 
+        
+        
+            <span class="rsCopyright">&copy; ANP</span>
+        
+    </div>
+</a>
+                
+                    <a
+	class="rsImg"
+	data-rsBigImg="http://media.nu.nl/m/nxnx66sazjhc_wd1280.jpg"
+	href="http://media.nu.nl/m/nxnx66sazjhc_wd640.jpg"
+>
+	<div class="rsCaption">
+        
+        
+    </div>
+</a>
+                
+                    <a
+	class="rsImg"
+	data-rsBigImg="http://media.nu.nl/m/e6hxmwza7dbc_wd1280.jpg"
+	href="http://media.nu.nl/m/e6hxmwza7dbc_wd640.jpg"
+>
+	<div class="rsCaption">
+        
+        
+    </div>
+</a>
+                
+            </div>
+            <div class="rsShareOverlay">
+                <div class="block slideshow-sharing">
+                    <div class="block-wrapper">
+                        <div class="block-title"><a id="anchor-deel-deze-foto-via"></a><h2>Deel deze foto via:</h2></div>
+                        <div class="block-content spacious">
+                        
+<div class="socialbar-wrapper no-counters">
+    <ul class="social-buttons">
+        <li class="nujij">
+            <a href="http://www.nujij.nl/jij.lynkx/?u=http%3A%2F%2Fwww.nu.nl%2Fslideshow%2F1908688.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/slideshow/1908688.html" data-tracksocialnetwork="nujij" data-tracksocialaction="send1">
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fc fc-nujij fa-2x"></i>
+                        <span class="socialtext">Reageer</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="facebook first">
+            <a href="http://www.facebook.com/sharer.php?p%5Burl%5D=http%3A%2F%2Fwww.nu.nl%2Fslideshow%2F1908688.html&s=100" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/slideshow/1908688.html" data-tracksocialnetwork="facebook" data-tracksocialaction="like">
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-facebook fa-2x"></i>
+                        <span class="socialtext">Share</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="twitter">
+            <a href="http://twitter.com/intent/tweet/?url=http%3A%2F%2Fwww.nu.nl%2Fslideshow%2F1908688.html&via=NUnl" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/slideshow/1908688.html" data-tracksocialnetwork="twitter" data-tracksocialaction="tweet">
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-twitter fa-2x"></i>
+                        <span class="socialtext">Tweet</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="googleplus">
+            <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.nu.nl%2Fslideshow%2F1908688.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/slideshow/1908688.html" data-tracksocialnetwork="google" data-tracksocialaction="send">
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-google-plus fa-2x"></i>
+                        <span class="socialtext">1</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="email last">
+            <a href="http://messagent.sanomadigital.nl/optiext/optiextension.dll?ID=dRGdHmKfgt3BAlnR%2BQ9vk_W5Lb69wkEmPBl9sZvXm2L8xXJZYeeXsfXVv7lxB9FE%2B0SGHjv5qOdbEhNtTQ&onderwerp=http://www.nu.nl/slideshow/1908688.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/slideshow/1908688.html" data-tracksocialnetwork="email" data-tracksocialaction="send2">
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-envelope fa-2x"></i>
+                        <span class="socialtext">E-mail</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+    </ul>
+</div>
+<div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rsActionBar right">
+                    <div class="rsActionBarBtn rsCloseShareOverlayBtn">
+                        <span>Terug naar slideshow</span>
+                        <i class="fa fa-times rsActionbarIcn"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- block|slideshow end -->
+
+ <a id="anchor-voldoende-gronden"></a><h3>Voldoende gronden</h3> <p>Van Miltenburg maakte donderdag bekend dat de onderzoekscommissie moet onderzoeken of er voldoende gronden zijn om tot vervolging over te gaan. Van Miltenburg zei niet te weten wie van de fractieleiders gelekt heeft. "Door het OM is geen inhoudelijke informatie overgedragen over deze zaak. Noch de kamer, noch het presidium, noch de Kamervoorzitter beschikt over het dossier."<br/><br/> Zij zal later op de avond een brief sturen naar de Tweede Kamer met nadere details over het onderzoek. Volgende week stemmen de Kamerleden over de samenstelling en de taakopdracht van de onderzoekscommissie.</p> <a id="anchor-aanleiding"></a><h3>Aanleiding</h3> <p>Aanleiding is de rel die vorig jaar speelde rond minister van Binnenlandse Zaken Ronald Plasterk en de aangifte die vervolgens werd gedaan door VVD-fractievoorzitter Halbe Zijlstra in zijn rol als voorzitter van de zogeheten commissie-Stiekem.</p> <p>In 2014 kwam Plasterk in grote <a href="http://www.nu.nl/politiek/3699650/plasterk-houdt-steun-van-coalitie.html" target="_blank">politieke problemen</a> doordat hij de Amerikanen verweet 1,8 miljoen tapgegevens te hebben opgehaald in Nederland. In werkelijkheid bleek dat Nederland deze taps zelf had uitgevoerd en geleverd aan de Amerikanen.</p> <p>Hij zou de Kamer hierover echter niet direct hebben geïnformeerd toen hij zijn fout ontdekte. In de Kamer kreeg hij van een groot deel van de oppositie daarom een motie van wantrouwen aan de broek, inclusief van toenmalig gedoogpartner D66. </p> <p>Het zorgde voor een behoorlijke ruzie tussen PvdA-leider Diederik Samsom en D66-leider Alexander Pechtold. Vlak na het debat bleek waarom.</p> <!-- block|articlelink start -->
+<div
+    id="block-222707"
+    data-id="block-222707"
+    data-position=""
+    data-type="articlelink"
+    class="block articlelink "
+    data-sac-marker="block.articlelink"
+>
+    
+    <div class="block-wrapper">
+        <div class="block-content">
+            <a href="/dvn/4163504/overzicht-heeft-geheime-informatie-gelekt-pers.html"  rel="next" class="trackevent" >
+                <div class="list-image col-min320 set-block">
+                    <img src="http://media.nu.nl/m/m1oxcewaleaj_std320.jpg" class="image" alt="Voor bij het nieuws" />
+                </div>
+                <div class="text">
+                    <span>Zie ook: </span>
+
+                    <span class="title">Overzicht: Wie heeft geheime informatie gelekt aan de pers?</span>
+                </div>
+                <div class="clear"></div>
+            </a>
+        </div>
+    </div>
+
+</div>
+<!-- block|articlelink end -->
+
+ <a id="anchor-commissie-stiekem"></a><h3>Commissie-Stiekem</h3> <p><em>NRC</em> wist te <a href="http://www.nrc.nl/handelsblad/2014/02/18/afluisterzaak-al-in-december-besproken-in-commiss-1349492" target="_blank">melden</a> dat de Commissie voor de Inlichtingen- en Veiligheidsdiensten, oftewel de commissie-Stiekem, wel degelijk eerder vertrouwelijk was geïnformeerd over de werkelijke herkomst van de taps.</p> <p>En aangezien lekken uit deze commissie strafbaar is deed Zijlstra aangifte. Nu, ruim anderhalf jaar later, komt het Openbaar Ministerie er pas achter dat het niet bevoegd is om te beslissen over de vervolging van een Kamerlid. </p> <p>Wel zijn er aanwijzingen dat één of meerdere fractievoorzitters zich mogelijk schuldig hebben gemaakt aan een ambtsmisdrijf, zo liet het OM weten.</p> <a id="anchor-presidium"></a><h3>Presidium</h3> <p>Daarom is het dossier overgedragen aan het presidium, het orgaan waar bijna alle fracties en de Kamervoorzitter in zijn vertegenwoordigd. </p> <p>Een besluit om tot vervolging over te gaan kan grote gevolgen hebben, aangezien één of meerdere fractievoorzitters dan voor de Hoge Raad zullen moeten verschijnen.</p> <!-- block|articlelink start -->
+<div
+    id="block-222709"
+    data-id="block-222709"
+    data-position=""
+    data-type="articlelink"
+    class="block articlelink "
+    data-sac-marker="block.articlelink"
+>
+    
+    <div class="block-wrapper">
+        <div class="block-content">
+            <a href="/dvn/4163490/achtergrond-al-63-jaar-geheimen-in-commissie-stiekem.html"  rel="next" class="trackevent" >
+                <div class="list-image col-min320 set-block">
+                    <img src="http://media.nu.nl/m/m7nx15ta1hrv_std320.jpg" class="image" alt="Voor bij het nieuws" />
+                </div>
+                <div class="text">
+                    <span>Zie ook: </span>
+
+                    <span class="title">Achtergrond: Al 63 jaar geheimen in commissie-Stiekem</span>
+                </div>
+                <div class="clear"></div>
+            </a>
+        </div>
+    </div>
+
+</div>
+<!-- block|articlelink end -->
+
+
+            <div class="copyright">
+    <span class="author">
+        Door: NU.nl
+    </span>
+</div>
+        </div>
+    </div>
+
+</div>
+<!-- block|article.body end -->
+
+
+    
+        <!-- block|divider start -->
+<div
+    id="block-332837"
+    data-id="block-332837"
+    data-position=""
+    data-type="divider"
+    class="block divider "
+    data-sac-marker="block.divider"
+>
+    
+</div>
+<!-- block|divider end -->
+
+
+    
+        <!-- block|article.tags start -->
+<div
+    id="block-332839"
+    data-id="block-332839"
+    data-position=""
+    data-type="article.tags"
+    class="block article tags "
+    data-sac-marker="block.article.tags"
+>
+    
+    <div class="block-wrapper">
+        
+            <div class="title">
+                Lees meer over:
+            </div>
+        
+        <div class="block-content">
+            
+                <a class="trackevent" href="/tag/Commissie-Stiekem"><span>Commissie-Stiekem</span></a>
+            
+            <div class="clear"></div>
+        </div>
+    </div>
+
+</div>
+<!-- block|article.tags end -->
+
+
+    
+        <!-- block|socialbar start -->
+<div
+    id="block-332841"
+    data-id="block-332841"
+    data-position=""
+    data-type="socialbar"
+    class="block socialbar "
+    data-sac-marker="block.socialbar"
+>
+    <div class="block socialbar">
+    <div class="block-wrapper">
+        <div class="block-content spacious">
+            
+<div class="socialbar-wrapper with-counters">
+    <ul class="social-buttons">
+        <li class="nujij">
+            <a href="http://www.nujij.nl/jij.lynkx/?i=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fiq2xizpaz50h.jpg&x=Commissie-Stiekem&b=Het+presidium%2C+het+dagelijks+bestuur+van+de+Tweede+Kamer%2C+stelt+een+onderzoekscommissie+in+naar+het+lekken+uit+de+zogenoemde+commissie-Stiekem.&u=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&t=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="nujij" data-tracksocialaction="send1">
+                <span class="counter">250</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fc fc-nujij"></i>
+                        <span class="socialtext">Reageer</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="facebook first">
+            <a href="http://www.facebook.com/sharer.php?p%5Btitle%5D=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem&p%5Burl%5D=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&s=100&p%5Bimages%5D%5B0%5D=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fiq2xizpaz50h_wd1280.jpg&p%5Bsummary%5D=Het+presidium%2C+het+dagelijks+bestuur+van+de+Tweede+Kamer%2C+stelt+een+onderzoekscommissie+in+naar+het+lekken+uit+de+zogenoemde+commissie-Stiekem." rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="facebook" data-tracksocialaction="like">
+                <span class="counter">24</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-facebook"></i>
+                        <span class="socialtext">Share</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="twitter">
+            <a href="http://twitter.com/intent/tweet/?url=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html&text=Bestuur+Kamer+stelt+onderzoek+in+wegens+lekken+uit+commissie-Stiekem&via=NUnl" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="twitter" data-tracksocialaction="tweet">
+                <span class="counter">20</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-twitter"></i>
+                        <span class="socialtext">Tweet</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="googleplus">
+            <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.nu.nl%2Fpolitiek%2F4163338%2Fbestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="google" data-tracksocialaction="send">
+                <span class="counter">-</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-google-plus"></i>
+                        <span class="socialtext">1</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="email last">
+            <a href="http://messagent.sanomadigital.nl/optiext/optiextension.dll?ID=dRGdHmKfgt3BAlnR%2BQ9vk_W5Lb69wkEmPBl9sZvXm2L8xXJZYeeXsfXVv7lxB9FE%2B0SGHjv5qOdbEhNtTQ&artikel_titel=Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem&onderwerp=http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" data-tracksocialnetwork="email" data-tracksocialaction="send2">
+                <span class="counter">-</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-envelope"></i>
+                        <span class="socialtext">E-mail</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+    </ul>
+</div>
+<div class="clear"></div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- block|socialbar end -->
+
+
+    
+        <!-- block|divider start -->
+<div
+    id="block-332843"
+    data-id="block-332843"
+    data-position=""
+    data-type="divider"
+    class="block divider "
+    data-sac-marker="block.divider"
+>
+    
+</div>
+<!-- block|divider end -->
+
+
+    
+        <!-- block|article.related start -->
+<div
+    id="block-332845"
+    data-id="block-332845"
+    data-position=""
+    data-type="article.related"
+    class="block article related  articlelist"
+    data-sac-marker="block.article.related"
+>
+    <div class="list contentlist ">
+    <div class="block-wrapper">
+    
+    
+        <div class="block-title">
+            <h2>Gerelateerde artikelen</h2>
+        </div>
+    
+
+    <div class="block-content clearfix">
+        <ul>
+            
+                
+                    
+<li class="hasvideo" data-sac-marker="articlelist.politiek.1">
+    <a href="/politiek/4163186/kamer-praat-mogelijke-vervolging-fractievoorzitter.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m7nx15ta1hrv_std320.jpg" class="image" alt="OM kan aangifte van lekken geheime informatie niet behandelen" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m7nx15ta1hrv_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="OM kan aangifte van lekken geheime informatie niet behandelen" />
+                <span class="ranking">1.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">7 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Kamer praat over mogelijke vervolging fractievoorzitter</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het presidium, oftewel het dagelijks bestuur van de Tweede Kamer, is donderdagochtend bijeen gekomen om te praten over een mogelijk ambtsmisdrijf door één of meerdere fractievoorzitters.</span>
+
+                    <span class="caption">OM kan aangifte van lekken geheime informatie niet behandelen</span>
+
+                    <span class="time">
+                        
+                            update: 08:58
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo" data-sac-marker="articlelist.politiek.2">
+    <a href="/politiek/4162222/diederik-samsom-ontkent-lekken-commissie-stiekem.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/7r7xmgha9st0_std320.jpg" class="image" alt="Politiek" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/7r7xmgha9st0_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politiek" />
+                <span class="ranking">2.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">1 dag,23 uren geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Diederik Samsom ontkent lekken uit commissie-Stiekem</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">PvdA-leider Diederik Samsom heeft niet gelekt uit de 'commissie-Stiekem', het overleg van fractievoorzitters in de Tweede Kamer over staatsgeheime zaken.</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.3">
+    <a href="/politiek/3705426/oppositie-was-wel-al-geinformeerd-afluisterzaak.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxgjqajejw_std320.jpg" class="image" alt="Politiek" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxgjqajejw_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politiek" />
+                <span class="ranking">3.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">1 jaar,8 maanden geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">&#39;Oppositie was wel al geïnformeerd over afluisterzaak&#39;</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De oppositie is wel degelijk in een eerder stadium vertrouwelijk geïnformeerd over de herkomst van de 1,8 miljoen getapte belgegevens.</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+            
+        </ul>
+    </div>
+    
+</div>
+    <div class="clear"></div>
+</div>
+</div>
+<!-- block|article.related end -->
+
+
+    
+        <!-- block|divider start -->
+<div
+    id="block-332847"
+    data-id="block-332847"
+    data-position=""
+    data-type="divider"
+    class="block divider "
+    data-sac-marker="block.divider"
+>
+    
+</div>
+<!-- block|divider end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332849"
+    data-id="block-332849"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper advertorial_2_center">
+    <div class="block-content">
+        
+            <div id="cts_efe521feefe44f57ae4afba389ccf918" class="cts-wrapper min320 set-block"><script type="text/javascript"> try {    if(min320) {        tagging.render("advertorial_2_center");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332851"
+    data-id="block-332851"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper mbot_320">
+    <div class="block-content">
+        
+            <div id="cts_a240cf4cdb774297a75bcf4a0c43f227" class="cts-wrapper min320 max480 set-block"><script type="text/javascript"> try {    if(min320 && max480) {        tagging.render("mbot_320");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332853"
+    data-id="block-332853"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper ttxt_adv_468_200">
+    <div class="block-content">
+        
+            <div id="cts_d00a8f147ec3408a9e0cc59738cd46d3" class="cts-wrapper min600 max992 set-block"><script type="text/javascript"> try {    if(min600 && max992) {        tagging.render("ttxt_adv_468_200");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332855"
+    data-id="block-332855"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dtxt_adv_468_200">
+    <div class="block-content">
+        
+            <div id="cts_76c1a144ef0245b7be41b8549b344f93" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dtxt_adv_468_200");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|articlelist start -->
+<div
+    id="block-332857"
+    data-id="block-332857"
+    data-position=""
+    data-type="articlelist"
+    class="block articlelist "
+    data-sac-marker="block.articlelist"
+>
+    <div class=" section-nu source-normal" data-forced-template="list">
+
+    
+        <div class="contentlist list">
+            <div class="block-wrapper">
+    
+    
+        <div class="block-title arrowed section-bgcolored">
+            <a href="/politiek" class="blockheader-link trackevent">
+                <h2>
+                    Eerdere berichten
+                </h2>
+            </a>
+        </div>
+    
+
+    <div class="block-content clearfix">
+        <ul>
+            
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.1">
+    <a href="/politiek/4163516/dijkhoff-kan-niets-met-klachten-asielzoekers.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/4gjxe1aa42p4_std320.jpg" class="image" alt="Gros van vluchtelingen klaagt niet, volgens staatssecretaris" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/4gjxe1aa42p4_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Gros van vluchtelingen klaagt niet, volgens staatssecretaris" />
+                <span class="ranking">1.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">een uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Dijkhoff kan niets met klachten asielzoekers</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Staatssecretaris Klaas Dijkhoff (Asiel) kan niet veel doen aan klachten die asielzoekers hebben over de noodopvang, onder meer over het eten.</span>
+
+                    <span class="caption">Gros van vluchtelingen klaagt niet, volgens staatssecretaris</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.2">
+    <a href="/politiek/4163528/nieuw-belastingvoorstel-kost-volgens-cpb-35000-banen.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1oxkkra5837_std320.jpg" class="image" alt="Politiek" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1oxkkra5837_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politiek" />
+                <span class="ranking">2.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">een uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Nieuw belastingvoorstel kost volgens CPB 35.000 banen</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Een nieuw belastingvoorstel van SGP, ChristenUnie, CDA en SP kost 35.000 banen. Dat blijkt uit berekeningen van het Centraal Planbureau (CPB).</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class=" hasslideshow" data-sac-marker="articlelist.politiek.3">
+    <a href="/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/iq2xizpaz50h_std320.jpg" class="image" alt="Volgens OM sprake van mogelijk ambtsmisdrijf door fractievoorzitter of voorzitters" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/iq2xizpaz50h_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Volgens OM sprake van mogelijk ambtsmisdrijf door fractievoorzitter of voorzitters" />
+                <span class="ranking">3.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">3 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Bestuur Kamer stelt onderzoek in wegens lekken uit commissie-Stiekem</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het presidium, het dagelijks bestuur van de Tweede Kamer, stelt een onderzoekscommissie in naar het lekken uit de zogenoemde commissie-Stiekem.</span>
+
+                    <span class="caption">Volgens OM sprake van mogelijk ambtsmisdrijf door fractievoorzitter of voorzitters</span>
+
+                    <span class="time">
+                        
+                            update: 13:20
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.4">
+    <a href="/economie/4163359/kamer-vreest-investeringsverdrag-eu-via-canadese-omweg.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1oxq3saa7y9_std320.jpg" class="image" alt="Politiek" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1oxq3saa7y9_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politiek" />
+                <span class="ranking">4.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">4 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Kamer vreest voor investeringsverdrag EU via Canadese omweg</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De Nederlandse regering moet ervoor zorgen dat de Europese Unie niet alsnog via afspraken met Canada te maken krijgt met een investeringsverdrag zoals dat oorspronkelijk in het handelsverdrag TTIP zat besloten</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo" data-sac-marker="articlelist.politiek.5">
+    <a href="/politiek/4163186/kamer-praat-mogelijke-vervolging-fractievoorzitter.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block video-link"
+                    
+                 data-type="zie"
+                 data-title="Kamer praat over mogelijke vervolging fractievoorzitter"
+                 data-related_playlist_slug="politiek"
+                        
+                 data-video_media_id="tb5zz5pfwzjt"
+                        
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m7nx15ta1hrv_std320.jpg" class="image" alt="OM kan aangifte van lekken geheime informatie niet behandelen" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m7nx15ta1hrv_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="OM kan aangifte van lekken geheime informatie niet behandelen" />
+                <span class="ranking">5.</span>
+                
+                
+                <div class="media-icon"></div>
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">7 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Kamer praat over mogelijke vervolging fractievoorzitter</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het presidium, oftewel het dagelijks bestuur van de Tweede Kamer, is donderdagochtend bijeen gekomen om te praten over een mogelijk ambtsmisdrijf door één of meerdere fractievoorzitters.</span>
+
+                    <span class="caption">OM kan aangifte van lekken geheime informatie niet behandelen</span>
+
+                    <span class="time">
+                        
+                            update: 08:58
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.6">
+    <a href="/politiek/4163073/legt-onderzoek-commissie-stiekem-neer-mogelijk-ambtsmisdrijf.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m7nx15ta1hrv_std320.jpg" class="image" alt="Zaak volgens Kamervoorzitter &#39;ernstig en uniek&#39;" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m7nx15ta1hrv_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Zaak volgens Kamervoorzitter &#39;ernstig en uniek&#39;" />
+                <span class="ranking">6.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">18 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">OM legt onderzoek commissie-Stiekem neer om mogelijk ambtsmisdrijf</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het&nbsp;Openbaar Ministerie (OM) kan de aangifte van het lekken van geheime informatie uit de Commissie-stiekem niet behandelen. Mogelijk is sprake van een ambstmisdrijf door een fractievoorzitter van de Tweede Kamer.</span>
+
+                    <span class="caption">Zaak volgens Kamervoorzitter 'ernstig en uniek'</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.7">
+    <a href="/politiek/4163020/meerderheid-belastingplan-eerste-kamer-nog-niet-veilig.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1oxfviamkk0_std320.jpg" class="image" alt="CDA, SGP, CU en SP hebben nieuw voorstel, debat waarschijnlijk donderdag afgerond" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1oxfviamkk0_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="CDA, SGP, CU en SP hebben nieuw voorstel, debat waarschijnlijk donderdag afgerond" />
+                <span class="ranking">7.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">20 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Meerderheid voor Belastingplan Eerste Kamer nog niet veilig</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het lijkt erop dat het kabinet in de Eerste Kamer nog geen meerderheid heeft gevonden voor het Belastingplan voor volgend jaar.</span>
+
+                    <span class="caption">CDA, SGP, CU en SP hebben nieuw voorstel, debat waarschijnlijk donderdag afgerond</span>
+
+                    <span class="time">
+                        
+                            update: 20:17
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.8">
+    <a href="/politiek/4163005/controle-van-identiteit-asielzoekers-nog-ontoereikend-.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/4gjxe1aa42p4_std320.jpg" class="image" alt="Politiek" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/4gjxe1aa42p4_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politiek" />
+                <span class="ranking">8.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">21 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Controle van identiteit asielzoekers nog ontoereikend </span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De controle van de identiteit van asielzoekers loopt nog niet goed. Door de hoge asielinstroom was een achterstand in de registratie en identificatie ontstaan.</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.9">
+    <a href="/politiek/4162988/rutte-wil-geen-extra-geld-nederland-in-europees-afrika-fonds.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/ynpxahja6abr_std320.jpg" class="image" alt="EU-leiders bespreken vluchtelingenprobleem op migratietop Malta" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/ynpxahja6abr_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="EU-leiders bespreken vluchtelingenprobleem op migratietop Malta" />
+                <span class="ranking">9.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">21 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Rutte wil geen extra geld Nederland in Europees Afrika-fonds</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Nederland is voorlopig niet van plan extra geld te stoppen in het Afrika-fonds met EU-geld om de oorzaken van migratie aan te pakken. ''Wij staan volgens mij al bovenaan. Het is nu tijd dat andere landen ook geld toezeggen.''&nbsp;</span>
+
+                    <span class="caption">EU-leiders bespreken vluchtelingenprobleem op migratietop Malta</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.10">
+    <a href="/politiek/4162926/oud-europarlementarier-verdacht-van-poging-seks-met-minderjarigen.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/0okxgkaa10be_std320.jpg" class="image" alt="Politiek" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/0okxgkaa10be_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politiek" />
+                <span class="ranking">10.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">23 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Oud-Europarlementariër verdacht van poging tot seks met minderjarigen</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Justitie verdenkt oud-Europarlementariër Daniël van der Stoep (35) van pogingen om minderjarige meisjes tot seks met hem te bewegen.</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.11">
+    <a href="/politiek/4162899/sgp-plan-eenverdieners-kost-banen-volgens-berekening-cpb.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1oxhisamu36_std320.jpg" class="image" alt="Politiek" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1oxhisamu36_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politiek" />
+                <span class="ranking">11.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">23 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">SGP-plan eenverdieners kost banen volgens berekening CPB</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het plan van de SGP om eenverdieners in het Belastingplan tegemoet te komen met een belastingvoordeel, kost op termijn 42.000 banen, zo berekent het Centraal Planbureau (CPB).&nbsp;</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo" data-sac-marker="articlelist.politiek.12">
+    <a href="/politiek/4162790/wiebes-houdt-vertrouwen-in-steun-belastingplan.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block video-link"
+                    
+                 data-type="zie"
+                 data-title="Wiebes houdt vertrouwen in Belastingplan"
+                 data-related_playlist_slug="binnenland"
+                        
+                 data-video_media_id="s1dzef0f7w7q"
+                        
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/eomxeeha4tq7_std320.jpg" class="image" alt="CDA, ChristenUnie en SGP werken aan nieuw plan" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/eomxeeha4tq7_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="CDA, ChristenUnie en SGP werken aan nieuw plan" />
+                <span class="ranking">12.</span>
+                
+                
+                <div class="media-icon"></div>
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">1 dag,1 uur geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Wiebes houdt vertrouwen in steun Belastingplan</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Hoewel de coalitie de benodigde steun van de oppositie voor het Belastingplan 2016 nog steeds niet binnen heeft, houdt staatssecretaris Eric Wiebes (Financiën) vertrouwen in "een goed gesprek" met de oppositie om toch tot een deal te komen.</span>
+
+                    <span class="caption">CDA, ChristenUnie en SGP werken aan nieuw plan</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.13">
+    <a href="/politiek/4162405/afsplitsingsverbod-kamerleden-bezwaarlijk.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1oxm8baaxw9_std320.jpg" class="image" alt="Volgens minister Plasterk zou verbod &#39;partijensysteem nog dominanter maken&#39;" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1oxm8baaxw9_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Volgens minister Plasterk zou verbod &#39;partijensysteem nog dominanter maken&#39;" />
+                <span class="ranking">13.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">1 dag,18 uren geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">&#39;Afsplitsingsverbod Kamerleden is bezwaarlijk&#39;</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Er zitten meer nadelen dan voordelen aan een verbod voor Kamerleden om zich af te splitsen van hun fractie en op eigen houtje verder te gaan in het parlement.</span>
+
+                    <span class="caption">Volgens minister Plasterk zou verbod 'partijensysteem nog dominanter maken'</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.politiek.14">
+    <a href="/politiek/4162318/koenders-wil-meer-duidelijkheid-hervormingen-cameron.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/7p9xjhaadwwz_std320.jpg" class="image" alt="Brief van Britse premier opgesteld in &#39;beetje algemene termen&#39;" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/7p9xjhaadwwz_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Brief van Britse premier opgesteld in &#39;beetje algemene termen&#39;" />
+                <span class="ranking">14.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">1 dag,21 uren geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Koenders wil meer duidelijkheid over hervormingen Cameron</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De Britse regering zal meer duidelijkheid moeten geven over haar wensen voor de Europese Unie. Minister Bert Koenders (Buitenlandse Zaken) vindt dat de brief die de Britse premier David Cameron dinsdag naar Brussel heeft gestuurd, is opgesteld in een ''beetje algemene termen''.</span>
+
+                    <span class="caption">Brief van Britse premier opgesteld in 'beetje algemene termen'</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class=" hasslideshow" data-sac-marker="articlelist.politiek.15">
+    <a href="/politiek/4162230/vvd-wil-geen-extra-belastingvoordeel-eenverdieners-.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/bppx8cxamnam_std320.jpg" class="image" alt="Politiek" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/bppx8cxamnam_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politiek" />
+                <span class="ranking">15.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">1 dag,22 uren geleden</span>
+                    <span class="section">Politiek</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">VVD wil geen extra belastingvoordeel eenverdieners </span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het is voor de de VVD onbespreekbaar om te tornen aan de belastingvoordelen voor tweeverdieners met jonge kinderen ten faveure van gezinnen met één kostwinner.</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+            
+        </ul>
+    </div>
+    
+    <div class="block-footer">
+        
+            <a href="#" data-url="/block/json/articlelist?order_by=updated_at&amp;footer=ajax&amp;section=politiek&amp;title=Eerdere+berichten&amp;refresh=1&amp;limit=15&amp;section_details=%7Bu%27geolocation%27%3A+None%2C+u%27meta_keywords%27%3A+None%2C+u%27intro_bgcolor%27%3A+None%2C+u%27is_archived%27%3A+False%2C+u%27excerpt%27%3A+u%27%27%2C+u%27radius%27%3A+None%2C+u%27logo_media_id%27%3A+None%2C+u%27counts%27%3A+%7B%7D%2C+u%27top_slug%27%3A+u%27algemeen%27%2C+u%27meta_description%27%3A+u%27%27%2C+u%27sidebar_position%27%3A+5%2C+u%27parent_slug%27%3A+u%27algemeen%27%2C+u%27type%27%3A+u%27default%27%2C+u%27titlebar_color%27%3A+None%2C+u%27media_id%27%3A+None%2C+u%27description%27%3A+u%27%27%2C+u%27style%27%3A+u%27nu%27%2C+u%27slug%27%3A+u%27politiek%27%2C+u%27name%27%3A+u%27Politiek%27%2C+u%27titlebar_bgcolor%27%3A+None%2C+u%27intro_color%27%3A+None%2C+u%27articlehead_color%27%3A+None%2C+u%27position%27%3A+None%7D&amp;template=list&amp;offset=15&amp;show_tabs=0" class="ajax trackevent" data-trackeventlabel="loadmore">
+                <strong>Laad meer artikelen</strong>
+            </a>
+        
+    </div>
+
+</div>
+            <div class="clear"></div>
+        </div>
+    
+
+    <div class="clear"></div>
+</div>
+</div>
+<!-- block|articlelist end -->
+
+
+    <script type="text/javascript">
+        jQuery('#block-332857').data({"limit": 15, "offset": 0});
+    </script>
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332859"
+    data-id="block-332859"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper mtxt_adv_300_250">
+    <div class="block-content">
+        
+            <div id="cts_7872eb76fd8b4f8f9fbd161e18ae53db" class="cts-wrapper min280 max600 set-block"><script type="text/javascript"> try {    if(min280 && max600) {        tagging.render("mtxt_adv_300_250");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|main end -->
+    
+
+
+                                    </div>
+                                </div>
+                            </div><!-- content -->
+                            <div class="column last">
+                                <div class="column-content">
+                                    <!-- zone|sidebar start -->
+<div class="zone" data-zone="sidebar" data-vr-zone="sidebar">
+    
+        <!-- block|mostcombination start -->
+<div
+    id="block-332861"
+    data-id="block-332861"
+    data-position=""
+    data-type="mostcombination"
+    class="block mostcombination compact"
+    data-sac-marker="block.mostcombination"
+>
+    <div class="block-wrapper">
+    <div class="block-content">
+        <div class="tabs tabs2 fullwidth" data-tab-constrain="1">
+            <div class="tabtrigger">
+                <ul>
+                    <li class="active"><a href="" data-tab="1" class="trackevent" data-trackeventlabel="net_binnen">Net binnen</a></li>
+                    <li><a href="#" data-tab="2" class="trackevent" data-trackeventlabel="meest_gelezen">Meest gelezen</a></li>
+                    <div class="clear"></div>
+                </ul>
+                <div class="clear"></div>
+            </div>
+
+            <div class="clear"></div>
+
+
+            <div class="tab tab-1 active">
+                <!-- block|mostrecent start -->
+<div
+    id="block-534fbbff0d774746a1cc683330a5d0b0"
+    data-id="block-534fbbff0d774746a1cc683330a5d0b0"
+    data-position=""
+    data-type="mostrecent"
+    class="block mostrecent "
+    data-sac-marker="block.mostrecent"
+>
+    <div class="contentlist most-recent">
+    <div class="block-wrapper">
+        <div class="block-content">
+            <ul>
+                
+                    <li class="  " data-sac-marker="articlelist.mostrecent.1">
+                        <div class="list-content">
+                            <a href="/voetbal/4163574/ibrahimovic-beeindigt-mogelijk-interlandloopbaan-bij-mislopen-ek.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="time">15:15</span>
+                                        <span class="title">Ibrahimovic beëindigt mogelijk interlandloopbaan bij mislopen EK</span>
+                                        <span class="section">Voetbal</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostrecent.2">
+                        <div class="list-content">
+                            <a href="/auto/4163271/ford-plant-snellere-versie-focus-rs.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="time">15:12</span>
+                                        <span class="title">&#39;Ford plant snellere versie Focus RS&#39;</span>
+                                        <span class="section">Auto</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostrecent.3">
+                        <div class="list-content">
+                            <a href="/internet/4163607/spotify-gaat-lokale-concerten-aanraden.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="time">15:12</span>
+                                        <span class="title">Spotify gaat lokale concerten aanraden</span>
+                                        <span class="section">Internet</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostrecent.4">
+                        <div class="list-content">
+                            <a href="/apps/4163598/verlopen-beveiliging-zorgt-problemen-met-mac-apps.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="time">15:00</span>
+                                        <span class="title">Verlopen beveiliging zorgt voor problemen met Mac-apps</span>
+                                        <span class="section">Apps</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+            </ul>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="block-footer">
+            <a href="/net-binnen" class="footer-link trackevent section-after-colored">
+                <strong>Meer nieuws</strong>
+            </a>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+</div>
+<!-- block|mostrecent end -->
+
+
+    <script type="text/javascript">
+        jQuery('#block-534fbbff0d774746a1cc683330a5d0b0').data({"limit": 4, "offset": 0});
+    </script>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="tab tab-2">
+                <!-- block|mostread start -->
+<div
+    id="block-4639e68a1dc14c54951d3c30a05a24d1"
+    data-id="block-4639e68a1dc14c54951d3c30a05a24d1"
+    data-position=""
+    data-type="mostread"
+    class="block mostread "
+    data-sac-marker="block.mostread"
+>
+    <div class="contentlist most-read">
+    <div class="block-wrapper">
+        
+            <div class="block-title">
+                <h2>Meest gelezen</h2>
+            </div>
+        
+        <div class="block-content">
+            <ul>
+                
+                    <li class="hasvideo  " data-sac-marker="articlelist.mostread.1">
+                        <div class="list-content">
+                            <a href="/binnenland/4162675/ziekenhuis-slotervaart-maakt-miljoenenwinst-met-productie-heroine.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="ranking">1.</span>
+                                        <span class="title">Ziekenhuis Slotervaart maakt miljoenenwinst met productie heroïne</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostread.2">
+                        <div class="list-content">
+                            <a href="/binnenland/4162576/vermiste-jongen-12-vleuten-ongedeerd-gevonden.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="ranking">2.</span>
+                                        <span class="title">Vermiste jongen (12) uit Vleuten ongedeerd gevonden</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostread.3">
+                        <div class="list-content">
+                            <a href="/voetbal/4163161/cruijff-haalt-leiding-ajax-vanwege-vertrek-jonk.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="ranking">3.</span>
+                                        <span class="title">Cruijff haalt uit naar leiding Ajax vanwege vertrek Jonk</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostread.4">
+                        <div class="list-content">
+                            <a href="/werk-en-prive/4163229/smartphones-zorgen-slechter-seksleven.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="ranking">4.</span>
+                                        <span class="title">&#39;Smartphones zorgen voor slechter seksleven&#39;</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+            </ul>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="block-footer">
+            <a href="/meest-gelezen" class="footer-link trackevent section-after-colored">
+                <strong>Meer nieuws</strong>
+            </a>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+</div>
+<!-- block|mostread end -->
+
+
+    <script type="text/javascript">
+        jQuery('#block-4639e68a1dc14c54951d3c30a05a24d1').data({"limit": 4, "offset": 0});
+    </script>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- block|mostcombination end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332863"
+    data-id="block-332863"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_300_h300">
+    <div class="block-content">
+        
+            <div id="cts_17f5f9959cb74494a4ec1fd8a8a7fb24" class="cts-wrapper min768 max992 set-block"><script type="text/javascript"> try {    if(min768 && max992) {        tagging.render("dmid_300_h300");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332865"
+    data-id="block-332865"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_300_h300_336">
+    <div class="block-content">
+        
+            <div id="cts_e1001d8f5ddc4c25b989a9354a241343" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dmid_300_h300_336");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|videolist start -->
+<div
+    id="block-354767"
+    data-id="block-354767"
+    data-position=""
+    data-type="videolist"
+    class="block videolist compact"
+    data-sac-marker="block.videolist"
+>
+    <div class="block-wrapper">
+    <div class="block-title">
+        <h2>Video&#39;s</h2>
+    </div>
+    <div class="block-content even">
+        
+            <div class="molecule-video-list-item item">
+    <a class="trackevent" href="http://www.zie.nl/video/algemeen/Samsom-niet-gelekt-uit-commissie-Stiekem/0m9zdr0f3b20" target="_blank" data-title="Samsom: niet gelekt uit commissie-Stiekem" data-video_media_id='0m9zdr0f3b20' data-type='zie'  data-related_playlist_slug='politiek'>
+        <div class="media-wrapper">
+            <div class="media">
+            
+                     
+                    <noscript>
+                        <img src="http://media.nu.nl/m/90mxa4eajqzm_wd640.jpg/samsom-niet-gelekt-uit-commissie-stiekem" alt="Samsom: niet gelekt uit commissie-Stiekem" />
+                    </noscript>
+                    <img data-src="http://media.nu.nl/m/90mxa4eajqzm_wd640.jpg/samsom-niet-gelekt-uit-commissie-stiekem" src="/static/img/placeholders/wd640-o.png" class="image lazy-unveil" alt="Samsom: niet gelekt uit commissie-Stiekem" />
+                
+            
+            </div>
+            
+            <div class="media-icon"></div>
+        </div>
+        <div class="media-footer">
+            <div class="title-wrapper">
+                <div class="title">Samsom: niet gelekt uit commissie-Stiekem</div>
+            </div>
+        </div>
+    </a>
+</div>
+        
+            <div class="molecule-video-list-item item">
+    <a class="trackevent" href="http://www.zie.nl/video/algemeen/Nederland-en-Japan-gaan-meer-samenwerken/4zczjr8fxwbj" target="_blank" data-title="Nederland en Japan gaan meer samenwerken" data-video_media_id='4zczjr8fxwbj' data-type='zie'  data-related_playlist_slug='politiek'>
+        <div class="media-wrapper">
+            <div class="media">
+            
+                     
+                    <noscript>
+                        <img src="http://media.nu.nl/m/qicx1h7ax0we_wd640.jpg/nederland-en-japan-gaan-meer-samenwerken" alt="Nederland en Japan gaan meer samenwerken" />
+                    </noscript>
+                    <img data-src="http://media.nu.nl/m/qicx1h7ax0we_wd640.jpg/nederland-en-japan-gaan-meer-samenwerken" src="/static/img/placeholders/wd640-o.png" class="image lazy-unveil" alt="Nederland en Japan gaan meer samenwerken" />
+                
+            
+            </div>
+            
+            <div class="media-icon"></div>
+        </div>
+        <div class="media-footer">
+            <div class="title-wrapper">
+                <div class="title">Nederland en Japan gaan meer samenwerken</div>
+            </div>
+        </div>
+    </a>
+</div>
+        
+        <div class="clear"></div>
+    </div>
+</div>
+
+</div>
+<!-- block|videolist end -->
+
+
+    
+        <!-- block|highlight start -->
+<div
+    id="block-332867"
+    data-id="block-332867"
+    data-position=""
+    data-type="highlight"
+    class="block highlight compact"
+    data-sac-marker="block.highlight"
+>
+    
+    <div class="block-wrapper compact  hasfooter">
+        <div class="block-backdrop politiek" ></div>
+        
+            <div class="block-title">
+                <h2>Speel mee met MijnTeam</h2>
+            </div>
+        
+        <div class="block-content">
+            <div class="basic">
+                <div class="item-content">
+
+                    <a href="https://mijnteam.nu.nl/" class="trackevent">
+                        <div class="item-image">
+                            <img src="http://media.nu.nl/m/sxfxzk3ajioh_std160.jpg" alt="Speel mee met MijnTeam" />
+                        </div>
+                    </a>
+
+                    
+                        <div class="item-excerpt">
+                            
+
+                            MijnTeam is het nieuwe voetbalmanagerspel van NU.nl. Maak kans op mooie prijzen.
+
+                            
+                                <div class="excerpt-link">
+                                    <a class="trackevent" href="https://mijnteam.nu.nl/">
+                                        <strong>Meld je hier aan</strong>
+                                    </a>
+                                </div>
+                            
+                        </div>
+                    
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- block|highlight end -->
+
+
+    
+        <!-- block|highlight start -->
+<div
+    id="block-332869"
+    data-id="block-332869"
+    data-position=""
+    data-type="highlight"
+    class="block highlight compact"
+    data-sac-marker="block.highlight"
+>
+    
+    <div class="block-wrapper compact  hasfooter">
+        <div class="block-backdrop politiek" ></div>
+        
+            <div class="block-title">
+                <h2>NU op NUfoto</h2>
+            </div>
+        
+        <div class="block-content">
+            <div class="basic">
+                <div class="item-content">
+
+                    <a href="http://www.nufoto.nl/fotos/591599/zonsopkomst-aan-de-grensmaas.html" class="trackevent">
+                        <div class="item-image">
+                            <img src="http://media.nu.nl/m/pldxk2kasrzm_std160.jpg" alt="NU op NUfoto" />
+                        </div>
+                    </a>
+
+                    
+                        <div class="item-excerpt">
+                            
+
+                            Bekijk de laatste nieuwsbeelden van lezers. Zelf getuige van nieuws? Stuur uw foto's in via NUfoto.
+
+                            
+                                <div class="excerpt-link">
+                                    <a class="trackevent" href="http://www.nufoto.nl/fotos/591599/zonsopkomst-aan-de-grensmaas.html">
+                                        <strong>Ga naar NUfoto</strong>
+                                    </a>
+                                </div>
+                            
+                        </div>
+                    
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- block|highlight end -->
+
+
+    
+        <!-- block|highlight start -->
+<div
+    id="block-332871"
+    data-id="block-332871"
+    data-position=""
+    data-type="highlight"
+    class="block highlight compact"
+    data-sac-marker="block.highlight"
+>
+    
+</div>
+<!-- block|highlight end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332883"
+    data-id="block-332883"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper advertorial_1_rechts">
+    <div class="block-content">
+        
+            <div id="cts_24f8ce7543334b52a24b247875adfc12" class="cts-wrapper min320 set-block"><script type="text/javascript"> try {    if(min320) {        tagging.render("advertorial_1_rechts");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|feedlist start -->
+<div
+    id="block-332881"
+    data-id="block-332881"
+    data-position=""
+    data-type="feedlist"
+    class="block feedlist compact"
+    data-sac-marker="block.feedlist"
+>
+    <div class="block-wrapper">
+    
+    <div class="block-title"  style="background-color: #008800">
+        <h2 style="color: #FFFFFF">Top 10 branches NUwerk.nl</h2>
+    </div>
+
+    <div class="contentlist plain"  style="border-color: #008800">
+    <div class="block-content clearfix">
+        <ul>
+        
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.1">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=1.11712&occ=1.11724&occ=1.11760&occ=1.11981&occ=1.11982&occ=1.11730&occ=1.11952&occ=1.14868&occ=1.14867&occ=1.11711&occ=1.11960&occ=1.11803&occ=1.11804&occ=1.11817&occ=1.14875&occ=1.11750&occ=1.11766&occ=1.11893&occ=1.11927&occ=1.11843" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">1.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Financieel & Accounting</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.2">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=544.11953&occ=544.11783&occ=544.11835&occ=544.11978&occ=544.11925&occ=544.11829&occ=544.11845&occ=544.11755&occ=544.11965&occ=544.11896&occ=544.11963&occ=544.11737&occ=544.11743&occ=544.11809&occ=553.11798&occ=553.11753&occ=553.11783&occ=553.11854&occ=553.11849&occ=553.11835&occ=553.11925&occ=553.11903&occ=553.11791&occ=553.12000&occ=553.11858" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">2.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Techniek</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.3">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=4.11746&occ=4.11747&occ=4.11782&occ=4.11786&occ=4.11728&occ=4.11715&occ=4.11788&occ=4.11900&occ=4.11881&occ=4.11980&occ=4.11737&occ=4.11838&occ=4.11951&occ=4.11867" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">3.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Engineering</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.4">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=10.11709&occ=10.11735&occ=10.11780&occ=10.11939&occ=10.11913&occ=10.11954&occ=10.11989&occ=10.11840&occ=10.11986&occ=10.11868&occ=10.11993&occ=10.11839&occ=10.11801&occ=10.12006" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">4.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Sales / Verkoop</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.5">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=660.11979&occ=660.11754&occ=660.11772&occ=660.11774&occ=660.11882&occ=660.11904&occ=660.11848&occ=660.11787&occ=660.11969&occ=660.11987&occ=660.11996&occ=660.12005" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">5.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">ICT</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.6">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=9007.11732&occ=9007.11758&occ=9007.11776&occ=9007.12002&occ=9007.11795&occ=9007.11863&occ=9007.11862&occ=9007.11869&occ=9007.11907&occ=9007.11931&occ=9007.11844&occ=9007.11864&occ=9007.11988" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">6.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Marketing & Communicatie</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.7">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=660.11970" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">7.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Software development</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.8">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=3975.11785&occ=3975.11922&occ=3975.11870&occ=3975.12001&occ=3975.11873&occ=3975.11853&occ=3975.11872&occ=3975.11891&occ=3975.11908&occ=3975.11967&occ=3975.11973&occ=3975.11773&occ=3975.11871&occ=3975.11820&occ=3975.11885&occ=3975.11886" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">8.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Zorg</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.9">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=5625.11763&occ=5625.11793&occ=5625.11836&occ=5625.11937&occ=5625.11876&occ=5625.11906&occ=5625.11964&occ=5625.11739&occ=5625.11924&occ=5625.11998&occ=5625.11874&occ=5625.11977&occ=5625.11991&occ=5625.11827&occ=5625.11842&occ=5625.11994" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">9.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Logistiek</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.10">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=10.11950" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">10.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Detailhandel</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+        
+        </ul>
+    </div>
+</div>
+    
+    
+    <a href="http://www.nuwerk.nl" target="_blank" class="trackevent">
+    
+    <div class="block-footer molecule-feedlist-footer"  style="border-color: #008800">
+        <div class="left-col">
+            
+            
+                Door: <span class="company">NUwerk.nl</span>
+            
+        </div>
+        <div class="right-col">
+            
+                <img src="http://media.nu.nl/m/m1oxfnia25hh_wd320.jpg" alt="feed.title" />
+            
+        </div>
+    </div>
+    
+    </a>
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- block|feedlist end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332873"
+    data-id="block-332873"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_300_p2">
+    <div class="block-content">
+        
+            <div id="cts_929cdc95455a40738341ef04c490f0c8" class="cts-wrapper min768 max992 set-block"><script type="text/javascript"> try {    if(min768 && max992) {        tagging.render("dmid_300_p2");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332875"
+    data-id="block-332875"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_300_336_p2">
+    <div class="block-content">
+        
+            <div id="cts_71a04ea4b9c54c6bb930958dec0d4878" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dmid_300_336_p2");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|sidebar end -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <!-- zone|footer start -->
+<div class="zone" data-zone="footer" data-vr-zone="footer">
+    
+        <!-- block|cts start -->
+<div
+    id="block-332877"
+    data-id="block-332877"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dbot_468">
+    <div class="block-content">
+        
+            <div id="cts_cdc2de1afa944f14ad130b3ea734e222" class="cts-wrapper min480 max768 set-block"><script type="text/javascript"> try {    if(min480 && max768) {        tagging.render("dbot_468");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-332879"
+    data-id="block-332879"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dbot_728">
+    <div class="block-content">
+        
+            <div id="cts_70511941ce804c98ac57bb9c7db30e3b" class="cts-wrapper min768 set-block"><script type="text/javascript"> try {    if(min768) {        tagging.render("dbot_728");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|footer end -->
+
+                    </div><!-- main -->
+                    <div class="clear"></div>
+
+                </div><!-- content_container -->
+                <div class="clear"></div>
+
+            </div><!-- container -->
+
+            
+                <!-- zone|body_bottom start -->
+<div class="zone" data-zone="body_bottom" data-vr-zone="body_bottom">
+    
+</div>
+<!-- zone|body_bottom end -->
+                <div class="block footer">
+    <div class="block-wrapper">
+        <div class="block-content">
+
+            <div class="footer-wrapper">
+                <div class="footer-logo">
+                    <div class="svg-icon icon-l icon-">
+                        <img src="/static/img/atoms/images/logos/logo-sprite.svg" />
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <span class="publisher-credits">
+                        &copy; 2015 Sanoma Digital The Netherlands B.V.
+                        NU - onderdeel van <a href="http://www.sanoma.com" class="trackevent" data-trackeventaction="page-footer">Sanoma Media Netherlands Group</a>
+                    </span>
+                    <div class="block-col first">
+                        <ul class="inline">
+                            <li class="first"><a href="/colofon.html" class="trackevent" data-trackeventaction="page-footer">Colofon</a></li>
+                            <li><a href="/copyright.html" class="trackevent" data-trackeventaction="page-footer">Copyright</a></li>
+                            <li><a href="/disclaimer.html" class="trackevent" data-trackeventaction="page-footer">Disclaimer</a></li>
+                            <li><a href="/privacy-en-cookiebeleid.html" class="trackevent" data-trackeventaction="page-footer">Privacy en cookiebeleid</a></li>
+                            <li><a href="http://www.sanoma.nl/merken/artikel/nunl/digital/merk-profiel/" class="trackevent" data-trackeventaction="page-footer">Adverteren</a></li>
+                            <li class="last"><a href="http://www.nu.nl/mobiel.html" class="trackevent" data-trackeventaction="page-footer">Apps</a></li>
+                        </ul>
+                    </div>
+                    <div class="block-col last">
+                        <ul class="social-badges">
+    
+        <li class="facebook"><a href="http://www.facebook.com/NUnl" target="_blank" class="trackevent"><i class="fa fa-facebook fa-lg"></i></a></li>
+    
+    
+        <li class="twitter"><a href="http://www.twitter.com/NUnl" target="_blank" class="trackevent"><i class="fa fa-twitter fa-lg"></i></a></li>
+    
+    
+        <li class="googleplus"><a href="http://plus.google.com/+NUnl" target="_blank" class="trackevent"><i class="fa fa-google-plus fa-fa-lg"></i></a></li>
+    
+    
+        <li class="rss"><a href="/rss/politiek" target="_blank" class="trackevent"><i class="fa fa-rss fa-lg"></i></a></li>
+    
+</ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+
+            <script type="text/javascript"> try {    if(true) {        tagging.render("footer");    } } catch(err) {    console.log(err) } </script>
+            
+            <div class="clear"></div>
+        </div><!-- wrapper -->
+
+        
+
+        <div class="modal-overlay"></div>
+        <div class="overlay">
+            <div class="overlay-close"></div>
+            <div class="overlay-inner">
+                <div class="overlay-content-container">
+                    <div class="overlay-content-boundary clearfix">
+                        <div class="overlay-title"></div>
+                        <i class="fa fa-times overlay-close"></i>
+                        <div class="overlay-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="/static/CACHE/js/f47c3ee34fd0.js"></script>
+
+<!-- BLOCK JS -->
+<script type="text/javascript" src="/static/CACHE/js/fa53f24ad493.js"></script>
+
+<script>
+    var gigyaAccountEnabled = true;
+
+    // add Gigya dynamically.
+    if(gigyaAccountEnabled){
+        ConsentUtility.consent_given(function(){
+            $('<script><\/script>')
+                    .attr('src', 'https://cdns.gigya.com/JS/gigya.js?apiKey=3_pNK9L9zU_Sx2BKzTUJuAmy1im2zN0pOkwM-Ui3AgrneVzSpyQqioWy_iZ1cbQzS5&lang=nl')
+                    .appendTo('body');
+        });
+    }
+
+    // Sanoma search, also hidden without consent.
+    ConsentUtility.consent_given(function() {
+        var o = document.createElement('script');
+        o.src = 'http://zoeken.startpagina.nl/nu/sanomasearch.min.js';
+        if(o.addEventListener){
+            o.addEventListener('load', function(){
+                if(jQuery('#sanoma_search').length > 0){
+                    SANOMASEARCH.init(['autocomplete', 'serp']);
+                } else {
+                    SANOMASEARCH.init(['autocomplete']);
+                }
+            });
+        } else {
+            o.onload = o.onreadystatechange = function() {
+                if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+                    if(jQuery('#sanoma_search').length > 0){
+                        SANOMASEARCH.init(['autocomplete','serp']);
+                    } else {
+                        SANOMASEARCH.init(['autocomplete']);
+                    }
+                }
+            };
+        }
+        document.body.appendChild(o);
+    });
+</script>
+
+<script type="text/javascript" src="/static/CACHE/js/0b990d0b2f41.js"></script>
+
+    </body>
+</html>
