@@ -1,9 +1,69 @@
 import lxml
 
+
+def is_whitespace(c):
+    if c == ' ' or c == '\n':
+        return True
+
+    return False
+
+
+def collapse_whitespace(text):
+    """
+    http://www.w3.org/TR/REC-html40/struct/text.html#h-9.1
+    """
+    new_text = u''
+
+    for i, char in enumerate(text):
+        next_char = text[i + 1] if i + 1 < len(text) else None
+
+        if is_whitespace(char) and is_whitespace(next_char):
+            continue
+
+        new_text += char
+
+    return new_text
+
+
+def collapse_newline(text):
+    new_text = u''
+
+    for i, char in enumerate(text):
+        next_char = text[i + 1] if i + 1 < len(text) else None
+
+        if char == '\n' and next_char == '\n':
+            continue
+
+        new_text += char
+
+    return new_text
+
+
+def remove_whitespace_after_newline(text):
+    newline = True
+    new_text = u''
+
+    for c in text:
+        if c == '\n':
+            newline = True
+
+        if not is_whitespace(c):
+            newline = False
+
+        if newline and is_whitespace(c):
+            if c == '\n':
+                new_text += c
+
+            continue
+
+        new_text += c
+
+    return new_text
+
+
 def _html_to_text(element, parent=None, level=0):
-    add_tail = False
-    add_text = False
-    strip_text = False
+    add_tail = True
+    add_text = True
     add_newline = False
     look_at_children = True
 
@@ -15,8 +75,7 @@ def _html_to_text(element, parent=None, level=0):
         look_at_children = False
 
     if element.tag == 'script':
-        if parent.tag == 'p':
-            add_tail = True
+        add_tail = True
         add_text = False
         look_at_children = False
     elif element.tag == 'br':
@@ -25,18 +84,9 @@ def _html_to_text(element, parent=None, level=0):
         add_newline = True
         look_at_children = False
     elif element.tag == 'p':
-        add_tail = False
-        add_text = True
-        add_newline = True
-        look_at_children = True
-    elif element.tag == 'em':
         add_tail = True
         add_text = True
-        look_at_children = True
-    elif element.tag == 'a':
-        if parent.tag == 'p':
-            add_tail = True
-        add_text = True
+        add_newline = True
         look_at_children = True
     elif element.tag == 'h1' or element.tag == 'h2' or \
             element.tag == 'h3':
@@ -45,15 +95,12 @@ def _html_to_text(element, parent=None, level=0):
         add_newline = True
         look_at_children = True
     elif element.tag == 'div':
-        add_tail = False
-
-        if element.text and element.text.strip():
-            add_text = True
-            strip_text = True
-            add_newline = True
+        add_tail = True
+        add_text = True
+        add_newline = True
         look_at_children = True
 
-    text = []
+    text = u''
 
 #    print "{} tag: {}: text: '{}' ({}) tail: '{}' ({}) newline: {}".format(
 #        level,
@@ -66,20 +113,17 @@ def _html_to_text(element, parent=None, level=0):
 #    )
 
     if add_text and element.text:
-        if strip_text:
-            text += [element.text.strip(), ]
-        else:
-            text += [element.text, ]
+        text += collapse_whitespace(element.text)
 
     if look_at_children:
         for child in element.getchildren():
             text += _html_to_text(child, element, level=level+1)
 
-    if add_newline:
-        text += ['\n']
+    if add_newline and len(text) > 0:
+        text += '\n'
 
     if add_tail and element.tail:
-        text += [element.tail, ]
+        text += collapse_whitespace(element.tail)
 
     return text
 
@@ -95,8 +139,11 @@ def html_to_text(elements):
     if isinstance(elements, lxml.etree._Element) and elements.tag == 'script':
         return u''
 
-    text = []
+    text = u''
     for element in elements:
         text += _html_to_text(element)
 
-    return ''.join([p for p in text])
+    # We collapse newlines here because I do not feel like figuring
+    # out when we should have one and when we should have two newlines.
+    # This is not correct, ofcourse.
+    return collapse_newline(remove_whitespace_after_newline(text))

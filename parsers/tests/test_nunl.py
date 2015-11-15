@@ -33,7 +33,7 @@ class NuNLParserTests(TestCase):
             u'het in Moskou op tegen CSKA. De aftrap is om 20.45 uur. '
             u'Daarnaast worden er nog zes duels gespeeld. De wedstrijd '
             u'Astana-Galatasaray begon al om 18.00 uur en is in 2-2 '
-            u'ge\xebindigd.\n'
+            u'ge\xebindigd. \n'
             u'Het duel tussen CSKA Moskou en PSV wordt live '
             u'uitgezonden door SBS6 en NU.nl.\n'
         )
@@ -55,7 +55,7 @@ class NuNLParserTests(TestCase):
         expected = \
             u"Het presidium, het dagelijks bestuur van de Tweede Kamer, " \
             u"stelt een onderzoekscommissie in naar het lekken uit de " \
-            u"zogenoemde commissie-Stiekem.\n" \
+            u"zogenoemde commissie-Stiekem. \n" \
             u"Dat is donderdag bekendgemaakt door Kamervoorzitter Anouchka van " \
             u"Miltenburg na afloop van een vergadering van het " \
             u"presidium.\xa0\n\n" \
