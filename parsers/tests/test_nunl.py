@@ -58,36 +58,36 @@ class NuNLParserTests(TestCase):
             u"zogenoemde commissie-Stiekem. \n" \
             u"Dat is donderdag bekendgemaakt door Kamervoorzitter Anouchka van " \
             u"Miltenburg na afloop van een vergadering van het " \
-            u"presidium.\xa0\n\n" \
-            u" Eerder deze week werd bekend dat er aangifte is " \
+            u"presidium.\xa0\n" \
+            u"Eerder deze week werd bekend dat er aangifte is " \
             u"gedaan wegens het lekken uit de\xa0Commissie voor de " \
             u"Inlichtingen- en Veiligheidsdiensten, oftewel de " \
             u"commissie-Stiekem,\xa0naar\xa0NRC Handelsblad. De " \
             u"commissie-Stiekem\xa0bestaat uit de fractievoorzitters " \
             u"van de gekozen partijen.\xa0Lekken uit deze commissie " \
-            u"geldt als een ambtsmisdrijf.\n\n" \
-            u" Woensdag liet het OM weten dat " \
+            u"geldt als een ambtsmisdrijf.\n" \
+            u"Woensdag liet het OM weten dat " \
             u"zij de zaak, die al anderhalf jaar speelt, niet verder " \
             u"behandelt en neerlegt bij de Kamer.\xa0De Grondwet " \
             u"bepaalt dat de opdracht tot vervolging van een Kamerlid " \
             u"alleen door de regering of de Tweede Kamer kan worden " \
             u"gegeven.\n" \
             u"Voldoende gronden\n" \
-            u" Van Miltenburg maakte donderdag bekend dat " \
+            u"Van Miltenburg maakte donderdag bekend dat " \
             u"de\xa0onderzoekscommissie moet\xa0onderzoeken\xa0of er " \
             u"voldoende gronden zijn om tot vervolging over te gaan. " \
             u"Van Miltenburg zei niet te weten wie van de " \
             u"fractieleiders gelekt heeft. \"Door het OM is geen " \
             u"inhoudelijke informatie overgedragen over deze zaak. Noch " \
             u"de kamer, noch het presidium, noch de Kamervoorzitter " \
-            u"beschikt over het dossier.\"\n\n" \
-            u" Zij zal later op de avond een " \
+            u"beschikt over het dossier.\"\n" \
+            u"Zij zal later op de avond een " \
             u"brief sturen naar de Tweede Kamer met nadere details over " \
             u"het onderzoek. Volgende week stemmen de Kamerleden over " \
             u"de samenstelling en de taakopdracht van de " \
             u"onderzoekscommissie.\n" \
             u"Aanleiding\n" \
-            u" Aanleiding is de rel die " \
+            u"Aanleiding is de rel die " \
             u"vorig jaar speelde rond minister van Binnenlandse Zaken " \
             u"Ronald Plasterk en de aangifte die vervolgens werd gedaan " \
             u"door VVD-fractievoorzitter Halbe Zijlstra in zijn rol als " \
@@ -106,7 +106,7 @@ class NuNLParserTests(TestCase):
             u"Diederik Samsom en D66-leider Alexander Pechtold. Vlak na " \
             u"het debat bleek waarom.\n" \
             u"Commissie-Stiekem\n" \
-            u" NRC\xa0wist te melden dat de Commissie voor de Inlichtingen- " \
+            u"NRC\xa0wist te melden dat de Commissie voor de Inlichtingen- " \
             u"en Veiligheidsdiensten, oftewel de commissie-Stiekem, wel " \
             u"degelijk eerder vertrouwelijk was ge\xefnformeerd over de " \
             u"werkelijke herkomst van de taps.\n" \
@@ -120,7 +120,7 @@ class NuNLParserTests(TestCase):
             u"gemaakt aan een ambtsmisdrijf, zo liet het OM " \
             u"weten.\n" \
             u"Presidium\n" \
-            u" Daarom is het dossier\xa0overgedragen aan " \
+            u"Daarom is het dossier\xa0overgedragen aan " \
             u"het presidium, het orgaan waar bijna alle fracties en de " \
             u"Kamervoorzitter in zijn vertegenwoordigd.\xa0\n" \
             u"Een besluit om " \

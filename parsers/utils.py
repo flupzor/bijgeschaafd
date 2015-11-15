@@ -61,20 +61,22 @@ def remove_whitespace_after_newline(text):
     return new_text
 
 
-def _html_to_text(element, parent=None, level=0):
+def _html_to_text(element, parent=None, level=0, exclude_fn=None):
     add_tail = True
     add_text = True
     add_newline = False
+    add_newline_force = False
     look_at_children = True
 
-    if isinstance(element, lxml.etree._Comment):
-        if parent.tag == 'p' or parent.tag == 'a' or \
-           parent.tag == 'br':
-            add_tail = True
+    if exclude_fn and exclude_fn(element, parent, level):
+        add_tail = False
         add_text = False
         look_at_children = False
-
-    if element.tag == 'script':
+    elif isinstance(element, lxml.etree._Comment):
+        add_tail = True
+        add_text = False
+        look_at_children = False
+    elif element.tag == 'script':
         add_tail = True
         add_text = False
         look_at_children = False
@@ -82,6 +84,7 @@ def _html_to_text(element, parent=None, level=0):
         add_tail = True
         add_text = False
         add_newline = True
+        add_newline_force = True
         look_at_children = False
     elif element.tag == 'p':
         add_tail = True
@@ -117,9 +120,9 @@ def _html_to_text(element, parent=None, level=0):
 
     if look_at_children:
         for child in element.getchildren():
-            text += _html_to_text(child, element, level=level+1)
+            text += _html_to_text(child, element, level=level+1, exclude_fn=exclude_fn)
 
-    if add_newline and len(text) > 0:
+    if add_newline_force or (add_newline and len(text) > 0):
         text += '\n'
 
     if add_tail and element.tail:
@@ -128,7 +131,7 @@ def _html_to_text(element, parent=None, level=0):
     return text
 
 
-def html_to_text(elements):
+def html_to_text(elements, exclude_fn=None):
     """
     Convert the text within a HTML DOM tree to a unicode string.
 
@@ -141,7 +144,7 @@ def html_to_text(elements):
 
     text = u''
     for element in elements:
-        text += _html_to_text(element)
+        text += _html_to_text(element, exclude_fn=exclude_fn)
 
     # We collapse newlines here because I do not feel like figuring
     # out when we should have one and when we should have two newlines.
