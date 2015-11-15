@@ -120,7 +120,7 @@ class NuNLParser(BaseParser):
         excerpt = html_to_text(d.find("div[data-sac-marker='block.article.header'] div.item-excerpt"))
         content = parse_content(d.find("div[data-sac-marker='block.article.body']"))
 
-        self.body = u'{excerpt}\n{content}'.format(excerpt=excerpt, content=content)
+        self.body = u'{excerpt}{content}'.format(excerpt=excerpt, content=content)
 
         self.date = d.find("div[data-sac-marker='block.article.header'] div.dates span.published span.small").text()
         self.byline = ''
