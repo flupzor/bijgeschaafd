@@ -67,11 +67,13 @@ def _html_to_text(element, parent=None, level=0, exclude_fn=None):
     add_newline = False
     add_newline_force = False
     look_at_children = True
+    exclude = False
 
     if exclude_fn and exclude_fn(element, parent, level):
         add_tail = False
         add_text = False
         look_at_children = False
+        exclude = True
     elif isinstance(element, lxml.etree._Comment):
         add_tail = True
         add_text = False
@@ -105,14 +107,15 @@ def _html_to_text(element, parent=None, level=0, exclude_fn=None):
 
     text = u''
 
-#    print "{} tag: {}: text: '{}' ({}) tail: '{}' ({}) newline: {}".format(
+#    print "{} tag: {}: text: '{}' ({}) tail: '{}' ({}) newline: {} {}".format(
 #        level,
 #        element.tag,
 #        "None" if element.text is None else element.text.encode("unicode-escape"),
 #        "y" if add_text else "n",
 #        "None" if element.tail is None else element.tail.encode("unicode-escape"),
 #        "y" if add_tail else "n",
-#        "y" if add_newline else "n"
+#        "y" if add_newline else "n",
+#        "exclude" if exclude else ""
 #    )
 
     if add_text and element.text:
