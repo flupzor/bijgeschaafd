@@ -7,7 +7,7 @@ from django.core.management import call_command
 from django.test import TestCase
 
 from ..models import Article, Version
-from ..management.commands.parsers.mock import MockParser
+from parsers.mock import MockParser
 
 
 class ParserTests(TestCase):
@@ -20,8 +20,8 @@ class ParserTests(TestCase):
             article.last_check -= timedelta(hours=4)
             article.save()
 
-    @mock.patch('website.frontend.management.commands.parsers.parsers', new=[MockParser])
-    @mock.patch('website.frontend.management.commands.parsers.parser_dict', {'www.mock.nl': MockParser})
+    @mock.patch('parsers.parsers', new=[MockParser])
+    @mock.patch('parsers.parser_dict', {'www.mock.nl': MockParser})
     def test_parser(self):
         # Get the initial articles.
         call_command('scraper')
@@ -85,7 +85,7 @@ class ParserTests(TestCase):
 
         # Make sure that the same article is ignored.
         self.assertEquals(Version.objects.count(), 4)
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.updates', False):
+        with mock.patch('parsers.mock.MockParser.updates', False):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 4)
 
@@ -97,8 +97,8 @@ class ParserTests(TestCase):
         call_command('scraper')
         self.assertEquals(Version.objects.count(), 6)
 
-    @mock.patch('website.frontend.management.commands.parsers.parsers', new=[MockParser])
-    @mock.patch('website.frontend.management.commands.parsers.parser_dict', {'www.mock.nl': MockParser})
+    @mock.patch('parsers.parsers', new=[MockParser])
+    @mock.patch('parsers.parser_dict', {'www.mock.nl': MockParser})
     def test_parser_flapping(self):
         """
 
@@ -112,7 +112,6 @@ class ParserTests(TestCase):
         content1 # now we refuse to store, because we've seen content1 before.
         """
 
-
         a1_url = 'http://www.mock.nl/mock_article1.html'
         a2_url = 'http://www.mock.nl/mock_article2.html'
 
@@ -121,7 +120,7 @@ class ParserTests(TestCase):
             a1_url: 0,
             a2_url: 0,
         }
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.version_counter', version_counter):
+        with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
 
         self.assertEquals(Version.objects.count(), 2)
@@ -138,7 +137,7 @@ class ParserTests(TestCase):
             a1_url: 1,
             a2_url: 1,
         }
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.version_counter', version_counter):
+        with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 4)
 
@@ -149,7 +148,7 @@ class ParserTests(TestCase):
             a1_url: 2,
             a2_url: 2,
         }
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.version_counter', version_counter):
+        with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 6)
 
@@ -159,7 +158,7 @@ class ParserTests(TestCase):
             a1_url: 0,
             a2_url: 3,
         }
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.version_counter', version_counter):
+        with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 8)
 
@@ -169,7 +168,7 @@ class ParserTests(TestCase):
             a1_url: 4,
             a2_url: 4,
         }
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.version_counter', version_counter):
+        with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 10)
 
@@ -179,7 +178,7 @@ class ParserTests(TestCase):
             a1_url: 0,
             a2_url: 5,
         }
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.version_counter', version_counter):
+        with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 11)
 
@@ -189,7 +188,7 @@ class ParserTests(TestCase):
             a1_url: 6,
             a2_url: 6,
         }
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.version_counter', version_counter):
+        with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 13)
 
@@ -199,6 +198,6 @@ class ParserTests(TestCase):
             a1_url: 0,
             a2_url: 7,
         }
-        with mock.patch('website.frontend.management.commands.parsers.mock.MockParser.version_counter', version_counter):
+        with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 14)
