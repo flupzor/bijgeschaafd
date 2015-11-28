@@ -1,5 +1,7 @@
 {% extends 'template.html' %}
 
+{% load current_and_previous %}
+
 {% block content %}
 
 {% include "find_by_uri.html" %}
@@ -19,29 +21,40 @@
 
     <table class="table table-condensed"  style="width:100%">
       <thead><tr><th text-align:"left";>Article</th><th>Version</th><th>Diff</th></tr></thead>
-      {% for article, last_version, versions in articles %}
-      <tr><td rowspan="{{versions|length}}" valign="top"><a href="{% url 'article_history' article.filename %}">{{last_version.title}}</a> (<a href="{{article.url}}">{{article.publication}}</a>)<br>{{last_version.byline}}</td>
-        {% for difflink, version in versions %}
+      {% for article in articles %}
+      {% with versions=article.version_set.all|slice:":10"|current_and_previous %}
+      <tr><td rowspan="{{versions|length}}" valign="top"><a href="{% url "article_history" article.filename %}">{{article.latest_version.title}}</a> (<a href="{{article.url}}">{{article.publication}}</a>)<br>{{article.latest_version.byline}}</td>
+        {% for previous_version, version in versions %}
         <td>{{version.date}}</td>
-        {% if difflink %}
-        <td><a href="{{difflink}}">(Compare)</a></td></tr><tr>
+        {% if previous_version %}
+        <td><a href="{% url "diffview" vid1=previous_version.pk vid2=version.pk urlarg=article.filename %}">(Compare)</a></td></tr><tr>
         {% else %}
         <td></td><td></td></tr>
         {% endif %}
         {% endfor %}
 
-       {% if article.version_count > versions|length %}
+       {% if article.version_set|length > 10 %}
        <tr><td></td><td></td><td>...</td></tr>
        {% else %}
        {% endif %}
+      {% endwith %}
       {% endfor %}
     </table>
-    {% for i in page_list %}
-    {% if i == page %}
-    {{i}}
-    {% else %}
-    <a href="{% url 'browse' source %}?page={{i}}">{{i}}</a>
+
+    <div>
+    <span>
+    {% if articles.has_previous %}
+      <a href="{% url 'browse' source %}?page={{ articles.previous_page_number}}">Previous</a>
     {% endif %}
-    {% endfor %}
+    </span>
+
+    <span>Page {{ articles.number }} of {{articles.paginator.num_pages }}</span>
+
+    <span>
+    {% if articles.has_next %}
+      <a href="{% url 'browse' source %}?page={{ articles.next_page_number}}">Next</a>
+    {% endif %}
+    </span>
+    </div>
 
 {% endblock %}

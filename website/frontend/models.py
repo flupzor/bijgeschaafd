@@ -77,10 +77,6 @@ class Article(models.Model):
 
 
 class Version(models.Model):
-    class Meta:
-        db_table = 'version'
-        get_latest_by = 'date'
-
     article = models.ForeignKey('Article', null=False)
     title = models.CharField(max_length=255, blank=False)
     byline = models.CharField(max_length=255, blank=False)
@@ -90,6 +86,11 @@ class Version(models.Model):
 
     content_sha1 = models.CharField(max_length=40, null=True, db_index=True)
     content = models.TextField(default="")
+
+    class Meta:
+        db_table = 'version'
+        get_latest_by = 'date'
+        ordering = ['date', ]
 
     def text(self):
         return self.content

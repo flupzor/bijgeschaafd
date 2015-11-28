@@ -2,6 +2,7 @@ import datetime
 import json
 
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.db.models import Count, Max
 from django.http import Http404, HttpResponse, HttpResponseRedirect
@@ -107,21 +108,34 @@ def is_valid_domain(domain):
 def browse(request, source=''):
     if source not in SOURCES + ['']:
         raise Http404
-    pagestr = request.GET.get('page', '1')
-    try:
-        page = int(pagestr)
-    except ValueError:
-        page = 1
 
     first_update = get_first_update(source)
-    num_pages = (datetime.datetime.now() - first_update).days + 1
-    page_list = range(1, 1+num_pages)
+    articles = Article.objects.filter(version__boring=False)
 
-    articles = get_articles(source=source, distance=page-1)
+    if source:
+        articles = articles.filter(source=source)
+
+    articles = articles.annotate(
+        version_count=Count('version'), age=Max('version__date')
+    ).filter(
+        version_count__gte=2,
+    ).order_by('age')
+
+    paginator = Paginator(articles, 10)
+
+    page = request.GET.get('page')
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        articles = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        articles = paginator.page(paginator.num_pages)
+
     return render_to_response('browse.html', {
         'source': source, 'articles': articles,
         'page': page,
-        'page_list': page_list,
         'first_update': first_update,
         'sources': SOURCES
     })
