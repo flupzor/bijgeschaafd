@@ -119,7 +119,7 @@ def browse(request, source=''):
         version_count=Count('version'), age=Max('version__date')
     ).filter(
         version_count__gte=2,
-    ).order_by('age')
+    ).order_by('-age')
 
     paginator = Paginator(articles, 10)
 
