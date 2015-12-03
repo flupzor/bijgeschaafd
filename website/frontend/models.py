@@ -90,7 +90,7 @@ class Version(models.Model):
     class Meta:
         db_table = 'version'
         get_latest_by = 'date'
-        ordering = ['date', ]
+        ordering = ['-date', ]
 
     def text(self):
         return self.content

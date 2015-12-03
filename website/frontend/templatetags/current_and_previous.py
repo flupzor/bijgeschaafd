@@ -14,6 +14,4 @@ def current_and_previous(entry_list):
 
         last_entry = entry
 
-    new_list.reverse()
-
     return new_list
