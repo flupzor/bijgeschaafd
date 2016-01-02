@@ -60,42 +60,6 @@ def get_last_update(source):
         return datetime.datetime.now()
 
 
-def get_articles(source=None, distance=0):
-    articles = []
-
-    pagelength = datetime.timedelta(days=1)
-    end_date = datetime.datetime.now() - distance * pagelength
-    start_date = end_date - pagelength
-
-    article_qs = Article.objects.filter(version__boring=False)
-
-    if source:
-        article_qs = article_qs.filter(source=source)
-
-    article_qs = article_qs.annotate(
-        version_count=Count('version'), age=Max('version__date')
-    ).filter(
-        age__gt=start_date, age__lt=end_date,
-        version_count__gte=2,
-    )
-
-    for article in article_qs:
-        versions = sorted(
-            [version for version in article.version_set.all()[:10]
-                if not version.boring],
-            key=lambda version: version.date,
-        )
-
-        if len(versions) < 2:
-            continue
-        rowinfo = get_rowinfo(article, versions)
-        articles.append((article, versions[-1], rowinfo))
-
-    articles.sort(key=lambda x: x[-1][0][1].date, reverse=True)
-
-    return articles
-
-
 SOURCES = settings.NEWS_SOURCES
 
 
@@ -139,59 +103,6 @@ def browse(request, source=''):
         'first_update': first_update,
         'sources': SOURCES
     })
-
-
-@cache_page(60 * 30)  # 30 minute cache
-def feed(request, source=''):
-    if source not in SOURCES + ['']:
-        raise Http404
-    pagestr = request.GET.get('page', '1')
-    try:
-        page = int(pagestr)
-    except ValueError:
-        page = 1
-
-    first_update = get_first_update(source)
-    last_update = get_last_update(source)
-    num_pages = (datetime.datetime.now() - first_update).days + 1
-    page_list = range(1, 1+num_pages)
-
-    articles = get_articles(source=source, distance=page-1)
-    return render_to_response('feed.xml', {
-        'source': source, 'articles': articles,
-        'page': page,
-        'request': request,
-        'page_list': page_list,
-        'last_update': last_update,
-        'sources': SOURCES
-        },
-        context_instance=RequestContext(request),
-        mimetype='application/atom+xml'
-    )
-
-
-def old_diffview(request):
-    """Support for legacy diff urls"""
-    url = request.GET.get('url')
-    v1tag = request.GET.get('v1')
-    v2tag = request.GET.get('v2')
-    if url is None or v1tag is None or v2tag is None:
-        return HttpResponseRedirect(reverse(front))
-
-    try:
-        v1 = Version.objects.get(v=v1tag)
-        v2 = Version.objects.get(v=v2tag)
-    except Version.DoesNotExist:
-        return Http400()
-
-    try:
-        article = Article.objects.get(url=url)
-    except Article.DoesNotExist:
-        return Http400()
-
-    diffview_kwargs = dict(vid1=v1.id, vid2=v2.id, urlarg=article.filename())
-    diffview_url = reverse('diffview', kwargs=diffview_kwargs)
-    return redirect(diffview_url, permanent=True)
 
 
 def diffview(request, vid1, vid2, urlarg):
@@ -331,22 +242,6 @@ def article_history(request, urlarg=''):
 
                                                        })
 
-def article_history_feed(request, url=''):
-    url = prepend_http(url)
-    article = get_object_or_404(Article, url=url)
-    rowinfo = get_rowinfo(article)
-
-    context_data = {
-        'article': article,
-        'versions': rowinfo,
-        'request': request,
-    }
-
-    return render_to_response('article_history.xml', context_data,
-                              context_instance=RequestContext(request),
-                              mimetype='application/atom+xml')
-
-
 def json_view(request, vid):
     version = get_object_or_404(Version, id=int(vid))
     data = dict(
@@ -358,22 +253,8 @@ def json_view(request, vid):
     return HttpResponse(json.dumps(data), mimetype="application/json")
 
 
-def upvote(request):
-    article_url = request.GET.get('article_url')
-    diff_v1 = request.GET.get('diff_v1')
-    diff_v2 = request.GET.get('diff_v2')
-    remote_ip = request.META.get('REMOTE_ADDR')
-    article_id = Article.objects.get(url=article_url).id
-    models.Upvote(article_id=article_id, diff_v1=diff_v1, diff_v2=diff_v2, creation_time=datetime.datetime.now(), upvoter_ip=remote_ip).save()
-    return render_to_response('upvote.html')
-
-
 def about(request):
     return render_to_response('about.html', {})
-
-
-def examples(request):
-    return render_to_response('examples.html', {})
 
 
 def contact(request):
@@ -383,10 +264,3 @@ def contact(request):
 def front(request):
     return render_to_response('front.html', {'sources': SOURCES})
 
-
-def subscribe(request):
-    return render_to_response('subscribe.html', {})
-
-
-def press(request):
-    return render_to_response('press.html', {})
