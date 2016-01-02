@@ -5,13 +5,15 @@ register = template.Library()
 
 @register.filter
 def current_and_previous(entry_list):
-
     new_list = []
-    last_entry = None
 
-    for entry in entry_list:
-        new_list.append((last_entry, entry))
+    for i in range(len(entry_list)):
+        current = entry_list[i]
+        if i + 1 < len(entry_list):
+            previous = entry_list[i + 1]
+        else:
+            previous = None
 
-        last_entry = entry
+        new_list.append((previous, current))
 
     return new_list
