@@ -1,6 +1,20 @@
 - name: Create directory for Django sites.
   become: yes
   file: path=/usr/django/ state=directory mode="u=rwx,g=rw,o=rw" owner={{ application_user }}
+- name: make sure git is installed
+  apt: name=git state=present
+- name: make sure virtualenv is installed
+  apt: name=virtualenv state=present
+- name: make sure build-essential is installed
+  apt: name=build-essential state=present
+- name: make sure python-dev is installed
+  apt: name=python-dev state=present
+- name: make sure libxml2-dev is installed
+  apt: name=libxml2-dev state=present
+- name: make sure libxslt1-dev is installed
+  apt: name=libxslt1-dev state=present
+- name: make sure zlib1g-dev is installed
+  apt: name=zlib1g-dev state=present
 - name: Make sure the git repository exists and is up to date.
   become: yes
   become_user: "{{ application_user }}"
