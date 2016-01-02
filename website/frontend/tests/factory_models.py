@@ -1,6 +1,6 @@
 import factory
 
-from ..models import Article, Upvote, Version
+from ..models import Article, Version
 
 
 class ArticleFactory(factory.django.DjangoModelFactory):
@@ -22,8 +22,3 @@ class VersionFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Version
-
-
-class UpvoteFactory(factory.Factory):
-    class Meta:
-        model = Upvote
