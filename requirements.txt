@@ -9,3 +9,4 @@ git+https://github.com/rbarrois/factory_boy.git
 fake-factory==0.5.3
 mock
 django-webtest
+python-memcached

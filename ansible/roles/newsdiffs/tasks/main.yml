@@ -1,6 +1,8 @@
 - name: Create directory for Django sites.
   become: yes
   file: path=/usr/django/ state=directory mode="u=rwx,g=rw,o=rw" owner={{ application_user }}
+- name: make sure memcached is installed
+  apt: name=memcached state=present
 - name: make sure git is installed
   apt: name=git state=present
 - name: make sure virtualenv is installed
