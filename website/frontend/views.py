@@ -68,7 +68,7 @@ def is_valid_domain(domain):
     return any(domain.endswith(source) for source in SOURCES)
 
 
-# @cache_page(60 * 30)  #30 minute cache
+@cache_page(60 * 30)  #30 minute cache
 def browse(request, source=''):
     if source not in SOURCES + ['']:
         raise Http404
