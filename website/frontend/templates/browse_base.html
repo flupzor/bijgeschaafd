@@ -21,6 +21,7 @@
 
     <table class="table table-condensed"  style="width:100%">
       <thead><tr><th text-align:"left";>Article</th><th>Version</th><th>Diff</th></tr></thead>
+      <tbody>
       {% for article in articles %}
       {% with versions=article.version_set.all|slice:":10"|current_and_previous %}
       <tr><td rowspan="{{versions|length}}" valign="top"><a href="{% url "article_history" article.filename %}">{{article.latest_version.title}}</a> (<a href="{{article.url}}">{{article.publication}}</a>)<br>{{article.latest_version.byline}}</td>
@@ -39,6 +40,7 @@
        {% endif %}
       {% endwith %}
       {% endfor %}
+      </tbody>
     </table>
 
     <div>

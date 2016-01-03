@@ -1,165 +1,134 @@
 from datetime import datetime, timedelta
-from unittest import skip
 
-from django.test import TestCase
+from django.core.urlresolvers import reverse
+from django_webtest import WebTest
 
-from ..models import Article, Version
-from ..views import get_articles
 from .factory_models import ArticleFactory, VersionFactory
 
 
-class ViewTests(TestCase):
-    def test_get_articles(self):
+class ViewTests(WebTest):
+    def test_browse(self):
         """
-        Retrieve the articles and versions which should
-        be shown on the browse page on page 1.
-
-        This means to request the articles from one
-        day ago untill now.
+        Test that the browse view is sorted properly.
         """
 
-        update_time = datetime.now() - timedelta(hours=4)
+        update_time = datetime(2015, 1, 25, 8, 0)
 
-        created_article = ArticleFactory.create(
+        article1 = ArticleFactory.create(
+            url="http://www.news-site.nl/article1.html",
             last_check=update_time,
             last_update=update_time,
         )
 
-        created_version1 = VersionFactory.create(
-            article=created_article,
+        article1_version1 = VersionFactory.create(
+            title="article1 revision1",
+            article=article1,
             boring=False,
-            date=datetime.now() - timedelta(hours=2),
+            date=update_time - timedelta(hours=2),
         )
 
-        created_version2 = VersionFactory.create(
-            article=created_article,
+        article1_version2 = VersionFactory.create(
+            title="article1 revision 2",
+            article=article1,
             boring=False,
-            date=datetime.now() - timedelta(hours=3),
+            date=update_time - timedelta(hours=3),
         )
 
-        # Outside the requested timeframe, but should still
-        # be returned in the query.
-        created_version3 = VersionFactory.create(
-            article=created_article,
+        article1_version3 = VersionFactory.create(
+            title="article 1 revision 3",
+            article=article1,
             boring=False,
-            date=datetime.now() - timedelta(days=1, hours=3),
+            date=update_time - timedelta(days=1, hours=3),
         )
 
-        article_list = get_articles()
-
-        self.assertEquals(len(article_list), 1)
-
-        article, version, rowinfo = article_list[0]
-
-        self.assertEquals(version.pk, created_version1.pk)
-
-        self.assertEquals(len(rowinfo), 3)
-
-        diff1, version1 = rowinfo[0]
-        diff2, version2 = rowinfo[1]
-        diff3, version3 = rowinfo[2]
-
-        self.assertEquals(version1.pk, created_version1.pk)
-        self.assertEquals(version2.pk, created_version2.pk)
-        self.assertEquals(version3.pk, created_version3.pk)
-
-    def test_get_articles_boring(self):
-        """
-        Make sure that if two versions exists for a article, but
-        one is boring, the articles shouldn't be returned.
-        """
-
-        update_time = datetime.now() - timedelta(hours=4)
-
-        created_article = ArticleFactory.create(
+        article2 = ArticleFactory.create(
+            url="http://www.news-site.nl/article2.html",
             last_check=update_time,
             last_update=update_time,
         )
 
-        # Two versions exists, but one is boring,
-        # so it should be ignored.
-        created_version1 = VersionFactory.create(
-            article=created_article,
+        article2_version1 = VersionFactory.create(
+            title="article2 revision1",
+            article=article2,
             boring=False,
-            date=datetime.now() - timedelta(hours=2),
+            date=update_time - timedelta(hours=3),
         )
 
-        created_version2 = VersionFactory.create(
-            article=created_article,
-            boring=True,
-            date=datetime.now() - timedelta(hours=3),
-        )
-
-        article_list = get_articles()
-
-        self.assertEquals(len(article_list), 0)
-
-    def test_get_articles_before_date_window(self):
-        """
-        Make sure that if all the versions are outside
-        of the requested date window, no articles are returned.
-        """
-
-        update_time = datetime.now() - timedelta(hours=4)
-
-        created_article = ArticleFactory.create(
-            last_check=update_time,
-            last_update=update_time,
-        )
-
-
-        # Two versions exists, but one is boring,
-        # so it should be ignored.
-        created_version1 = VersionFactory.create(
-            article=created_article,
+        article2_version2 = VersionFactory.create(
+            title="article2 revision1",
+            article=article2,
             boring=False,
-            date=datetime.now() - timedelta(days=1, hours=1),
+            date=update_time - timedelta(hours=4),
         )
 
-        created_version2 = VersionFactory.create(
-            article=created_article,
-            boring=False,
-            date=datetime.now() - timedelta(days=1),
-        )
+        response = self.app.get(reverse('browse'))
+        rows = response.pyquery.find('table tbody tr')
+        table_matrix = [
+            {
+                "column1": rows.eq(i).find('td').eq(0).html(),
+                "column2": rows.eq(i).find('td').eq(1).html(),
+                "column3": rows.eq(i).find('td').eq(2).html()
+            } for i in range(len(rows))
+        ]
 
-        article_list = get_articles()
+        expected = [{
+            'column1': '<a href="{}">article1 revision1</a> '
+                       '(<a href="{}">None</a>)<br/>'.format(
+                           reverse(
+                               'article_history',
+                               args=[article1.filename(), ]
+                           ),
+                           article1.url
+                       ),
+            'column2': 'Jan. 25, 2015, 6 a.m.',
+            'column3': '<a href="{}">(Compare)</a>'.format(
+                reverse(
+                    'diffview',
+                    kwargs={
+                        'vid1': article1_version2.pk,
+                        'vid2': article1_version1.pk,
+                        'urlarg': article1.filename()
+                    }
+                )),
+        }, {
+            'column1': 'Jan. 25, 2015, 5 a.m.',
+            'column2': '<a href="{}">(Compare)</a>'.format(
+                reverse(
+                    'diffview',
+                    kwargs={
+                        'vid1': article1_version3.pk,
+                        'vid2': article1_version2.pk,
+                        'urlarg': article1.filename()
+                    }
+                )),
+            'column3': None,
+        }, {
+            'column1': 'Jan. 24, 2015, 5 a.m.',
+            'column2': None,
+            'column3': None,
+        }, {
+            'column1': '<a href="{}">article2 revision1</a> '
+                       '(<a href="{}">None</a>)<br/>'.format(
+                           reverse(
+                               'article_history',
+                               args=[article2.filename(), ]
+                           ),
+                           article2.url
+                       ),
+            'column2': 'Jan. 25, 2015, 5 a.m.',
+            'column3': '<a href="{}">(Compare)</a>'.format(
+                reverse(
+                    'diffview',
+                    kwargs={
+                        'vid1': article2_version2.pk,
+                        'vid2': article2_version1.pk,
+                        'urlarg': article2.filename()
+                    }
+                )),
+        }, {
+            'column1': 'Jan. 25, 2015, 4 a.m.',
+            'column2': None,
+            'column3': None,
+        }]
 
-        self.assertEquals(len(article_list), 0)
-
-    def test_get_articles_partially_after_date_window(self):
-        """
-        Request the yesterday's articles, while there are two version
-        which where created yesterday, but one version which was
-        created today. Since the latest date is leading, this article
-        should not show on yesterday's page.
-        """
-
-        update_time = datetime.now() - timedelta(hours=4)
-
-        created_article = ArticleFactory.create(
-            last_check=update_time,
-            last_update=update_time,
-        )
-
-        created_version1 = VersionFactory.create(
-            article=created_article,
-            boring=False,
-            date=datetime.now() - timedelta(hours=2),
-        )
-
-        created_version2 = VersionFactory.create(
-            article=created_article,
-            boring=False,
-            date=datetime.now() - timedelta(days=1, hours=3),
-        )
-
-        created_version3 = VersionFactory.create(
-            article=created_article,
-            boring=False,
-            date=datetime.now() - timedelta(days=1, hours=4),
-        )
-
-        # request yesterday
-        article_list = get_articles(distance=1)
-
-        self.assertEquals(len(article_list), 0)
+        self.assertEquals(table_matrix, expected)

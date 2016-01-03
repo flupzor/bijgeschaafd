@@ -88,6 +88,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
 ROOT_URLCONF = 'website.urls'
@@ -116,3 +117,5 @@ CACHES = {
 NEWS_SOURCES = [
     'nos.nl', 'nu.nl', 'telegraaf.nl'
 ]
+
+STATIC_URL = '/static/'
