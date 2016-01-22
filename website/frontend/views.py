@@ -13,8 +13,6 @@ from django.views.decorators.cache import cache_page
 import models
 from models import Article, Version
 
-OUT_FORMAT = '%B %d, %Y at %l:%M%P EDT'
-
 SEARCH_ENGINES = """
 http://www.ask.com
 http://www.google
@@ -129,7 +127,7 @@ def diffview(request, vid1, vid2, urlarg):
 
     for v in (v1, v2):
         texts.append(v.text())
-        dates.append(v.date.strftime(OUT_FORMAT))
+        dates.append(v.date)
 
         indices = [i for i, x in versions.items() if x == v]
         if not indices:
