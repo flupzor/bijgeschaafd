@@ -80,8 +80,8 @@ class ViewTests(WebTest):
                            ),
                            article1.url
                        ),
-            'column2': 'Jan. 25, 2015, 6 a.m.',
-            'column3': '<a href="{}">(Compare)</a>'.format(
+            'column2': '25 januari 2015 06:00',
+            'column3': '<a href="{}">(Vergelijk)</a>'.format(
                 reverse(
                     'diffview',
                     kwargs={
@@ -91,8 +91,8 @@ class ViewTests(WebTest):
                     }
                 )),
         }, {
-            'column1': 'Jan. 25, 2015, 5 a.m.',
-            'column2': '<a href="{}">(Compare)</a>'.format(
+            'column1': '25 januari 2015 05:00',
+            'column2': '<a href="{}">(Vergelijk)</a>'.format(
                 reverse(
                     'diffview',
                     kwargs={
@@ -103,7 +103,7 @@ class ViewTests(WebTest):
                 )),
             'column3': None,
         }, {
-            'column1': 'Jan. 24, 2015, 5 a.m.',
+            'column1': '24 januari 2015 05:00',
             'column2': None,
             'column3': None,
         }, {
@@ -115,8 +115,8 @@ class ViewTests(WebTest):
                            ),
                            article2.url
                        ),
-            'column2': 'Jan. 25, 2015, 5 a.m.',
-            'column3': '<a href="{}">(Compare)</a>'.format(
+            'column2': '25 januari 2015 05:00',
+            'column3': '<a href="{}">(Vergelijk)</a>'.format(
                 reverse(
                     'diffview',
                     kwargs={
@@ -126,7 +126,7 @@ class ViewTests(WebTest):
                     }
                 )),
         }, {
-            'column1': 'Jan. 25, 2015, 4 a.m.',
+            'column1': '25 januari 2015 04:00',
             'column2': None,
             'column3': None,
         }]
