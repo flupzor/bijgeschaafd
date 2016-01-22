@@ -58,21 +58,21 @@ de artikelen online zijn gepubliceerd. Je kan ons archief bekijken in het
     <h2>Comparing: {{title}}</h2>
     <h3><a href="{{article_url}}">{{article_url}}</a></h3>
     <ul>
-      <li><del>Pink: Archived {{date1}}</del></li>
-      <li><ins>Green: Archived {{date2}}</ins></li>
+      <li><del>Gearchiveerd {{date1}}</del></li>
+      <li><ins>Gearchiveerd {{date2}}</ins></li>
     </ul>
     <p>
       {% if prev %}
-      <a href="{{prev}}"><= Previous revision</a>
+      <a href="{{prev}}"><= Eerdere wijziging</a>
       {% else %}
-      No previous revision
+      Geen eerdere wijziging
       {% endif %} |
-      <a href="{% url 'article_history' article_shorturl %}">All changes</a>
+      <a href="{% url 'article_history' article_shorturl %}">Alle wijzigingen</a>
       |
       {% if next %}
-      <a href="{{next}}">Later revision =></a>
+      <a href="{{next}}">Latere wijziging =></a>
       {% else %}
-      No later revision
+      Geen latere wijziging
       {% endif %}
     </p>
 

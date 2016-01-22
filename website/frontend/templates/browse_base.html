@@ -15,12 +15,12 @@
             </li>
           </ul>
 
-      <h1>Changed Articles {% block browse_fromline %}{% endblock browse_fromline %}</h1>
-      <p>Starting {{first_update|date:"F d, Y"}} (with occasional downtime)</p>
-      <p>  
+      <h1>Gewijzigde artikelen {% block browse_fromline %}{% endblock browse_fromline %}</h1>
+      <p>Archiveren begonnen op {{first_update|date:"F d, Y"}}</p>
+      <p>
 
     <table class="table table-condensed"  style="width:100%">
-      <thead><tr><th text-align:"left";>Article</th><th>Version</th><th>Diff</th></tr></thead>
+      <thead><tr><th text-align:"left";>Artikel</th><th>Versie</th><th>Wijziging</th></tr></thead>
       <tbody>
       {% for article in articles %}
       {% with versions=article.version_set.all|slice:":10"|current_and_previous %}
@@ -28,7 +28,7 @@
         {% for previous_version, version in versions %}
         <td>{{version.date}}</td>
         {% if previous_version %}
-        <td><a href="{% url "diffview" vid1=previous_version.pk vid2=version.pk urlarg=article.filename %}">(Compare)</a></td></tr><tr>
+        <td><a href="{% url "diffview" vid1=previous_version.pk vid2=version.pk urlarg=article.filename %}">(Vergelijk)</a></td></tr><tr>
         {% else %}
         <td></td><td></td></tr>
         {% endif %}
@@ -46,15 +46,15 @@
     <div>
     <span>
     {% if articles.has_previous %}
-      <a href="{% url 'browse' source %}?page={{ articles.previous_page_number}}">Previous</a>
+      <a href="{% url 'browse' source %}?page={{ articles.previous_page_number}}">Vorige</a>
     {% endif %}
     </span>
 
-    <span>Page {{ articles.number }} of {{articles.paginator.num_pages }}</span>
+    <span>Pagina {{ articles.number }} van {{articles.paginator.num_pages }}</span>
 
     <span>
     {% if articles.has_next %}
-      <a href="{% url 'browse' source %}?page={{ articles.next_page_number}}">Next</a>
+      <a href="{% url 'browse' source %}?page={{ articles.next_page_number}}">Volgende</a>
     {% endif %}
     </span>
     </div>
