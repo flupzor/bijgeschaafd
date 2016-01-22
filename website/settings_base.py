@@ -82,5 +82,3 @@ NEWS_SOURCES = [
 ]
 
 STATIC_URL = '/static/'
-
-from settings_local import *
