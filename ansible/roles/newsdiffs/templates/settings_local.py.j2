@@ -1,0 +1,46 @@
+ALLOWED_HOSTS = ['{{ server_hostname }}', 'localhost', '127.0.0.1']
+
+ADMINS = (
+     ('{{ admin_name }}', '{{ admin_email }}'),
+)
+MANAGERS = ADMINS
+SERVER_EMAIL = "{{ server_email }}"
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': '127.0.0.1',
+        'NAME': '{{ dbname }}',
+        'USER': '{{ dbuser }}',
+        'PASSWORD': '{{ dbpassword }}',
+    }
+}
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '{{ secret_key }}'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/usr/django/newsdiffs/debug.log',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

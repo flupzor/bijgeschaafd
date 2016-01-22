@@ -1,26 +1,12 @@
-# Django settings for the newsdiffs project.
+# Django settings for newsdiffer project.
 
-ALLOWED_HOSTS = ['{{ server_hostname }}', 'localhost', '127.0.0.1']
+import os.path
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
-     ('{{ admin_name }}', '{{ admin_email }}'),
-)
-
+ADMINS = ()
 MANAGERS = ADMINS
-SERVER_EMAIL = "{{ server_email }}"
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': '127.0.0.1',
-        'NAME': '{{ dbname }}',
-        'USER': '{{ dbuser }}',
-        'PASSWORD': '{{ dbpassword }}',
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -29,11 +15,9 @@ DATABASES = {
 # system time zone.
 TIME_ZONE = 'Europe/Amsterdam'
 
-DATETIME_FORMAT = 'F j, Y, g:i a'
-
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nl-NL'
 
 SITE_ID = 1
 
@@ -56,7 +40,7 @@ MEDIA_URL = ''
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '{{ secret_key }}'
+SECRET_KEY = '%p^2v#afb+ew#3en+%r55^gm4av_=e+s7w6a5(#ky92yp*56+l'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -89,34 +73,12 @@ INSTALLED_APPS = (
     'website.frontend',
 )
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': '/usr/django/newsdiffs/debug.log',
-        },
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 NEWS_SOURCES = [
     'nos.nl', 'nu.nl', 'telegraaf.nl'
 ]
 
 STATIC_URL = '/static/'
+
+from settings_local import *

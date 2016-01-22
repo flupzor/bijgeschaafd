@@ -34,3 +34,5 @@ database_settings.py
 
 # Ansible secrets
 ansible/group_vars
+
+website/settings_local.py
