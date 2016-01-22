@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>NewsDiffs | {% block title %}Tracking Online News Articles Over Time{% endblock %}</title>
+    <title>{% block title %}Bijgeschaafd{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NewsDiffs tracks changes in online news articles over time">
-    <meta name="author" content="Eric Price, Greg Price, Jennifer 8. Lee">
+    <meta name="description" content="Bijgeschaafd.nl geeft een overzicht van alle wijzigingen die er gemaakt zijn in nieuwsartikelen.">
+    <meta name="author" content="Alexander Schrijver">
 
     <!-- Le styles -->
 
@@ -29,20 +29,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% url 'root' %}assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="{% url 'root' %}assets/ico/apple-touch-icon-57-precomposed.png">
 
-
-
-    <!-- google analytics -->
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-32724935-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-
       {% block head %} {% endblock %}
      <!-- <script src="{% url 'static' 'js/jquery.js' %}"></script> -->
      <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->         
@@ -64,13 +50,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="{% url 'root' %}">NewsDiffs</a>
+          <a class="brand" href="{% url 'root' %}">Bijgeschaafd</a>
           <!--<div class="nav-collapse">-->
             <ul class="nav">
-              <li {% block active_front %}{% endblock %}><a href="{% url 'root' %}">Home</a></li>
-              <li {% block active_about %}{% endblock %}><a href="{% url 'about' %}">About</a></li>
               <li {% block active_browse %}{% endblock %}><a href="{% url 'browse' %}">Browse</a></li>
-
+              <li {% block active_about %}{% endblock %}><a href="{% url 'about' %}">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -80,10 +64,9 @@
     <div class="container">
       {% block content %} {% endblock content%}
 <hr>
- {% block footer %} 
+{% block footer %}
 	<footer>
-        <p>&copy; <a href="{% url 'contact' %}">NewsDiffs</a> 2012 | <a href="http://twitter.com/newsdiffs">@newsdiffs</a> </p>
-        </footer>
+  </footer>
 {% endblock footer %}
     </div>
 

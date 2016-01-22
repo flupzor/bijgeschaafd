@@ -207,7 +207,7 @@ def article_history(request, urlarg=''):
     if url is None:
         url = urlarg
     if len(url) == 0:
-        return HttpResponseRedirect(reverse(front))
+        return HttpResponseRedirect(reverse(about))
 
     url = url.split('?')[0]  #For if user copy-pastes from news site
 
@@ -256,11 +256,4 @@ def json_view(request, vid):
 def about(request):
     return render_to_response('about.html', {})
 
-
-def contact(request):
-    return render_to_response('contact.html', {})
-
-
-def front(request):
-    return render_to_response('front.html', {'sources': SOURCES})
 
