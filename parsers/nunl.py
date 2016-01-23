@@ -42,3 +42,14 @@ class NuNLParser(BaseParser):
 
         self.date = d.find("div[data-sac-marker='block.article.header'] div.dates span.published span.small").text()
         self.byline = ''
+
+        # For now just mark everything in the dvn category as
+        # boring. There are interesting things in there, but for
+        # it fills up the list with weather etc.
+        if "http://www.nu.nl/dvn/" in self.url:
+            self.boring = True
+
+        if "http://www.nu.nl/voetbal/" in self.url:
+            self.boring = True
+
+
