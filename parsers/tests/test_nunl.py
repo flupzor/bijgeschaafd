@@ -38,6 +38,8 @@ class NuNLParserTests(TestCase):
             u'uitgezonden door SBS6 en NU.nl.\n'
         )
 
+        self.assertEquals(parsed_article.boring, True);
+
     def test_nu_nl_article(self):
         """
         http://www.nu.nl/politiek/4163338/bestuur-kamer-stelt-onderzoek-in-wegens-lekken-commissie-stiekem.html
@@ -129,3 +131,5 @@ class NuNLParserTests(TestCase):
             u"voor de Hoge Raad zullen moeten verschijnen.\n"
 
         self.assertEquals(parsed_article.body, expected)
+
+        self.assertEquals(parsed_article.boring, False);

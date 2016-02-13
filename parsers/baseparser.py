@@ -117,6 +117,7 @@ class BaseParser(object):
     def __init__(self, url, html=None):
         self.url = url
         self.html = html
+        self.boring = False
 
         if not html:
             try:

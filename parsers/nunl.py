@@ -43,6 +43,9 @@ class NuNLParser(BaseParser):
         self.date = d.find("div[data-sac-marker='block.article.header'] div.dates span.published span.small").text()
         self.byline = ''
 
+        if len(d.find('div[data-sac-marker="block.liveblog"]')) > 0:
+            self.boring = True
+
         # For now just mark everything in the dvn category as
         # boring. There are interesting things in there, but for
         # it fills up the list with weather etc.
