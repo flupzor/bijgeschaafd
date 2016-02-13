@@ -12,6 +12,17 @@ TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 class NuNLParserTests(TestCase):
     maxDiff = None
 
+    def test_nu_nl_weer(self):
+        """
+        www.nu.nl/dvn/4211073/weer-maandagmiddag-kans-westerstorm.html
+        """
+
+        article_name = 'www_nu_nl_dvn_4211073_weer_maandagmiddag_kans-westerstorm.html'
+        article_path = os.path.join(TEST_DIR, article_name)
+        article_file = open(article_path, 'rb')
+
+        parsed_article = NuNLParser('http://www.nu.nl/dvn/4211073/weer-maandagmiddag-kans-westerstorm.html', html=article_file.read())
+
     def test_nu_nl_lifeblog(self):
         """
         http://www.nu.nl/champions-league/4136168/reacties-psv-3-2-nederlaag-bij-cska-moskou-gesloten.html
