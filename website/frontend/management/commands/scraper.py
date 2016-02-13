@@ -153,7 +153,7 @@ def update_article(article):
     t = datetime.now()
     logger.debug('Article parsed; trying to store')
 
-    boring = False
+    boring = parsed_article.boring
     diff_info = None
 
     try:

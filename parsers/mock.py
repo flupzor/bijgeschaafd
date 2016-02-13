@@ -13,6 +13,8 @@ class MockParser(BaseParser):
 
     updates = True
 
+    set_to_boring = False
+
     def __init__(self, url):
         MockParser.version_counter.setdefault(url, 0)
 
@@ -24,7 +26,7 @@ class MockParser(BaseParser):
         self.date = u'\u1d81ate {}'.format(current_article)
         self.byline = ''
         self.body = u'Body \u1d00 {} {}'.format(url, current_article)
-        self.boring = False
+        self.boring = self.set_to_boring
 
     @classmethod
     def feed_urls(cls):

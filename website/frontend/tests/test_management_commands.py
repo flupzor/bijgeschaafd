@@ -24,7 +24,8 @@ class ParserTests(TestCase):
     @mock.patch('parsers.parser_dict', {'www.mock.nl': MockParser})
     def test_parser(self):
         # Get the initial articles.
-        call_command('scraper')
+        with mock.patch('parsers.mock.MockParser.version_counter', {}):
+            call_command('scraper')
 
         self.assertEquals(Version.objects.count(), 2)
 
@@ -201,3 +202,12 @@ class ParserTests(TestCase):
         with mock.patch('parsers.mock.MockParser.version_counter', version_counter):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 14)
+
+    @mock.patch('parsers.parsers', new=[MockParser])
+    @mock.patch('parsers.parser_dict', {'www.mock.nl': MockParser})
+    def test_boring(self):
+        # Get the initial articles.
+        with mock.patch('parsers.mock.MockParser.set_to_boring', True):
+            call_command('scraper')
+
+        self.assertEquals(Version.objects.filter(boring=True).count(), 2)
