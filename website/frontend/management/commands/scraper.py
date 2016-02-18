@@ -18,7 +18,9 @@ from django.core.management.base import BaseCommand
 from website import diff_match_patch
 import parsers
 from website.frontend import models
-from parsers.baseparser import canonicalize, formatter, logger
+from parsers.baseparser import canonicalize
+
+logger = logging.getLogger('scraper')
 
 
 class Command(BaseCommand):
@@ -42,16 +44,6 @@ scanned them recently, unless --all is passed.
 '''.strip()
 
     def handle(self, *args, **options):
-        ch = logging.FileHandler('/tmp/newsdiffs_logging', mode='w')
-        ch.setLevel(logging.DEBUG)
-        ch.setFormatter(formatter)
-        logger.addHandler(ch)
-
-        ch = logging.FileHandler('/tmp/newsdiffs_logging_errs', mode='a')
-        ch.setLevel(logging.WARNING)
-        ch.setFormatter(formatter)
-        logger.addHandler(ch)
-
         update_articles()
         update_versions(options['all'])
 
@@ -151,7 +143,7 @@ def update_article(article):
     to_store = unicode(parsed_article).encode('utf-8')
     to_store_sha1 = hashlib.sha1(to_store).hexdigest()
     t = datetime.now()
-    logger.debug('Article parsed; trying to store')
+    logger.debug('Article %s: boring %s', article.url, parsed_article.boring)
 
     boring = parsed_article.boring
     diff_info = None

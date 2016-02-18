@@ -10,27 +10,10 @@ import urllib2
 # Ick.
 from BeautifulSoup import BeautifulSoup
 
-
-# Define a logger
-
-# This formatter is like the default but uses a period rather than a comma
-# to separate the milliseconds
-class MyFormatter(logging.Formatter):
-    def formatTime(self, record, datefmt=None):
-        return logging.Formatter.formatTime(self, record,
-                                            datefmt).replace(',', '.')
-
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-formatter = MyFormatter('%(asctime)s:%(levelname)s:%(message)s')
-ch = logging.StreamHandler()
-ch.setLevel(logging.WARNING)
-ch.setFormatter(formatter)
-logger.addHandler(ch)
 
 
 # Utility functions
-
 def grab_url(url, max_depth=5, opener=None):
     if opener is None:
         cj = cookielib.CookieJar()
@@ -127,7 +110,7 @@ class BaseParser(object):
                     self.real_article = False
                     return
                 raise
-            logger.debug('got html')
+            logger.debug('received response from %s', url)
 
         self._parse(self.html)
 
