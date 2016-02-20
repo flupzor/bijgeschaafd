@@ -29,7 +29,7 @@
 - name: setup newsdiffs configuration
   become: yes
   become_user: "{{ application_user }}"
-  template: src=settings_local.py.j2 dest=/usr/django/newsdiffs/website/settings_local.py
+  template: src=settings_local.py.j2 dest=/usr/django/newsdiffs/bijgeschaafd/settings_local.py
   notify: restart gunicorn
 # syncdb is needed for Django 1.5
 - name: run newsdiffs db syncdb
@@ -38,7 +38,7 @@
   django_manage: >
       command=syncdb
       app_path=/usr/django/newsdiffs/
-      settings=website.settings
+      settings=bijgeschaafd.settings
       pythonpath=/usr/django/newsdiffs/
       virtualenv=/usr/django/newsdiffs/env/
 - name: run newsdiffs db migrations
@@ -47,7 +47,7 @@
   django_manage: >
       command=migrate
       app_path=/usr/django/newsdiffs/
-      settings=website.settings
+      settings=bijgeschaafd.settings
       pythonpath=/usr/django/newsdiffs/
       virtualenv=/usr/django/newsdiffs/env/
 - name: make sure gunicorn is installed
