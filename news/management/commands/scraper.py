@@ -17,7 +17,7 @@ from django.core.management.base import BaseCommand
 
 from bijgeschaafd import diff_match_patch
 import parsers
-from bijgeschaafd.frontend import models
+from news import models
 from parsers.baseparser import canonicalize
 
 logger = logging.getLogger('scraper')

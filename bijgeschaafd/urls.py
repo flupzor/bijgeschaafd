@@ -17,7 +17,7 @@ urlpatterns = [
         }, name='static'),
   url(r'^(assets/ico/)?favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico', permanent=False)),
   url(r'^robots.txt$', RedirectView.as_view(url='/static/robots.txt', permanent=False)),
-  url(r'^', include('bijgeschaafd.frontend.urls')),
+  url(r'^', include('news.urls')),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

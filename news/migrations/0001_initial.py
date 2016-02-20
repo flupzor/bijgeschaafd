@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 ('diff_json', models.CharField(max_length=255, null=True)),
                 ('content_sha1', models.CharField(max_length=40, null=True, db_index=True)),
                 ('content', models.TextField(default=b'')),
-                ('article', models.ForeignKey(to='frontend.Article')),
+                ('article', models.ForeignKey(to='news.Article')),
             ],
             options={
                 'db_table': 'version',

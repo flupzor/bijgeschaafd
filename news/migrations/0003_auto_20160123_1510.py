@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models, migrations
 
 def make_nu_nl_dvn_voetbal_boring(apps, schema_editor):
-    Article = apps.get_model("frontend", "Article")
+    Article = apps.get_model("news", "Article")
 
     for article in Article.objects.filter(url__contains='http://www.nu.nl/dvn/'):
         for version in article.version_set.all():
@@ -20,7 +20,7 @@ def make_nu_nl_dvn_voetbal_boring(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('frontend', '0002_auto_20160102_1359'),
+        ('news', '0002_auto_20160102_1359'),
     ]
 
     operations = [

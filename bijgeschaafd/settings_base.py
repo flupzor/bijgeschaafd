@@ -72,7 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'parsers',
-    'bijgeschaafd.frontend',
+    'news',
 )
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
