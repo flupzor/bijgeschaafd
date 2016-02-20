@@ -20,7 +20,7 @@
 - name: Make sure the git repository exists and is up to date.
   become: yes
   become_user: "{{ application_user }}"
-  git: repo=https://github.com/flupzor/newsdiffs.git dest=/usr/django/newsdiffs version=dutch
+  git: repo=https://github.com/flupzor/bijgeschaafd.git dest=/usr/django/newsdiffs version=dutch
   notify: restart gunicorn
 - name: setup virtualenv
   become: yes
