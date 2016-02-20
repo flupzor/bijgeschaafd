@@ -12,7 +12,7 @@ sys.path.insert(0, ROOT_DIR)
 # os.chdir("/home/user/myproject")
 
 # Set the DJANGO_SETTINGS_MODULE environment variable.
-os.environ['DJANGO_SETTINGS_MODULE'] = "website.settings"
+os.environ['DJANGO_SETTINGS_MODULE'] = "bijgeschaafd.settings"
 
 from django.core.servers.fastcgi import runfastcgi
 runfastcgi(method="threaded", daemonize="false")

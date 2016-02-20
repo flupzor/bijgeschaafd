@@ -15,9 +15,9 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand
 
-from website import diff_match_patch
+from bijgeschaafd import diff_match_patch
 import parsers
-from website.frontend import models
+from bijgeschaafd.frontend import models
 from parsers.baseparser import canonicalize
 
 logger = logging.getLogger('scraper')
@@ -247,4 +247,4 @@ def update_versions(do_all=False):
     logger.info('Done!')
 
 if __name__ == '__main__':
-    print >> sys.stderr, "Try `python website/manage.py scraper`."
+    print >> sys.stderr, "Try `python bijgeschaafd/manage.py scraper`."
