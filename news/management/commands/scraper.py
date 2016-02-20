@@ -16,9 +16,8 @@ from optparse import make_option
 from django.core.management.base import BaseCommand
 
 from bijgeschaafd import diff_match_patch
-import parsers
-from news import models
-from parsers.baseparser import canonicalize
+from news import models, parsers
+from news.parsers.baseparser import canonicalize
 
 logger = logging.getLogger('scraper')
 

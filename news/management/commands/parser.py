@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-import parsers
+from news import parsers
 
 
 class Command(BaseCommand):
