@@ -2,7 +2,6 @@ Django==1.8
 simplejson
 beautifulsoup4
 beautifulsoup
-South
 html5lib
 pyquery==1.2.9
 git+https://github.com/rbarrois/factory_boy.git
