@@ -1,0 +1,46 @@
+<nav>
+  <ul class="pagination">
+    <li class="page-item {% if not page.has_previous %}disabled{% endif %}">
+      {% if page.has_previous %}
+      <a class="page-link" href="{{ url }}?page={{ page.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+      {% else %}
+      <span class="page-link" >
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </span>
+      {% endif %}
+    </li>
+
+    {% if 1 not in pages %}
+    <li class="page-item"><a class="page-link" href="{{ url }}?page=1">1</a></li>
+    <li class="page-item"><span class="page-link">&hellip;</span></li>
+    {% endif %}
+
+    {% for page in pages %}
+    <li class="page-item {% if current_page == page %}active{% endif %}"><a class="page-link" href="{{ url }}?page={{ page }}">{{ page }}</a></li>
+    {% endfor %}
+
+    {% if paginator.num_pages not in pages %}
+    <li class="page-item"><span class="page-link">&hellip;</span></li>
+    <li class="page-item"><a class="page-link" href="{{ url }}?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+    {% endif %}
+
+    <li class="page-item {% if not page.has_next %}disabled{% endif %}">
+      {% if page.has_next %}
+      <a class="page-link" href="{{ url }}?page={{ page.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+      {% else %}
+      <span class="page-link" >
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </span>
+      {% endif %}
+    </li>
+
+  </ul>
+</nav>

@@ -1,36 +1,40 @@
 {% extends 'template.html' %}
 
 {% load current_and_previous %}
+{% load pagination %}
 
 {% block content %}
 
 {% include "find_by_uri.html" %}
 
-	<ul id="myTab" class="nav nav-tabs">
-            <li {% if not source  %} class="active" {% endif %} ><a href="{% url 'browse' %}" data-toggle="tab">All</a></li>
-            {% for sourceopt in sources %}
-            <li {% ifequal source sourceopt %}class="active"{% endifequal %}><a href="{% url 'browse' sourceopt %}" data-toggle="tab">{{sourceopt}}</a></li>
-            {% endfor %}
-              </ul>
-            </li>
-          </ul>
+<div class="col-md-12">
+  <ul class="nav nav-tabs m-b-2">
+        <li class="nav-item"><a class="nav-link {% if not source  %}active{% endif %}" href="{% url 'browse' %}" data-toggle="tab">All</a></li>
+        {% for sourceopt in sources %}
+        <li class="nav-item"><a class="nav-link {% ifequal source sourceopt %}active{% endifequal %}" href="{% url 'browse' sourceopt %}" data-toggle="tab">{{sourceopt}}</a></li>
+        {% endfor %}
+  </ul>
 
-      <h1>Gewijzigde artikelen {% block browse_fromline %}{% endblock browse_fromline %}</h1>
-      <p>Archiveren begonnen op {{ first_update }}</p>
-      <p>
+  <h1>Gewijzigde artikelen {% block browse_fromline %}{% endblock browse_fromline %}</h1>
+  <p>Archiveren begonnen op {{ first_update }}</p>
+  <p>
 
-    <table class="table table-condensed"  style="width:100%">
-      <thead><tr><th text-align:"left";>Artikel</th><th>Versie</th><th>Wijziging</th></tr></thead>
-      <tbody>
-      {% for article in articles %}
-      {% with versions=article.version_set.all|slice:":10"|current_and_previous %}
-      <tr><td rowspan="{{versions|length}}" valign="top"><a href="{% url "article_history" article.filename %}">{{article.latest_version.title}}</a> (<a href="{{article.url}}">{{article.publication}}</a>)<br>{{article.latest_version.byline}}</td>
+  <table class="table table-condensed"  style="width:100%">
+    <thead><tr><th text-align:"left";>Artikel</th><th>Versie</th><th>Wijziging</th></tr></thead>
+    <tbody>
+    {% for article in articles %}
+    {% with versions=article.version_set.all|slice:":10"|current_and_previous %}
+      <tr>
+        <td rowspan="{{versions|length}}" valign="top">
+          <a href="{% url "article_history" article.filename %}">{{article.latest_version.title}}</a> (<a href="{{article.url}}">{{article.publication}}</a>)
+          <br>{{article.latest_version.byline}}
+        </td>
         {% for previous_version, version in versions %}
         <td>{{version.date}}</td>
         {% if previous_version %}
         <td><a href="{% url "diffview" vid1=previous_version.pk vid2=version.pk urlarg=article.filename %}">(Vergelijk)</a></td></tr><tr>
         {% else %}
-        <td></td><td></td></tr>
+        <td></td></tr>
         {% endif %}
         {% endfor %}
 
@@ -38,25 +42,14 @@
        <tr><td></td><td></td><td>...</td></tr>
        {% else %}
        {% endif %}
-      {% endwith %}
-      {% endfor %}
-      </tbody>
-    </table>
+    {% endwith %}
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="pull-xs-right">
+  {% pagination articles 'browse' source %}
+  </div>
+</div>
 
-    <div>
-    <span>
-    {% if articles.has_previous %}
-      <a href="{% url 'browse' source %}?page={{ articles.previous_page_number}}">Vorige</a>
-    {% endif %}
-    </span>
-
-    <span>Pagina {{ articles.number }} van {{articles.paginator.num_pages }}</span>
-
-    <span>
-    {% if articles.has_next %}
-      <a href="{% url 'browse' source %}?page={{ articles.next_page_number}}">Volgende</a>
-    {% endif %}
-    </span>
-    </div>
 
 {% endblock %}

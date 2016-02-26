@@ -29,10 +29,12 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-newsdiffs.db
-database_settings.py
-
 # Ansible secrets
 ansible/group_vars
 
-website/settings_local.py
+bijgeschaafd/settings_local.py
+bijgeschaafd/static/bower_components/
+
+node_modules/
+
+env/

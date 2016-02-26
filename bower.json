@@ -1,0 +1,26 @@
+{
+  "name": "bijgeschaafd",
+  "homepage": "https://github.com/flupzor/bijgeschaafd",
+  "authors": [
+    "Alexander Schrijver <alex@flupzor.nl>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bijgeschaafd/static/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2",
+    "bower": "*",
+    "google-diff-match-patch-js": "^1.0.0",
+    "install": "^1.0.4"
+  }
+}
