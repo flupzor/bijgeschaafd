@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,10 +8,12 @@
     <meta name="description" content="Bijgeschaafd.nl geeft een overzicht van alle wijzigingen die er gemaakt zijn in nieuwsartikelen.">
     <meta name="author" content="Alexander Schrijver">
 
-    <link href="{% url 'static' 'bower_components/bootstrap/dist/css/bootstrap.css' %}" rel="stylesheet" media ="screen">
+    <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.css' %}" rel="stylesheet" media ="screen">
+
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
     {% block head %} {% endblock %}
-    <script src="{% url 'static' 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
   </head>
 
   <body>
