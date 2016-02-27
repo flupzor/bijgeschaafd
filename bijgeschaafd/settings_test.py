@@ -10,3 +10,4 @@ DATABASES = {
     }
 }
 
+SECRET_KEY='BULLSHIT'
