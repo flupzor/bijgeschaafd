@@ -22,10 +22,10 @@ class ParserTests(TestCase):
 
     @mock.patch('news.parsers.parsers', new=[MockParser])
     @mock.patch('news.parsers.parser_dict', {'www.mock.nl': MockParser})
+    @mock.patch('news.parsers.mock.MockParser.version_counter', {})
     def test_parser(self):
         # Get the initial articles.
-        with mock.patch('news.parsers.mock.MockParser.version_counter', {}):
-            call_command('scraper')
+        call_command('scraper')
 
         self.assertEquals(Version.objects.count(), 2)
 
@@ -100,6 +100,7 @@ class ParserTests(TestCase):
 
     @mock.patch('news.parsers.parsers', new=[MockParser])
     @mock.patch('news.parsers.parser_dict', {'www.mock.nl': MockParser})
+    @mock.patch('news.parsers.mock.MockParser.version_counter', {})
     def test_parser_flapping(self):
         """
 
@@ -205,6 +206,7 @@ class ParserTests(TestCase):
 
     @mock.patch('news.parsers.parsers', new=[MockParser])
     @mock.patch('news.parsers.parser_dict', {'www.mock.nl': MockParser})
+    @mock.patch('news.parsers.mock.MockParser.version_counter', {})
     def test_boring(self):
         # Get the initial articles.
         with mock.patch('news.parsers.mock.MockParser.set_to_boring', True):
