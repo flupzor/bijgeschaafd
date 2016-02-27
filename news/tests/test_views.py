@@ -72,8 +72,8 @@ class ViewTests(WebTest):
         ]
 
         expected = [{
-            'column1': '<a href="{}">article1 revision1</a> '
-                       '(<a href="{}">None</a>)<br/>'.format(
+            'column1': '\n          <a href="{}">article1 revision1</a> '
+                       '(<a href="{}">None</a>)\n          <br/>\n        '.format(
                            reverse(
                                'article_history',
                                args=[article1.filename(), ]
@@ -107,8 +107,8 @@ class ViewTests(WebTest):
             'column2': None,
             'column3': None,
         }, {
-            'column1': '<a href="{}">article2 revision1</a> '
-                       '(<a href="{}">None</a>)<br/>'.format(
+            'column1': '\n          <a href="{}">article2 revision1</a> '
+                       '(<a href="{}">None</a>)\n          <br/>\n        '.format(
                            reverse(
                                'article_history',
                                args=[article2.filename(), ]
