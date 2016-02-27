@@ -4,6 +4,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 
 def strip_prefix(string, prefix):
@@ -21,7 +22,9 @@ PublicationDict = {'www.nytimes.com': 'NYT',
                    'www.telegraaf.nl': 'telegraaf.nl',
                    }
 
-ancient = datetime(1901, 1, 1)
+
+def ancient():
+    return datetime(1901, 1, 1, tzinfo=timezone.get_current_timezone())
 
 
 class Article(models.Model):
@@ -68,11 +71,11 @@ class Article(models.Model):
         return self.versions()[0]
 
     def minutes_since_update(self):
-        delta = datetime.now() - max(self.last_update, self.initial_date)
+        delta = timezone.now() - max(self.last_update, self.initial_date)
         return delta.seconds // 60 + 24*60*delta.days
 
     def minutes_since_check(self):
-        delta = datetime.now() - self.last_check
+        delta = timezone.now() - self.last_check
         return delta.seconds // 60 + 24*60*delta.days
 
 

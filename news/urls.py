@@ -10,5 +10,5 @@ urlpatterns = [
   url(r'^article-history/$', 'news.views.article_history', name='article_history'),
   url(r'^article-history/(?P<urlarg>.*)$', 'news.views.article_history', name='article_history'),
   url(r'^json/view/(?P<vid>\d+)/?$', 'news.views.json_view'),
-  url(r'^$', RedirectView.as_view(url='/browse/'), name='root'),
+  url(r'^$', RedirectView.as_view(url='/browse/', permanent=False), name='root'),
 ]

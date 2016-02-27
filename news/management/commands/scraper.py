@@ -1,19 +1,16 @@
 #!/usr/bin/python
 
-import errno
 import hashlib
 import httplib
 import logging
-import os
 import subprocess
 import sys
-import time
 import traceback
 import urllib2
-from datetime import datetime
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
+from django.utils import timezone
 
 from bijgeschaafd import diff_match_patch
 from news import models, parsers
@@ -141,7 +138,7 @@ def update_article(article):
         return
     to_store = unicode(parsed_article).encode('utf-8')
     to_store_sha1 = hashlib.sha1(to_store).hexdigest()
-    t = datetime.now()
+    t = timezone.now()
     logger.debug('Article %s: boring %s', article.url, parsed_article.boring)
 
     boring = parsed_article.boring
@@ -231,7 +228,7 @@ def update_versions(do_all=False):
             continue
         logger.info('Considering %s', article.url)
 
-        article.last_check = datetime.now()
+        article.last_check = timezone.now()
         try:
             update_article(article)
         except Exception, e:

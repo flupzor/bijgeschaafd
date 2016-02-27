@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import json
 
 from django.conf import settings
@@ -8,6 +8,7 @@ from django.db.models import Count, Max
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import Context, RequestContext, loader
+from django.utils import timezone
 from django.views.decorators.cache import cache_page
 
 import models
@@ -36,26 +37,26 @@ def get_first_update(source):
     if source is None:
         source = ''
     updates = models.Article.objects.order_by('last_update').filter(
-        last_update__gt=datetime.datetime(1990, 1, 1, 0, 0),
+        last_update__gt=datetime(1990, 1, 1, 0, 0, tzinfo=timezone.get_current_timezone()),
         url__contains=source
     )
     try:
         return updates[0].last_update
     except IndexError:
-        return datetime.datetime.now()
+        return timezone.now()
 
 
 def get_last_update(source):
     if source is None:
         source = ''
     updates = models.Article.objects.order_by('-last_update').filter(
-        last_update__gt=datetime.datetime(1990, 1, 1, 0, 0),
+        last_update__gt=datetime(1990, 1, 1, 0, 0, tzinfo=timezone.get_current_timezone()),
         url__contains=source
     )
     try:
         return updates[0].last_update
     except IndexError:
-        return datetime.datetime.now()
+        return timezone.now()
 
 
 SOURCES = settings.NEWS_SOURCES

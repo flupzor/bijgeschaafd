@@ -9,3 +9,4 @@ fake-factory==0.5.3
 mock
 django-webtest
 python-memcached
+pytz==2015.7

@@ -1,6 +1,7 @@
-from datetime import datetime, timedelta
+from datetime import timedelta, datetime
 
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 from django_webtest import WebTest
 
 from .factory_models import ArticleFactory, VersionFactory
@@ -12,7 +13,9 @@ class ViewTests(WebTest):
         Test that the browse view is sorted properly.
         """
 
-        update_time = datetime(2015, 1, 25, 8, 0)
+        tz = timezone.get_default_timezone()
+
+        update_time = tz.localize(datetime(2015, 1, 25, 8, 0))
 
         article1 = ArticleFactory.create(
             url="http://www.news-site.nl/article1.html",
