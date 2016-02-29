@@ -1,6 +1,8 @@
 server {
         listen 80;
 
+	root /var/www/html;
+
         # Make site accessible from http://{{ server_hostname }}
         server_name {{ server_hostname }};
 
@@ -10,5 +12,8 @@ server {
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
+	location /static {
+		alias /var/www/html/bijgeschaafd/static/;
+	}
 }
 

@@ -1,6 +1,9 @@
 - name: Create directory for Django sites.
   become: yes
   file: path=/usr/django/ state=directory mode="u=rwx,g=rw,o=rw" owner={{ application_user }}
+- name: Create directory for static data
+  become: yes
+  file: path=/var/www/html/bijgeschaafd/static/ state=directory mode="u=rwx,g=rx,o=r" owner={{ application_user }} group=www-data
 - name: make sure memcached is installed
   apt: name=memcached state=present
 - name: make sure git is installed
@@ -17,6 +20,10 @@
   apt: name=libxslt1-dev state=present
 - name: make sure zlib1g-dev is installed
   apt: name=zlib1g-dev state=present
+- name: make sure npm is installed
+  apt: name=npm state=present
+- name: make a symlink for node
+  alternatives: name=node link=/usr/bin/node path=/usr/bin/nodejs
 - name: Make sure the git repository exists and is up to date.
   become: yes
   become_user: "{{ application_user }}"
@@ -46,6 +53,22 @@
   become_user: "{{ application_user }}"
   django_manage: >
       command=migrate
+      app_path=/usr/django/newsdiffs/
+      settings=bijgeschaafd.settings
+      pythonpath=/usr/django/newsdiffs/
+      virtualenv=/usr/django/newsdiffs/env/
+- name: install bower
+  become: yes
+  npm: name=bower global=yes
+- name: install bower dependencies
+  become: yes
+  become_user: "{{ application_user }}"
+  bower: path=/usr/django/newsdiffs/
+- name: run newsdiffs collectstatic
+  become: yes
+  become_user: "{{ application_user }}"
+  django_manage: >
+      command=collectstatic
       app_path=/usr/django/newsdiffs/
       settings=bijgeschaafd.settings
       pythonpath=/usr/django/newsdiffs/
