@@ -9,9 +9,9 @@
 
 <div class="col-md-12">
   <ul class="nav nav-tabs m-b-2">
-        <li class="nav-item"><a class="nav-link {% if not source  %}active{% endif %}" href="{% url 'browse' %}" data-toggle="tab">All</a></li>
+        <li class="nav-item"><a class="nav-link {% if not source  %}active{% endif %}" href="{% url 'browse' %}">All</a></li>
         {% for sourceopt in sources %}
-        <li class="nav-item"><a class="nav-link {% ifequal source sourceopt %}active{% endifequal %}" href="{% url 'browse' sourceopt %}" data-toggle="tab">{{sourceopt}}</a></li>
+        <li class="nav-item"><a class="nav-link {% ifequal source sourceopt %}active{% endifequal %}" href="{% url 'browse' sourceopt %}">{{sourceopt}}</a></li>
         {% endfor %}
   </ul>
 
