@@ -55,4 +55,6 @@ class NuNLParser(BaseParser):
         if "http://www.nu.nl/voetbal/" in self.url:
             self.boring = True
 
+        if "http://www.nu.nl/gadgets/" in self.url:
+            self.boring = True
 
