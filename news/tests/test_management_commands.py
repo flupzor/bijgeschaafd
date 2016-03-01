@@ -212,4 +212,4 @@ class ParserTests(TestCase):
         with mock.patch('news.parsers.mock.MockParser.set_to_boring', True):
             call_command('scraper')
 
-        self.assertEquals(Version.objects.filter(boring=True).count(), 2)
+        self.assertEquals(Version.objects.count(), 0)

@@ -173,8 +173,8 @@ def update_article(article):
         content_sha1=to_store_sha1,
    )
     v_row.diff_info = diff_info
-    v_row.save()
     if not boring:
+        v_row.save()
         article.last_update = t
         article.save()
 
