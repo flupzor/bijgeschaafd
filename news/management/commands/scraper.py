@@ -56,9 +56,6 @@ def url_to_filename(url):
     return strip_prefix(url, 'http://').rstrip('/')
 
 
-class IndexLockError(OSError):
-    pass
-
 def get_all_article_urls():
     ans = set()
     for parser in parsers.parsers:
