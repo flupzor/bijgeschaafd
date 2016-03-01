@@ -37,3 +37,12 @@ class TelegraafParser(BaseParser):
         self.body = html_to_text(d.find('#artikel #artikelKolom'), exclude_fn=exclude_cb)
         self.date = d.find('.artDatePostings .datum').text()
         self.byline = ''
+
+        if "http://www.telegraaf.nl/prive/" in self.url:
+            self.boring = True
+
+        if "http://www.telegraaf.nl/autovisie" in self.url:
+            self.boring = True
+
+        if "http://www.telegraaf.nl/reiskrant/" in self.url:
+            self.boring = True
