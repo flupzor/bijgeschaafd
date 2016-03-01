@@ -34,4 +34,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(make_articles_boring),
     ]
