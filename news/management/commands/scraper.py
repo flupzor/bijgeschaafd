@@ -1,15 +1,11 @@
-#!/usr/bin/python
-
 import hashlib
 import logging
-import subprocess
-import traceback
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 
-from news import models
+from news.models import Article, Version
 from news.parsers import get_all_article_urls, load_article
 from news.utils import get_diff_info, is_boring
 
@@ -17,6 +13,8 @@ logger = logging.getLogger('scraper')
 
 
 class Command(BaseCommand):
+    help = "Scrape articles which need updating."
+
     option_list = BaseCommand.option_list + (
         make_option(
             '--all',
@@ -25,18 +23,8 @@ class Command(BaseCommand):
             help='Update _all_ stored articles'),
         )
 
-    help = '''Scrape websites.
-
-By default, scan front pages for new articles, and scan
-existing and new articles to archive their current contents.
-
-Articles that haven't changed in a while are skipped if we've
-scanned them recently, unless --all is passed.
-'''.strip()
-
     def handle(self, *args, **options):
-        self.update_articles()
-        self.update_versions(options['all'])
+        self.update_articles(options['all'])
 
     def get_update_delay(self, minutes_since_update):
         days_since_update = minutes_since_update // (24 * 60)
@@ -53,23 +41,23 @@ scanned them recently, unless --all is passed.
         else:
             return 60*24*365*1e5   # ignore old articles
 
-    def update_articles(self):
-        logger.info('Starting scraper; looking for new URLs')
+    def update_articles(self, do_all=False):
+
+        # Based on the URLS found on all the front pages create the
+        # corresponding articles.
         all_urls = get_all_article_urls()
-        logger.info('Got all %s urls; storing to database' % len(all_urls))
         for i, url in enumerate(all_urls):
-            logger.debug('Woo: %d/%d is %s' % (i+1, len(all_urls), url))
             # Icky hack, but otherwise they're truncated in DB.
             if len(url) > 255:
+                logger.error(
+                    "Skipping article with URL %s because the URL is too "
+                    "large to store", url)
                 continue
-            if not models.Article.objects.filter(url=url).count():
-                logger.debug('Adding!')
-                models.Article(url=url).save()
-        logger.info('Done storing to database')
+            if not Article.objects.filter(url=url).exists():
+                Article.objects.create(url=url)
+        logger.info('Stored %s article urls', len(all_urls))
 
-    def update_versions(self, do_all=False):
-        logger.info('Looking for articles to check')
-        articles = list(models.Article.objects.exclude())
+        articles = list(Article.objects.all())
         total_articles = len(articles)
 
         update_priority = \
@@ -80,34 +68,25 @@ scanned them recently, unless --all is passed.
             key=update_priority, reverse=True)
 
         logger.info(
-            'Checking %s of %s articles', len(articles), total_articles)
+            "Checking %s of %s articles", len(articles), total_articles)
 
-        logger.info('Done!')
         for i, article in enumerate(articles):
-            logger.debug('Woo: %s %s %s (%s/%s)',
-                         article.minutes_since_update(),
-                         article.minutes_since_check(),
-                         update_priority(article), i+1, len(articles))
-            delay = self.get_update_delay(article.minutes_since_update())
-            if article.minutes_since_check() < delay and not do_all:
+            minutes_since_update = article.minutes_since_update()
+            minutes_since_check = article.minutes_since_check()
+            delay = self.get_update_delay(minutes_since_update)
+            if minutes_since_check < delay and not do_all:
                 continue
-            logger.info('Considering %s', article.url)
+            logger.info(
+                "Scraping %s last checked: %d minutes ago "
+                "last updated: %d minutes ago", article.url,
+                minutes_since_check, minutes_since_update)
 
             article.last_check = timezone.now()
             try:
                 self.update_article(article)
-            except Exception, e:
-                if isinstance(e, subprocess.CalledProcessError):
-                    logger.error(
-                        'CalledProcessError when updating %s', article.url)
-                    logger.error(repr(e.output))
-                else:
-                    logger.error(
-                        'Unknown exception when updating %s', article.url)
-
-                logger.error(traceback.format_exc())
+            except Exception:
+                logger.exception('Exception when updating %s', article.url)
             article.save()
-        logger.info('Done!')
 
     def update_article(self, article):
 
@@ -116,16 +95,14 @@ scanned them recently, unless --all is passed.
             return
         to_store = unicode(parsed_article).encode('utf-8')
         to_store_sha1 = hashlib.sha1(to_store).hexdigest()
-        t = timezone.now()
-        logger.debug(
-            'Article %s: boring %s', article.url, parsed_article.boring)
+        current_time = timezone.now()
 
         boring = parsed_article.boring
         diff_info = None
 
         try:
             latest_version = article.version_set.latest()
-        except models.Version.DoesNotExist:
+        except Version.DoesNotExist:
             latest_version = None
 
         if latest_version:
@@ -143,11 +120,11 @@ scanned them recently, unless --all is passed.
             else:
                 diff_info = get_diff_info(latest_version_content, to_store)
 
-        v_row = models.Version(
+        v_row = Version(
             boring=boring,
             title=parsed_article.title,
             byline=parsed_article.byline,
-            date=t,
+            date=current_time,
             article=article,
             content=to_store,
             content_sha1=to_store_sha1,
@@ -155,5 +132,5 @@ scanned them recently, unless --all is passed.
         v_row.diff_info = diff_info
         if not boring:
             v_row.save()
-            article.last_update = t
+            article.last_update = current_time
             article.save()
