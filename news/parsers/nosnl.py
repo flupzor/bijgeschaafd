@@ -19,3 +19,4 @@ class NOSNLParser(BaseParser):
         self.body = html_to_text(d.find('article .article_body'))
         self.date = d.find('time').attr('datetime')
         self.byline = ''
+
