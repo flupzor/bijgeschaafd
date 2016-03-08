@@ -19,6 +19,30 @@ class TelegraafParser(BaseParser):
             css_class = element.get('class', None)
             css_id = element.get('id', None)
 
+            if element.tag == 'h1':
+                return True
+
+            if css_class and "tg-related-articles" in css_class:
+                return True
+
+            if css_class and "tg-related-articles" in css_class:
+                return True
+
+            if element.tag == 'span' and css_class == 'ui-table-cell ui-tab-gothic-bold ui-text-tiny':
+                return True
+
+            if css_class == 'topbar':
+                return True
+
+            if css_class == 'premiumline':
+                return True
+
+            if css_class == 'premiumoverlaytop':
+                return True
+
+            if css_class == 'premiumheader':
+                return True
+
             if css_class == 'kolomRelated':
                 return True
 
@@ -33,8 +57,8 @@ class TelegraafParser(BaseParser):
 
             return False
 
-        self.title = d.find('#artikel h1').text()
-        self.body = html_to_text(d.find('#artikel #artikelKolom'), exclude_fn=exclude_cb)
+        self.title = d.find('.tg-article-page h1').text()
+        self.body = html_to_text(d.find('.tg-article-page'), exclude_fn=exclude_cb)
         self.date = d.find('.artDatePostings .datum').text()
         self.byline = ''
 
