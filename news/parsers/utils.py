@@ -17,10 +17,16 @@ def collapse_whitespace(text):
     for i, char in enumerate(text):
         next_char = text[i + 1] if i + 1 < len(text) else None
 
-        if is_whitespace(char) and is_whitespace(next_char):
+        if next_char is not None \
+           and is_whitespace(char) and is_whitespace(next_char):
             continue
 
         new_text += char
+
+    # If all the characters are whitespace the contents is
+    # considered empty.
+    if len(new_text) == 1 and is_whitespace(new_text):
+        return ''
 
     return new_text
 

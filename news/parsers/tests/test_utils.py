@@ -2,10 +2,14 @@ from django.test import TestCase
 
 from pyquery import PyQuery as pq
 
-from ..utils import html_to_text
+from ..utils import html_to_text, collapse_whitespace
 
 
 class UtilsTests(TestCase):
+    def test_collapse_whitespace(self):
+        text = u'\n\n      '
+        self.assertEquals(collapse_whitespace(text), "")
+
     def test_html_to_text_one_element(self):
         html = pq("<div>&#65; simple test case &copy;</div>")
         text = html_to_text(html)
