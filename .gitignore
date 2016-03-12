@@ -2,6 +2,7 @@
 
 *~
 *.py[co]
+*.swp
 
 # Packages
 *.egg
