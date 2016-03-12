@@ -6,6 +6,9 @@ from .utils import html_to_text
 
 
 class TelegraafParser(BaseParser):
+    short_name = 'telegraaf.nl'
+    full_name = 'Telegraaf'
+
     domains = ['www.telegraaf.nl']
 
     feeder_base = 'http://www.telegraaf.nl/'

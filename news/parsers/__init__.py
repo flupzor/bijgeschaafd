@@ -11,54 +11,52 @@ import logging
 import traceback
 import urllib2
 
+from django.conf import settings
+
+from .exceptions import ParserDoesNotExist
+
 
 logger = logging.getLogger('parsers')
 
-
-_parsers = """
-nosnl.NOSNLParser
-nunl.NuNLParser
-telegraaf.TelegraafParser
-metro.MetroParser
-""".split()
-
-parser_dict = {}
-
-# Import the parsers and fill in parser_dict: domain -> parser
-for parsername in _parsers:
-    module, classname = parsername.rsplit('.', 1)
-    parser = getattr(__import__(module, globals(), fromlist=[classname]), classname)
-    for domain in parser.domains:
-        parser_dict[domain] = parser
-
-# Each feeder places URLs into the database to be checked periodically.
-parsers = [p for p in parser_dict.values()]
+__parsers = None
 
 
-def get_parser(url):
-    return parser_dict[url.split('/')[2]]
+def __init_cache():
+    global __parsers
+    __parsers = {}
+    for news_source in settings.NEWS_SOURCES:
+        module, classname = news_source.rsplit('.', 1)
+        parser = getattr(__import__(module, globals(), fromlist=[classname]), classname)
+
+        __parsers[parser.short_name] = parser
 
 
-def _canonicalize_url(url):
-    return url.split('?')[0].split('#')[0].strip()
+def get_parser(source):
+    if __parsers is None:
+        __init_cache()
+
+    parser = __parsers.get(source)
+
+    if not parser:
+        raise ParserDoesNotExist("Parser with short_name \"{}\" could not be found".format(source))
+
+    return parser
 
 
-def get_all_article_urls():
-    ans = set()
-    for parser in parsers:
-        urls = parser.feed_urls()
-        ans = ans.union(map(_canonicalize_url, urls))
-    return ans
+def all_parsers():
+    if __parsers is None:
+        __init_cache()
 
+    return __parsers.values()
 
-def load_article(url):
+def load_article(article):
     try:
-        parser = get_parser(url)
+        parser = get_parser(article.source)
     except KeyError:
         logger.info('Unable to parse domain, skipping')
         return
     try:
-        parsed_article = parser(url)
+        parsed_article = parser(article.url)
     except (AttributeError, urllib2.HTTPError, httplib.HTTPException), e:
         if isinstance(e, urllib2.HTTPError) and e.msg == 'Gone':
             return

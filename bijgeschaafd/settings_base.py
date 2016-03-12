@@ -66,6 +66,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 NEWS_SOURCES = [
-    'nos.nl', 'nu.nl', 'telegraaf.nl', 'metro.nl'
+    'news.parsers.nosnl.NOSNLParser',
+    'news.parsers.nunl.NuNLParser',
+    'news.parsers.telegraaf.TelegraafParser',
+    'news.parsers.metro.MetroParser',
 ]
 

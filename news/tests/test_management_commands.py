@@ -4,7 +4,7 @@ from tempfile import mkdtemp
 
 import mock
 from django.core.management import call_command
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 from ..models import Article, Version
 from news.parsers.mock import MockParser
@@ -20,8 +20,7 @@ class ParserTests(TestCase):
             article.last_check -= timedelta(hours=4)
             article.save()
 
-    @mock.patch('news.parsers.parsers', new=[MockParser])
-    @mock.patch('news.parsers.parser_dict', {'www.mock.nl': MockParser})
+    @override_settings(NEWS_SOURCES=['news.parsers.mock.MockParser', ])
     @mock.patch('news.parsers.mock.MockParser.version_counter', {})
     def test_parser(self):
         # Get the initial articles.
@@ -98,8 +97,7 @@ class ParserTests(TestCase):
         call_command('scraper')
         self.assertEquals(Version.objects.count(), 6)
 
-    @mock.patch('news.parsers.parsers', new=[MockParser])
-    @mock.patch('news.parsers.parser_dict', {'www.mock.nl': MockParser})
+    @override_settings(NEWS_SOURCES=['news.parsers.mock.MockParser', ])
     @mock.patch('news.parsers.mock.MockParser.version_counter', {})
     def test_parser_flapping(self):
         """
@@ -204,8 +202,7 @@ class ParserTests(TestCase):
             call_command('scraper')
         self.assertEquals(Version.objects.count(), 14)
 
-    @mock.patch('news.parsers.parsers', new=[MockParser])
-    @mock.patch('news.parsers.parser_dict', {'www.mock.nl': MockParser})
+    @override_settings(NEWS_SOURCES=['news.parsers.mock.MockParser', ])
     @mock.patch('news.parsers.mock.MockParser.version_counter', {})
     def test_boring(self):
         # Get the initial articles.

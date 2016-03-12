@@ -6,6 +6,8 @@ from .utils import html_to_text
 
 
 class MetroParser(BaseParser):
+    short_name = 'metro.nl'
+    full_name = 'Metro'
     domains = ['www.metronieuws.nl/']
 
     feeder_base = 'http://www.metronieuws.nl/'

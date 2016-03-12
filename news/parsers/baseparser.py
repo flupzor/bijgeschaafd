@@ -146,4 +146,7 @@ class BaseParser(object):
 
             all_urls = all_urls + [url for url in urls if
                                    re.search(cls.feeder_pat, url)]
-        return all_urls
+
+        def _canonicalize_url(url):
+            return url.split('?')[0].split('#')[0].strip()
+        return set(map(_canonicalize_url, all_urls))

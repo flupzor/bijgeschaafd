@@ -2,6 +2,9 @@ from baseparser import BaseParser
 
 
 class MockParser(BaseParser):
+    short_name = 'mock.nl'
+    full_name = 'Mock'
+
     SUFFIX = ''
     domains = ['www.mock.nl']
 

@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 
 from news.models import Article, Version
-from news.parsers import get_all_article_urls, load_article
+from news.parsers import all_parsers, load_article
 from news.utils import get_diff_info, is_boring
 
 logger = logging.getLogger('scraper')
@@ -45,17 +45,19 @@ class Command(BaseCommand):
 
         # Based on the URLS found on all the front pages create the
         # corresponding articles.
-        all_urls = get_all_article_urls()
-        for i, url in enumerate(all_urls):
-            # Icky hack, but otherwise they're truncated in DB.
-            if len(url) > 255:
-                logger.error(
-                    "Skipping article with URL %s because the URL is too "
-                    "large to store", url)
-                continue
-            if not Article.objects.filter(url=url).exists():
-                Article.objects.create(url=url)
-        logger.info('Stored %s article urls', len(all_urls))
+        for parser in all_parsers():
+            feed_urls = parser.feed_urls()
+            for i, url in enumerate(feed_urls):
+                # Icky hack, but otherwise they're truncated in DB.
+                if len(url) > 255:
+                    logger.error(
+                        "Skipping article with URL %s because the URL is too "
+                        "large to store", url)
+                    continue
+                Article.objects.get_or_create(url=url, defaults={
+                    'source': parser.short_name
+                })
+            logger.info('Stored %s article urls for %s', len(feed_urls), parser.short_name)
 
         articles = list(Article.objects.all())
         total_articles = len(articles)
@@ -90,7 +92,7 @@ class Command(BaseCommand):
 
     def update_article(self, article):
 
-        parsed_article = load_article(article.url)
+        parsed_article = load_article(article)
         if parsed_article is None:
             return
         to_store = unicode(parsed_article).encode('utf-8')

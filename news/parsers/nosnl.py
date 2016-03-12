@@ -6,6 +6,9 @@ from .utils import html_to_text
 
 
 class NOSNLParser(BaseParser):
+    short_name = 'nos.nl'
+    full_name = 'NOS.nl'
+
     domains = ['www.nos.nl']
 
     feeder_base = 'http://www.nos.nl'

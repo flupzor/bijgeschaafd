@@ -6,21 +6,8 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-
-def strip_prefix(string, prefix):
-    if string.startswith(prefix):
-        string = string[len(prefix):]
-    return string
-
-PublicationDict = {'www.nytimes.com': 'NYT',
-                   'edition.cnn.com': 'CNN',
-                   'www.bbc.co.uk': 'BBC',
-                   'www.politico.com': 'Politico',
-                   'www.washingtonpost.com': 'Washington Post',
-                   'www.nos.nl': 'NOS.nl',
-                   'www.nu.nl': 'NU.nl',
-                   'www.telegraaf.nl': 'telegraaf.nl',
-                   }
+from news.parsers import get_parser
+from news.parsers.exceptions import ParserDoesNotExist
 
 
 def ancient():
@@ -39,27 +26,16 @@ class Article(models.Model):
 
     source = models.CharField(max_length=255, blank=False, db_index=True)
 
-    def save(self, *args, **kwargs):
-        self.source = self.get_source(is_cached=False)
-
-        super(Article, self).save(*args, **kwargs)
-
-    def get_source(self, is_cached=True):
-        if is_cached:
-            return self.source
-
-        for source in settings.NEWS_SOURCES:
-            rx = re.compile(r'^https?://(?:[^/]*\.)%s/' % source)
-            if rx.match(self.url):
-                return source
-
-        return 'no_source'
-
     def filename(self):
         return self.url[len('http://'):].rstrip('/')
 
     def publication(self):
-        return PublicationDict.get(self.url.split('/')[2])
+        try:
+            parser = get_parser(self.source)
+        except ParserDoesNotExist:
+            return ''
+
+        return parser.full_name
 
     def versions(self):
         return self.version_set.filter(boring=False).order_by('date')

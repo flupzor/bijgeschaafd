@@ -7,6 +7,9 @@ from .utils import html_to_text
 
 
 class NuNLParser(BaseParser):
+    short_name = 'nu.nl'
+    full_name = 'NU.nl'
+
     SUFFIX = ''
     domains = ['www.nu.nl']
 
