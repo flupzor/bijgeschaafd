@@ -13,6 +13,7 @@ from django.views.decorators.cache import cache_page
 
 import models
 from models import Article, Version
+from .parsers import all_parsers
 
 SEARCH_ENGINES = """
 http://www.ask.com
@@ -59,17 +60,15 @@ def get_last_update(source):
         return timezone.now()
 
 
-SOURCES = settings.NEWS_SOURCES
+def is_valid_source(source):
+    valid_sources = [parser.short_name for parser in all_parsers()]
 
-
-def is_valid_domain(domain):
-    """Cheap method to tell whether a domain is being tracked."""
-    return any(domain.endswith(source) for source in SOURCES)
+    return any(source.endswith(valid_source) for valid_source in valid_sources)
 
 
 @cache_page(60 * 30)  #30 minute cache
 def browse(request, source=''):
-    if source not in SOURCES + ['']:
+    if not (source == '' or is_valid_source(source)):
         raise Http404
 
     first_update = get_first_update(source)
@@ -100,7 +99,7 @@ def browse(request, source=''):
         'source': source, 'articles': articles,
         'page': page,
         'first_update': first_update,
-        'sources': SOURCES
+        'sources': [parser.short_name for parser in all_parsers()]
     })
 
 
@@ -218,8 +217,8 @@ def article_history(request, urlarg=''):
 
     # Give an error on urls with the wrong hostname without hitting the
     # database.  These queries are usually spam.
-    domain = url.split('/')[2]
-    if not is_valid_domain(domain):
+    source = url.split('/')[2]
+    if not is_valid_source(source):
         return render_to_response('article_history_missing.html', {'url': url})
 
     try:
