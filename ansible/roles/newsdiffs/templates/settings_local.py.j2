@@ -55,8 +55,16 @@ LOGGING = {
     },
 }
 
-INSTALLED_APPS += [
-	'raven.contrib.django.raven_compat',
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'raven.contrib.django.raven_compat',
+    'bijgeschaafd',
+    'news',
 ]
 
 import raven
