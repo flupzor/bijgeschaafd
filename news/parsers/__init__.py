@@ -19,6 +19,7 @@ _parsers = """
 nosnl.NOSNLParser
 nunl.NuNLParser
 telegraaf.TelegraafParser
+metro.MetroParser
 """.split()
 
 parser_dict = {}

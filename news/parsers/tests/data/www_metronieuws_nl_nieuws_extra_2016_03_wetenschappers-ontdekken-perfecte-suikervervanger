@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" version="XHTML+RDFa 1.0" dir="ltr"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:sioct="http://rdfs.org/sioc/types#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"  itemscope itemtype="http://schema.org/Article">
+
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <title>Wetenschappers ontdekken perfecte suikervervanger | metronieuws.nl</title>
+  <link rel="apple-touch-icon" href="/sites/all/themes/metro_mobile/img/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/sites/all/themes/metro_mobile/img/apple-touch-icon-114x114.png">
+  <meta name="apple-mobile-web-app-title" content="Metronieuws">
+  <meta name="google-site-verification" content="i39FPG9ZizGMYzV4QKNEieoIcnzosA5Sa17la4W-Ok4" />
+  <meta name="msvalidate.01" content="179D16CBA05C134FF93FF29545A11232" />
+  <meta name="viewport" content="width=1128">
+  <meta property="fb:app_id" content="383208668554894" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"XAMHUlRXGwYCU1lWAwc="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),f=c.length,u=i(a,o,r),d=0;f>d;d++)c[d].apply(u,n);return u}function a(t,e){f[t]=s(t).concat(e)}function s(t){return f[t]||[]}function c(){return n(e)}var f={};return{on:a,emit:e,create:c,listeners:s,_events:f}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:24,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(f){try{r("ierr",[f,(new Date).getTime(),!0])}catch(u){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(5),window.onerror=e;try{throw new Error}catch(f){"stack"in f&&(t(1),t(2),"addEventListener"in window&&t(3),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(4),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:11,2:10,3:8,4:12,5:3,6:25,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t){if(window.addEventListener){var e=t("handle"),n=t("ee");t(1),window.addEventListener("click",function(){e("inc",["ck"])},!1),window.addEventListener("hashchange",function(){e("inc",["hc"])},!1),n.on("pushState-start",function(){e("inc",["ps"])})}},{1:9,ee:"QJf3ax",handle:"D5DuLP"}],6:[function(t){t("loader").features.ins=!0},{loader:"G9z0Bl"}],7:[function(t){function e(){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var n=t("ee"),r=t("handle"),o=t(1),i=t(2);t("loader").features.stn=!0,t(3);var a=Event;n.on("fn-start",function(t){var e=t[0];e instanceof a&&(this.bstStart=Date.now())}),n.on("fn-end",function(t,e){var n=t[0];n instanceof a&&r("bst",[n,e,this.bstStart,Date.now()])}),o.on("fn-start",function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),o.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),this.bstType])}),i.on("fn-start",function(){this.bstStart=Date.now()}),i.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),n.on("pushState-start",function(){this.time=Date.now(),this.startPath=location.pathname+location.hash}),n.on("pushState-end",function(){r("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),"addEventListener"in window.performance&&(window.performance.addEventListener("webkitresourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.webkitClearResourceTimings()},!1),window.performance.addEventListener("resourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.clearResourceTimings()},!1)),document.addEventListener("scroll",e,!1),document.addEventListener("keypress",e,!1),document.addEventListener("click",e,!1)}},{1:11,2:10,3:9,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],8:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=t("ee").create(),i=t(1)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t,e){function n(){return s}if(t[1]){var r=t[1];if("function"==typeof r){var s=a(r,"nr@wrapped",function(){return i(r,"fn-",n,r.name||"anonymous")});this.wrapped=t[1]=s,o.emit("initEventContext",[t,e],this.wrapped)}else"function"==typeof r.handleEvent&&i.inPlace(r,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:26,ee:"QJf3ax",gos:"7eSDFh"}],9:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window.history,["pushState","replaceState"],"-")},{1:26,ee:"QJf3ax"}],10:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:26,ee:"QJf3ax"}],11:[function(t,e){function n(t,e,n){t[0]=i(t[0],"fn-",null,n)}function r(t,e,n){function r(){return a}this.ctx={};var a={"nr@context":this.ctx};o.emit("initTimerContext",[t,n],a),t[0]=i(t[0],"fn-",r,n)}var o=t("ee").create(),i=t(1)(o);e.exports=o,i.inPlace(window,["setTimeout","setImmediate"],"setTimer-"),i.inPlace(window,["setInterval"],"setInterval-"),i.inPlace(window,["clearTimeout","clearImmediate"],"clearTimeout-"),o.on("setInterval-start",n),o.on("setTimer-start",r)},{1:26,ee:"QJf3ax"}],12:[function(t,e){function n(){f.inPlace(this,p,"fn-",o)}function r(t,e){f.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),f=c(a),u=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),e.hasOwnProperty("addEventListener")&&u.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,f.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:8,2:26,ee:"QJf3ax"}],13:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,f="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,u=n(f);if(u&&(r.rxSize=u),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,f=t(1),u=window.XMLHttpRequest;t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var f=n(o);f&&(r.txSize=f)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var u=0;c>u;u++)e.addEventListener(s[u],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof u&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof u&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof u&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:14,3:12,4:8,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],14:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],15:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:24,2:25,handle:"D5DuLP"}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):void(r.q&&(r.q[t]||(r.q[t]=[]),r.q[t].push(e)))}var r=t("ee").create();e.exports=n,n.ee=r,r.q={}},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=f.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===u.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=f.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=window,f=c.document;t(2);var u=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-768.min.js"},p=e.exports={offset:i(),origin:u,features:{}};f.addEventListener?(f.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(f.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:24,2:15,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],24:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],25:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],26:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@original",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,f;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){u([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return f=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,f],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=t,f(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,f?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){u([o,e,n,r])}}function f(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){u([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function u(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:25,ee:"QJf3ax"}]},{},["G9z0Bl",4,13,7,6,5]);</script>
+<meta itemprop="headline" content="Wetenschappers ontdekken perfecte suikervervanger" />
+<meta itemprop="datePublished" content="2016-03-11" />
+<meta itemprop="image" content="http://metronieuws.tcdn.nl/field/image/19968d8fc3382ed62d73c94cefc68650-1457732192.jpg" />
+<meta itemprop="description" content="Suiker is alweer tijden een onderwerp van discussie. Menig expert meldt dat het witte spul ontzettend ongezond is. Maar er is hoop: Belgische wetenschappers denken nu de perfecte vervanger gevonden te hebben, meldt RTL Z op hun website...." />
+<meta itemprop="name" content="Wetenschappers ontdekken perfecte suikervervanger" />
+<meta name="description" content="Suiker is alweer tijden een onderwerp van discussie. Menig expert meldt dat het witte spul ontzettend ongezond is. Maar er is hoop: Belgische..." />
+<link rel="publisher" href="https://plus.google.com/+metronieuws" />
+<meta property="og:title" content="Wetenschappers ontdekken perfecte suikervervanger" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.metronieuws.nl/nieuws/extra/2016/03/wetenschappers-ontdekken-perfecte-suikervervanger" />
+<meta property="og:image" content="http://metronieuws.tcdn.nl/field/image/19968d8fc3382ed62d73c94cefc68650-1457732192.jpg" />
+<meta property="og:description" content="Suiker is alweer tijden een onderwerp van discussie. Menig expert meldt dat het witte spul ontzettend ongezond is. Maar er is hoop: Belgische wetenschappers denken nu de perfecte vervanger gevonden te hebben, meldt RTL Z op hun website...." />
+<meta property="og:site_name" content="Metronieuws" />
+<meta property="article:section" content="Extra" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:site" content="@METRO" />
+<meta property="twitter:creator" content="@METRO" />
+<meta property="twitter:title" content="Wetenschappers ontdekken perfecte suikervervanger" />
+<meta property="twitter:description" content="Suiker is alweer tijden een onderwerp van discussie. Menig expert meldt dat het witte spul ontzettend ongezond is. Maar er is hoop: Belgische wetenschappers denken nu de perfecte vervanger gevonden..." />
+<meta property="twitter:image:src" content="http://metronieuws.tcdn.nl/field/image/19968d8fc3382ed62d73c94cefc68650-1457732192.jpg" />
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/sites/all/themes/metro/css/metro.css" media="all" />
+  <script type="text/javascript">
+		'use strict';
+		var Drupal = Drupal || {
+		    'settings': {
+		    	'banners': {
+		    		'hide': 0
+		    	}
+            },
+		    'behaviors': {},
+		    'locale': {}
+		};
+		var METRO = {
+			zone: "extra",
+			searchState: 0
+		}
+		var tmgSiteName = 'Metronieuws.nl';
+    </script>
+    <script type="text/javascript" language="JavaScript" src="/sites/all/themes/metro/javascript/mobile-detect.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/sites/all/themes/metro/javascript/banners.js"></script>
+</head>
+<body artikel=869545 class="body body--nieuws extra">
+	<div id="fb-root"></div>
+	<!-- top banner -->
+<div class="grid--full banners--top">
+  <div class="grid">
+    <div id="728x90_top_211651338" class="banner_728_90 banner"><script type="text/javascript">showBanner("728x90_top");</script></div>  </div>
+</div>
+
+<!-- top navigation -->
+<div class="grid--full menu-top">
+  <div class="grid">
+    <div class="wrapper">
+      <div class="left">
+        <a href="/"><span class="icon icon_arrow-left"></span>Terug naar Metro</a>
+      </div>
+      <div class="small center">
+        <ul>
+                      <li><a href="/columns">Columnisten</a></li>
+                      <li><a href="/horoscoop">Horoscoop </a></li>
+                      <li><a href="http://lezerscolumns.metronieuws.nl/">Lezerscolumns</a></li>
+                      <li><a href="/winacties">Winacties</a></li>
+                  </ul>
+      </div>
+      <div class="right">
+        <ul>
+          <li class="js-uitgelogd"><a href="/user/login?destination=node/869545" rel="nofollow">Inloggen</a></li>
+          <li class="js-uitgelogd"><a href="/user/register?destination=node/869545" rel="nofollow">Registreren</a></li>
+          <li class="js-ingelogd"><a href="/user/logout?destination=node/869545" rel="nofollow">Uitloggen</a></li>
+          <li class="js-ingelogd"><a href="/user">Mijn gegevens</a></li>
+          <li class="js-ingelogd js-user-picture"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- header -->
+  <div class="base-row header">
+    <div class="col--4">
+      <a href="/">
+        <img src="/sites/all/themes/metro/images/metro-220x79.svg" alt="home" width="220" height="80">
+      </a>
+    </div>
+    <div class="col--8">
+      <div class="wrapper">
+        <div class="promo">
+	<a href="http://www.metronieuws.nl/dossier/logopedie" onclick="METRO.analytics.gaSendEvent('Promo Metro', 'Lees alles over logopedie', 'Link');">
+		<img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/qEtiaN7-Lmg4KqEMbTUB_sfrkP4=/0x40/filters:format(png)/http://metronieuws.tcdn.nl/promo/03638d536ce80da4ca2dcadac7f800a3-1456925237.png" width="" height="40" alt="Lees alles over logopedie" title="Lees alles over logopedie" />		<h3>Lees alles over logopedie</h3>
+	</a>
+</div><div class="promo">
+	<a href="/lezerscolumn" onclick="METRO.analytics.gaSendEvent('Promo Metro', 'Schrijf een lezerscolumn!', 'Link');">
+		<img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/EhSbx3faaR_mFkjlRLB9n6UvoAc=/0x40/filters:format(png)/http://metronieuws.tcdn.nl/promo/1d4021b33bae8ccf558b0430e59702d0-1433144291.png" width="" height="40" alt="Schrijf een lezerscolumn!" title="Schrijf een lezerscolumn!" />		<h3>Schrijf een lezerscolumn!</h3>
+	</a>
+</div>      </div>
+    </div>
+  </div>
+
+  <!-- main navigation -->
+  <div class="base-row menu-main">
+    <div class="col--9">
+        <ul class="menu"><li class="first leaf"><a href="/nieuws" title="">Alles</a></li>
+<li class="leaf"><a href="/binnenland" title="">Binnenland</a></li>
+<li class="leaf"><a href="/nieuws/buitenland" title="">Buitenland</a></li>
+<li class="leaf"><a href="/nieuws/showbizz" title="">Showbizz</a></li>
+<li class="leaf"><a href="/nieuws/koffiepauze" title="">Koffiepauze</a></li>
+<li class="leaf"><a href="/nieuws/extra" title="" class="active">Extra</a></li>
+<li class="leaf"><a href="/nieuws/amsterdam" title="">Amsterdam</a></li>
+<li class="leaf"><a href="/nieuws/rotterdam" title="">Rotterdam</a></li>
+<li class="leaf"><a href="/lifestyle" title="">Lifestyle</a></li>
+<li class="last leaf"><a href="/xl" title="">XL</a></li>
+</ul>    </div>
+    <div class="col--3">
+        <ul class="sub-menu">
+          <li><a class="icons" href="javascript:void(0);" onclick="METRO.utils.openSearch();"><span class="icon search-icon"></span></a></li>
+          <li><a class="icons" href="//plus.google.com/+Metronieuws/posts" target="_blank"><span class="icon googleplus-icon"></span></a></li>
+          <li><a class="icons" href="//www.facebook.com/METRO" target="_blank"><span class="icon facebook-icon"></span></a></li>
+          <li><a class="icons" href="//twitter.com/#!/METRO" target="_blank"><span class="icon twitter-icon"></span></a></li>
+        </ul>
+        <div class="search-form">
+          <form><input placeholder="Zoeken" type="text" /></form>
+        </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div class="base-row page">
+    <div class="content" id="content">
+      <div id="120x600_1949438387" class="banner_120_600 banner"><script type="text/javascript">showBanner("120x600");</script></div>            <div class="col--12 menu-edit-tabs tabs"></div>      <div class="wrapper">
+        
+            <div id="artikel-side-column-wrapper" class="sticky-position social-sticky">
+                <div id="artikel-side-column">
+                    <div class="social">
+                        <a class="social_button button_facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.metronieuws.nl%2Fnieuws%2Fextra%2F2016%2F03%2Fwetenschappers-ontdekken-perfecte-suikervervanger" title="Deel op Facebook" target="_blank" onclick="METRO.analytics.gaSendEvent('Desktop Share', 'Facebook Button', 'Wetenschappers ontdekken perfecte suikervervanger');"><span class="icon facebook-icon"></span><span class="text"> Deel op Facebook</span></a>
+                        <span class="count count_facebook"></span>
+                        <a class="social_button button_linkedin" href=" https://www.linkedin.com/cws/share?url=http%3A%2F%2Fwww.metronieuws.nl%2Fnieuws%2Fextra%2F2016%2F03%2Fwetenschappers-ontdekken-perfecte-suikervervanger" title="Deel op Linkedin" target="_blank" onclick="METRO.analytics.gaSendEvent('Desktop Share', 'Linkedin Button', 'Wetenschappers ontdekken perfecte suikervervanger');"><span class="icon linkedin-icon"></span><span class="text"> Deel op Linkedin</span></a>
+                        <span class="count count_linkedin"></span>
+                        <a class="social_button button_twitter" href="https://twitter.com/intent/tweet?text=Wetenschappers+ontdekken+perfecte+suikervervanger+%7C+Metronieuws.nl&url=http%3A%2F%2Fwww.metronieuws.nl%2Fnieuws%2Fextra%2F2016%2F03%2Fwetenschappers-ontdekken-perfecte-suikervervanger" title="Deel op Twitter" target="_blank"  onclick="METRO.analytics.gaSendEvent('Desktop Share', 'Twitter Button', 'Wetenschappers ontdekken perfecte suikervervanger');"><span class="icon twitter-icon"></span><span class="text"> Deel op Twitter</span></a>
+                    </div>
+                    <div class="comment-counter">
+                        <span class="icon comment-balloon"></span>
+                        <a href="#comments">0</a>
+                    </div>
+                </div>
+            </div>
+        <div class="main-col-left">  
+<div id="node-869545" class="artikel artikel--base node shadow-block js-artikel">
+	<div class="row">
+		<h1>Wetenschappers ontdekken perfecte suikervervanger</h1>
+                		    <div class="small"><span property="dc:date dc:created" content="2016-03-11T22:43:00+01:00" datatype="xsd:dateTime">11 maart 2016 om 22:43</span> door <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/users/daisy-heyer" typeof="sioc:UserAccount" property="foaf:name" datatype="">Daisy Heyer</span></span></div>
+        	</div>
+	<div class="row">
+		<div class="content">
+						<div class="image row">
+				<img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/do5wZUIR3K8dMsLZcfEKInyXPIA=/704x398/smart/http://metronieuws.tcdn.nl/field/image/19968d8fc3382ed62d73c94cefc68650-1457732192.jpg" width="704" height="398" alt="Wetenschappers ontdekken perfecte suikervervanger" title="Wetenschappers ontdekken perfecte suikervervanger" />				  					<div class="caption">Foto: Colourbox</div>
+				  			</div>
+									<div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Suiker is alweer tijden een onderwerp van discussie. Menig expert meldt dat het witte spul ontzettend ongezond is. Maar er is hoop: Belgische wetenschappers denken nu de perfecte vervanger gevonden te hebben, meldt <a href="http://www.rtlz.nl/life/heilige-suikergraal-wetenschappers-ontdekken-gezonde-vervanger">RTL Z </a>op hun website.</p>
+
+<div data-header="lees" data-id="866726" data-link="/lifestyle/food/2016/02/oei-zoveel-suiker-zit-er-dus-in-speciale-koffie" data-provider="leesook" data-title="Oei, zoveel suiker zit er dus in 'speciale' koffie ">
+<p><span class="header">Lees ook: </span><a class="link" href="/lifestyle/food/2016/02/oei-zoveel-suiker-zit-er-dus-in-speciale-koffie" target="_self"><span class="text">Oei, zoveel suiker zit er dus in 'speciale' koffie </span></a></p>
+</div>
+
+<p>De suikermolecuul die volgens de wetenschappers op ten duur normale suiker kan vervangen heet Kojibiose. Nieuw is het niet; kojibiose zit nu al in kleine hoeveelheden in Japanse rijstwijn. Het molecuul eruit toveren bleek echter nog een hele klus.</p>
+
+<p>En dat was niet het enige probleem: toen Gentse onderzoekers eindelijk een manier hadden gevonden om genoeg van het goedje te verzamelen bleek het zo’n 1 miljoen euro per kilo (!) te kosten. Inmiddels hebben ze het enzym dat kojibiose produceert dusdanig weten te verbeteren dat het betaalbaarder is geworden.</p>
+
+<h2>Droomgoedje?</h2>
+
+<p>Kojibiose lijkt een droomgoedje: het heeft geen negatief effect op je gebit, is net zo zoet als gewone suiker en als toppunt blijkt dat kojibiose weinig calorieën heeft! Het zou zelfs een goed stofje voor je darmflora zijn, al moet dat laatste nog bewezen worden. Het enige nadeel is dat de suikervervanger nogal wat gasvorming veroorzaakt. Mocht je op ten duur dus een kopje thee met kojibiose drinken, waarschuw je partner dan maar alvast… </p>
+</div></div></div>                                <p></p>
+          <div class="row">
+            <div class="article-tags">
+              <div class="tags">
+  <div class="tag even"><a href="/dossier/suiker" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">suiker</a></div>
+  <div class="tag odd"><a href="/dossier/wetenschap" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Wetenschap</a></div>
+  <div class="tag even"><a href="/dossier/onderzoek" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">onderzoek</a></div>
+  <div class="tag odd"><a href="/dossier/zoet" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Zoet</a></div>
+  <div class="tag even"><a href="/dossier/koffie" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">koffie</a></div>
+  <div class="tag odd"><a href="/dossier/thee" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">thee</a></div>
+  <div class="tag even"><a href="/dossier/gezondheid" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">gezondheid</a></div>
+  <div class="tag odd"><a href="/dossier/calorieen" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">calorieën</a></div>
+</div>
+            </div>
+          </div>
+			<div class="wrapper">
+				<div class="clearfix" style="clear: both;padding: 0px 0 20px 0;"><b>Wil je op de hoogte blijven van de belangrijkste en leukste nieuwtjes? <br />Like ons dan even op Facebook. Dat is zo gepiept!</b></div>
+				<div class="fb-like" data-href="https://www.facebook.com/METRO" data-layout="standard" data-action="like" data-show-faces="true"></div>			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="row">
+  <div class="col_3 foto-row">
+    <h2 class="">Gerelateerd nieuws</h2>
+    <div class="wrapper">
+      <div class="col-1 ">
+  <a href="/nieuws/binnenland/2016/02/fles-ketchup-vol-met-suiker-gevaren-in-supermarkt" onclick="METRO.analytics.gaSendEvent('Gerelateerd nieuws', 'Relevantjes', 'Link', 1);">
+    <div class="img-block">
+      <img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/QF6-dpX1geleDPVVgR6oY_Vd-io=/235x132/smart/http://metronieuws.tcdn.nl/field/image/d4e5a65b7ffc7057ac24e8f2f7857b23-1456149905.jpg" width="235" height="132" alt="Zout en suiker? Verborgen gevaren in de supermarkt" title="Zout en suiker? Verborgen gevaren in de supermarkt" />          </div>
+        <h3><span>Zout en suiker? Verborgen gevaren in de supermarkt</span></h3>
+  </a>
+</div><div class="col-1 ">
+  <a href="/lifestyle/food/2016/02/oei-zoveel-suiker-zit-er-dus-in-speciale-koffie" onclick="METRO.analytics.gaSendEvent('Gerelateerd nieuws', 'Relevantjes', 'Link', 2);">
+    <div class="img-block">
+      <img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/HLJT5Hqa244lG7CfiXU-c_bGcHY=/235x132/smart/http://metronieuws.tcdn.nl/field/image/90d4937b4c565e5598537a16cb83f3a8-1455702434.png" width="235" height="132" alt="Oei, zoveel suiker zit er dus in &#039;speciale&#039; koffie" title="Oei, zoveel suiker zit er dus in &#039;speciale&#039; koffie" />          </div>
+        <h3><span>Oei, zoveel suiker zit er dus in 'speciale' koffie</span></h3>
+  </a>
+</div><div class="col-1 omega">
+  <a href="/lifestyle/food/2016/01/minder-suiker-in-mierzoete-starbucks-drankjes" onclick="METRO.analytics.gaSendEvent('Gerelateerd nieuws', 'Relevantjes', 'Link', 3);">
+    <div class="img-block">
+      <img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/NFyHu_clg_ZyriJZ901ESnQGYMs=/235x132/smart/http://metronieuws.tcdn.nl/field/image/c7e6e487c7544ae7af7cf337d4064617-1453281750.jpg" width="235" height="132" alt="Starbucks haalt suiker uit mierzoete drankjes" title="Starbucks haalt suiker uit mierzoete drankjes" />          </div>
+        <h3><span>Starbucks haalt suiker uit mierzoete drankjes</span></h3>
+  </a>
+</div><div class="col-1 ">
+  <a href="/nieuws/showbizz/2016/01/manuel-venderbos-doet-bizar-eetexperiment" onclick="METRO.analytics.gaSendEvent('Gerelateerd nieuws', 'Relevantjes', 'Link', 4);">
+    <div class="img-block">
+      <img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/lZKGV3b89U0CfLsDbK0NprA-8Uo=/235x132/smart/http://metronieuws.tcdn.nl/field/image/d8454c068f3ff0b964fd23e47d51d658-1452709440.jpg" width="235" height="132" alt="Presentator Manuel Venderbos eet alleen nog suiker" title="Presentator Manuel Venderbos eet alleen nog suiker" />          </div>
+        <h3><span>Presentator Manuel Venderbos eet alleen nog suiker</span></h3>
+  </a>
+</div><div class="col-1 ">
+  <a href="/xl/digitaal/2015/11/vergeet-sportdrankjes-neem-suikerwater" onclick="METRO.analytics.gaSendEvent('Gerelateerd nieuws', 'Relevantjes', 'Link', 5);">
+    <div class="img-block">
+      <img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/xv7uJ_PCUK31tP4aYrf7od8xooo=/235x132/smart/http://metronieuws.tcdn.nl/field/image/d41d8cd98f00b204e9800998ecf8427e-1250499307-1449689677.jpg" width="235" height="132" alt="&#039;Vergeet sportdrankjes; neem suikerwater&#039;" title="&#039;Vergeet sportdrankjes; neem suikerwater&#039;" />          </div>
+        <h3><span>'Vergeet sportdrankjes; neem suikerwater'</span></h3>
+  </a>
+</div><div class="col-1 omega">
+  <a href="/mode/food/2015/11/inslaan-chocolade-wordt-duurder" onclick="METRO.analytics.gaSendEvent('Gerelateerd nieuws', 'Relevantjes', 'Link', 6);">
+    <div class="img-block">
+      <img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/CPWswlasmLF9vl5Rot-c-1v6KKw=/235x132/smart/http://metronieuws.tcdn.nl/field/image/f0cfdeecef2822cc487fb1438fdbb4e6-1448359069.jpg" width="235" height="132" alt="Inslaan! Chocolade wordt duurder" title="Inslaan! Chocolade wordt duurder" />          </div>
+        <h3><span>Inslaan! Chocolade wordt duurder</span></h3>
+  </a>
+</div>    </div>
+  </div>
+</div>	</div>
+	<div class="row">
+		<div class="banner"><script type="text/javascript" src="http://a.ligatus.com/?ids=63261&t=js"></script></div>
+	</div>
+
+    <div class="row" id="comments"><div class="fb-comments" data-href="http://www.metronieuws.nl/nieuws/extra/2016/03/wetenschappers-ontdekken-perfecte-suikervervanger" data-width="762px" data-numposts="5"></div></div>
+</div>
+
+</div>
+<div class="main-col-right">  <div class="row">
+    <div id="300x250_top_1668580556" class="banner_300_250 banner"><script type="text/javascript">showBanner("300x250_top");</script></div>  </div>
+
+<div class="panel-separator"></div>  <div class="row">
+    <div class="newslist newslist--popular shadow-block">
+	<h2 class="title">Populair</h2>
+	<div class="wrapper">
+	    		<h3><a href="/xl/raar/2016/03/deze-man-heeft-een-penis-van-45-kilo">Deze man heeft een penis van 4,5 kilo</a></h3>	</div>
+	<div class="content"><ul><li class="first"><a href="/nieuws/extra/2016/03/jonger-broertje-of-zusje-houdt-je-slank">Jonger broertje of zusje houdt je slank </a></li>
+<li><a href="/nieuws/binnenland/2016/03/koning-nl-moet-vluchtelingen-een-thuis-geven">Koning: &#039;NL moet vluchtelingen een thuis geven&#039; </a></li>
+<li class="last"><a href="/nieuws/buitenland/2016/03/levensgroot-kunstwerk-van-peuter-aylan-in-frankfurt">Levensgroot kunstwerk van peuter Aylan in Frankfurt</a></li>
+</ul></div></div>  </div>
+
+<div class="panel-separator"></div>  <div class="row">
+    <div class="newslist newslist--advertorial shadow-block">
+	<h2 class="title">Groot nieuws! </h2>
+		<div class="img-block ">
+			<a href="http://www.mobiel.nl" onclick="METRO.analytics.gaSendEvent(&#039;sidebar advertorial&#039;, &#039;img&#039;, &#039;click&#039;);return true;"><img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/-Arml5Yk2oiAgQDIZkeg5p0CZwA=/250x141/smart/http://metronieuws.tcdn.nl/advertorial/78ee88522ac1a0160e7a98df0f7c66d8-1457599736.png" width="250" height="141" alt="Groot nieuws! " title="Groot nieuws! " /></a>		</div>
+		<div class="content"><a href="http://www.mobiel.nl" onclick="METRO.analytics.gaSendEvent(&#039;sidebar advertorial&#039;, &#039;tekst&#039;, &#039;click&#039;);return true;"><p>Studentmobiel is vanaf nu Mobiel.nl. Hetzelfde bedrijf, dezelfde service en hetzelfde voordeel voor iedereen. Alleen nu nog makkelijker te vinden. We barsten van de plannen en ambities om jou nog beter van dienst te kunnen zijn. Dus mag je verlengen of ben je toe aan een nieuw abonnement? Check eerst Mobiel.nl.</p>
+</a></div>
+</div>  </div>
+
+<div class="panel-separator"></div>  <div class="row">
+    <div class="newsblock newsblock--latest shadow-block">
+	<div class="title-container">
+		<h2 class="title">Laatste nieuws</h2>
+	</div>
+	<div class="content"><ul><li class="first"><a href="/nieuws/rotterdam/2016/03/zaterdagtip-reuzenrad-the-view" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Zaterdagtip: Reuzenrad The View&#039;);">Zaterdagtip: Reuzenrad The View</a><div class="time">09:00</div></li>
+<li><a href="/nieuws/binnenland/2016/03/referendum-oekraine-nee-stemmers-aan-de-leiding" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Referendum Oekraïne: nee-stemmers aan de leiding&#039;);">Referendum Oekraïne: nee-stemmers aan de leiding</a><div class="time">08:55</div></li>
+<li><a href="/nieuws/showbizz/2016/03/toetsenist-emerson-overlijdt-op-71-jarige-leeftijd" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Toetsenist Emerson overlijdt op 71-jarige leeftijd&#039;);">Toetsenist Emerson overlijdt op 71-jarige leeftijd</a><div class="time">22:54</div></li>
+<li><a href="/nieuws/buitenland/2016/03/amerikaan-start-instagramaccount-met-sexy-migranten" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Amerikaanse start Instagram met sexy migranten&#039;);">Amerikaanse start Instagram met sexy migranten</a><div class="time">22:53</div></li>
+<li><a href="/xl/babes/2016/03/slaapmutsje-viki-odintcova" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Slaapmutsje: Viki Odintcova&#039;);">Slaapmutsje: Viki Odintcova</a><div class="time">22:49</div></li>
+<li><a href="/nieuws/binnenland/2016/03/salah-abdeslam-dag-na-de-aanslagen-in-amsterdam" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;&#039;Salah Abdeslam dag na de aanslagen in Amsterdam&#039;&#039;);">&#039;Salah Abdeslam dag na de aanslagen in Amsterdam&#039;</a><div class="time">22:44</div></li>
+<li><a href="/nieuws/extra/2016/03/wetenschappers-ontdekken-perfecte-suikervervanger" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Wetenschappers ontdekken perfecte suikervervanger&#039;);">Wetenschappers ontdekken perfecte suikervervanger</a><div class="time">22:43</div></li>
+<li><a href="/xl/raar/2016/03/krokodil-gevonden-in-bushokje-amsterdam-noord" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Krokodil gevonden in bushokje Amsterdam Noord&#039;);">Krokodil gevonden in bushokje Amsterdam Noord</a><div class="time">22:39</div></li>
+<li><a href="/xl/sport/2016/03/fans-de-graafschap-redden-wedstrijd-tegen-roda-jc" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Fans de Graafschap redden wedstrijd tegen Roda JC&#039;);">Fans de Graafschap redden wedstrijd tegen Roda JC</a><div class="time">22:19</div></li>
+<li class="last"><a href="/nieuws/binnenland/2016/03/koning-nl-moet-vluchtelingen-een-thuis-geven" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;button&#039;, &#039;Koning: &#039;NL moet vluchtelingen een thuis geven&#039; &#039;);">Koning: &#039;NL moet vluchtelingen een thuis geven&#039; </a><div class="time">22:13</div></li>
+</ul><div class="more-container"><span class="gradient"></span><a href="/alles" class="button" onClick="METRO.analytics.gaSendEvent(&#039;Laatste Nieuws &#039;, &#039;Button&#039;, &#039;Alles Button&#039;);">Bekijk alles</a></div></div></div>  </div>
+
+<div class="panel-separator"></div>  <div class="row">
+    <div class="newslist newslist--feed shadow-block">
+  <h2 class="title">top 10 kortingscodes </h2>
+	<div class="content"><ul><li class="first"><a href="http://www.kortingscode.nl/groupon" target="_blank"> 10% korting bij Groupon </a></li>
+<li><a href="http://www.kortingscode.nl/stylepit" target="_blank"> 15% korting bij Stylepit </a></li>
+<li><a href="http://www.kortingscode.nl/bungalows-nl" target="_blank"> €10 korting bij Bungalows.nl </a></li>
+<li><a href="http://www.kortingscode.nl/new-york-pizza" target="_blank"> 3de pizza gratis bij NY Pizza </a></li>
+<li><a href="http://www.kortingscode.nl/sneakerbaas" target="_blank"> €6 korting bij Sneakerbaas </a></li>
+<li><a href="http://www.kortingscode.nl/tommy-hilfiger" target="_blank"> 10% korting bij Tommy Hilfiger </a></li>
+<li><a href="http://www.kortingscode.nl/snappcar" target="_blank"> €20 korting bij SnappCar </a></li>
+<li><a href="http://www.kortingscode.nl/misterspex" target="_blank"> 15% korting bij Mister Spex </a></li>
+<li><a href="http://www.kortingscode.nl/modemusthaves" target="_blank"> Gratis verzending Modemusthaves </a></li>
+<li class="last"><a href="http://www.kortingscode.nl/nelly" target="_blank"> 25% korting bij Nelly </a></li>
+</ul></div>	<div class="footer small">
+		<a href="http://www.kortingscode.nl" target="_blank">powered by Kortingscode.nl</a>	</div>
+</div>  </div>
+
+<div class="panel-separator"></div>  <div class="row">
+    <iframe frameborder="0" height="624" scrolling="no" src="http://metroonline.nl/bva/index.php" width="100%"> </iframe>  </div>
+
+<div class="panel-separator"></div>  <div class="row">
+    <div id="relevant-right-wrapper" class="relevant-right-wrapper">
+		<div id="right-relevant" class="shadow-block right-relevant">
+		<h3>Lees ook</h3>
+		<div class="viewport">
+			<ul class="overview">
+				<li><div class="col-1 ">
+	<div class="img-block">
+		<a href="/nieuws/binnenland/2016/02/fles-ketchup-vol-met-suiker-gevaren-in-supermarkt" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 1);"><img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/9NPvRrT4vcNX87_NrmOabDy2eao=/250x141/smart/http://metronieuws.tcdn.nl/field/image/d4e5a65b7ffc7057ac24e8f2f7857b23-1456149905.jpg" width="250" height="141" alt="Zout en suiker? Verborgen gevaren in de supermarkt" title="Zout en suiker? Verborgen gevaren in de supermarkt" /></a>		                <h2><span><a href="/nieuws/binnenland/2016/02/fles-ketchup-vol-met-suiker-gevaren-in-supermarkt" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 1);">Zout en suiker? Verborgen gevaren in de supermarkt</a></span></h2>
+	</div>
+</div></li><li><div class="col-1 ">
+	<div class="img-block">
+		<a href="/lifestyle/food/2016/02/oei-zoveel-suiker-zit-er-dus-in-speciale-koffie" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 2);"><img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/AGiSZoYavG62RVON9Yjkz9CZ0CU=/250x141/smart/http://metronieuws.tcdn.nl/field/image/90d4937b4c565e5598537a16cb83f3a8-1455702434.png" width="250" height="141" alt="Oei, zoveel suiker zit er dus in &#039;speciale&#039; koffie" title="Oei, zoveel suiker zit er dus in &#039;speciale&#039; koffie" /></a>		                <h2><span><a href="/lifestyle/food/2016/02/oei-zoveel-suiker-zit-er-dus-in-speciale-koffie" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 2);">Oei, zoveel suiker zit er dus in &#039;speciale&#039; koffie</a></span></h2>
+	</div>
+</div></li><li><div class="col-1 ">
+	<div class="img-block">
+		<a href="/lifestyle/food/2016/01/minder-suiker-in-mierzoete-starbucks-drankjes" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 3);"><img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/WbC_HbKSDCA-zoTcx2niwCA4sFc=/250x141/smart/http://metronieuws.tcdn.nl/field/image/c7e6e487c7544ae7af7cf337d4064617-1453281750.jpg" width="250" height="141" alt="Starbucks haalt suiker uit mierzoete drankjes" title="Starbucks haalt suiker uit mierzoete drankjes" /></a>		                <h2><span><a href="/lifestyle/food/2016/01/minder-suiker-in-mierzoete-starbucks-drankjes" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 3);">Starbucks haalt suiker uit mierzoete drankjes</a></span></h2>
+	</div>
+</div></li><li><div class="col-1 ">
+	<div class="img-block">
+		<a href="/nieuws/showbizz/2016/01/manuel-venderbos-doet-bizar-eetexperiment" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 4);"><img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/DtLekbnW_fcu3ZTf3vqJpZnTx7U=/250x141/smart/http://metronieuws.tcdn.nl/field/image/d8454c068f3ff0b964fd23e47d51d658-1452709440.jpg" width="250" height="141" alt="Presentator Manuel Venderbos eet alleen nog suiker" title="Presentator Manuel Venderbos eet alleen nog suiker" /></a>		                <h2><span><a href="/nieuws/showbizz/2016/01/manuel-venderbos-doet-bizar-eetexperiment" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 4);">Presentator Manuel Venderbos eet alleen nog suiker</a></span></h2>
+	</div>
+</div></li><li><div class="col-1 ">
+	<div class="img-block">
+		<a href="/xl/digitaal/2015/11/vergeet-sportdrankjes-neem-suikerwater" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 5);"><img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/Conzd5EBYcRoorkWI78Mk1r8u8w=/250x141/smart/http://metronieuws.tcdn.nl/field/image/d41d8cd98f00b204e9800998ecf8427e-1250499307-1449689677.jpg" width="250" height="141" alt="&#039;Vergeet sportdrankjes; neem suikerwater&#039;" title="&#039;Vergeet sportdrankjes; neem suikerwater&#039;" /></a>		                <h2><span><a href="/xl/digitaal/2015/11/vergeet-sportdrankjes-neem-suikerwater" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 5);">&#039;Vergeet sportdrankjes; neem suikerwater&#039;</a></span></h2>
+	</div>
+</div></li><li><div class="col-1 ">
+	<div class="img-block">
+		<a href="/mode/food/2015/11/inslaan-chocolade-wordt-duurder" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 6);"><img typeof="foaf:Image" src="//imgserv9.tcdn.nl/v1/mBYkl43A6Gr2tJWrSoEACfKYYmo=/250x141/smart/http://metronieuws.tcdn.nl/field/image/f0cfdeecef2822cc487fb1438fdbb4e6-1448359069.jpg" width="250" height="141" alt="Inslaan! Chocolade wordt duurder" title="Inslaan! Chocolade wordt duurder" /></a>		                <h2><span><a href="/mode/food/2015/11/inslaan-chocolade-wordt-duurder" onClick="METRO.analytics.gaSendEvent(&#039;Gerelateerd nieuws&#039;, &#039;Relevantjes Rechts&#039;, &#039;Link&#039;, 6);">Inslaan! Chocolade wordt duurder</a></span></h2>
+	</div>
+</div></li>			</ul>
+		</div>
+	</div>
+</div>  </div>
+
+</div>      </div>
+    </div>
+  </div>
+
+  <!-- grid end -->
+</div>
+
+
+<div class="grid--full footer">
+
+  <div class="grid top wrapper">
+
+      <div class="col--3">
+        <h3>Secties</h3>
+        <ul class="menu"><li class="first leaf"><a href="/nieuws" title="">Alles</a></li>
+<li class="leaf"><a href="/binnenland" title="">Binnenland</a></li>
+<li class="leaf"><a href="/nieuws/buitenland" title="">Buitenland</a></li>
+<li class="leaf"><a href="/nieuws/showbizz" title="">Showbizz</a></li>
+<li class="leaf"><a href="/nieuws/koffiepauze" title="">Koffiepauze</a></li>
+<li class="leaf"><a href="/nieuws/extra" title="">Extra</a></li>
+<li class="leaf"><a href="/nieuws/amsterdam" title="">Amsterdam</a></li>
+<li class="leaf"><a href="/nieuws/rotterdam" title="">Rotterdam</a></li>
+<li class="leaf"><a href="/lifestyle" title="">Lifestyle</a></li>
+<li class="last leaf"><a href="/xl" title="">XL</a></li>
+</ul>        <ul class="menu">
+          <li><a href="/alles" title="Metro archief">Archief</a></li>
+        </ul>
+      </div>
+      <div class="col--3">
+        <h3>Volg Metro</h3>
+        <ul class="menu">
+          <li><a href="//www.facebook.com/METRO"  target="_blank" title="Onze Facebook pagina.">Facebook</a></li>
+          <li><a href="//twitter.com/METRO"  target="_blank" title="Onze Twitter pagina.">Twitter</a></li>
+          <li><a href="//plus.google.com/+metronieuws/posts"  target="_blank" title="Onze Google+ pagina.">Google+</a></li>
+          <li><a href="/pagina/rss" title="Onze feeds.">RSS Feeds</a></li>
+        </ul>
+        <h3>Neem contact op</h3>
+        <ul class="menu">
+          <li><a href="/pagina/contact" title="Ons contactformulier.">Contactformulier</a></li>
+          <li><a href="/pagina/tip_de_redactie" title="Tip onze redactie.">Tip de redactie</a></li>
+          <li><a href="/pagina/adverteren" title="Adverteren">Adverteren</a></li>
+        </ul>
+      </div>
+      <div class="col--3">
+        <h3>Metro extra</h3>
+        <ul class="menu">
+          <li><a href="/horoscoop" title="Lees je horoscoop">Horoscoop</a></li>
+          <li><a href="/win" title="Win acties">Win acties</a></li>
+          <li><a href="http://www.vacaturekrant.nl"  target="_blank" title="Zoek een baan.">Jobs vinden</a></li>
+        </ul>
+      </div>
+
+      <div class="col--3 col--last krant">
+        <img alt="De volledige papieren Metro online!"  width="75" src="/sites/all/themes/metro/images/metro-krant.png" />
+        <div class="wrapper">
+          <h3>De Metro van vandaag</h3>
+          <div class="badges">
+            <a class="button" href="http://www.readmetro.com/nl/holland/metro-holland/" target="_blank" title="Lees de Metro van vandaag in je webbrowser." rel="nofollow" onclick="METRO.analytics.gaSendEvent('button', 'click', 'lees krant als pdf');return true;">Lees in je browser!</a>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+
+  <div class="grid bottom wrapper small">
+    <img src="/sites/all/themes/metro/images/metro-220x79.svg" width="85" height="29" alt="Metro" />
+    <ul>
+      <li><a href="/pagina/huisregels" title="Onze huisregels.">Huisregels</a></li>
+      <li><a href="/pagina/colofon" title="Ons colofon">Colofon</a></li>
+      <li><a href="http://corporate.tmg.nl/gebruiksvoorwaarden" target="_blank" title="Onze gebruiksvoorwaarden.">Gebruiksvoorwaarden</a></li>
+      <li><a href="http://corporate.tmg.nl/privacy-verklaring" target="_blank" title="Ons privacy statement.">Privacy</a></li>
+      <li><a href="http://corporate.tmg.nl/cookie-verklaring" target="_blank" title="Ons cookie beleid.">Cookies</a></li>
+      <li><a href="javascript:void(0);" onclick="TMG.upgrade();return false;" title="Pas je cookie instellingen aan.">Cookie instellingen</a></li>
+    </ul>
+    <div class="copyright">&copy; 2016 Metronieuws</div>
+  </div>
+</div>
+<div id="tooltip" class="shadow-block"></div>
+<div id="overlay"><div class="background"></div><div class="content"></div></div>
+	<script type="text/javascript" src="//www.metronieuws.nl/sites/all/themes/metro/javascript/metro.vendor.min.js?o3ibim"></script>
+<script type="text/javascript" src="//www.metronieuws.nl/sites/all/themes/metro/javascript/metro.min.js?o3ibim"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"metro","theme_token":"nu9m-5x4HSh5eHIry39JGTPlHJ1q3YWRMsVVc87HajI","js":{"sites\/all\/themes\/metro\/javascript\/metro.vendor.min.js":1,"sites\/all\/themes\/metro\/javascript\/metro.min.js":1},"css":{"sites\/all\/themes\/metro\/css\/metro.css":1}}});
+//--><!]]>
+</script>
+	<script type="text/javascript" src="//www.telegraaf.nl/static/gerichtonline/bpreview.js"></script>
+    <script type="text/javascript" src="//tmgonlinemedia.nl/consent/script/consent.js"></script>
+	<script type="text/javascript">
+
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id; // 1479868362309685
+		  js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&appId=383208668554894&version=v2.4";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-56826056-1', 'auto');
+        ga('create', 'UA-775126-14', 'auto', {'name': 'tracker2014' });
+		ga('create', 'UA-58710671-1', 'auto', {'name': 'combi_mobile_desktop_spits_metro' });
+		ga('require', 'displayfeatures');
+        ga('tracker2014.require', 'displayfeatures');
+		ga('combi_mobile_desktop_spits_metro.require', 'displayfeatures');
+
+                        ga('set', 'dimension2', "Daisy Heyer");
+                ga('tracker2014.set', 'dimension2', "Daisy Heyer");
+				ga('combi_mobile_desktop_spits_metro.set', 'dimension2', "Daisy Heyer");
+                                ga('set', 'dimension4', "11 maart 2016 om 22:43");
+                ga('tracker2014.set', 'dimension4', "11 maart 2016 om 22:43");
+				ga('combi_mobile_desktop_spits_metro.set', 'dimension4', "11 maart 2016 om 22:43");
+                
+        ga('send', 'pageview');
+        ga('tracker2014.send', 'pageview');
+		ga('combi_mobile_desktop_spits_metro.send', 'pageview');
+
+	</script>
+	<!-- Begin Revenue Science -->
+	<script type="text/javascript" language="JavaScript" src="//js.revsci.net/gateway/gw.js?csid=G07609&auto=t"></script>
+	<!-- End Revenue Science -->
+	<!-- Begin Vice -->
+	<script type='text/javascript' src='//www.googletagservices.com/tag/js/gpt.js'></script>
+	<!-- End Vice -->
+	<!-- Begin Hotjar -->
+	<script>
+		(function(f,b){
+			var c;
+			f.hj=f.hj||function(){(f.hj.q=f.hj.q||[]).push(arguments)};
+			f._hjSettings={hjid:17478, hjsv:4};
+			c=b.createElement("script");c.async=1;
+			c.src="//static.hotjar.com/c/hotjar-"+f._hjSettings.hjid+".js?sv="+f._hjSettings.hjsv;
+			b.getElementsByTagName("head")[0].appendChild(c);
+		})(window,document);
+	</script>
+	<!-- End Hotjar -->
+	<script src="//cdn.optimizely.com/js/2249386367.js"></script>
+	<!-- Begin comScore Inline Tag 1.1302.13 -->
+	<script type="text/javascript">
+		// <![CDATA[
+		function udm_(e){var t="comScore=",n=document,r=n.cookie,i="",s="indexOf",o="substring",u="length",a=2048,f,l="&ns_",c="&",h,p,d,v,m=window,g=m.encodeURIComponent||escape;if(r[s](t)+1)for(d=0,p=r.split(";"),v=p[u];d<v;d++)h=p[d][s](t),h+1&&(i=c+unescape(p[d][o](h+t[u])));e+=l+"_t="+ +(new Date)+l+"c="+(n.characterSet||n.defaultCharset||"")+"&c8="+g(n.title)+i+"&c7="+g(n.URL)+"&c9="+g(n.referrer),e[u]>a&&e[s](c)>0&&(f=e[o](0,a-8).lastIndexOf(c),e=(e[o](0,f)+l+"cut="+g(e[o](f+1)))[o](0,a)),n.images?(h=new Image,m.ns_p||(ns_p=h),h.src=e):n.write("<","p","><",'img src="',e,'" height="1" width="1" alt="*"',"><","/p",">")};
+		udm_('http'+(document.location.href.charAt(4)=='s'?'s://sb':'://b')+'.scorecardresearch.com/b?c1=2&c2=12344628&ns_site=total&nb_01=tmg&nb_02=metro&nb_11=web&nb_12=metronieuws.nl&nb_25=metro&nb_26=metro&nb_27=metro+nieuws&nb_28=article&nb_29=general');
+		// ]]>
+	</script>
+	<noscript><p><img src="http://b.scorecardresearch.com/p?c1=2&amp;c2=12344628&amp;ns_site=total&amp;nb_01=tmg&amp;nb_02=metro&amp;nb_11=web&amp;nb_12=metronieuws.nl&amp;nb_25=metro&amp;nb_26=metro&amp;nb_27=metro+nieuws&amp;nb_28=article&amp;nb_29=general" height="1" width="1" alt="*"></p></noscript>
+	<!-- End comScore Inline Tag -->
+	<!-- Begin comScore Inline Tag 1.1302.13 -->
+	<script type="text/javascript" language="JavaScript1.3" src="http://b.scorecardresearch.com/c2/12344628/cs.js"></script>
+	<!-- End comScore Inline Tag -->
+	<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"106308c09c","applicationID":"5278446","transactionName":"blcBY0sADUdYUU1cWlcdIlRNCAxaFkJYUlBmXwJZWAYGRmZcVlFQZkQKUk4+E1VeVw==","queueTime":0,"applicationTime":352,"atts":"QhACFQMaHkk=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-768.min.js"}</script></body>
+</html>
