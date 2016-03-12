@@ -2,7 +2,15 @@ import lxml
 
 
 def is_whitespace(c):
-    if c == ' ' or c == '\n':
+    # zero width space (\u200b)
+    # form feed (\f)
+    # tab (\t)
+    # space ( )
+    # carriage return (\r)
+    # line feed (\n)
+    if c == ' ' or  c == '\t' or c == '\f' or \
+        c == u"\u200b" or \
+        c == '\n' or c == '\r':
         return True
 
     return False

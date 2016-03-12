@@ -7,7 +7,7 @@ from ..utils import html_to_text, collapse_whitespace
 
 class UtilsTests(TestCase):
     def test_collapse_whitespace(self):
-        text = u'\n\n      '
+        text = u'\r\n\f\u200b \n\t '
         self.assertEquals(collapse_whitespace(text), "")
 
     def test_html_to_text_one_element(self):
