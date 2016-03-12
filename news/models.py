@@ -85,3 +85,12 @@ class Version(models.Model):
         else:
             self.diff_json = json.dumps(val)
     diff_info = property(get_diff_info, set_diff_info)
+
+
+class RequestLog(models.Model):
+    date = models.DateTimeField(blank=False)
+    source = models.CharField(max_length=255, blank=False, db_index=True)
+
+    url = models.CharField(max_length=255, blank=False, db_index=True)
+    server_address = models.CharField(max_length=255, blank=False, db_index=True)
+
