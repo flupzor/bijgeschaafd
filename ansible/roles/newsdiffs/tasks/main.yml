@@ -91,3 +91,5 @@
     job: PATH="{{ app_path }}/env/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" PYTHONPATH="{{ app_path }}" VIRTUAL_ENV="{{ app_path }}/env/" {{ app_path }}/manage.py scraper
     hour: "*/3"
     minute: "7"
+- name: clear memcached cache
+  shell: echo 'flush_all' | nc -q 1 localhost 11211
