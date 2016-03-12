@@ -55,4 +55,15 @@ LOGGING = {
     },
 }
 
+INSTALLED_APPS += [
+	'raven.contrib.django.raven_compat',
+]
+
+import raven
+
+RAVEN_CONFIG = {
+    'dsn': '{{ raven_dsn }}',
+    'release': raven.fetch_git_sha(os.path.dirname(__file__)),
+}
+
 STATIC_ROOT="/var/www/html/bijgeschaafd/static/"
