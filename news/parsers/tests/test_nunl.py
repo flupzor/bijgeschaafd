@@ -1,9 +1,12 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 import os
 from django.utils._os import upath
 
 from ..nunl import NuNLParser
+
+from news.parsers.exceptions import NotInteresting
+import responses
 
 
 TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
@@ -12,16 +15,66 @@ TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 class NuNLParserTests(TestCase):
     maxDiff = None
 
-    def test_nu_nl_weer(self):
-        """
-        www.nu.nl/dvn/4211073/weer-maandagmiddag-kans-westerstorm.html
-        """
+    @responses.activate
+    @override_settings(NEWS_SOURCES=['news.parsers.nunl.NuNLParser', ])
+    def test_nu_nl_urls(self):
+        page_name = 'www_nu_nl'
+        page_path = os.path.join(TEST_DIR, page_name)
+        page_file = open(page_path, 'rb')
 
-        article_name = 'www_nu_nl_dvn_4211073_weer_maandagmiddag_kans-westerstorm.html'
-        article_path = os.path.join(TEST_DIR, article_name)
-        article_file = open(article_path, 'rb')
+        responses.add(responses.GET, 'http://www.nu.nl',
+                      body=page_file.read(), status=200,
+                      content_type='text/html')
 
-        parsed_article = NuNLParser('http://www.nu.nl/dvn/4211073/weer-maandagmiddag-kans-westerstorm.html', html=article_file.read())
+        urls = NuNLParser.request_urls()
+
+        expected = set([
+        'http://www.nu.nl/economie/4232128/duitse-bank-wil-rente-heffen-bij-grote-som-spaargeld.html',
+        'http://www.nu.nl/wetenschap/4231966/zwart-gat-bombardeert-aarde-met-straling-.html',
+        'http://www.nu.nl/economie/4232143/verenigde-staten-voeren-importheffing-in-tata-steel-nederland.html',
+        'http://www.nu.nl/economie/4231853/opnieuw-daalt-prijspeil-in-eurozone.html',
+        'http://www.nu.nl/lifestyle/4231391/55-plusser-gaat-steeds-vaker-online-winkelen.html',
+        'http://www.nu.nl/economie/4231987/britse-centrale-bank-verwacht-lagere-investeringen-bij-brexit.html',
+        'http://www.nu.nl/gezondheid/4231912/artsen-willen-tabak-niet-meer-in-supermarkt.html',
+        'http://www.nu.nl/achterklap/4232051/boer-frans-boer-zoekt-vrouw-vader-geworden-van-tweeling.html',
+        'http://www.nu.nl/achterklap/4232241/vrouw-van-jamie-oliver-in-verwachting.html',
+        'http://www.nu.nl/achterklap/4232232/blake-shelton-weerspreekt-roddels-ede.html',
+        'http://www.nu.nl/internet/4232055/nieuwe-versie-ransomware-onkraakbaar.html',
+        'http://www.nu.nl/algemeen/4232145/in-spanje-onderzoekt-gedrag-psv-supporters.html',
+        'http://www.nu.nl/achterklap/4232182/iggy-azalea-druk-met-huwelijksvoorbereidingen.html',
+        'http://www.nu.nl/algemeen/4232214/veel-meer-doden-dan-gedacht-aanval-markt-jemen.html',
+        'http://www.nu.nl/economie/4231891/havenbedrijven-in-beroep-besluit-europese-commissie-belastingen.html',
+        'http://www.nu.nl/politiek/4232059/kamervoorzitter-wil-mogelijk-extra-vragenuur.html',
+        'http://www.nu.nl/tennis/4232089/federer-maakt-komende-week-in-miami-rentree.html',
+        'http://www.nu.nl/media/4232093/britse-krant-the-guardian-schrapt-250-banen.html',
+        'http://www.nu.nl/reizen/4232109/pretpark-universal-studios-krijgt-restaurant-met-willy-wonka-thema.html',
+        'http://www.nu.nl/achterklap/4232210/bbc-presentator-rolf-harris-ontkent-nieuwe-gevallen-van-misbruik.html',
+        'http://www.nu.nl/opmerkelijk/4232028/man-gooit-per-ongeluk-peperdure-trouwring-van-echtgenote-weg.html',
+        'http://www.nu.nl/binnenland/4231135/twintig-tips-man-hoofd-achterliet-in-amsterdam.html',
+        'http://www.nu.nl/games/4232091/pokemon-games-279-miljoen-keer-verkocht.html',
+        'http://www.nu.nl/binnenland/4232008/apache-moet-voorzorgslanding-maken-in-weiland-foutmelding.html',
+        'http://www.nu.nl/buitenland/4232097/rechter-brazilie-blokkeert-aanstelling-omstreden-oud-president.html',
+        'http://www.nu.nl/lifestyle/4231831/meer-bezoekers-pretparken-in-2015.html',
+        'http://www.nu.nl/apps/4232054/app-gaat-nederlandse-olympiers-in-rio-waarschuwen-gevaar.html',
+        'http://www.nu.nl/politiek/4232048/rutte-ziet-geen-alternatieve-oplossing-eu-turkije-top.html',
+        'http://www.nu.nl/binnenland/4231751/agent-schiet-met-mes-dreigende-man-dood-in-kwakel.html',
+        'http://www.nu.nl/economie/4231852/winst-en-omzet-gasunie-gedaald-in-2015.html',
+        'http://www.nu.nl/muziek/4232133/mumford--sons-en-the-national-werken-coveralbum-grateful-dead.html',
+        'http://www.nu.nl/media/4232152/jan-slagter-niet-eens-met-kritiek-staatssecretaris-dekker.html',
+        'http://www.nu.nl/dvn/4231682/staat-er-spel-tijdens-asieltop-met-eu-en-turkije.html',
+        'http://www.nu.nl/belastingaangifte/4232060/wiebes-oneens-met-onvoldoende-belastingtelefoon.html',
+        'http://www.nu.nl/buitenland/4231541/joran-van-sloot-zegt-schuldig-in-zaak-natalee-holloway.html',
+        'http://www.nu.nl/ondernemen/4228901/britse-keten-wil-winkels-perry-sport-en-aktiesport-overnemen.html',
+        'http://www.nu.nl/dieren/4232195/boord-geslagen-hond-vijf-weken-terecht.html',
+        'http://www.nu.nl/internet/4232202/kickstarter-neemt-muziekdienst-drip.html',
+        'http://www.nu.nl/vd/4231972/helft-nederlanders-deed-in-afgelopen-jaar-nog-aankoop-bij-vd.html',
+        'http://www.nu.nl/algemeen/4232225/stille-tocht-onthoofde-nabil-amzieb-in-amsterdam.html',
+        'http://www.nu.nl/opmerkelijk/4231903/inwoner-seattle-confronteert-dieven-en-haalt-gestolen-fietsen-terug.html',
+        'http://www.nu.nl/dvn/4227806/we-weten-vondst-van-hoofd-in-amsterdam.html',
+        'http://www.nu.nl/achterklap/4232212/vrouw-simon-keizer-kreeg-miskraam.html',
+        'http://www.nu.nl/mobiel/4232183/windows-10-beschikbaar-gesteld-oudere-telefoons.html'])
+
+        self.assertEquals(urls, expected)
 
     def test_nu_nl_lifeblog(self):
         """
@@ -32,24 +85,8 @@ class NuNLParserTests(TestCase):
         article_path = os.path.join(TEST_DIR, article_name)
         article_file = open(article_path, 'rb')
 
-        parsed_article = NuNLParser('', html=article_file.read())
-
-        self.assertEquals(
-            parsed_article.title,
-            'Reacties PSV na 3-2 nederlaag bij CSKA Moskou (gesloten)'
-        )
-        self.assertEquals(
-            parsed_article.body,
-            u'In de tweede poulewedstrijd in de Champions League neemt PSV '
-            u'het in Moskou op tegen CSKA. De aftrap is om 20.45 uur. '
-            u'Daarnaast worden er nog zes duels gespeeld. De wedstrijd '
-            u'Astana-Galatasaray begon al om 18.00 uur en is in 2-2 '
-            u'ge\xebindigd. \n'
-            u'Het duel tussen CSKA Moskou en PSV wordt live '
-            u'uitgezonden door SBS6 en NU.nl.\n'
-        )
-
-        self.assertEquals(parsed_article.boring, True);
+        with self.assertRaises(NotInteresting):
+            parsed_article = NuNLParser.parse_new_version('', article_file.read())
 
     def test_nu_nl_article(self):
         """
@@ -62,7 +99,7 @@ class NuNLParserTests(TestCase):
         article_path = os.path.join(TEST_DIR, article_name)
         article_file = open(article_path, 'rb')
 
-        parsed_article = NuNLParser('', html=article_file.read())
+        parsed_article = NuNLParser.parse_new_version('', article_file.read())
 
         # Hint for a update: I used fold -s -w 58 and some regex
         expected = \
@@ -141,6 +178,4 @@ class NuNLParserTests(TestCase):
             u"aangezien \xe9\xe9n of meerdere fractievoorzitters dan " \
             u"voor de Hoge Raad zullen moeten verschijnen.\n"
 
-        self.assertEquals(parsed_article.body, expected)
-
-        self.assertEquals(parsed_article.boring, False);
+        self.assertEquals(parsed_article.get('content'), expected)

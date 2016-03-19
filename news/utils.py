@@ -1,7 +1,9 @@
 import logging
 
+import requests
+import httplib
+
 from bijgeschaafd import diff_match_patch
-from news.parsers.baseparser import canonicalize
 
 logger = logging.getLogger('parsers')
 
@@ -51,3 +53,28 @@ def get_diff_info(old, new):
     chars_added = sum(len(text) for (sign, text) in diff if sign == 1)
     chars_removed = sum(len(text) for (sign, text) in diff if sign == -1)
     return dict(chars_added=chars_added, chars_removed=chars_removed)
+
+
+def http_get(url):
+    response = requests.get(url, stream=True)
+
+    addr, port = None, None
+    if isinstance(response.raw._fp, httplib.HTTPResponse):
+        addr, port = response.raw._fp.fp._sock.getpeername()
+
+    request_info = {
+        'addr': addr,
+        'port': port,
+    }
+
+    return response.content, request_info
+
+
+def strip_whitespace(text):
+    lines = text.split('\n')
+    return '\n'.join(x.strip().rstrip(u'\xa0') for x in lines).strip() + '\n'
+
+
+def canonicalize(text):
+    return strip_whitespace(text)
+

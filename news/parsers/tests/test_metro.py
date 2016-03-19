@@ -1,9 +1,10 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 import os
 from django.utils._os import upath
 
 from ..metro import MetroParser
+import responses
 
 
 TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
@@ -11,6 +12,72 @@ TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 
 class MetroParserTests(TestCase):
     maxDiff = None
+
+    @responses.activate
+    @override_settings(NEWS_SOURCES=['news.parsers.metro.MetroParser', ])
+    def test_metro_urls(self):
+        page_name = 'www_metronieuws_nl'
+        page_path = os.path.join(TEST_DIR, page_name)
+        page_file = open(page_path, 'rb')
+
+        responses.add(responses.GET, 'http://www.metronieuws.nl',
+                      body=page_file.read(), status=200,
+                      content_type='text/html')
+
+        urls = MetroParser.request_urls()
+
+        expected = set([
+        'http://www.metronieuws.nl/nieuws/rotterdam/2016/03/mevlana-moskee-wil-bushalte-voor-de-deur',
+        'http://www.metronieuws.nl/nieuws/koffiepauze/2016/03/vluchteling-woont-al-een-jaar-op-vliegveld',
+        'http://www.metronieuws.nl/nieuws/koffiepauze/2016/03/veteranen-met-ptsd-krijgen-puppies',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/frankrijk-verwacht-snelle-uitlevering-abdeslam',
+        'http://www.metronieuws.nl/nieuws/showbizz/2016/03/michael-jacksons-aap-krijgt-animatiefilm',
+        'http://www.metronieuws.nl/nieuws/showbizz/2016/03/is-dit-de-nieuwe-one-direction',
+        'http://www.metronieuws.nl/nieuws/koffiepauze/2016/03/starbucks-voor-de-rechter-om-gebrek-aan-koffie',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/kat-zit-al-dagen-vast-in-dakgoot',
+        'http://www.metronieuws.nl/nieuws/amsterdam/2016/03/club-capital-pasen-bij-het-foodfestival-amsterdam',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/protesten-brazilie-hoogste-rechter-doet-uitspraak',
+        'http://www.metronieuws.nl/nieuws/showbizz/2016/03/blauwe-pyjama-nodig-peter-jan-rens-veilt-zn-zooi',
+        'http://www.metronieuws.nl/nieuws/koffiepauze/2016/03/het-eerste-dat-deze-dove-vrouw-hoort-is-een-aanzoek',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/tiener-dood-per-ongeluk-vriend-met-pistool',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/prijs-treinkaartje-moet-alsnog-omlaag',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/doden-en-gewonden-bij-zelfmoordaanslag-in-istanboel',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/62000-paaltjes-vervangen-voor-nieuwe-betaalwijze-ov',
+        'http://www.metronieuws.nl/nieuws/koffiepauze/2016/03/hond-met-twee-snuiten-gered-dankzij-viral-video',
+        'http://www.metronieuws.nl/nieuws/showbizz/2016/03/youtube-sterren-stuktv-hebben-nu-1-miljoen-abonnees',
+        'http://www.metronieuws.nl/nieuws/rotterdam/2016/03/ns-regelt-feyenoordbus-als-vervangend-vervoer',
+        'http://www.metronieuws.nl/nieuws/koffiepauze/2016/03/pasgetrouwd-stel-viert-huwelijk-met-videoclip',
+        'http://www.metronieuws.nl/nieuws/extra/2016/03/wetenschap-wil-12000-jaar-oude-pup-tot-leven-wekken',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/vliegtuig-stort-neer-op-russisch-vliegveld',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/het-wordt-een-zonnig-paasweekend',
+        'http://www.metronieuws.nl/nieuws/amsterdam/2016/03/club-capital-blooker',
+        'http://www.metronieuws.nl/nieuws/extra/2016/03/porsche-rijden-kan-zo-verslavend-zijn-als-chocolade',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/oproep-voor-gestolen-tas-met-herinnering-aan-moeder',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/veroorzaken-rubberkorrels-in-kunstgras-kanker',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/bekend-politiepaard-eric-30-overleden',
+        'http://www.metronieuws.nl/nieuws/rotterdam/2016/03/gratis-compost-voor-rotterdammers-met-groene-vingers',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/nieuwe-klopjacht-op-abdeslam-in-molenbeek',
+        'http://www.metronieuws.nl/nieuws/koffiepauze/2016/03/supermarkt-geeft-wanhopige-winkeldief-een-baan',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/zaak-wilders-een-overzicht',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/derde-verdachte-gearresteerd-in-molenbeek',
+        'http://www.metronieuws.nl/nieuws/extra/2016/03/slapende-man-wordt-wakker-van-knabbelende-vos',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/nog-een-keertje-winkelen-bij-de-vd',
+        'http://www.metronieuws.nl/nieuws/koffiepauze/2016/03/hond-wacht-nog-steeds-op-overleden-baasje',
+        'http://www.metronieuws.nl/nieuws/amsterdam/2016/03/amsterdam-krijgt-iconisch-skydeck',
+        'http://www.metronieuws.nl/nieuws/rotterdam/2016/03/man-vraagt-de-weg-en-wordt-beroofd',
+        'http://www.metronieuws.nl/nieuws/amsterdam/2016/03/ho-hotels',
+        'http://www.metronieuws.nl/nieuws/showbizz/2016/03/nieuw-programma-jinek-voor-amerikaanse-verkiezingen',
+        'http://www.metronieuws.nl/nieuws/amsterdam/2016/03/achterhuis-als-escaperoom-doet-veel-stof-opwaaien',
+        'http://www.metronieuws.nl/nieuws/rotterdam/2016/03/zaterdagtip-eeterij-op-wielen',
+        'http://www.metronieuws.nl/nieuws/buitenland/2016/03/ontsnapte-leeuw-uit-park-valt-man-aan',
+        'http://www.metronieuws.nl/nieuws/rotterdam/2016/03/ook-bewoners-joliottoren-kampen-met-horrorliften',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/grote-werkzaamheden-utrecht-centraal-in-paasweekend',
+        'http://www.metronieuws.nl/nieuws/extra/2016/03/10-feitjes-over-het-grootste-cruiseschip-ter-wereld',
+        'http://www.metronieuws.nl/nieuws/binnenland/2016/03/man-start-zoektocht-naar-zijn-weggegeven-hond',
+        'http://www.metronieuws.nl/nieuws/rotterdam/2016/03/feyenoordsupporters-boos-om-kaarten-op-marktplaats',
+        ])
+
+        self.assertEquals(urls, expected)
 
     def test_metro_binnenland(self):
         """
@@ -21,7 +88,7 @@ class MetroParserTests(TestCase):
         article_path = os.path.join(TEST_DIR, article_name)
         article_file = open(article_path, 'rb')
 
-        parsed_article = MetroParser('', html=article_file.read())
+        parsed_article = MetroParser.parse_new_version('', article_file.read())
 
         expected = \
         u"Mineraalwater, sap en frisdrank zijn de afgelopen vijf jaar flink " \
@@ -75,7 +142,7 @@ class MetroParserTests(TestCase):
         u"en frisdrank staat wat betreft prijsverhoging, maar wij " \
         u"bevelen ook kraanwater aan.\"\xa0\n"
 
-        self.assertEquals(expected, parsed_article.body)
+        self.assertEquals(expected, parsed_article.get('content'))
 
     def test_metra_extra(self):
         article_name = 'www_metronieuws_nl_nieuws_extra_2016_03_wetenschappers-ontdekken-perfecte-suikervervanger'
@@ -83,7 +150,7 @@ class MetroParserTests(TestCase):
         article_path = os.path.join(TEST_DIR, article_name)
         article_file = open(article_path, 'rb')
 
-        parsed_article = MetroParser('', html=article_file.read())
+        parsed_article = MetroParser.parse_new_version('', article_file.read())
 
         expected = \
         u"Suiker is alweer tijden een onderwerp van discussie. Menig " \
@@ -111,5 +178,5 @@ class MetroParserTests(TestCase):
         u"Mocht je op ten duur dus een kopje thee met kojibiose " \
         u"drinken, waarschuw je partner dan maar alvast\u2026\xa0\n"
 
-        self.assertEquals(expected, parsed_article.body)
+        self.assertEquals(expected, parsed_article.get('content'))
 

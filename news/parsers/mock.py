@@ -1,16 +1,15 @@
 from baseparser import BaseParser
 
+from news.parsers.exceptions import NotInteresting
+
 
 class MockParser(BaseParser):
     short_name = 'mock.nl'
     full_name = 'Mock'
 
-    SUFFIX = ''
-    domains = ['www.mock.nl']
-
-    feeder_base = 'http://www.mock.nl/'
-    feeder_pat = '^http://www.mock.nl/\w+/'
-    feeder_pages = ['http://www.mock.nl/', ]
+    article_list = 'http://www.mock.nl/'
+    url_filter = '^http://www.mock.nl/\w+/'
+    url_exclude = []
 
     version_counter = {}
 
@@ -18,22 +17,30 @@ class MockParser(BaseParser):
 
     set_to_boring = False
 
-    def __init__(self, url):
-        MockParser.version_counter.setdefault(url, 0)
+    @classmethod
+    def parse_new_version(cls, url, html):
+        cls.version_counter.setdefault(url, 0)
 
-        if self.updates:
+        if cls.updates:
             MockParser.version_counter[url] += 1
 
-        current_article = MockParser.version_counter[url]
-        self.title = u'\u1d90rticle {} {}'.format(url, current_article)
-        self.date = u'\u1d81ate {}'.format(current_article)
-        self.byline = ''
-        self.body = u'Body \u1d00 {} {}'.format(url, current_article)
-        self.boring = self.set_to_boring
+        current_article = cls.version_counter[url]
+
+        title = u'\u1d90rticle {} {}'.format(url, current_article)
+        date = u'\u1d81ate {}'.format(current_article)
+        content = u'Body \u1d00 {} {}'.format(url, current_article)
+        if cls.set_to_boring:
+            raise NotInteresting()
+
+        return {
+            'title': title,
+            'date': date,
+            'content': content,
+        }
 
     @classmethod
-    def feed_urls(cls):
+    def request_urls(cls):
         return [
-            cls.feeder_base + 'mock_article1.html',
-            cls.feeder_base + 'mock_article2.html',
+            'http://www.mock.nl/mock_article1.html',
+            'http://www.mock.nl/mock_article2.html',
         ]

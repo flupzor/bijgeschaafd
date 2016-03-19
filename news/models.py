@@ -1,6 +1,6 @@
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import models
@@ -10,10 +10,6 @@ from news.parsers import get_parser
 from news.parsers.exceptions import ParserDoesNotExist
 
 
-def ancient():
-    return datetime(1901, 1, 1, tzinfo=timezone.get_current_timezone())
-
-
 class Article(models.Model):
     class Meta:
         db_table = 'Articles'
@@ -21,8 +17,8 @@ class Article(models.Model):
     url = models.CharField(max_length=255, blank=False, unique=True,
                            db_index=True)
     initial_date = models.DateTimeField(auto_now_add=True)
-    last_update = models.DateTimeField(default=ancient)
-    last_check = models.DateTimeField(default=ancient)
+    last_update = models.DateTimeField()
+    last_check = models.DateTimeField()
 
     source = models.CharField(max_length=255, blank=False, db_index=True)
 
@@ -46,13 +42,23 @@ class Article(models.Model):
     def first_version(self):
         return self.versions()[0]
 
-    def minutes_since_update(self):
-        delta = timezone.now() - max(self.last_update, self.initial_date)
-        return delta.seconds // 60 + 24*60*delta.days
+    @property
+    def needs_update(self):
+        parser = get_parser(self.source)
+        update_delay = parser.get_update_delay(self.time_since_update)
 
-    def minutes_since_check(self):
-        delta = timezone.now() - self.last_check
-        return delta.seconds // 60 + 24*60*delta.days
+        if update_delay:
+            return self.time_since_check - update_delay > timedelta()
+
+        return False
+
+    @property
+    def time_since_update(self):
+        return timezone.now() - max(self.last_update, self.initial_date)
+
+    @property
+    def time_since_check(self):
+        return timezone.now() - self.last_check
 
 
 class Version(models.Model):
@@ -93,4 +99,6 @@ class RequestLog(models.Model):
 
     url = models.CharField(max_length=255, blank=False, db_index=True)
     server_address = models.CharField(max_length=255, blank=False, db_index=True)
+
+    version = models.ForeignKey('Version', null=True)
 

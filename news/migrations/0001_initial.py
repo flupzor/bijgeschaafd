@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('url', models.CharField(unique=True, max_length=255, db_index=True)),
                 ('initial_date', models.DateTimeField(auto_now_add=True)),
-                ('last_update', models.DateTimeField(default=datetime.datetime(1901, 1, 1, 0, 0))),
-                ('last_check', models.DateTimeField(default=datetime.datetime(1901, 1, 1, 0, 0))),
+                ('last_update', models.DateTimeField()),
+                ('last_check', models.DateTimeField()),
                 ('source', models.CharField(max_length=255, db_index=True)),
             ],
             options={

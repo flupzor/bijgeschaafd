@@ -1,152 +1,175 @@
+import hashlib
+from datetime import timedelta
 import logging
 import re
 import socket
 import sys
 import time
 
-import requests
-# Begin hot patch for https://bugs.launchpad.net/bugs/788986
-# Ick.
-from BeautifulSoup import BeautifulSoup
+from pyquery import PyQuery as pq
+from django.db import transaction
 from django.utils import timezone
 
-from news.models import RequestLog
+from news.models import RequestLog, Article, Version
+from news.parsers.exceptions import NotInteresting
+from news.utils import get_diff_info, is_boring, canonicalize, http_get
+
+from urlparse import urljoin, urlsplit, urlunsplit
 
 logger = logging.getLogger(__name__)
 
 
-# Utility functions
-def grab_url(url, source):
-    response = requests.get(url, stream=True)
-    addr, port = response.raw._fp.fp._sock.getpeername()
-
-    RequestLog.objects.create(
-        date=timezone.now(),
-        source=source,
-        url=url,
-        server_address="{addr}:{port}".format(addr=addr, port=port)
-    )
-
-    return response.content
-
-
-def bs_fixed_getText(self, separator=u""):
-    bsmod = sys.modules[BeautifulSoup.__module__]
-    if not len(self.contents):
-        return u""
-    stopNode = self._lastRecursiveChild().next
-    strings = []
-    current = self.contents[0]
-    while current is not stopNode:
-        if isinstance(current, bsmod.NavigableString):
-            strings.append(current)
-        current = current.next
-    return separator.join(strings)
-sys.modules[BeautifulSoup.__module__].Tag.getText = bs_fixed_getText
-# End fix
-
-
-def strip_whitespace(text):
-    lines = text.split('\n')
-    return '\n'.join(x.strip().rstrip(u'\xa0') for x in lines).strip() + '\n'
-
-# from http://stackoverflow.com/questions/5842115/converting-a-string-which-contains-both-utf-8-encoded-bytestrings-and-codepoints
-# Translate a unicode string containing utf8
-def parse_double_utf8(txt):
-    def parse(m):
-        try:
-            return m.group(0).encode('latin1').decode('utf8')
-        except UnicodeDecodeError:
-            return m.group(0)
-    return re.sub(ur'[\xc2-\xf4][\x80-\xbf]+', parse, txt)
-
-
-def canonicalize(text):
-    return strip_whitespace(parse_double_utf8(text))
-
-
-def concat(domain, url):
-    return domain + url if url.startswith('/') else domain + '/' + url
-
-
-# End utility functions
-
-# Base Parser
-# To create a new parser, subclass and define _parse(html).
 class BaseParser(object):
     short_name = None
     full_name = None
 
-    url = None
-    domains = []  # List of domains this should parse
-
-    # These should be filled in by self._parse(html)
-    date = None
-    title = None
-    byline = None
-    body = None
-
-    real_article = True  # If set to False, ignore this article
-    SUFFIX = ''          # append suffix, like '?fullpage=yes', to urls
-
-    meta = []  # Currently unused.
-
-    # Used when finding articles to parse
-    feeder_pat = None  # Look for links matching this regular expression
-    feeder_pages = []  # on these pages
-
-    feeder_bs = BeautifulSoup  # use this version of beautifulsoup for feed
-
-    def __init__(self, url, html=None):
-        self.url = url
-        self.html = html
-        self.boring = False
-
-        if not html:
-            try:
-                self.html = grab_url(self._printableurl(), self.short_name)
-            except urllib2.HTTPError as e:
-                if e.code == 404:
-                    self.real_article = False
-                    return
-                raise
-            logger.debug('received response from %s', url)
-
-        self._parse(self.html)
-
-    def _printableurl(self):
-        return self.url + self.SUFFIX
-
-    def _parse(self, html):
-        """Should take html and populate self.(date, title, byline, body)
-
-        If the article isn't valid, set self.real_article to False and return.
-        """
-        raise NotImplementedError()
-
-    def __unicode__(self):
-        return canonicalize(u'\n'.join((self.date, self.title, self.byline,
-                                        self.body,)))
+    article_list = None
+    url_filter = None
+    url_exclude = []
 
     @classmethod
-    def feed_urls(cls):
-        all_urls = []
-        for feeder_url in cls.feeder_pages:
-            html = grab_url(feeder_url, cls.short_name)
-            soup = cls.feeder_bs(html)
+    def request_urls(cls):
+        html, _ = http_get(cls.article_list)
+        d = pq(html)
 
-            # "or ''" to make None into str
-            urls = [a.get('href') or '' for a in soup.findAll('a')]
+        urls = [a.get('href', '') for a in d.find('a')]
 
-            # If no http://, prepend domain name
-            domain = '/'.join(feeder_url.split('/')[:3])
-            urls = [
-                url if '://' in url else concat(domain, url) for url in urls
-            ]
+        doc_scheme, doc_netloc, doc_path, _, _ = urlsplit(cls.article_list)
 
-            all_urls = all_urls + [url for url in urls if
-                                   re.search(cls.feeder_pat, url)]
+        absolute_urls = []
+        for url in urls:
+            scheme, netloc, path, query, _ = urlsplit(url)
 
-        def _canonicalize_url(url):
-            return url.split('?')[0].split('#')[0].strip()
-        return set(map(_canonicalize_url, all_urls))
+            # If this is a relative URL construct an absolute one.
+            if scheme == '' and netloc == '':
+                scheme, netloc, path = \
+                     doc_scheme, doc_netloc, urljoin(doc_path, path)
+
+            # We forget the fragment, to normalize the url.
+            absolute_urls.append(urlunsplit((scheme, netloc, path, query, '')))
+
+        filtered_urls = [url for url in absolute_urls if re.search(cls.url_filter, url)]
+
+        for exclude in cls.url_exclude:
+            filtered_urls = [url for url in filtered_urls if not re.search(exclude, url)]
+
+        return set(filtered_urls)
+
+    @classmethod
+    def get_update_delay(cls, time_since_update):
+        if time_since_update < timedelta(hours=3):
+            return timedelta(minutes=15)
+        elif time_since_update < timedelta(days=1):
+            return timedelta(hours=1)
+        elif time_since_update < timedelta(days=7):
+            return timedelta(hours=3)
+        elif time_since_update < timedelta(days=30):
+            return timedelta(days=3)
+        elif time_since_update < timedelta(days=360):
+            return timedelta(days=30)
+        else:
+            return None
+
+    @classmethod
+    def get_or_instantiate_articles(cls):
+        for url in cls.request_urls():
+            try:
+                article = Article.objects.get(url=url)
+
+                assert article.source == cls.short_name, "The same URL is used for two different sources"
+            except Article.DoesNotExist:
+                article = Article(
+                    url=url,
+                    source=cls.short_name
+                )
+
+            yield article
+
+    @classmethod
+    def parse_new_version(cls, url, content):
+        raise NotImplementedError()
+
+    @classmethod
+    def request_new_version(cls, article, content):
+        current_time = timezone.now()
+
+        parsed_data = cls.parse_new_version(article.url, content)
+
+        to_store = unicode(
+            canonicalize(u'\n'.join((parsed_data.get('date'), parsed_data.get('title'), '', parsed_data.get('content'),)))
+        ).encode('utf-8')
+
+
+        to_store_sha1 = hashlib.sha1(to_store).hexdigest()
+        boring = parsed_data.get('boring', False)
+
+        diff_info = None
+
+        try:
+            latest_version = article.version_set.latest()
+        except Version.DoesNotExist:
+            latest_version = None
+
+        if latest_version:
+            latest_version_content = latest_version.content.encode('utf-8')
+
+            if latest_version_content == to_store:
+                raise NotInteresting()
+
+            if article.version_set.filter(
+                    content_sha1=to_store_sha1).count() >= 2:
+                raise NotInteresting()
+
+            if is_boring(latest_version_content, to_store):
+                raise NotInteresting()
+
+            diff_info = get_diff_info(latest_version_content, to_store)
+
+        version = Version(
+            boring=boring,
+            title=parsed_data.get('title'),
+            byline='',
+            date=current_time,
+            content=to_store,
+            content_sha1=to_store_sha1,
+        )
+        version.diff_info = diff_info
+        article.last_update = current_time
+        article.last_check = current_time
+
+        return article, version
+
+    @classmethod
+    def create_new_version(cls, article):
+        current_time = timezone.now()
+
+        content, request_info = http_get(article.url)
+
+        try:
+            _new_article, _new_version = cls.request_new_version(article, content)
+        except NotInteresting:
+            if article.pk:
+                article.last_check = current_time
+                article.save()
+        else:
+            with transaction.atomic():
+                _new_article.save()
+                _new_version.article = _new_article
+                _new_version.save()
+
+
+        requestlog = RequestLog.objects.create(
+            date=timezone.now(),
+            source=article.source,
+            url=article.url,
+            server_address="{addr}:{port}".format(addr=request_info['addr'], port=request_info['port'])
+        )
+
+    @classmethod
+    def update(cls):
+        for new_article in cls.get_or_instantiate_articles():
+            cls.create_new_version(new_article)
+
+        for article in Article.objects.filter(source=cls.short_name):
+            if article.needs_update:
+                cls.create_new_version(article)
