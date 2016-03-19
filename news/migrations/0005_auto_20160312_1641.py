@@ -25,11 +25,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='article',
             name='last_check',
-            field=models.DateTimeField(default=news.models.ancient),
+            field=models.DateTimeField(),
         ),
         migrations.AlterField(
             model_name='article',
             name='last_update',
-            field=models.DateTimeField(default=news.models.ancient),
+            field=models.DateTimeField(),
         ),
     ]

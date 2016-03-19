@@ -10,7 +10,7 @@ from ..models import Article, Version
 from news.parsers.mock import MockParser
 
 
-class ParserTests(TestCase):
+class MockParserTests(TestCase):
 
     def _reset_update_time(self, *articles):
         """ Pretend we did the last check 4 hours ago.  """

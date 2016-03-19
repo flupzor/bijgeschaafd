@@ -9,17 +9,21 @@ class NOSNLParser(BaseParser):
     short_name = 'nos.nl'
     full_name = 'NOS.nl'
 
-    domains = ['www.nos.nl']
+    article_list = 'http://www.nos.nl'
+    url_filter = '^http://www.nos.nl/artikel/'
+    url_exclude = []
 
-    feeder_base = 'http://www.nos.nl'
-    feeder_pat = '^http://www.nos.nl/artikel/'
-    feeder_pages = ['http://www.nos.nl/', ]
-
-    def _parse(self, html):
+    @classmethod
+    def parse_new_version(cls, url, html):
         d = pq(html)
 
-        self.title = d.find('article h1.article__title').text()
-        self.body = html_to_text(d.find('article .article_body'))
-        self.date = d.find('time').attr('datetime')
-        self.byline = ''
+        title = d.find('article h1.article__title').text()
+        content = html_to_text(d.find('article .article_body'))
+        date = d.find('time').attr('datetime')
+
+        return {
+            'title': title,
+            'content': content,
+            'date': date,
+        }
 

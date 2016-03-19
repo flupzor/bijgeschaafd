@@ -3,19 +3,26 @@ from pyquery import PyQuery as pq
 from baseparser import BaseParser
 
 from .utils import html_to_text
+from .exceptions import NotInteresting
 
 
 class TelegraafParser(BaseParser):
     short_name = 'telegraaf.nl'
     full_name = 'Telegraaf'
 
-    domains = ['www.telegraaf.nl']
+    article_list = 'http://www.telegraaf.nl/'
+    url_filter = '^http://www.telegraaf.nl/\w+/\d+/'
+    url_exclude = [
+    "^http://www.telegraaf.nl/prive/",
+    "^http://www.telegraaf.nl/autovisie",
+    "^http://www.telegraaf.nl/reiskrant/",
+    "^http://www.telegraaf.nl/vaarkrant/",
+    "^http://www.telegraaf.nl/telesport/",
+    "^http://www.telegraaf.nl/vrouw/",
+    ]
 
-    feeder_base = 'http://www.telegraaf.nl/'
-    feeder_pat = '^http://www.telegraaf.nl/\w+/\d+/'
-    feeder_pages = ['http://www.telegraaf.nl/', ]
-
-    def _parse(self, html):
+    @classmethod
+    def parse_new_version(cls, url, html):
         d = pq(html)
 
         def exclude_cb(element, parent, level):
@@ -60,16 +67,14 @@ class TelegraafParser(BaseParser):
 
             return False
 
-        self.title = d.find('.tg-article-page h1').text()
-        self.body = html_to_text(d.find('.tg-article-page'), exclude_fn=exclude_cb)
-        self.date = d.find('.artDatePostings .datum').text()
-        self.byline = ''
+        title = d.find('.tg-article-page h1').text()
+        content = html_to_text(d.find('.tg-article-page'), exclude_fn=exclude_cb)
+        date = d.find('.artDatePostings .datum').text()
+        boring = False
 
-        if "http://www.telegraaf.nl/prive/" in self.url:
-            self.boring = True
 
-        if "http://www.telegraaf.nl/autovisie" in self.url:
-            self.boring = True
-
-        if "http://www.telegraaf.nl/reiskrant/" in self.url:
-            self.boring = True
+        return {
+            'title': title,
+            'content': content,
+            'date': date,
+        }

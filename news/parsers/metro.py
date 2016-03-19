@@ -8,18 +8,17 @@ from .utils import html_to_text
 class MetroParser(BaseParser):
     short_name = 'metronieuws.nl'
     full_name = 'Metro'
-    domains = ['www.metronieuws.nl/']
 
-    feeder_base = 'http://www.metronieuws.nl/'
-    feeder_pat = '^http://www.metronieuws.nl/\w+/\w+/\d+/\d+/\w+'
-    feeder_pages = ['http://www.metronieuws.nl/', ]
+    article_list = 'http://www.metronieuws.nl/'
+    url_filter = '^http://www.metronieuws.nl/\w+/\w+/\d+/\d+/\w+'
+    url_exclude = [
+        '^http://www.metronieuws.nl/xl/',
+        '^http://www.metronieuws.nl/lifestyle/',
+    ]
 
-    def _parse(self, html):
+    @classmethod
+    def parse_new_version(cls, url, html):
         d = pq(html)
-
-        self.title = d.find("#content .row").eq(0).find('h1').text()
-
-        rows = d.find("#content .row")
 
         def exclude_cb(element, parent, level):
             css_class = element.get('class', None)
@@ -32,7 +31,14 @@ class MetroParser(BaseParser):
 
             return False
 
-        self.body = html_to_text(rows.eq(1).find('.field'), exclude_fn=exclude_cb)
+        rows = d.find("#content .row")
 
-        self.date = d.find('span[property="dc:date dc:created"]').text()
-        self.byline = ''
+        title = d.find("#content .row").eq(0).find('h1').text()
+        content = html_to_text(rows.eq(1).find('.field'), exclude_fn=exclude_cb)
+        date = d.find('span[property="dc:date dc:created"]').text()
+
+        return {
+            'title': title,
+            'content': content,
+            'date': date,
+        }
