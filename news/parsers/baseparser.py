@@ -96,7 +96,7 @@ class BaseParser(object):
         parsed_data = cls.parse_new_version(article.url, content)
 
         to_store = unicode(
-            canonicalize(u'\n'.join((parsed_data.get('date'), parsed_data.get('title'), '', parsed_data.get('content'),)))
+            canonicalize(u'\n'.join((parsed_data.get('date', ''), parsed_data.get('title', ''), '', parsed_data.get('content', ''),)))
         ).encode('utf-8')
 
 
