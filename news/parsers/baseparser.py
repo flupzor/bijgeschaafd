@@ -9,6 +9,7 @@ import time
 from pyquery import PyQuery as pq
 from django.db import transaction
 from django.utils import timezone
+from raven.contrib.django.raven_compat.models import client
 
 from news.models import RequestLog, Article, Version
 from news.parsers.exceptions import NotInteresting
@@ -140,7 +141,7 @@ class BaseParser(object):
         return article, version
 
     @classmethod
-    def create_new_version(cls, article):
+    def _create_new_version(cls, article):
         current_time = timezone.now()
 
         content, request_info = http_get(article.url)
@@ -164,6 +165,13 @@ class BaseParser(object):
             url=article.url,
             server_address="{addr}:{port}".format(addr=request_info['addr'], port=request_info['port'])
         )
+
+    @classmethod
+    def create_new_version(cls, article):
+        try:
+            cls._create_new_version(article)
+        except Exception:
+            client.captureException()
 
     @classmethod
     def update(cls):
