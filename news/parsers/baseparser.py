@@ -171,7 +171,9 @@ class BaseParser(object):
         try:
             cls._create_new_version(article)
         except Exception:
-            client.captureException()
+            client.captureException(extra={
+                'article_url': article.url,
+            })
 
     @classmethod
     def update(cls):
