@@ -152,17 +152,19 @@ class BaseParser(object):
             if article.pk:
                 article.last_check = current_time
                 article.save()
+
+            _new_article, _new_version = None, None
         else:
             with transaction.atomic():
                 _new_article.save()
                 _new_version.article = _new_article
                 _new_version.save()
 
-
         requestlog = RequestLog.objects.create(
             date=timezone.now(),
             source=article.source,
             url=article.url,
+            version=_new_version,
             server_address="{addr}:{port}".format(addr=request_info['addr'], port=request_info['port'])
         )
 
