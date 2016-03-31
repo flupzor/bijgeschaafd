@@ -20,6 +20,7 @@ class NuNLParser(BaseParser):
         '^http://www.nu.nl/wielrennen/',
         '^http://www.nu.nl/autoweek/',
         '^http://www.nu.nl/film/',
+        '^http://www.nu.nl/lifestyle/',
     ]
 
     @classmethod
