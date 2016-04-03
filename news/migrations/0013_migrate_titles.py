@@ -15,7 +15,7 @@ def migrate_titles(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news', '0009_migrate_dates'),
+        ('news', '0012_migrate_dates_metro'),
     ]
 
     operations = [

@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from django.db import models, migrations
-
 from news.dateparsers import (
     NosNLDateParser, NuNLDateParser, TelegraafDateParser, MetroDateParser)
 
 
-def migrate_dates(apps, schema_editor):
+def migrate_dates(apps, schema_editor, source):
     date_parser_mapping = {
         'nos.nl': NosNLDateParser,
         'nu.nl': NuNLDateParser,
@@ -17,7 +12,7 @@ def migrate_dates(apps, schema_editor):
 
     Version = apps.get_model("news", "Version")
 
-    versions = Version.objects.all()
+    versions = Version.objects.filter(article__source=source)
     total = versions.count()
     failures = 0
     for version in versions:
@@ -36,19 +31,8 @@ def migrate_dates(apps, schema_editor):
                 parser.process(firstline)
             # Remove the date in the content.
             version.content = version.content[newline_position+1:]
-            version.save()
+            version.save(update_fields=['modified_date_in_article', 'content'])
         except ValueError:
             failures += 1
 
-    print "Failures {}/{}".format(failures, total)
-
-
-class Migration(migrations.Migration):
-
-    dependencies = [
-        ('news', '0008_version_modified_date_in_article'),
-    ]
-
-    operations = [
-        migrations.RunPython(migrate_dates),
-    ]
+#    print "Failures {}/{}".format(failures, total)
