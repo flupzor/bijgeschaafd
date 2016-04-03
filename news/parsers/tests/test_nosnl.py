@@ -1,6 +1,7 @@
 from django.test import TestCase, override_settings
-
+from datetime import datetime
 import os
+import pytz
 from django.utils._os import upath
 
 from ..nosnl import NOSNLParser
@@ -12,6 +13,10 @@ TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 
 class NOSNLParserTests(TestCase):
     maxDiff = None
+
+    def setUp(self):
+        self.timezone = pytz.timezone("Europe/Amsterdam")
+        super(NOSNLParserTests, self).setUp()
 
     @responses.activate
     @override_settings(NEWS_SOURCES=['news.parsers.nosnl.NOSNLParser', ])
@@ -133,3 +138,8 @@ class NOSNLParserTests(TestCase):
             u"en een Brit.\n"
 
         self.assertEquals(parsed_article.get('content'), expected)
+
+        expected_date = self.timezone.localize(datetime(2015, 11, 14, 19, 28, 38))
+
+        self.assertEquals(parsed_article.get('date'), expected_date)
+

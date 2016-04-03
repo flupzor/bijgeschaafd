@@ -8,6 +8,7 @@ from django.test import TestCase, override_settings
 
 from ..models import Article, Version
 from news.parsers.mock import MockParser
+import responses
 
 
 class MockParserTests(TestCase):
@@ -28,6 +29,7 @@ class MockParserTests(TestCase):
 
         self.assertEquals(Version.objects.count(), 2)
 
+        # TODO: CHECK DATES
         v1 = Version.objects.get(
             boring=False,
             byline='',
@@ -46,16 +48,10 @@ class MockParserTests(TestCase):
 
         self.assertEquals(
             v1.text(),
-            u"\u1d81ate 1\n"
-            u"\u1d90rticle http://www.mock.nl/mock_article1.html 1\n"
-            u"\n"
             u"Body \u1d00 http://www.mock.nl/mock_article1.html 1\n"
         )
         self.assertEquals(
             v2.text(),
-            u"\u1d81ate 1\n"
-            u"\u1d90rticle http://www.mock.nl/mock_article2.html 1\n"
-            u"\n"
             u"Body \u1d00 http://www.mock.nl/mock_article2.html 1\n"
         )
 
@@ -70,14 +66,14 @@ class MockParserTests(TestCase):
         self.assertEquals(a1.version_set.exclude(pk=v1.pk).filter(
             boring=False,
             byline='',
-            diff_json=u'{"chars_removed": 3, "chars_added": 3}',
+            diff_json=u'{"chars_removed": 1, "chars_added": 1}',
             title=u'\u1d90rticle http://www.mock.nl/mock_article1.html 2'
         ).count(), 1)
 
         self.assertEquals(a2.version_set.exclude(pk=v2.pk).filter(
             boring=False,
             byline='',
-            diff_json=u'{"chars_removed": 3, "chars_added": 3}',
+            diff_json=u'{"chars_removed": 1, "chars_added": 1}',
             title=u'\u1d90rticle http://www.mock.nl/mock_article2.html 2'
         ).count(), 1)
 

@@ -1,3 +1,4 @@
+from django.utils import timezone
 from baseparser import BaseParser
 
 from news.parsers.exceptions import NotInteresting
@@ -18,6 +19,10 @@ class MockParser(BaseParser):
     set_to_boring = False
 
     @classmethod
+    def _http_get(cls, url):
+        return '', {'addr': None, 'port': None}
+
+    @classmethod
     def parse_new_version(cls, url, html):
         cls.version_counter.setdefault(url, 0)
 
@@ -27,7 +32,7 @@ class MockParser(BaseParser):
         current_article = cls.version_counter[url]
 
         title = u'\u1d90rticle {} {}'.format(url, current_article)
-        date = u'\u1d81ate {}'.format(current_article)
+        date = timezone.now().date()
         content = u'Body \u1d00 {} {}'.format(url, current_article)
         if cls.set_to_boring:
             raise NotInteresting()

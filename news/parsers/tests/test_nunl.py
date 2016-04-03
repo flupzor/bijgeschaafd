@@ -1,6 +1,8 @@
 from django.test import TestCase, override_settings
 
+from datetime import datetime
 import os
+import pytz
 from django.utils._os import upath
 
 from ..nunl import NuNLParser
@@ -14,6 +16,10 @@ TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 
 class NuNLParserTests(TestCase):
     maxDiff = None
+
+    def setUp(self):
+        self.timezone = pytz.timezone("Europe/Amsterdam")
+        super(NuNLParserTests, self).setUp()
 
     @responses.activate
     @override_settings(NEWS_SOURCES=['news.parsers.nunl.NuNLParser', ])
@@ -177,3 +183,7 @@ class NuNLParserTests(TestCase):
             u"voor de Hoge Raad zullen moeten verschijnen.\n"
 
         self.assertEquals(parsed_article.get('content'), expected)
+
+        expected_date = self.timezone.localize(datetime(2015, 11, 12, 12, 7))
+
+        self.assertEquals(parsed_article.get('date'), expected_date)

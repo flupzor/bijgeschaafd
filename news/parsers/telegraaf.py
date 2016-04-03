@@ -69,9 +69,7 @@ class TelegraafParser(BaseParser):
 
         title = d.find('.tg-article-page h1').text()
         content = html_to_text(d.find('.tg-article-page'), exclude_fn=exclude_cb)
-        date = d.find('.artDatePostings .datum').text()
-        boring = False
-
+        date = None
 
         return {
             'title': title,

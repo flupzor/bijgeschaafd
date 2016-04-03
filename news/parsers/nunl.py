@@ -5,6 +5,7 @@ from baseparser import BaseParser
 
 from .utils import html_to_text
 from .exceptions import NotInteresting
+from ..dateparsers import NuNLDateParser
 
 
 class NuNLParser(BaseParser):
@@ -22,6 +23,8 @@ class NuNLParser(BaseParser):
         '^http://www.nu.nl/film/',
         '^http://www.nu.nl/lifestyle/',
     ]
+
+    dateparser = NuNLDateParser
 
     @classmethod
     def parse_new_version(cls, url, html):
@@ -49,7 +52,9 @@ class NuNLParser(BaseParser):
         body = html_to_text(d.find("div[data-sac-marker='block.article.body']"), exclude_fn=exclude_cb)
 
         content = u'{excerpt}{body}'.format(excerpt=excerpt, body=body)
-        date = d.find("div[data-sac-marker='block.article.header'] div.dates span.published span.small").text()
+        date = cls.dateparser.process(
+            d.find("div[data-sac-marker='block.article.header'] div.dates span.published span.small").text()
+        )
 
         if len(d.find('div[data-sac-marker="block.liveblog"]')) > 0:
             raise NotInteresting()

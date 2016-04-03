@@ -1,6 +1,8 @@
 from django.test import TestCase, override_settings
 
+from datetime import datetime
 import os
+import pytz
 from django.utils._os import upath
 
 from ..metro import MetroParser
@@ -12,6 +14,10 @@ TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 
 class MetroParserTests(TestCase):
     maxDiff = None
+
+    def setUp(self):
+        self.timezone = pytz.timezone("Europe/Amsterdam")
+        super(MetroParserTests, self).setUp()
 
     @responses.activate
     @override_settings(NEWS_SOURCES=['news.parsers.metro.MetroParser', ])
@@ -144,6 +150,10 @@ class MetroParserTests(TestCase):
 
         self.assertEquals(expected, parsed_article.get('content'))
 
+        expected_date = self.timezone.localize(datetime(2016, 3, 10, 16, 42))
+
+        self.assertEquals(parsed_article.get('date'), expected_date)
+
     def test_metra_extra(self):
         article_name = 'www_metronieuws_nl_nieuws_extra_2016_03_wetenschappers-ontdekken-perfecte-suikervervanger'
 
@@ -179,4 +189,8 @@ class MetroParserTests(TestCase):
         u"drinken, waarschuw je partner dan maar alvast\u2026\xa0\n"
 
         self.assertEquals(expected, parsed_article.get('content'))
+
+        expected_date = self.timezone.localize(datetime(2016, 3, 11, 22, 43))
+
+        self.assertEquals(parsed_article.get('date'), expected_date)
 

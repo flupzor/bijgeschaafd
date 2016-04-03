@@ -169,3 +169,5 @@ class TelegraafParserTests(TestCase):
             u'Airport neemt voorlopig geen extra maatregelen.\n'
 
         self.assertEquals(parsed_article.get('content'), expected)
+
+        self.assertEquals(parsed_article.get('date'), None)

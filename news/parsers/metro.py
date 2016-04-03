@@ -3,6 +3,7 @@ from pyquery import PyQuery as pq
 from baseparser import BaseParser
 
 from .utils import html_to_text
+from ..dateparsers import MetroDateParser
 
 
 class MetroParser(BaseParser):
@@ -15,6 +16,7 @@ class MetroParser(BaseParser):
         '^http://www.metronieuws.nl/xl/',
         '^http://www.metronieuws.nl/lifestyle/',
     ]
+    dateparser = MetroDateParser
 
     @classmethod
     def parse_new_version(cls, url, html):
@@ -35,7 +37,8 @@ class MetroParser(BaseParser):
 
         title = d.find("#content .row").eq(0).find('h1').text()
         content = html_to_text(rows.eq(1).find('.field'), exclude_fn=exclude_cb)
-        date = d.find('span[property="dc:date dc:created"]').text()
+        date = cls.dateparser.process(
+            d.find('span[property="dc:date dc:created"]').text())
 
         return {
             'title': title,

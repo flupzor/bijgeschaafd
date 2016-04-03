@@ -28,9 +28,8 @@ def is_boring(old, new):
     newu = canonicalize(new.decode('utf8'))
 
     def extra_canonical(s):
-        """Ignore changes in whitespace or the date line"""
-        nondate_portion = s.split('\n', 1)[1]
-        return nondate_portion.split()
+        """Ignore changes in whitespace"""
+        return s.split()
 
     if extra_canonical(oldu) == extra_canonical(newu):
         return True

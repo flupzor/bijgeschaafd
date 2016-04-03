@@ -69,6 +69,8 @@ class Version(models.Model):
     boring = models.BooleanField(blank=False, default=False)
     diff_json = models.CharField(max_length=255, null=True)
 
+    modified_date_in_article = models.DateTimeField(blank=True, null=True, default=None)
+
     content_sha1 = models.CharField(max_length=40, null=True, db_index=True)
     content = models.TextField(default="")
 

@@ -30,7 +30,7 @@ class BaseParser(object):
 
     @classmethod
     def request_urls(cls):
-        html, _ = http_get(cls.article_list)
+        html, _ = cls._http_get(cls.article_list)
         d = pq(html)
 
         urls = [a.get('href', '') for a in d.find('a')]
@@ -97,10 +97,7 @@ class BaseParser(object):
         parsed_data = cls.parse_new_version(article.url, content)
 
         to_store = unicode(
-            canonicalize(u'\n'.join((parsed_data.get('date', ''), parsed_data.get('title', ''), '', parsed_data.get('content', ''),)))
-        ).encode('utf-8')
-
-
+            canonicalize(parsed_data.get('content', ''))).encode('utf-8')
         to_store_sha1 = hashlib.sha1(to_store).hexdigest()
         boring = parsed_data.get('boring', False)
 
@@ -129,6 +126,7 @@ class BaseParser(object):
         version = Version(
             boring=boring,
             title=parsed_data.get('title'),
+            modified_date_in_article=parsed_data.get('date'),
             byline='',
             date=current_time,
             content=to_store,
@@ -141,10 +139,17 @@ class BaseParser(object):
         return article, version
 
     @classmethod
+    def _http_get(cls, url):
+        """
+        Convenience method for mocking.
+        """
+        return http_get(url)
+
+    @classmethod
     def _create_new_version(cls, article):
         current_time = timezone.now()
 
-        content, request_info = http_get(article.url)
+        content, request_info = cls._http_get(article.url)
 
         try:
             _new_article, _new_version = cls.request_new_version(article, content)
@@ -172,7 +177,7 @@ class BaseParser(object):
     def create_new_version(cls, article):
         try:
             cls._create_new_version(article)
-        except Exception:
+        except Exception as e:
             client.captureException(extra={
                 'article_url': article.url,
             })
