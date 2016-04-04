@@ -171,3 +171,34 @@ class TelegraafParserTests(TestCase):
         self.assertEquals(parsed_article.get('content'), expected)
 
         self.assertEquals(parsed_article.get('date'), None)
+
+    def test_telegraaf_twitter(self):
+        """
+        http://www.telegraaf.nl/binnenland/25300150/___Geen_id_twee_MH17-slachtoffers___.html
+        """
+
+        article_name = 'www_telegraaf_nl_binnenland_25300150____' \
+                       'Geen_id_twee_MH17-slachtoffers___.html'
+        article_path = os.path.join(TEST_DIR, article_name)
+        article_file = open(article_path, 'rb')
+
+        parsed_article = \
+            TelegraafParser.parse_new_version('', article_file.read())
+
+        expected = \
+            u'DEN HAAG -  Identificatie van twee slachtoffers van de ' \
+            u'MH17-ramp is vrijwel uitgesloten. Dat stelde premier ' \
+            u'Mark Rutte dinsdagavond in de Tweede Kamer tijdens een debat ' \
+            u'over de MH17.\n' \
+            u'Rutte noemde de kans ,,helaas heel klein\'\' dat die twee ' \
+            u'personen alsnog worden ge\xefdentificeerd. Op 21 maart 2015 ' \
+            u'was van 296 van de 298 slachtoffers de identiteit vastgesteld. ' \
+            u'Onder de doden waren bijna 200 Nederlanders.\n' \
+            u'Midden vorig jaar liet minister Ard van der Steur (Veiligheid ' \
+            u'en Justitie) al weten de kans zeer klein te achten dat de ' \
+            u'laatste twee niet-ge\xefdentificeerde slachtoffers worden ' \
+            u'ge\xefdentificeerd.\n'
+
+        self.assertEquals(parsed_article.get('content'), expected)
+
+        self.assertEquals(parsed_article.get('date'), None)

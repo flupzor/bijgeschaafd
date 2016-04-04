@@ -62,7 +62,19 @@ class TelegraafParser(BaseParser):
             if css_id == 'wuzcontainer':
                 return True
 
+            if css_id == 'videoBlockMostWatched':
+                return True
+
+            if css_id == 'spotXAd':
+                return True
+
+            if css_id == 'twitter-widget-0':
+                return True
+
             if css_class == 'broodtxt':
+                return True
+
+            if css_class == 'twitter-timeline':
                 return True
 
             return False
