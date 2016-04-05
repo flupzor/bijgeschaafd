@@ -187,3 +187,141 @@ class NuNLParserTests(TestCase):
         expected_date = self.timezone.localize(datetime(2015, 11, 12, 12, 7))
 
         self.assertEquals(parsed_article.get('date'), expected_date)
+
+    def test_nu_nl_review(self):
+        """
+        www_nu_nl_reviews_4235935_review-trackmania-turbo-brengt-extreem-raceplezier-consoles.html
+        """
+
+        article_name = 'www_nu_nl_reviews_4235935_review-trackmania-turbo-' \
+                       'brengt-extreem-raceplezier-consoles.html'
+
+        article_path = os.path.join(TEST_DIR, article_name)
+        article_file = open(article_path, 'rb')
+
+        parsed_article = NuNLParser.parse_new_version('', article_file.read())
+
+        expected = \
+            u'Supersnel, supercompleet en supercool - superlatieven ' \
+            u'schieten tekort om Trackmania Turbo te beschrijven. Het spel ' \
+            u'is makkelijk op te pikken maar blijft uitdagingen bieden. De ' \
+            u'vele multiplayermogelijkheden zorgen ervoor dat de game lang ' \
+            u'leuk blijft. \n' \
+            u'Trackmania Turbo bevindt zich op het snijpunt tussen ' \
+            u'bikkelharde competitie en puur plezier.\xa0Pc-gamers die de ' \
+            u'eerdere versies van Trackmania hebben gespeeld wisten dat ' \
+            u'allang, maar met dit consoledebuut van Trackmania maken ' \
+            u'ook PlayStation 4- en Xbox One-bezitters kennis met de ' \
+            u'bijzondere snelle gamereeks.\n' \
+            u'Simpel gezegd draait Trackmania om weinig anders dan zo ' \
+            u'snel mogelijke tijden noteren. In de praktijk dien je ' \
+            u'daarvoor extreme hindernissen op de circuits te bedwingen: ' \
+            u'reuzensprongen, loopings en halfpipes, maar ook onverharde ' \
+            u'paden, plotselinge tempowisselingen en eindeloos ' \
+            u'doordraaiende bochtencombinaties.\xa0\n' \
+            u'Je kunt het zo gek niet bedenken of je komt het tegen in de ' \
+            u'tweehonderd verschillende parcoursen (veelal van A naar B, ' \
+            u'maar ook circuits die rondlopen) die worden meegeleverd.\n' \
+            u'De game bevat vier kleurrijke thema\'s: de geasfalteerde ' \
+            u'woestenij van Canyon Grand Drift, de modderpaden van Valley ' \
+            u'Down & Dirty, het exotische Rollercoaster Lagoon en het ' \
+            u'sensationele International Stadium.\xa0In elke omgeving ' \
+            u'gebruik je een specifieke auto, die je slechts beperkt ' \
+            u'naar eigen smaak kunt aanpassen met verschillende kleurtjes ' \
+            u'en logo\'s.\n' \
+            u'Stuurmanskunst\n' \
+            u'Je input is in de basis beperkt tot gas geven, remmen en ' \
+            u'een gevoelig stuur. Belangrijker nog is je racelijn over ' \
+            u'elk parcours: neem je meer snelheid mee over een schans, ' \
+            u'of rem je eerst even af om beter uit te komen voor de ' \
+            u'daaropvolgende bocht? Ook kun je vloeiend door bochten ' \
+            u'driften.\xa0\n' \
+            u'Uiteindelijk komt het allemaal aan op je eigen vaardigheden: ' \
+            u'geen powerups, maar pure stuurmanskunst \u2013 al kun je met ' \
+            u'genoeg vindingrijkheid ook mooie stukken afsnijden.\n' \
+            u'Lukt het een keer niet, dan kun je met een druk op de knop ' \
+            u'zonder vertraging opnieuw starten. Dat houdt het tempo erin ' \
+            u'wanneer je om medailles strijdt in de hoofdmodus, of als ' \
+            u'je vrienden probeert te verslaan nadat ze je een uitdaging ' \
+            u'hebben gestuurd.\n' \
+            u'Multiplayer\n' \
+            u'Trackmania staat niet voor niets al jaren hoog ' \
+            u'aangeschreven binnen de eSports-wereld. De ontwikkelaars ' \
+            u'hebben een online multiplayerstand gebouwd waarin maar ' \
+            u'liefst honderd spelers het tegelijkertijd tegen elkaar ' \
+            u'kunnen opnemen.\n' \
+            u'In de praktijk betekent dat dat je maximaal 99 anderen ' \
+            u'als spoken over de baan ziet gaan, om te voorkomen dat je ' \
+            u'elkaar in de weg zit op jacht naar een perfecte run.\xa0\n' \
+            u'Dat klinkt misschien minder spannend, maar in de praktijk ' \
+            u'werkt het erg motiverend om jezelf tijdens een potje direct ' \
+            u'en constant te kunnen meten met een groot aantal ' \
+            u'tegenstanders. Bovendien wordt je positie op de ' \
+            u'internationale, nationale en zelfs regionale ranglijst ' \
+            u'constant bijgehouden, waardoor de snelheidsstrijd lang ' \
+            u'kan aanhouden.\n' \
+            u'Double Driver\n' \
+            u'Ook op lokaal niveau is er genoeg competitie mogelijk. ' \
+            u'Maximaal zestien spelers kunnen het \xe9\xe9n voor ' \
+            u'\xe9\xe9n tegen elkaar opnemen, of je kunt met maximaal ' \
+            u'vier man op een gedeeld scherm racen -\xa0een functie\xa0die ' \
+            u'we binnen dit genre nog maar weinig zien.\xa0\n' \
+            u'Nog origineler is de Double Driver-stand, waarin je met twee ' \
+            u'spelers \xe9\xe9n auto bestuurt. De auto luistert in deze ' \
+            u'stand naar de besturing van beide chauffeurs en voert het ' \
+            u'\u2018gemiddelde\u2019 uit.\n' \
+            u'Om de gekkigheid compleet te maken, is er een veelvoud aan ' \
+            u'speciale standen te kiezen door \'geheime\' toetsencombinaties ' \
+            u'in te voeren. Zo kun je plots in een Mario Kart-achtige race ' \
+            u'm\xe9t power-ups terechtkomen of alle spelers verplichten ' \
+            u'binnen het scherm van de snelste te blijven.\n' \
+            u'Bouwen\n' \
+            u'Er is ook een uitgebreide modus om je eigen circuits op te ' \
+            u'bouwen. De mogelijkheden zijn dusdanig uitgebreid dat we maar ' \
+            u'wat blij zijn dat de game je ze op verschillende niveaus laat ' \
+            u'benutten: instappers kunnen met plezier aan de slag en een ' \
+            u'baantje in elkaar knutselen, terwijl diehards uit hun dak ' \
+            u'kunnen met de meest knotsgekke creaties.\xa0\n' \
+            u'Ook de functie die willekeurig een circuit genereert werkt ' \
+            u'goed. Je kunt alle banen online delen en via een website ' \
+            u'toevoegen aan je favorietenlijst, waarna ze gemakkelijk te ' \
+            u'selecteren zijn voor een potje.\n' \
+            u'Uiterlijk\n' \
+            u'Bij de combinatie van al die verschillende ' \
+            u'gameplaymogelijkheden past de kleurrijke, frisse en coole ' \
+            u'audiovisuele stijl, die de arcade-insteek van Trackmania ' \
+            u'Turbo onderstreept.\n' \
+            u'Blauwe luchten, grote neonreclameborden, zeppelins en ' \
+            u'retro-lettertypes vormen -\xa0in samenwerking met het ' \
+            u'rijgedrag -\xa0een dikke knipoog richting de hoogtijdagen ' \
+            u'van OutRun, Daytona USA en Ridge Racer.\xa0\n' \
+            u'De pompende electromuziek is een perfecte match, al is ' \
+            u'het wat jammer dat er telkens een nieuw nummer wordt ' \
+            u'ingestart wanneer je een nieuwe run begint. Voor de ' \
+            u'techniek vooral respect: de framerate van de ' \
+            u'PlayStation 4-versie (met een resolutie van 1080p) is ' \
+            u'nagenoeg rotsvast, de Xbox One-versie (in 900p) kent iets ' \
+            u'meer (kleine) haperingen.\n' \
+            u'Conclusie\n' \
+            u'De kwaliteiten van Trackmania waren racefans op zich ' \
+            u'al bekend. Maar het is juist de uitvoering in de vorm ' \
+            u'van Trackmania Turbo, nota bene als debuut op de ' \
+            u'spelcomputers van Sony en Microsoft, waar we heel erg ' \
+            u'blij van kunnen worden.\n' \
+            u'Dit is niet alleen een razendsnelle, uitdagende en ' \
+            u'zeer complete arcaderacer, maar ook een flitsend en ' \
+            u'levendig eerbetoon aan de kunst van zo hard mogelijk gaan.\n' \
+            u'Razendsnelle gameplay\n' \
+            u'Zowel toegankelijk als uitdagend\n' \
+            u'Veel multiplayermodi\n' \
+            u'Uitgebreide circuitbouwer\n' \
+            u'Kleine audiovisuele problemen\n' \
+            u'BEOORDELING\n' \
+            u'Trackmania Turbo is vanaf donderdag beschikbaar voor ' \
+            u'PlayStation 4, Xbox One en pc. Voor deze review zijn ' \
+            u'enkel de consoleversies gespeeld.\n'
+
+        self.assertEquals(parsed_article.get('content'), expected)
+
+        expected_date = self.timezone.localize(datetime(2016, 3, 24, 12, 15))
+        self.assertEquals(parsed_article.get('date'), expected_date)
