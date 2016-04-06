@@ -325,3 +325,38 @@ class NuNLParserTests(TestCase):
 
         expected_date = self.timezone.localize(datetime(2016, 3, 24, 12, 15))
         self.assertEquals(parsed_article.get('date'), expected_date)
+
+    def test_nu_nl_algemeen(self):
+        """
+        www_nu_nl_algemeen_4225459_automobilisten-krijgen-last-van-gladheid-en-mist.html
+        """
+
+        article_name = 'www_nu_nl_algemeen_4225459_automobilisten-krijgen-' \
+                       'last-van-gladheid-en-mist.html'
+        article_path = os.path.join(TEST_DIR, article_name)
+        article_file = open(article_path, 'rb')
+
+        parsed_article = NuNLParser.parse_new_version('', article_file.read())
+
+        expected = \
+            u'Automobilisten krijgen zaterdagavond en -nacht weer te maken met ' \
+            u'gladheid \n' \
+            u'Tijdens opklaringen kunnen natte wegen bevriezen. Vooral in ' \
+            u'het midden, oosten en noorden van het land kan mist ontstaan. ' \
+            u'Lokaal is er kans op dichte mist met minder dan 200 ' \
+            u'meter zicht.\n' \
+            u'Later in de nacht raakt het in het westen en zuiden van ' \
+            u'Nederland bewolkt en volgt er regen of iets verder ' \
+            u'landinwaarts natte sneeuw. "Ook in de rest van het land ' \
+            u'is richting de ochtend een beetje regen of een vlokje ' \
+            u'(natte) sneeuw niet uitgesloten. In combinatie met ' \
+            u'wegdektemperaturen onder nul kan het dan verraderlijk ' \
+            u'glad worden", aldus Weeronline.\n' \
+            u'Zondag overdag breiden bewolking en neerslag zich verder ' \
+            u'uit over het hele land. Vooral in de middag wordt er ' \
+            u'regen verwacht, met in het binnenland ook natte sneeuw.\n'
+
+        self.assertEquals(parsed_article.get('content'), expected)
+
+        expected_date = self.timezone.localize(datetime(2016, 3, 5, 17, 4))
+        self.assertEquals(parsed_article.get('date'), expected_date)

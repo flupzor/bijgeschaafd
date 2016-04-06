@@ -45,6 +45,9 @@ class NuNLParser(BaseParser):
                  element.get('data-sac-marker', None) == 'block.video':
                 return True
             elif element.tag == 'div' and \
+                 element.get('data-sac-marker', None) == 'block.weather.forecast':
+                return True
+            elif element.tag == 'div' and \
                  element.get('class', None) == 'copyright':
                 return True
 

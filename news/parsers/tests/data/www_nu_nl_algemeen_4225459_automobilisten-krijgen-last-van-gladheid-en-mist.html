@@ -1,0 +1,3969 @@
+
+
+<!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]><!--> <html class="no-js "> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UgIPVVRWGwIFUVZQBwcO"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{s.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(14),s={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,-1!==o.indexOf("dev")&&(s.dev=!0),-1!==o.indexOf("nr_dev")&&(s.nrDev=!0))}catch(c){}s.nrDev&&i.on("internal-error",function(t){r(t.stack)}),s.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(s){try{i("ierr",[s,(new Date).getTime(),!0])}catch(c){}}return"function"==typeof f?f.apply(this,a(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(15),s=t("ee"),c=t("loader"),f=window.onerror,u=!1,d=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(8),t(7),"addEventListener"in window&&t(5),c.xhrWrappable&&t(9),u=!0)}s.on("fn-start",function(t,e,n){u&&(d+=1)}),s.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),s.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),s.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){t("loader").features.ins=!0},{}],4:[function(t,e,n){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),s=t(7);t("loader").features.stn=!0,t(6);var c=NREUM.o.EV;o.on("fn-start",function(t,e){var n=t[0];n instanceof c&&(this.bstStart=Date.now())}),o.on("fn-end",function(t,e){var n=t[0];n instanceof c&&i("bst",[n,e,this.bstStart,Date.now()])}),a.on("fn-start",function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),a.on("fn-end",function(t,e){i("bstTimer",[e,this.bstStart,Date.now(),this.bstType])}),s.on("fn-start",function(){this.bstStart=Date.now()}),s.on("fn-end",function(t,e){i("bstTimer",[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),o.on("pushState-start",function(t){this.time=Date.now(),this.startPath=location.pathname+location.hash}),o.on("pushState-end",function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),"addEventListener"in window.performance&&(window.performance.clearResourceTimings?window.performance.addEventListener("resourcetimingbufferfull",function(t){i("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.clearResourceTimings()},!1):window.performance.addEventListener("webkitresourcetimingbufferfull",function(t){i("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.webkitClearResourceTimings()},!1)),document.addEventListener("scroll",r,!1),document.addEventListener("keypress",r,!1),document.addEventListener("click",r,!1)}},{}],5:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty("addEventListener");)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){s.inPlace(t,["addEventListener","removeEventListener"],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),s=t(16)(a),c=t("gos");e.exports=a,o(window),"getPrototypeOf"in Object?(r(document),r(XMLHttpRequest.prototype)):XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&o(XMLHttpRequest.prototype),a.on("addEventListener-start",function(t,e){if(t[1]){var n=t[1];if("function"==typeof n){var r=c(n,"nr@wrapped",function(){return s(n,"fn-",null,n.name||"anonymous")});this.wrapped=t[1]=r}else"function"==typeof n.handleEvent&&s.inPlace(n,["handleEvent"],"fn-")}}),a.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{}],6:[function(t,e,n){var r=t("ee").get("history"),o=t(16)(r);e.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,e,n){var r=t("ee").get("raf"),o=t(16)(r);e.exports=r,o.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(16)(i);e.exports=i,a.inPlace(window,["setTimeout","setImmediate"],"setTimer-"),a.inPlace(window,["setInterval"],"setInterval-"),a.inPlace(window,["clearTimeout","clearImmediate"],"clearTimeout-"),i.on("setInterval-start",r),i.on("setTimer-start",o)},{}],9:[function(t,e,n){function r(t,e){e=e||this;var n=a.context(e);e.readyState>3&&!n.resolved&&(n.resolved=!0,a.emit("xhr-resolved",[],e));try{f.inPlace(e,p,"fn-",o)}catch(r){}}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").get("xhr"),s=t(5),c=t(16),f=c(a),u=c(s),d=NREUM.o,l=d.XHR,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout","onreadystatechange"];e.exports=a,window.XMLHttpRequest=function(t){var e=new l(t);try{a.emit("new-xhr",[e],e),e.hasOwnProperty("addEventListener")&&u.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",r,!1)}catch(n){try{a.emit("internal-error",[n])}catch(i){}}return e},i(l,XMLHttpRequest),XMLHttpRequest.prototype=l.prototype,f.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{}],10:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;l>r;r++)t.removeEventListener(d[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,u.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return i(r)}function i(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}function a(t,e){var n=f(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var s=t("loader");if(s.xhrWrappable){var c=t("handle"),f=t(11),u=t("ee"),d=["load","error","abort","timeout"],l=d.length,p=t("id"),h=t(13),m=window.XMLHttpRequest;s.features.xhr=!0,t(5),t(9),u.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,h&&(h>34||10>h)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),u.on("open-xhr-start",function(t){this.params={method:t[0]},a(this,t[1]),this.metrics={}}),u.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),u.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var a=i(r);a&&(n.txSize=a)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}};for(var s=0;l>s;s++)e.addEventListener(d[s],this.listener,!1)}),u.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),u.on("xhr-load-added",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),u.on("xhr-load-removed",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),u.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&u.emit("xhr-load-added",[t[1],t[2]],e)}),u.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&u.emit("xhr-load-removed",[t[1],t[2]],e)}),u.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),u.on("fn-end",function(t,e){this.xhrCbStart&&u.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],11:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],12:[function(t,e,n){function r(t,e){return function(){o(t,[(new Date).getTime()].concat(a(arguments)),null,e)}}var o=t("handle"),i=t(14),a=t(15);"undefined"==typeof window.newrelic&&(newrelic=NREUM);var s=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit"],c=["addPageAction"],f="api-";i(s,function(t,e){newrelic[e]=r(f+e,"api")}),i(c,function(t,e){newrelic[e]=r(f+e)}),e.exports=newrelic,newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),o("err",[t,(new Date).getTime()])}},{}],13:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],14:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],15:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],16:[function(t,e,n){function r(t){return!(t&&"function"==typeof t&&t.apply&&!t[a])}var o=t("ee"),i=t(15),a="nr@original",s=Object.prototype.hasOwnProperty,c=!1;e.exports=function(t){function e(t,e,n,o){function nrWrapper(){var r,a,s,c;try{a=this,r=i(arguments),s="function"==typeof n?n(r,a):n||{}}catch(u){d([u,"",[r,a,o],s])}f(e+"start",[r,a,o],s);try{return c=t.apply(a,r)}catch(l){throw f(e+"err",[r,a,l],s),l}finally{f(e+"end",[r,a,c],s)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,u(t,nrWrapper),nrWrapper)}function n(t,n,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<n.length;c++)s=n[c],a=t[s],r(a)||(t[s]=e(a,f?s+o:o,i,s))}function f(e,n,r){if(!c){c=!0;try{t.emit(e,n,r)}catch(o){d([o,e,n,r])}c=!1}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){d([r])}for(var o in t)s.call(t,o)&&(e[o]=t[o]);return e}function d(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),e.inPlace=n,e.flag=a,e}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,a,i):i()}function n(n,r,o){t&&t(n,r,o);for(var i=e(o),a=l(n),s=a.length,c=0;s>c;c++)a[c].apply(i,r);var u=f[v[n]];return u&&u.push([w,n,r,i]),i}function d(t,e){m[t]=l(t).concat(e)}function l(t){return m[t]||[]}function p(t){return u[t]=u[t]||o(n)}function h(t,e){c(t,function(t,n){e=e||"feature",v[n]=e,e in f||(f[e]=[])})}var m={},v={},w={on:d,emit:n,get:p,listeners:l,context:e,buffer:h};return w}function i(){return new r}var a="nr@context",s=t("gos"),c=t(14),f={},u={},d=e.exports=o();d.backlog=f},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!m++){var t=h.info=NREUM.info,e=u.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){c(l,function(e,n){t[e]||(t[e]=n)});var n="https"===d.split(":")[0]||t.sslForHttp;h.proto=n?"https://":"http://",s("mark",["onload",a()],null,"api");var r=u.createElement("script");r.src=h.proto+t.agent,e.parentNode.insertBefore(r,e)}}}function o(){"complete"===u.readyState&&i()}function i(){s("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var s=t("handle"),c=t(14),f=window,u=f.document;NREUM.o={ST:setTimeout,XHR:f.XMLHttpRequest,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},t(12);var d=(""+location).split("?")[0],l={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-892.min.js"},p=window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent),h=e.exports={offset:a(),origin:d,features:{},xhrWrappable:p};u.addEventListener?(u.addEventListener("DOMContentLoaded",i,!1),f.addEventListener("load",r,!1)):(u.attachEvent("onreadystatechange",o),f.attachEvent("onload",r)),s("mark",["firstbyte",a()],null,"api");var m=0},{}]},{},["loader",2,10,4,3]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"4702f272e2","agent":"","transactionName":"YgdVbUYHW0tWURFYXVtNcUxaBUFRWFxKUkdHEFJXQDlGUUNXS0dbUBVEF1cJR10NcxdFW1YOUm9dA0IWUFcR","applicationID":"15572069","errorBeacon":"bam.nr-data.net","applicationTime":714}</script>
+        <title>Automobilisten krijgen last van gladheid en mist | NU - Het laatste nieuws het eerst op NU.nl</title>
+        <meta name="author" content="" />
+        <meta name="apple-itunes-app" content="app-id=382059927, app-argument=nunl://article/4225459" />
+        <meta name="google-play-app" content="app-id=nl.sanomamedia.android.nu" />
+        <meta name="google-site-verification" content="tRpopkLA7bauR1j8Ndzqrf9vyTjq-MEcNXh7MiApp34" />
+        <meta name="DC.date.issued" content="2016-03-05" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
+        <meta name="format-detection" content="telephone=yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta http-equiv="cleartype" content="on" />
+        <meta name="keywords" content="Verkeer, Weer" />
+        <meta name="description" content="Automobilisten krijgen zaterdagavond en -nacht weer te maken met gladheid" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="http://media.nu.nl/m/kl2x4kvaopsj_wd1280.jpg/automobilisten-krijgen-last-van-gladheid-en-mist.jpg" /><meta name="twitter:description" content="Automobilisten krijgen zaterdagavond en -nacht weer te maken met gladheid" /><meta name="title" content="Automobilisten krijgen last van gladheid en mist" /><meta name="twitter:site" content="@NUnl" /><meta name="twitter:title" content="Automobilisten krijgen last van gladheid en mist" /><meta name="twitter:url" content="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" />
+        <meta property="og:url" content="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" /><meta property="og:image" content="http://media.nu.nl/m/kl2x4kvaopsj_wd1280.jpg/automobilisten-krijgen-last-van-gladheid-en-mist.jpg" /><meta property="og:site_name" content="NU" /><meta property="og:title" content="Automobilisten krijgen last van gladheid en mist" /><meta property="og:locale" content="nl_NL" /><meta property="og:description" content="Automobilisten krijgen zaterdagavond en -nacht weer te maken met gladheid" /><meta property="og:type" content="article" />
+            <link rel="canonical" href="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" />
+            <link rel="alternate" href="android-app://nl.sanomamedia.android.nu/http/www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" />
+        <!-- favicons -->
+        <!--[if IE]><link rel="shortcut icon" href="/static/img/atoms/favicon/favicon.ico"><![endif]-->
+        <link rel="apple-touch-icon" sizes="57x57" href="/static/img/atoms/favicon/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/static/img/atoms/favicon/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/static/img/atoms/favicon/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/static/img/atoms/favicon/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/static/img/atoms/favicon/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/static/img/atoms/favicon/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/static/img/atoms/favicon/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/static/img/atoms/favicon/apple-touch-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/img/atoms/favicon/apple-touch-icon-180x180.png" />
+        <link rel="icon" type="image/svg+xml" href="/static/img/atoms/favicon/favicon_svg.svg" sizes="any" />
+        <link rel="icon" type="image/png" href="/static/img/atoms/favicon/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/static/img/atoms/favicon/android-chrome-192x192.png" sizes="192x192" />
+        <link rel="icon" type="image/png" href="/static/img/atoms/favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="/static/img/atoms/favicon/favicon-16x16.png" sizes="16x16" />
+        <link rel="manifest" href="/static/img/atoms/favicon/manifest.json" />
+        <link rel="mask-icon" href="/static/img/atoms/favicon/safari-pinned-tab.svg" color="#010050" />
+        <link rel="shortcut icon" href="/static/img/atoms/favicon/favicon.ico" />
+        <meta name="msapplication-TileColor" content="#010050" />
+        <meta name="msapplication-TileImage" content="/static/img/atoms/favicon/mstile-144x144.png" />
+        <meta name="msapplication-config" content="/static/img/atoms/favicon/browserconfig.xml" />
+        <meta name="theme-color" content="#010050" />
+        <script type="text/javascript">
+var context_dc_params = 'CATEGORY=algemeen;KEYWORDS=verkeer, weer;',
+    context = {
+        'dc_params': context_dc_params,
+        'category' : 'algemeen',
+        'subcategory' : 'binnenland',
+        'article_id' : '4225459',
+        'article_name' : 'automobilisten-krijgen-last-van-gladheid-en-mist',
+        'article_author' : 'nu.nl/ANP'
+    };
+</script>
+        <!--[if gte IE 10]><!-->
+        <link rel="stylesheet" href="/static/CACHE/css/438237c37fdb.css" type="text/css" media="all" />
+        <!--<![endif]-->
+        <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/static/CACHE/css/4801ec877a50.css" type="text/css" />
+        <link rel="stylesheet" href="/static/CACHE/css/66ff51d38f47.css" type="text/css" />
+        <link rel="stylesheet" href="/static/CACHE/css/2fe4363e1f77.css" type="text/css" />
+        <![endif]-->
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="/static/CACHE/css/e2eec03b764e.css" type="text/css" />
+        <![endif]-->
+<!-- Block CSS -->
+        <!--[if (lt IE 9) & (!IEMobile)]>
+            <script type="text/javascript" src="/static/CACHE/js/0129764bafcf.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var app_name = 'NU';
+            var app_stage = 'production';
+            var FULL_PATH = '/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html';
+        </script>
+        <script type="text/javascript">
+            var NU = NU || {},
+                static_url = '/static/',
+                mediatool_base_url = 'media.nu.nl',
+                blocks = {},
+                is_adblocker_in_use = true;
+            NU.relatedVideoProviders = [
+                {
+                    'slug': 'plista',
+                    'url' : ''
+                },
+                {
+                    'slug': 'sprinkle',
+                    'url' : ''
+                }
+            ];
+        </script>
+        <script src="/static/js/advertising.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/CACHE/js/80a22e11d973.js"></script>
+        <script type="text/javascript" src="http://cts.snmmd.nl/service/js/nunl/algemeen-artikel/"></script><script type="text/javascript">   var wlrcmd = ""; var context = context || {};   tagging = new Tagging(context);</script>
+        <script type="text/javascript"> try {    if(true) {        tagging.render("head");    } } catch(err) {    console.log(err) } </script>
+        <script src="/static/js/organisms/ntv.advertorial.js"></script>
+        <script type="text/javascript">
+    // contain variables
+    (function() {
+        // Get the viewsize
+        var viewsize = '1-kolom-smal';
+        if (min320) {
+            viewsize = '1-kolom-medium';
+        }
+        if (min480) {
+            viewsize = '1-kolom-breed';
+        }
+        if (min600) {
+            viewsize = '2-kolom-smal';
+        }
+        if (min768) {
+            viewsize = '2-kolom-medium';
+        }
+        if (min992) {
+            viewsize = '3-kolom';
+        }
+        // Get the mobile/ipad/desktop detection
+        if (typeof(Consent) != 'undefined' && !Consent.has_optin('stats')) {
+            window['ga-disable-UA-10557259-1'] = true;
+        }
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        var _ga_options = {};
+        _ga_options['allowAnchor'] = true;
+        ga('create', 'UA-10557259-1', '.www.nu.nl', _ga_options);
+        ga('set', 'dimension1', viewsize);
+        ga('set', 'dimension2', getOrientation());
+        ga('send', 'pageview');
+    })();
+    if(window.addEventListener) {
+        window.addEventListener('orientationchange', function () {
+            NU.log('_trackEvent', 'default', 'orientationchange', 'switch_to_' + getOrientation());
+            ga('send', 'event', 'default', 'orientationchange', 'switch_to_' + getOrientation());
+        }, true);
+    }
+</script>
+        <!-- Advertorial styling -->
+        <!-- Advertorial styling -->
+    </head>
+
+    <body id="nu" class="three-columns page-article  nu" data-pagetype="article" data-section="algemeen">
+        <div class="skip dispnone"><a href="#main">Skip to main content</a></div>
+
+        <div id="wrapper">
+            
+                <!-- zone|body_top start -->
+<div class="zone" data-zone="body_top" data-vr-zone="body_top">
+    
+        <!-- block|webring start -->
+<div
+    id="block-288781"
+    data-id="block-288781"
+    data-position=""
+    data-type="webring"
+    class="block webring "
+    data-sac-marker="block.webring"
+>
+    <div class="block-wrapper horizontal">
+    <div class="block-content">
+
+        <div class="ring">
+            
+                
+                    
+    <a href="http://www.nu.nl" target="_self" class="nav-item nav-main nav-hasimage item-nu current trackevent" title="NU" rel="nofollow">
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nu">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NU" />
+            </div>
+        </div>
+        <span class="nav-item-text">NU</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/economie" target="_self" class="nav-item nav-main nav-hasimage item-nuzakelijk trackevent" title="NUzakelijk" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuzakelijk">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUzakelijk" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUzakelijk</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/sport" target="_self" class="nav-item nav-main nav-hasimage item-nusport trackevent" title="NUsport" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nusport">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUsport" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUsport</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/tech" target="_self" class="nav-item nav-main nav-hasimage item-nutech trackevent" title="NUtech" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nutech">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUtech" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUtech</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/entertainment" target="_self" class="nav-item nav-main nav-hasimage item-nuentertainment trackevent" title="NUentertainment" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuentertainment">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUentertainment" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUentertainment</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/lifestyle" target="_self" class="nav-item nav-main nav-hasimage item-nulifestyle trackevent" title="NUlifestyle" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nulifestyle">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUlifestyle" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUlifestyle</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nu.nl/geldzaken" target="_self" class="nav-item nav-main nav-hasimage item-nugeld trackevent" title="NUgeld" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nugeld">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUgeld" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUgeld</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+                
+                    
+    
+        <a href="http://www.nuwerk.nl" target="_blank" class="nav-item nav-main nav-hasimage item-nuwerk trackevent" title="NUwerk" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuwerk">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUwerk" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUwerk</span>
+        <div class="clear"></div>
+    </div>
+</a>
+                
+            
+        </div>
+
+        <div class="btn account account_login" style="display: none;">
+    <div class="accountimage"></div>
+    <div class="loginbutton">
+        Inloggen
+    </div>
+    <div class="accountname">
+        <span class="firstname"></span>
+        <span class="lastname"></span>
+    </div>
+    <ul class="dropdown">
+        <li>
+            <a class=" trackevent account_profile">Mijn account</a>
+        </li>
+        <li>
+            <a class=" trackevent account_logout">Uitloggen</a>
+        </li>
+        <li>
+            <span class=" trackevent accounttagline">Powered by Sanoma</span>
+        </li>
+    </ul>
+</div>
+
+        <div class="menutrigger">
+            <div class="molecule-webring-menutrigger">
+    <button class="btn toggle-menu menu-left" type="button"></button>
+
+    <div class="nav-branding">
+        <a href="/algemeen" class="logo trackevent" data-trackeventlabel="logo">
+    <div class="svg-icon icon-main icon-nu">
+    <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="nu logo" />
+</div>
+</a>
+        
+            <h3><a href="/algemeen">Algemeen</a></h3>
+        
+    </div>
+</div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+</div>
+<!-- block|webring end -->
+
+
+    
+</div>
+<!-- zone|body_top end -->
+            
+
+            <div id="container">
+                <div id="header">
+                    
+                        <!-- zone|header start -->
+<div class="zone" data-zone="header" data-vr-zone="header">
+    
+        <!-- block|smartbanner start -->
+<div
+    id="block-288783"
+    data-id="block-288783"
+    data-position=""
+    data-type="smartbanner"
+    class="block smartbanner "
+    data-sac-marker="block.smartbanner"
+>
+    <div class="block-wrapper">
+    <div class="block-content">
+
+    </div>
+</div>
+</div>
+<!-- block|smartbanner end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288785"
+    data-id="block-288785"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper mtop_320">
+    <div class="block-content">
+        
+            <div id="cts_f3388df3ad964acea897fb2ddf0299f0" class="cts-wrapper min320 max480 set-block"><script type="text/javascript"> try {    if(min320 && max480) {        tagging.render("mtop_320");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288787"
+    data-id="block-288787"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dtop_468">
+    <div class="block-content">
+        
+            <div id="cts_b6b6454dd10d4da993764da2314dd7fe" class="cts-wrapper min480 max768 set-block"><script type="text/javascript"> try {    if(min480 && max768) {        tagging.render("dtop_468");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288789"
+    data-id="block-288789"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dtop_728">
+    <div class="block-content">
+        
+            <div id="cts_6ebffb96978c4795b904dc5e54165d1c" class="cts-wrapper min768 max992 set-block"><script type="text/javascript"> try {    if(min768 && max992) {        tagging.render("dtop_728");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288791"
+    data-id="block-288791"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dtop_970_728">
+    <div class="block-content">
+        
+            <div id="cts_ad76c0bb38d74e97a6a3d13942279f99" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dtop_970_728");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|header end -->
+                    
+                    <div class="block toast adblocker" data-type="toast.adblocker">
+    <div class="block-content">
+        <p>Beste bezoeker,<br /><br />Wij zien dat u een adblocker gebruikt die ervoor zorgt dat u geen advertenties
+            ziet op NU.nl. Dit vinden wij jammer, want NU.nl is mede dankzij deze advertenties gratis toegankelijk.
+            Wilt u een uitzondering maken voor NU.nl, of meer lezen over hoe wij met advertenties omgaan?
+            <a href="/adblock.html" class="trackevent">Klik dan hier</a>.
+    </div>
+</div>
+                </div>
+                <div id="content_container">
+                    <div id="menu" class="column first nu-main-menu nu-main-menu-left">
+                        <div class="column-content">
+                            
+                                <!-- zone|menu start -->
+<div class="zone" data-zone="menu" data-vr-zone="menu">
+    
+        <!-- block|menu start -->
+<div
+    id="block-288795"
+    data-id="block-288795"
+    data-position=""
+    data-type="menu"
+    class="block menu compact"
+    data-sac-marker="block.menu"
+>
+    <!-- Left menu element-->
+<nav>
+	<div class="nav-branding">
+        <div class="nav-item nav-title">
+            <a href="http://www.nu.nl" class="logo trackevent" data-trackeventlabel="logo">
+    <div class="svg-icon icon-main icon-nu">
+    <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="nu logo" />
+</div>
+</a>
+            <h3>NU</h3>
+            <div class="clear"></div>
+        </div>
+        <button class="btn nav-close" type="button"></button>
+    </div>
+
+    <div class="nav-content">
+        
+            
+
+    
+
+    <a href="/" class="nav-item nav-main   first trackevent" >
+        Voorpagina
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/net-binnen/" class="nav-item nav-main    trackevent" >
+        Net binnen
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/overlijden-cruijff" class="nav-item nav-main    trackevent" >
+        Overlijden Cruijff
+    </a>
+
+    
+
+    
+
+
+
+    <div class="nav-group">
+
+    <a href="/algemeen" class="nav-item nav-main    trackevent" >
+        Algemeen
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/binnenland" class="nav-item nav-sub   first trackevent" >
+        Binnenland
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/buitenland" class="nav-item nav-sub    trackevent" >
+        Buitenland
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/politiek" class="nav-item nav-sub    trackevent" >
+        Politiek
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/terreur-in-europa" class="nav-item nav-sub   last trackevent" >
+        Terreur Europa
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    
+
+    <a href="/weekend" class="nav-item nav-main    trackevent" >
+        NUweekend
+    </a>
+
+    
+
+    
+
+
+
+    <div class="nav-group">
+
+    <a href="/economie" class="nav-item nav-main    trackevent" >
+        Economie
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/geldzaken" class="nav-item nav-sub   first trackevent" >
+        Geld
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/ondernemen" class="nav-item nav-sub    trackevent" >
+        Ondernemen
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/beurs" class="nav-item nav-sub    trackevent" >
+        Beurs
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/belastingaangifte" class="nav-item nav-sub   last trackevent" >
+        Belastingaangifte
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/sport" class="nav-item nav-main    trackevent" >
+        Sport
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/voetbal" class="nav-item nav-sub   first trackevent" >
+        Voetbal
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/champions-league" class="nav-item nav-sub    trackevent" >
+        Champions League
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/formule-1" class="nav-item nav-sub    trackevent" >
+        Formule 1
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/wielrennen" class="nav-item nav-sub    trackevent" >
+        Wielrennen
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="https://mijnteam.nu.nl/" class="nav-item nav-sub   last trackevent" >
+        MijnTeam
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/tech" class="nav-item nav-main    trackevent" >
+        Tech
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/internet" class="nav-item nav-sub   first trackevent" >
+        Internet
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/gadgets" class="nav-item nav-sub    trackevent" >
+        Gadgets
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/games" class="nav-item nav-sub    trackevent" >
+        Games
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/mobiel" class="nav-item nav-sub   last trackevent" >
+        Mobiel
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/entertainment" class="nav-item nav-main    trackevent" >
+        Entertainment
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/achterklap" class="nav-item nav-sub   first trackevent" >
+        Achterklap
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/film" class="nav-item nav-sub    trackevent" >
+        Films en series
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/muziek" class="nav-item nav-sub    trackevent" >
+        Muziek
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/cultuur-overig" class="nav-item nav-sub    trackevent" >
+        Boek en cultuur
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/media" class="nav-item nav-sub   last trackevent" >
+        Media
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/lifestyle" class="nav-item nav-main    trackevent" >
+        Lifestyle
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/gezondheid" class="nav-item nav-sub   first trackevent" >
+        Gezondheid
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/eten-en-drinken" class="nav-item nav-sub    trackevent" >
+        Eten &amp; Drinken
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/werk-en-prive" class="nav-item nav-sub    trackevent" >
+        Werk &amp; Privé
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/wonen-en-interieur" class="nav-item nav-sub    trackevent" >
+        Wonen
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/reizen" class="nav-item nav-sub   last trackevent" >
+        Reizen
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="nav-group">
+
+    <a href="/overig" class="nav-item nav-main    trackevent" >
+        Overig
+    </a>
+
+    
+        <div class="nav-children">
+            
+                
+
+    
+
+    <a href="/wetenschap" class="nav-item nav-sub   first trackevent" >
+        Wetenschap
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/opmerkelijk" class="nav-item nav-sub    trackevent" >
+        Opmerkelijk
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/dieren" class="nav-item nav-sub    trackevent" >
+        Dieren
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/auto" class="nav-item nav-sub    trackevent" >
+        Auto
+    </a>
+
+    
+
+    
+
+
+
+    
+
+    <a href="/videos" class="nav-item nav-sub   last trackevent" >
+        Video&#39;s
+    </a>
+
+    
+
+    
+
+
+
+            
+        </div>
+    
+
+    </div>
+
+
+
+    
+
+    <a href="/regio" class="nav-item nav-main   last trackevent" >
+        Regionaal
+    </a>
+
+    
+
+    
+
+
+
+        
+        <div class="clear"></div>
+    </div>
+
+    <div class="nav-separator"></div>
+
+	<div class="nav-content nav-webring">
+        
+            
+                
+    <a href="http://www.nu.nl" target="_self" class="nav-item nav-main nav-hasimage item-nu current trackevent" title="NU" rel="nofollow">
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nu">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NU" />
+            </div>
+        </div>
+        <span class="nav-item-text">NU</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/economie" target="_self" class="nav-item nav-main nav-hasimage item-nuzakelijk trackevent" title="NUzakelijk" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuzakelijk">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUzakelijk" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUzakelijk</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/sport" target="_self" class="nav-item nav-main nav-hasimage item-nusport trackevent" title="NUsport" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nusport">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUsport" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUsport</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/tech" target="_self" class="nav-item nav-main nav-hasimage item-nutech trackevent" title="NUtech" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nutech">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUtech" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUtech</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/entertainment" target="_self" class="nav-item nav-main nav-hasimage item-nuentertainment trackevent" title="NUentertainment" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuentertainment">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUentertainment" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUentertainment</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/lifestyle" target="_self" class="nav-item nav-main nav-hasimage item-nulifestyle trackevent" title="NUlifestyle" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nulifestyle">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUlifestyle" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUlifestyle</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nu.nl/geldzaken" target="_self" class="nav-item nav-main nav-hasimage item-nugeld trackevent" title="NUgeld" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nugeld">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUgeld" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUgeld</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+            
+                
+    
+        <a href="http://www.nuwerk.nl" target="_blank" class="nav-item nav-main nav-hasimage item-nuwerk trackevent" title="NUwerk" rel="nofollow">
+    
+
+    <div class="nav-wrapper">
+        <div class="nav-item-image">
+            <div class="svg-icon icon-m icon-nuwerk">
+                <img src="/static/img/atoms/images/logos/logo-sprite.svg" alt="NUwerk" />
+            </div>
+        </div>
+        <span class="nav-item-text">NUwerk</span>
+        <div class="clear"></div>
+    </div>
+</a>
+            
+        
+        <div class="clear"></div>
+    </div>
+</nav>
+</div>
+<!-- block|menu end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288797"
+    data-id="block-288797"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_160_120">
+    <div class="block-content">
+        
+            <div id="cts_6b24847fbfab47819a59d8bc00324b2d" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dmid_160_120");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|menu end -->
+                            
+                        </div>
+                    </div>
+                    <div id="main" class="column two last">
+                        <div class="column-content">
+
+                            <!-- zone|top start -->
+<div class="zone" data-zone="top" data-vr-zone="top">
+    
+        <!-- block|topbar start -->
+<div
+    id="block-288793"
+    data-id="block-288793"
+    data-position=""
+    data-type="topbar"
+    class="block topbar "
+    data-sac-marker="block.topbar"
+>
+    <div class="block-wrapper clearfix">
+    <div class="column first clearfix">
+        <div class="search-box-molecule closed">
+    <div class="search-box">
+       <form action="/zoeken">
+            <button type="submit" class="trackevent" data-trackeventlabel="submit-search"><i class="fa fa-search"></i></button>
+            <div class="search-input">
+                <input id="search-input-q" name="q" type="search" placeholder="Zoeken" />
+            </div>
+        </form>
+    </div>
+    <button class="btn search-button trackevent" data-trackeventlabel="toggle-search" type="button">
+        <i class="fa fa-search"></i>
+        <i class="fa fa-times"></i>
+    </button>
+</div>
+        <div class="block slogan">
+    <div class="block-wrapper">
+        <div class="block-content">
+            Dinsdag 29 maart 2016
+            <div class="min600 set-inline">
+                <div class="divider dotted vertical">|</div>
+                <span>Het laatste nieuws het eerst op NU.nl</span>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    <div class="column last">
+        <div class="block widgets">
+    <div class="block-wrapper">
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget weather">
+                <a href="/weer" class="btn-content trackevent" data-trackeventlabel="weather" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="dispnone">Temperatuur</span>
+                        
+                            <i class="btn-icon fc fc-weather-f"></i>
+                            <span class="btn-text">6 &deg;C</span>
+                        
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget traffic">
+                <a href="/verkeer" class="btn-content trackevent" data-trackeventlabel="traffic" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="btn-icon"></span>
+                        <span class="dispnone">Vervoer</span>
+                        <span class="btn-text">
+                            
+                                27
+                            
+                             Files
+                        </span>
+                        <span class="btn-text dispnone">
+                            0 NS
+                        </span>
+                        <span class="btn-text dispnone">
+                            &euro; 1,523
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget stocks">
+                <a href="/aandelen" class="btn-content trackevent" data-trackeventlabel="stocks" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="btn-icon"></span>
+                        <span class="dispnone">AEX</span>
+                        <span class="btn-text">437,49</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget tvguide">
+                <a href="/tvgids" class="btn-content trackevent" data-trackeventlabel="tvguide" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="btn-icon"></span>
+                        <span class="btn-text">TV gids</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-wrapper">
+            <div class="btn fixed-l widget sports">
+                <a href="/live/voetbal" class="btn-content trackevent" data-trackeventlabel="sports" data-trackeventcategory="widget" data-trackeventaction="click">
+                    <span class="btn-centered">
+                        <span class="btn-icon"></span>
+                        <span class="dispnone">Live voetbalwedstrijden</span>
+                        <span class="btn-text">0 Live</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+<!-- block|topbar end -->
+
+
+    <script type="text/javascript">
+        jQuery('#block-288793').data({"url": "/block/json/topbar?section=algemeen", "refresh": 60});
+    </script>
+
+    
+</div>
+<!-- zone|top end -->
+
+                            <div class="clear"></div>
+
+                            <div class="column first">
+                                <div class="column-content">
+                                    <div class="column-content-background">
+                                        
+
+    
+        <!-- zone|main start -->
+<div class="zone" data-zone="main" data-vr-zone="main">
+    
+        <!-- block|breadcrumb start -->
+<div
+    id="block-288799"
+    data-id="block-288799"
+    data-position=""
+    data-type="breadcrumb"
+    class="block breadcrumb "
+    data-sac-marker="block.breadcrumb"
+>
+    <div class="block-wrapper section-nu">
+    <div class="block-content">
+        <ul class="inline">
+            
+                <li class="first">
+                    
+                        <a href="/" class="trackevent" data-trackeventlabel="nu.nl">NU.nl</a>
+                    
+                </li>
+            
+                <li class=" active">
+                    
+                        <a href="/algemeen" class="trackevent" data-trackeventlabel="algemeen">Algemeen</a>
+                    
+                </li>
+            
+                <li class="last hidden">
+                    
+                        <a href="#">Automobilisten krijgen last van gladheid en mist</a>
+                    
+                </li>
+            
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+</div>
+<!-- block|breadcrumb end -->
+
+
+    
+        <!-- block|article.header start -->
+<div
+    id="block-288801"
+    data-id="block-288801"
+    data-position=""
+    data-type="article.header"
+    class="block article header "
+    data-sac-marker="block.article.header"
+>
+    <div class="block-wrapper ">
+    <div class="block-content clearfix">
+        <div class="  ">
+            <div class="articleheader-image">
+                <div class="image-wrapper">
+                    <div class="item-image">
+                        
+                            <noscript>
+                               <img src="http://media.nu.nl/m/kl2x4kvaopsj_wd640.jpg/automobilisten-krijgen-last-van-gladheid-en-mist.jpg" alt="Automobilisten krijgen last van gladheid en mist" />
+                            </noscript>
+                            <img data-src="http://media.nu.nl/m/kl2x4kvaopsj_wd640.jpg/automobilisten-krijgen-last-van-gladheid-en-mist.jpg" src="/static/img/placeholders/wd640-o.png" class="image lazy-unveil" alt="" />
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-overlay">
+                <div class="title-container">
+                    
+                    
+                    <div class="title">
+    
+        <h1 class="fluid">
+            Automobilisten krijgen last van gladheid en mist
+            <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+        </h1>
+    
+</div>
+                </div>
+                
+<div class="copyright">
+    <span>Foto: <span class="photographer">ANP</span></span>
+</div>
+
+            </div>
+
+            <div class="clear"></div>
+            <div class="footer">
+    <div class="left">
+        <div class="dates">
+            <span class="published">Gepubliceerd: <span class="large">05 maart 2016 17:04</span><span class="small">05-03-16 17:04</span></span>
+            <span class="update">Laatste update:
+                
+                    <span class="large">05 maart 2016 17:15</span><span class="small">05-03-16 17:15</span>
+                
+            </span>
+        </div>
+    </div>
+
+    <div class="socialbuttons right">
+        <div class="badges">
+            
+<ul class="social-badges">
+    <li class="nujij last">
+        <a href="http://www.nujij.nl/jij.lynkx/?i=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fkl2x4kvaopsj.jpg&x=Verkeer%2CWeer&b=Automobilisten+krijgen+zaterdagavond+en+-nacht+weer+te+maken+met+gladheid&u=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&t=Automobilisten+krijgen+last+van+gladheid+en+mist" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="nujij" data-tracksocialaction="send1">
+            <i class="fc fc-nujij fa-lg"></i>
+        </a>
+    </li>
+    <li class="facebook first">
+        <a href="http://www.facebook.com/sharer.php?p%5Btitle%5D=Automobilisten+krijgen+last+van+gladheid+en+mist&p%5Burl%5D=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&s=100&p%5Bimages%5D%5B0%5D=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fkl2x4kvaopsj_wd1280.jpg&p%5Bsummary%5D=Automobilisten+krijgen+zaterdagavond+en+-nacht+weer+te+maken+met+gladheid" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="facebook" data-tracksocialaction="like">
+            <i class="fa fa-facebook fa-lg"></i>
+        </a>
+    </li>
+    <li class="twitter">
+        <a href="http://twitter.com/intent/tweet/?url=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&text=Automobilisten+krijgen+last+van+gladheid+en+mist&via=NUnl" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="twitter" data-tracksocialaction="tweet">
+            <i class="fa fa-twitter fa-lg"></i>
+        </a>
+    </li>
+    <li class="googleplus">
+        <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="google" data-tracksocialaction="send">
+            <i class="fa fa-google-plus fa-lg"></i>
+        </a>
+    </li>
+</ul>
+        </div>
+        <a href="#" class="button">
+            Deel
+        </a>
+        <div class="tooltip-badges">
+            <div class="box">
+                
+<ul class="social-badges">
+    <li class="nujij last">
+        <a href="http://www.nujij.nl/jij.lynkx/?i=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fkl2x4kvaopsj.jpg&x=Verkeer%2CWeer&b=Automobilisten+krijgen+zaterdagavond+en+-nacht+weer+te+maken+met+gladheid&u=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&t=Automobilisten+krijgen+last+van+gladheid+en+mist" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="nujij" data-tracksocialaction="send1">
+            <i class="fc fc-nujij fa-lg"></i>
+        </a>
+    </li>
+    <li class="facebook first">
+        <a href="http://www.facebook.com/sharer.php?p%5Btitle%5D=Automobilisten+krijgen+last+van+gladheid+en+mist&p%5Burl%5D=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&s=100&p%5Bimages%5D%5B0%5D=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fkl2x4kvaopsj_wd1280.jpg&p%5Bsummary%5D=Automobilisten+krijgen+zaterdagavond+en+-nacht+weer+te+maken+met+gladheid" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="facebook" data-tracksocialaction="like">
+            <i class="fa fa-facebook fa-lg"></i>
+        </a>
+    </li>
+    <li class="twitter">
+        <a href="http://twitter.com/intent/tweet/?url=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&text=Automobilisten+krijgen+last+van+gladheid+en+mist&via=NUnl" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="twitter" data-tracksocialaction="tweet">
+            <i class="fa fa-twitter fa-lg"></i>
+        </a>
+    </li>
+    <li class="googleplus">
+        <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="google" data-tracksocialaction="send">
+            <i class="fa fa-google-plus fa-lg"></i>
+        </a>
+    </li>
+</ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+        </div>
+
+        <div class="item-excerpt">
+    
+        Automobilisten krijgen zaterdagavond en -nacht weer te maken met gladheid
+        <div class="clear"></div>
+    
+</div>
+    </div>
+</div>
+</div>
+<!-- block|article.header end -->
+
+
+    
+        <!-- block|article.body start -->
+<div
+    id="block-288803"
+    data-id="block-288803"
+    data-position=""
+    data-type="article.body"
+    class="block article body "
+    data-sac-marker="block.article.body"
+>
+    
+    <div class="block-wrapper">
+        <div class="block-content">
+            <p>Tijdens opklaringen kunnen natte wegen bevriezen. Vooral in het midden, oosten en noorden van het land kan mist ontstaan. Lokaal is er kans op dichte mist met minder dan 200 meter zicht.</p> <p>Later in de nacht raakt het in het westen en zuiden van Nederland bewolkt en volgt er regen of iets verder landinwaarts natte sneeuw. "Ook in de rest van het land is richting de ochtend een beetje regen of een vlokje (natte) sneeuw niet uitgesloten. In combinatie met wegdektemperaturen onder nul kan het dan verraderlijk glad worden", aldus <a href="http://nieuws.weeronline.nl/5-3-2016-tot-en-met-woensdag-nog-winterse-perikelen/" target="_blank">Weeronline</a>.</p> <p>Zondag overdag breiden bewolking en neerslag zich verder uit over het hele land. Vooral in de middag wordt er regen verwacht, met in het binnenland ook natte sneeuw.</p> <!-- block|weather.forecast start -->
+<div
+    id="block-253023"
+    data-id="block-253023"
+    data-position=""
+    data-type="weather.forecast"
+    class="block weather forecast "
+    data-sac-marker="block.weather.forecast"
+>
+    <div class="block-wrapper">
+    <div class="block-content">
+        <div class="molecule-weather-forecast">
+    <table class="table table-bordered horizontal">
+        <thead>
+            <tr>
+                <th colspan="2">Komende 5 dagen</th>
+                <th class="max">Max</th>
+                <th class="min">Min</th>
+                <th class="wind">Wind</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <td>Woensdag</td>
+                <td><i class="fc fc-weather-m"></i></td>
+                <td class="max">11&deg;C</td>
+                <td class="min">6&deg;C</td>
+                <td class="wind">W 4</td>
+            </tr>
+        
+            <tr>
+                <td>Donderdag</td>
+                <td><i class="fc fc-weather-m"></i></td>
+                <td class="max">12&deg;C</td>
+                <td class="min">4&deg;C</td>
+                <td class="wind">N 2</td>
+            </tr>
+        
+            <tr>
+                <td>Vrijdag</td>
+                <td><i class="fc fc-weather-b"></i></td>
+                <td class="max">12&deg;C</td>
+                <td class="min">2&deg;C</td>
+                <td class="wind">Z 2</td>
+            </tr>
+        
+            <tr>
+                <td>Zaterdag</td>
+                <td><i class="fc fc-weather-b"></i></td>
+                <td class="max">15&deg;C</td>
+                <td class="min">5&deg;C</td>
+                <td class="wind">Z 3</td>
+            </tr>
+        
+            <tr>
+                <td>Zondag</td>
+                <td><i class="fc fc-weather-a"></i></td>
+                <td class="max">16&deg;C</td>
+                <td class="min">7&deg;C</td>
+                <td class="wind">ZO 2</td>
+            </tr>
+        
+        </tbody>
+    </table>
+</div>
+
+    </div>
+</div>
+
+</div>
+<!-- block|weather.forecast end -->
+
+
+            <div class="copyright">
+    <span class="author">
+        Door: ANP
+    </span>
+</div>
+        </div>
+    </div>
+
+</div>
+<!-- block|article.body end -->
+
+
+    
+        <!-- block|divider start -->
+<div
+    id="block-288805"
+    data-id="block-288805"
+    data-position=""
+    data-type="divider"
+    class="block divider "
+    data-sac-marker="block.divider"
+>
+    
+</div>
+<!-- block|divider end -->
+
+
+    
+        <!-- block|article.tags start -->
+<div
+    id="block-288807"
+    data-id="block-288807"
+    data-position=""
+    data-type="article.tags"
+    class="block article tags "
+    data-sac-marker="block.article.tags"
+>
+    
+    <div class="block-wrapper">
+        
+            <div class="title">
+                Lees meer over:
+            </div>
+        
+        <div class="block-content">
+            
+                <a class="trackevent" href="/tag/Verkeer"><span>Verkeer</span></a>
+            
+                <a class="trackevent" href="/tag/Weer"><span>Weer</span></a>
+            
+            <div class="clear"></div>
+        </div>
+    </div>
+
+</div>
+<!-- block|article.tags end -->
+
+
+    
+        <!-- block|socialbar start -->
+<div
+    id="block-288809"
+    data-id="block-288809"
+    data-position=""
+    data-type="socialbar"
+    class="block socialbar "
+    data-sac-marker="block.socialbar"
+>
+    <div class="block socialbar">
+    <div class="block-wrapper">
+        <div class="block-content spacious">
+            
+<div class="socialbar-wrapper with-counters">
+    <ul class="social-buttons">
+        <li class="nujij">
+            <a href="http://www.nujij.nl/jij.lynkx/?i=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fkl2x4kvaopsj.jpg&x=Verkeer%2CWeer&b=Automobilisten+krijgen+zaterdagavond+en+-nacht+weer+te+maken+met+gladheid&u=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&t=Automobilisten+krijgen+last+van+gladheid+en+mist" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="nujij" data-tracksocialaction="send1">
+                <span class="counter">18</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fc fc-nujij"></i>
+                        <span class="socialtext">Reageer</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="facebook first">
+            <a href="http://www.facebook.com/sharer.php?p%5Btitle%5D=Automobilisten+krijgen+last+van+gladheid+en+mist&p%5Burl%5D=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&s=100&p%5Bimages%5D%5B0%5D=http%3A%2F%2Fmedia.nu.nl%2Fm%2Fkl2x4kvaopsj_wd1280.jpg&p%5Bsummary%5D=Automobilisten+krijgen+zaterdagavond+en+-nacht+weer+te+maken+met+gladheid" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="facebook" data-tracksocialaction="like">
+                <span class="counter">47</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-facebook"></i>
+                        <span class="socialtext">Share</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="twitter">
+            <a href="http://twitter.com/intent/tweet/?url=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html&text=Automobilisten+krijgen+last+van+gladheid+en+mist&via=NUnl" rel="nofollow" target="_blank" class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="twitter" data-tracksocialaction="tweet">
+                <span class="counter">0</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-twitter"></i>
+                        <span class="socialtext">Tweet</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        <li class="googleplus">
+            <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.nu.nl%2Falgemeen%2F4225459%2Fautomobilisten-krijgen-last-van-gladheid-en-mist.html" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="google" data-tracksocialaction="send">
+                <span class="counter">-</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-google-plus"></i>
+                        <span class="socialtext">1</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        
+        
+        <li class="email last">
+            <a href="http://messagent.sanomadigital.nl/optiext/optiextension.dll?ID=dRGdHmKfgt3BAlnR%2BQ9vk_W5Lb69wkEmPBl9sZvXm2L8xXJZYeeXsfXVv7lxB9FE%2B0SGHjv5qOdbEhNtTQ&articleid=4225459" rel="nofollow" target="_blank"  class="tracksocial" data-tracksocialtarget="http://www.nu.nl/algemeen/4225459/automobilisten-krijgen-last-van-gladheid-en-mist.html" data-tracksocialnetwork="email" data-tracksocialaction="send2">
+                <span class="counter">-</span>
+                <div class="social-button">
+                    <div class="button-content">
+                        <i class="fa fa-envelope"></i>
+                        <span class="socialtext">E-mail</span>
+                    </div>
+                </div>
+            </a>
+            <div class="clear"></div>
+        </li>
+        
+    </ul>
+</div>
+<div class="clear"></div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- block|socialbar end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288817"
+    data-id="block-288817"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper advertorial_2_center">
+    <div class="block-content">
+        
+            <div id="cts_dcb96a3a40d24c64b1e32a21d83b8715" class="cts-wrapper min320 set-block"><script type="text/javascript"> try {    if(min320) {        tagging.render("advertorial_2_center");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288819"
+    data-id="block-288819"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper mbot_320">
+    <div class="block-content">
+        
+            <div id="cts_d018beda5bd34290962ae01fb3b58ebd" class="cts-wrapper min320 max480 set-block"><script type="text/javascript"> try {    if(min320 && max480) {        tagging.render("mbot_320");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|article.related start -->
+<div
+    id="block-288813"
+    data-id="block-288813"
+    data-position=""
+    data-type="article.related"
+    class="block article related  articlelist"
+    data-sac-marker="block.article.related"
+>
+    <div class="list contentlist ">
+    <div class="block-wrapper">
+    
+    
+        <div class="block-title">
+            <h2>Gerelateerde artikelen</h2>
+        </div>
+    
+
+    <div class="block-content clearfix">
+        <ul>
+            
+                
+                    
+<li class="" data-sac-marker="articlelist.buitenland.1">
+    <a href="/buitenland/4225298/flink-pak-sneeuw-in-alpen-hindert-wintersportverkeer.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mx8jiansxi_std320.jpg" class="image" alt="Sommige skigebieden uit veiligheid tijdelijk onbereikbaar" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mx8jiansxi_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Sommige skigebieden uit veiligheid tijdelijk onbereikbaar" />
+                <span class="ranking">1.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">3 weken, 2 dagen geleden</span>
+                    <span class="section">Buitenland</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Flink pak sneeuw in Alpen hindert wintersportverkeer</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Wintersporters die van en naar de Alpen reizen hebben het zaterdag niet makkelijk. In Frankrijk is hogerop veel sneeuw gevallen, terwijl reizigers die terugkeren uit Oostenrijk in de problemen komen door Duitse grenscontroles.</span>
+
+                    <span class="caption">Sommige skigebieden uit veiligheid tijdelijk onbereikbaar</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo" data-sac-marker="articlelist.binnenland.2">
+    <a href="/binnenland/4225227/knmi-waarschuwt-dichte-mist-en-gladheid-.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/kl2x4kvaopsj_std320.jpg" class="image" alt="Rijkswaterstaat strooit in de moeilijkste provincies" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/kl2x4kvaopsj_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Rijkswaterstaat strooit in de moeilijkste provincies" />
+                <span class="ranking">2.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">3 weken, 3 dagen geleden</span>
+                    <span class="section">Binnenland</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">KNMI waarschuwt voor dichte mist en gladheid </span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Automobilisten moeten zaterdagochtend bedacht zijn op gladheid en dichte mistbanken. Het natte wegdek is op diverse plekken aan het bevriezen. Het KNMI heeft voor een groot deel van het land code geel afgegeven.</span>
+
+                    <span class="caption">Rijkswaterstaat strooit in de moeilijkste provincies</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.binnenland.3">
+    <a href="/binnenland/4224036/verkeerslichten-iets-langer-oranje-ongelukken-voorkomen.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/lylxro1ahmro_std320.jpg" class="image" alt="Halve seconde langer oranje kan aantal roodrijders halveren" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/lylxro1ahmro_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Halve seconde langer oranje kan aantal roodrijders halveren" />
+                <span class="ranking">3.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">3 weken, 4 dagen geleden</span>
+                    <span class="section">Binnenland</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Verkeerslichten iets langer op oranje om ongelukken te voorkomen</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Verkeerslichten staan tegenwoordig ongeveer een halve seconde langer op oranje. Dat zorgt ervoor dat er minder ongelukken of bijna-ongelukken gebeuren door mensen die door rood rijden.&nbsp;</span>
+
+                    <span class="caption">Halve seconde langer oranje kan aantal roodrijders halveren</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+            
+        </ul>
+    </div>
+    
+</div>
+    <div class="clear"></div>
+</div>
+</div>
+<!-- block|article.related end -->
+
+
+    
+        <!-- block|divider start -->
+<div
+    id="block-288815"
+    data-id="block-288815"
+    data-position=""
+    data-type="divider"
+    class="block divider "
+    data-sac-marker="block.divider"
+>
+    
+</div>
+<!-- block|divider end -->
+
+
+    
+        <!-- block|articlelist start -->
+<div
+    id="block-288825"
+    data-id="block-288825"
+    data-position=""
+    data-type="articlelist"
+    class="block articlelist "
+    data-sac-marker="block.articlelist"
+>
+    <div class=" section-nu source-normal" data-forced-template="list">
+
+    
+        <div class="contentlist list">
+            <div class="block-wrapper">
+    
+    
+        <div class="block-title arrowed section-bgcolored"
+        
+        >
+            <a href="/algemeen" class="blockheader-link trackevent">
+                <h2> Eerdere berichten</h2>
+            </a>
+        </div>
+    
+
+    <div class="block-content clearfix">
+        <ul>
+            
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.1">
+    <a href="/buitenland/4238005/vs-spreekt-met-zuid-korea-en-japan-dreiging-noord-korea.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/38ix4qea3e1g_std320.jpg" class="image" alt="&#39;Ontmoeting is kans voor leiders om gemeenschappelijke aanpak tegen dreiging te formuleren&#39;" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/38ix4qea3e1g_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="&#39;Ontmoeting is kans voor leiders om gemeenschappelijke aanpak tegen dreiging te formuleren&#39;" />
+                <span class="ranking">2.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">5 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">VS spreekt met Zuid-Korea en Japan over dreiging Noord-Korea</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De Amerikaanse president Barack Obama, de Zuid-Koreaanse president Park Geun-hye en de Japanse premier Shinzo Abe gaan donderdag om de tafel zitten om de nucleaire dreiging van Noord-Korea te bespreken.</span>
+
+                    <span class="caption">'Ontmoeting is kans voor leiders om gemeenschappelijke aanpak tegen dreiging te formuleren'</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.2">
+    <a href="/algemeen/4237992/turkije-roept-duitsland-matje-satire-erdogan.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/vprxzfdau3w8_std320.jpg" class="image" alt="Duits cabaretprogramma neemt toenemende persbreidel op de hak" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/vprxzfdau3w8_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Duits cabaretprogramma neemt toenemende persbreidel op de hak" />
+                <span class="ranking">3.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">7 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Turkije roept Duitsland op het matje na satire over Erdogan</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De Turkse regering is gegriefd door een satirisch programma op de Duitse publieke omroep. De Duitse ambassadeur is dinsdag op het ministerie van Buitenlandse Zaken ontboden.</span>
+
+                    <span class="caption">Duits cabaretprogramma neemt toenemende persbreidel op de hak</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.3">
+    <a href="/binnenland/4237985/koen-everink-vermoedelijk-vermoord-ruzie-gokschuld.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/nc6x4tlaiqsm_std320.jpg" class="image" alt="OM verzwaarde vrijdag de aanklacht tegen verdachte tenniscoach De J." />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/nc6x4tlaiqsm_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="OM verzwaarde vrijdag de aanklacht tegen verdachte tenniscoach De J." />
+                <span class="ranking">4.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">8 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">&#39;Koen Everink vermoedelijk vermoord na ruzie over gokschuld&#39;</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Een ruzie over een openstaande gokschuld is mogelijk het motief voor de moord op zakenman Koen Everink. De verdachte, tenniscoach Mark de J., had vele tienduizenden euro’s van Everink geleend.</span>
+
+                    <span class="caption">OM verzwaarde vrijdag de aanklacht tegen verdachte tenniscoach De J.</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class=" hasslideshow" data-sac-marker="articlelist.algemeen.4">
+    <a href="/buitenland/4237966/schutter-in-bezoekerscentrum-capitool-in-washington-overmeesterd.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/a8oxnc1a8os0_std320.jpg" class="image" alt="Witte Huis direct hermetisch afgesloten; politie noemt het actie van eenling" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/a8oxnc1a8os0_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Witte Huis direct hermetisch afgesloten; politie noemt het actie van eenling" />
+                <span class="ranking">5.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">9 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Schutter in bezoekerscentrum Capitool in Washington overmeesterd</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">In het bezoekerscentrum van het Capitool in Washington zijn maandagmiddag (lokale tijd) schoten gelost. Het Capitool is het gebouw waar de Amerikaanse volksvertegenwoordiging zetelt. De dader is gepakt; er raakte één agent gewond.</span>
+
+                    <span class="caption">Witte Huis direct hermetisch afgesloten; politie noemt het actie van eenling</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.5">
+    <a href="/algemeen/4237937/huiszoekingen-kortrijk-aanslagen-brussel.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/upjxdmea7po0_std320.jpg" class="image" alt="Algemeen" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/upjxdmea7po0_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Algemeen" />
+                <span class="ranking">6.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">11 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Huiszoekingen Kortrijk om aanslagen Brussel</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">In het kader van het onderzoek naar de aanslagen in Brussel is zondag op verschillende plaatsen in Kortrijk huiszoeking gedaan.&nbsp;</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.6">
+    <a href="/algemeen/4237976/gevangenisstraffen-zeventien-activisten-in-angola.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/ju6xcieap547_std320.jpg" class="image" alt="Algemeen" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/ju6xcieap547_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Algemeen" />
+                <span class="ranking">7.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">8 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Gevangenisstraffen voor zeventien activisten in Angola</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">LUANDA - Een Angolese rechtbank heeft maandag zeventien jonge activisten tot gevangenisstraffen van 2 tot 8,5 jaar veroordeeld wegens rebellie tegen de regering van president José Eduardo dos Santos.</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.7">
+    <a href="/algemeen/4237923/duitse-minister-wil-migranten-integreren-of-vertrekken.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/hhvxvzra3rbl_std320.jpg" class="image" alt="Duitse kiezers ontevreden over gastvrije optreden van Duitse regering" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/hhvxvzra3rbl_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Duitse kiezers ontevreden over gastvrije optreden van Duitse regering" />
+                <span class="ranking">8.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">11 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Duitse minister wil dat migranten &#39;integreren of vertrekken&#39;</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De Duitse minister van Binnenlandse Zaken Thomas de Maizière werkt aan een wetsvoorstel dat migranten verplicht Duits te leren en te integreren in de samenleving. Migranten die dit niet doen zouden hun verblijfsvergunning kwijtraken, zei de minister maandag.</span>
+
+                    <span class="caption">Duitse kiezers ontevreden over gastvrije optreden van Duitse regering</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo" data-sac-marker="articlelist.algemeen.8">
+    <a href="/terreur-in-europa/4237866/vierde-verdachte-aanslagen-brussel-vrijgelaten.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/bbdx8imaqehn_std320.jpg" class="image" alt="Fayçal C. werd gezien als &#39;man met het hoedje&#39;" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/bbdx8imaqehn_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Fayçal C. werd gezien als &#39;man met het hoedje&#39;" />
+                <span class="ranking">9.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">14 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Vierde verdachte aanslagen Brussel vrijgelaten</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het federaal parket in Brussel heeft Fayçal C., de man die ervan werd verdacht de "vierde terrorist" te zijn tijdens de aanslagen in Brussel, weer vrijgelaten.&nbsp;</span>
+
+                    <span class="caption">Fayçal C. werd gezien als 'man met het hoedje'</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.9">
+    <a href="/buitenland/4237904/grens-macedonie-eind-van-jaar-dicht.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/72lxs5oa74ar_std320.jpg" class="image" alt="Algemeen" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/72lxs5oa74ar_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Algemeen" />
+                <span class="ranking">10.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">12 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Grens Macedonië tot eind van het jaar dicht</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Macedonië houdt zijn grenzen nog zeker tot het einde van dit jaar dicht voor vluchtelingen. Dat heeft het parlement in Skopje volgens Macedonische media maandag besloten.&nbsp;</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.10">
+    <a href="/algemeen/4237855/knmi-trekt-code-geel-harde-wind-weer-in-.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/2sdxclyafhb8_std320.jpg" class="image" alt="28 Appartementen in Zandvoort ontruimd door loszittende dakbedekking" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/2sdxclyafhb8_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="28 Appartementen in Zandvoort ontruimd door loszittende dakbedekking" />
+                <span class="ranking">11.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">15 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">KNMI trekt code geel voor harde wind weer in </span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het KNMI heeft de waarschuwing, ofwel code geel, voor zware windstoten maandag aan het begin van de avond ingetrokken. Alleen voor de provincie Limburg geldt deze waarschuwing nog in verband met lokale onweersbuien.</span>
+
+                    <span class="caption">28 Appartementen in Zandvoort ontruimd door loszittende dakbedekking</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="" data-sac-marker="articlelist.algemeen.11">
+    <a href="/binnenland/4237841/vakantiegangers-vanuit-belgie-in-file-grenscontroles.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/5xuxwlra9gdc_std320.jpg" class="image" alt="Grenscontroles houden verkeer op" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/5xuxwlra9gdc_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Grenscontroles houden verkeer op" />
+                <span class="ranking">12.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">15 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Vakantiegangers vanuit België in file door grenscontroles</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Vakantieverkeer dat zondag terugkeert uit België komt bij de grens in de file terecht. Dat komt door de grenscontroles die sinds de aanslagen in Brussel zijn ingevoerd.</span>
+
+                    <span class="caption">Grenscontroles houden verkeer op</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo hasslideshow" data-sac-marker="articlelist.algemeen.12">
+    <a href="/syrie/4237835/syrie-toont-beelden-van-verwoesting-palmyra.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/8uaxvt4a1w7o_std320.jpg" class="image" alt="Lege straten en zwaar beschadigde gebouwen te zien" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/8uaxvt4a1w7o_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Lege straten en zwaar beschadigde gebouwen te zien" />
+                <span class="ranking">13.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">15 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Syrië toont beelden van verwoesting Palmyra</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De Syrische staatstelevisie heeft maandag beelden uitgezonden van de stad Palmyra, die dit weekend door het leger werd heroverd op IS. Op de beelden zijn lege straten en zwaar beschadigde gebouwen te zien.</span>
+
+                    <span class="caption">Lege straten en zwaar beschadigde gebouwen te zien</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo hasslideshow" data-sac-marker="articlelist.algemeen.13">
+    <a href="/algemeen/4237809/pakistan-begint-militaire-operatie-in-punjab-aanslag.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/dpexjh3ai58g_std320.jpg" class="image" alt="Zondag blies zelfmoordterrorist zich op in park waar christenen Pasen vierden" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/dpexjh3ai58g_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Zondag blies zelfmoordterrorist zich op in park waar christenen Pasen vierden" />
+                <span class="ranking">14.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">17 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Pakistan begint militaire operatie in Punjab na aanslag</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Pakistan lanceert een speciale paramilitaire operatie in Punjab, als reactie op de aanslag die zondag aan meer dan zeventig mensen het leven kostte.</span>
+
+                    <span class="caption">Zondag blies zelfmoordterrorist zich op in park waar christenen Pasen vierden</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo hasslideshow" data-sac-marker="articlelist.algemeen.14">
+    <a href="/terreur-in-europa/4237784/mede-arrestanten-terreuractie-in-rotterdam-algerijnen.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/zq7x2f8au5r4_std320.jpg" class="image" alt="Algemeen" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/zq7x2f8au5r4_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Algemeen" />
+                <span class="ranking">15.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">18 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Mede-arrestanten terreuractie in Rotterdam zijn Algerijnen</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">De drie mannen die zondagmiddag in Rotterdam zijn aangehouden bij de arrestatie van Anis B. zijn van Algerijnse afkomst.</span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+                    
+<li class="hasvideo" data-sac-marker="articlelist.algemeen.15">
+    <a href="/terreur-in-europa/4237760/dodental-van-terreuraanslagen-in-brussel-stijgt-35.html" class="trackevent" >
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/j8ixstka22v4_std320.jpg" class="image" alt="Politie geeft beelden vrij van gezochte aanslagpleger" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/j8ixstka22v4_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="Politie geeft beelden vrij van gezochte aanslagpleger" />
+                <span class="ranking">16.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp">19 uur geleden</span>
+                    <span class="section">Algemeen</span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Dodental van terreuraanslagen in Brussel stijgt naar 35</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt">Het dodental van de aanslagen in Brussel is gestegen naar 35. Vier mensen zijn de afgelopen week aan hun verwondingen in het ziekenhuis overleden.</span>
+
+                    <span class="caption">Politie geeft beelden vrij van gezochte aanslagpleger</span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+                
+            
+        </ul>
+    </div>
+    
+    <div class="block-footer">
+        
+            <a href="#" data-url="/block/json/articlelist?order_by=updated_at&amp;footer=ajax&amp;section=algemeen&amp;title=Eerdere+berichten&amp;refresh=1&amp;limit=15&amp;section_details=%7Bu%27geolocation%27%3A+None%2C+u%27meta_keywords%27%3A+None%2C+u%27intro_bgcolor%27%3A+None%2C+u%27is_archived%27%3A+False%2C+u%27excerpt%27%3A+u%27%27%2C+u%27radius%27%3A+None%2C+u%27logo_media_id%27%3A+None%2C+u%27counts%27%3A+%7B%7D%2C+u%27top_slug%27%3A+None%2C+u%27meta_description%27%3A+u%27%27%2C+u%27style%27%3A+u%27nu%27%2C+u%27label%27%3A+None%2C+u%27parent_slug%27%3A+None%2C+u%27type%27%3A+u%27special%27%2C+u%27hide_logo%27%3A+False%2C+u%27titlebar_color%27%3A+None%2C+u%27media_id%27%3A+None%2C+u%27description%27%3A+u%27%27%2C+u%27sponsored_by_short%27%3A+None%2C+u%27sidebar_position%27%3A+2%2C+u%27slug%27%3A+u%27algemeen%27%2C+u%27name%27%3A+u%27Algemeen%27%2C+u%27titlebar_bgcolor%27%3A+None%2C+u%27intro_color%27%3A+None%2C+u%27articlehead_color%27%3A+None%2C+u%27flags%27%3A+%5B%5D%2C+u%27sponsored_by_long%27%3A+None%2C+u%27position%27%3A+None%7D&amp;template=list&amp;offset=16&amp;show_tabs=0" class="ajax trackevent" data-trackeventlabel="loadmore">
+                <strong>Laad meer artikelen</strong>
+            </a>
+        
+    </div>
+
+</div>
+            <div class="clear"></div>
+        </div>
+    
+
+    <div class="clear"></div>
+</div>
+</div>
+<!-- block|articlelist end -->
+
+
+    <script type="text/javascript">
+        jQuery('#block-288825').data({"limit": 15, "offset": 1});
+    </script>
+
+    
+</div>
+<!-- zone|main end -->
+    
+
+
+                                    </div>
+                                </div>
+                            </div><!-- content -->
+                            <div class="column last">
+                                <div class="column-content">
+                                    <!-- zone|sidebar start -->
+<div class="zone" data-zone="sidebar" data-vr-zone="sidebar">
+    
+        <!-- block|mostcombination start -->
+<div
+    id="block-288829"
+    data-id="block-288829"
+    data-position=""
+    data-type="mostcombination"
+    class="block mostcombination compact"
+    data-sac-marker="block.mostcombination"
+>
+    <div class="block-wrapper">
+    <div class="block-content">
+        <div class="tabs tabs2 fullwidth" data-tab-constrain="1">
+            <div class="tabtrigger">
+                <ul>
+                    <li class="active"><a href="" data-tab="1" class="trackevent" data-trackeventlabel="net_binnen">Net binnen</a></li>
+                    <li><a href="#" data-tab="2" class="trackevent" data-trackeventlabel="meest_gelezen">Meest gelezen</a></li>
+                    <div class="clear"></div>
+                </ul>
+                <div class="clear"></div>
+            </div>
+
+            <div class="clear"></div>
+
+
+            <div class="tab tab-1 active">
+                <!-- block|mostrecent start -->
+<div
+    id="block-f4316ff4ecbf434c839342468f857e04"
+    data-id="block-f4316ff4ecbf434c839342468f857e04"
+    data-position=""
+    data-type="mostrecent"
+    class="block mostrecent "
+    data-sac-marker="block.mostrecent"
+>
+    <div class="contentlist most-recent">
+    <div class="block-wrapper">
+        <div class="block-content">
+            <ul>
+                
+                    <li class="  " data-sac-marker="articlelist.mostrecent.1">
+                        <div class="list-content">
+                            <a href="/apps/4238027/nieuwe-app-moet-schadeformulier-bij-ongelukken-vervangen.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="time">06:37</span>
+                                        <span class="title">Nieuwe app moet schadeformulier bij ongelukken vervangen</span>
+                                        <span class="section">Apps</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostrecent.2">
+                        <div class="list-content">
+                            <a href="/cultuur-overig/4238026/drie-oorlogsmusea-genomineerd-museumprijs.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="time">06:24</span>
+                                        <span class="title">Drie oorlogsmusea genomineerd voor Museumprijs</span>
+                                        <span class="section">Cultuur</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostrecent.3">
+                        <div class="list-content">
+                            <a href="/buitenland/4238023/opnieuw-minister-in-brazilie-opgestapt.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="time">05:38</span>
+                                        <span class="title">Opnieuw minister in Brazilië opgestapt</span>
+                                        <span class="section">Buitenland</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="  " data-sac-marker="articlelist.mostrecent.4">
+                        <div class="list-content">
+                            <a href="/wonen/4236870/hoogste-opbrengst-overdrachtsbelasting-sinds-2011.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="time">05:30</span>
+                                        <span class="title">Hoogste opbrengst overdrachtsbelasting sinds 2011</span>
+                                        <span class="section">Woningmarkt</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+            </ul>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="block-footer">
+            <a href="/net-binnen" class="footer-link trackevent section-after-colored">
+                <strong>Meer nieuws</strong>
+            </a>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+</div>
+<!-- block|mostrecent end -->
+
+
+    <script type="text/javascript">
+        jQuery('#block-f4316ff4ecbf434c839342468f857e04').data({"limit": 4, "offset": 0});
+    </script>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="tab tab-2">
+                <!-- block|mostread start -->
+<div
+    id="block-37c0844b7a154d91964dc54dd167a9a4"
+    data-id="block-37c0844b7a154d91964dc54dd167a9a4"
+    data-position=""
+    data-type="mostread"
+    class="block mostread "
+    data-sac-marker="block.mostread"
+>
+    <div class="contentlist most-read">
+    <div class="block-wrapper">
+        
+            <div class="block-title">
+                <h2>Meest gelezen</h2>
+            </div>
+        
+        <div class="block-content">
+            <ul>
+                
+                    <li class="hasvideo hasslideshow " data-sac-marker="articlelist.mostread.1">
+                        <div class="list-content">
+                            <a href="/terreur-in-europa/4237688/munitie-gevonden-in-rotterdam-bij-huiszoeking-terreurverdachten.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="ranking">1.</span>
+                                        <span class="title">Munitie gevonden in Rotterdam bij huiszoeking terreurverdachten</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class=" hasslideshow " data-sac-marker="articlelist.mostread.2">
+                        <div class="list-content">
+                            <a href="/wielrennen/4237685/belgische-renner-demoitie-25-overleden-aanrijding-met-motor.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="ranking">2.</span>
+                                        <span class="title">Belgische renner Demoitié (25) overleden na aanrijding met motor</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="hasvideo hasslideshow " data-sac-marker="articlelist.mostread.3">
+                        <div class="list-content">
+                            <a href="/binnenland/4237710/paasstorm-hindert-festiviteiten-en-verkeer-tweede-paasdag.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="ranking">3.</span>
+                                        <span class="title">Paasstorm hindert festiviteiten en verkeer op Tweede Paasdag</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+                    <li class="hasvideo  " data-sac-marker="articlelist.mostread.4">
+                        <div class="list-content">
+                            <a href="/terreur-in-europa/4237866/vierde-verdachte-aanslagen-brussel-vrijgelaten.html" class="trackevent" >
+                                <div class="list-overlay">
+                                    <span class="info">
+                                        <span class="ranking">4.</span>
+                                        <span class="title">Vierde verdachte aanslagen Brussel vrijgelaten</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </li>
+                
+            </ul>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="block-footer">
+            <a href="/meest-gelezen" class="footer-link trackevent section-after-colored">
+                <strong>Meer nieuws</strong>
+            </a>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+</div>
+<!-- block|mostread end -->
+
+
+    <script type="text/javascript">
+        jQuery('#block-37c0844b7a154d91964dc54dd167a9a4').data({"limit": 4, "offset": 0});
+    </script>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- block|mostcombination end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288831"
+    data-id="block-288831"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_300_h300">
+    <div class="block-content">
+        
+            <div id="cts_d6d520c1f0d04f43bea1eead65e98615" class="cts-wrapper min768 max992 set-block"><script type="text/javascript"> try {    if(min768 && max992) {        tagging.render("dmid_300_h300");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288833"
+    data-id="block-288833"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_300_h300_336">
+    <div class="block-content">
+        
+            <div id="cts_4f285f7f401c4bb199e8886cc843ae96" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dmid_300_h300_336");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|highlight start -->
+<div
+    id="block-288837"
+    data-id="block-288837"
+    data-position=""
+    data-type="highlight"
+    class="block highlight compact"
+    data-sac-marker="block.highlight"
+>
+    
+    <div class="block-wrapper compact  hasfooter">
+        <div class="block-backdrop algemeen" ></div>
+        
+            <div class="block-title">
+                <h2>NU op NUfoto</h2>
+            </div>
+        
+        <div class="block-content">
+            <div class="basic">
+                <div class="item-content">
+
+                    <a href="http://www.nufoto.nl/fotos/619221/prachtige-zonsondergang-in-budel.html" class="trackevent">
+                        <div class="item-image">
+                            <img src="http://media.nu.nl/m/yq0xe83a81g2_std160.jpg" alt="NU op NUfoto" />
+                        </div>
+                    </a>
+
+                    
+                        <div class="item-excerpt">
+                            
+
+                            Bekijk de laatste nieuwsbeelden van lezers. Zelf getuige van nieuws? Stuur uw foto's in via NUfoto.
+
+                            
+                                <div class="excerpt-link">
+                                    <a class="trackevent" href="http://www.nufoto.nl/fotos/619221/prachtige-zonsondergang-in-budel.html">
+                                        <strong>Ga naar NUfoto</strong>
+                                    </a>
+                                </div>
+                            
+                        </div>
+                    
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- block|highlight end -->
+
+
+    
+        <!-- block|highlight start -->
+<div
+    id="block-288839"
+    data-id="block-288839"
+    data-position=""
+    data-type="highlight"
+    class="block highlight compact"
+    data-sac-marker="block.highlight"
+>
+    
+    <div class="block-wrapper compact  hasfooter">
+        <div class="block-backdrop algemeen" ></div>
+        
+            <div class="block-title">
+                <h2>Dagelijkse nieuwsbrief</h2>
+            </div>
+        
+        <div class="block-content">
+            <div class="basic">
+                <div class="item-content">
+
+                    <a href="http://www.nu.nl/nieuwsbrief.html" class="trackevent">
+                        <div class="item-image">
+                            <img src="http://media.nu.nl/m/y2uxl47am1pq_std160.jpg" alt="Dagelijkse nieuwsbrief" />
+                        </div>
+                    </a>
+
+                    
+                        <div class="item-excerpt">
+                            
+
+                            Elke ochtend rond 06.00 uur weten wat het nieuws wordt?
+
+                            
+                                <div class="excerpt-link">
+                                    <a class="trackevent" href="http://www.nu.nl/nieuwsbrief.html">
+                                        <strong>Schrijf je in voor de ochtendnieuwsbrief van NU.nl</strong>
+                                    </a>
+                                </div>
+                            
+                        </div>
+                    
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- block|highlight end -->
+
+
+    
+        <!-- block|highlight start -->
+<div
+    id="block-288841"
+    data-id="block-288841"
+    data-position=""
+    data-type="highlight"
+    class="block highlight compact"
+    data-sac-marker="block.highlight"
+>
+    
+</div>
+<!-- block|highlight end -->
+
+
+    
+        <!-- block|feedlist start -->
+<div
+    id="block-328967"
+    data-id="block-328967"
+    data-position=""
+    data-type="feedlist"
+    class="block feedlist compact"
+    data-sac-marker="block.feedlist"
+>
+    <div class="block-wrapper">
+    
+    <div class="block-title"  style="background-color: #008800">
+        <h2 style="color: #FFFFFF">Top 10 branches NUwerk.nl</h2>
+    </div>
+
+    <div class="contentlist plain"  style="border-color: #008800">
+    <div class="block-content clearfix">
+        <ul>
+        
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.1">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=1.11712&occ=1.11724&occ=1.11760&occ=1.11981&occ=1.11982&occ=1.11730&occ=1.11952&occ=1.14868&occ=1.14867&occ=1.11711&occ=1.11960&occ=1.11803&occ=1.11804&occ=1.11817&occ=1.14875&occ=1.11750&occ=1.11766&occ=1.11893&occ=1.11927&occ=1.11843" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">1.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Financieel & Accounting</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.2">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=544.11953&occ=544.11783&occ=544.11835&occ=544.11978&occ=544.11925&occ=544.11829&occ=544.11845&occ=544.11755&occ=544.11965&occ=544.11896&occ=544.11963&occ=544.11737&occ=544.11743&occ=544.11809&occ=553.11798&occ=553.11753&occ=553.11783&occ=553.11854&occ=553.11849&occ=553.11835&occ=553.11925&occ=553.11903&occ=553.11791&occ=553.12000&occ=553.11858" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">2.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Techniek</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.3">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=4.11746&occ=4.11747&occ=4.11782&occ=4.11786&occ=4.11728&occ=4.11715&occ=4.11788&occ=4.11900&occ=4.11881&occ=4.11980&occ=4.11737&occ=4.11838&occ=4.11951&occ=4.11867" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">3.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Engineering</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.4">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=10.11709&occ=10.11735&occ=10.11780&occ=10.11939&occ=10.11913&occ=10.11954&occ=10.11989&occ=10.11840&occ=10.11986&occ=10.11868&occ=10.11993&occ=10.11839&occ=10.11801&occ=10.12006" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">4.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Sales / Verkoop</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.5">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=660.11979&occ=660.11754&occ=660.11772&occ=660.11774&occ=660.11882&occ=660.11904&occ=660.11848&occ=660.11787&occ=660.11969&occ=660.11987&occ=660.11996&occ=660.12005" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">5.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">ICT</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.6">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=9007.11732&occ=9007.11758&occ=9007.11776&occ=9007.12002&occ=9007.11795&occ=9007.11863&occ=9007.11862&occ=9007.11869&occ=9007.11907&occ=9007.11931&occ=9007.11844&occ=9007.11864&occ=9007.11988" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">6.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Marketing & Communicatie</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.7">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=660.11970" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">7.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Software development</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.8">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=3975.11785&occ=3975.11922&occ=3975.11870&occ=3975.12001&occ=3975.11873&occ=3975.11853&occ=3975.11872&occ=3975.11891&occ=3975.11908&occ=3975.11967&occ=3975.11973&occ=3975.11773&occ=3975.11871&occ=3975.11820&occ=3975.11885&occ=3975.11886" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">8.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Zorg</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.9">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=5625.11763&occ=5625.11793&occ=5625.11836&occ=5625.11937&occ=5625.11876&occ=5625.11906&occ=5625.11964&occ=5625.11739&occ=5625.11924&occ=5625.11998&occ=5625.11874&occ=5625.11977&occ=5625.11991&occ=5625.11827&occ=5625.11842&occ=5625.11994" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">9.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Logistiek</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+            
+<li class="" data-sac-marker="articlelist.feedlist-Top 10 branches NUwerk.10">
+    <a href="http://www.nuwerk.nl/SearchResults?q=&where=&cn=&xq=&rad=5&occ=10.11950" class="trackevent"  target="_blank">
+        <div class="list-content section-after-colored clearfix">
+            <div class="list-image col-min320 set-block "
+                    
+            >
+                <noscript>
+                    <img src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" class="image" alt="" />
+                </noscript>
+                <img data-src="http://media.nu.nl/m/m1mxw4va831z_std320.jpg" src="/static/img/placeholders/std320-o.png" class="image lazy-unveil" alt="" />
+                <span class="ranking">10.</span>
+                
+                
+                
+            </div>
+            <div class="list-overlay">
+                <span class="info">
+                    
+                    <span class="timestamp"></span>
+                    <span class="section"></span>
+
+                    <span class="title-wrapper">
+                        
+                        <span class="title">Detailhandel</span>
+                        <span class="mediaicons"><i class="mediaicon-slideshow"></i><i class="mediaicon-infographic"></i><i class="mediaicon-video"></i></span>
+
+                    </span>
+
+                    
+
+                    <span class="excerpt"></span>
+
+                    <span class="caption"></span>
+
+                    <span class="time">
+                        
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+        
+        
+        </ul>
+    </div>
+</div>
+    
+    
+    <a href="http://www.nuwerk.nl" target="_blank" class="trackevent">
+    
+    <div class="block-footer molecule-feedlist-footer"  style="border-color: #008800">
+        <div class="left-col">
+            
+            
+                Door: <span class="company">NUwerk.nl</span>
+            
+        </div>
+        <div class="right-col">
+            
+                <img src="http://media.nu.nl/m/m1oxfnia25hh_wd320.jpg" alt="feed.title" />
+            
+        </div>
+    </div>
+    
+    </a>
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- block|feedlist end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288843"
+    data-id="block-288843"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_300_p2">
+    <div class="block-content">
+        
+            <div id="cts_20fe7e7ca29544fc8b9c2861a1b1eee2" class="cts-wrapper min768 max992 set-block"><script type="text/javascript"> try {    if(min768 && max992) {        tagging.render("dmid_300_p2");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288845"
+    data-id="block-288845"
+    data-position=""
+    data-type="cts"
+    class="block cts compact"
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dmid_300_336_p2">
+    <div class="block-content">
+        
+            <div id="cts_48ccba98f81d4e99917346d67aea9c3e" class="cts-wrapper min992 set-block"><script type="text/javascript"> try {    if(min992) {        tagging.render("dmid_300_336_p2");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|sidebar end -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <!-- zone|footer start -->
+<div class="zone" data-zone="footer" data-vr-zone="footer">
+    
+        <!-- block|cts start -->
+<div
+    id="block-288847"
+    data-id="block-288847"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dbot_468">
+    <div class="block-content">
+        
+            <div id="cts_815ce7e3e7e44e67b75e5cb654a24f7b" class="cts-wrapper min480 max768 set-block"><script type="text/javascript"> try {    if(min480 && max768) {        tagging.render("dbot_468");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+        <!-- block|cts start -->
+<div
+    id="block-288849"
+    data-id="block-288849"
+    data-position=""
+    data-type="cts"
+    class="block cts "
+    data-sac-marker="block.cts"
+>
+    
+<div class="block-wrapper dbot_728">
+    <div class="block-content">
+        
+            <div id="cts_574cce89d8474942adc4ef1bbf11d0d7" class="cts-wrapper min768 set-block"><script type="text/javascript"> try {    if(min768) {        tagging.render("dbot_728");    } } catch(err) {    console.log(err) } </script></div>
+        
+    </div>
+</div>
+</div>
+<!-- block|cts end -->
+
+
+    
+</div>
+<!-- zone|footer end -->
+
+                    </div><!-- main -->
+                    <div class="clear"></div>
+
+                </div><!-- content_container -->
+                <div class="clear"></div>
+
+            </div><!-- container -->
+
+            
+                <!-- zone|body_bottom start -->
+<div class="zone" data-zone="body_bottom" data-vr-zone="body_bottom">
+    
+</div>
+<!-- zone|body_bottom end -->
+                <div class="block footer">
+    <div class="block-wrapper">
+        <div class="block-content">
+
+            <div class="footer-wrapper">
+                <div class="footer-logo">
+                    <div class="svg-icon icon-l icon-">
+                        <img src="/static/img/atoms/images/logos/logo-sprite.svg" />
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <span class="publisher-credits">
+                        &copy; 2016 Sanoma Digital The Netherlands B.V.
+                        NU - onderdeel van <a href="http://www.sanoma.com" class="trackevent" data-trackeventaction="page-footer">Sanoma Media Netherlands Group</a>
+                    </span>
+                    <div class="block-col first">
+                        <ul class="inline">
+                            <li class="first"><a href="/colofon.html" class="trackevent" data-trackeventaction="page-footer">Colofon</a></li>
+                            <li><a href="/copyright.html" class="trackevent" data-trackeventaction="page-footer">Copyright</a></li>
+                            <li><a href="/disclaimer.html" class="trackevent" data-trackeventaction="page-footer">Disclaimer</a></li>
+                            <li><a href="/privacy-en-cookiebeleid.html" class="trackevent" data-trackeventaction="page-footer">Privacy en cookiebeleid</a></li>
+                            <li><a href="/klachten.html" class="trackevent" data-trackeventaction="page-complaints">Klachten</a></li>
+                            <li><a href="http://www.sanoma.nl/merken/artikel/nunl/digital/merk-profiel/" class="trackevent" data-trackeventaction="page-footer">Adverteren</a></li>
+                            <li class="last"><a href="/mobiel.html" class="trackevent" data-trackeventaction="page-footer">Apps</a></li>
+                        </ul>
+                    </div>
+                    <div class="block-col last">
+                        <ul class="social-badges">
+    
+        <li class="facebook"><a href="http://www.facebook.com/NUnl" target="_blank" class="trackevent"><i class="fa fa-facebook fa-lg"></i></a></li>
+    
+    
+        <li class="twitter"><a href="http://www.twitter.com/NUnl" target="_blank" class="trackevent"><i class="fa fa-twitter fa-lg"></i></a></li>
+    
+    
+        <li class="googleplus"><a href="http://plus.google.com/+NUnl" target="_blank" class="trackevent"><i class="fa fa-google-plus fa-fa-lg"></i></a></li>
+    
+    
+        <li class="rss"><a href="/rss/algemeen" target="_blank" class="trackevent"><i class="fa fa-rss fa-lg"></i></a></li>
+    
+</ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+
+            <script type="text/javascript"> try {    if(true) {        tagging.render("footer");    } } catch(err) {    console.log(err) } </script>
+            
+            <div class="clear"></div>
+        </div><!-- wrapper -->
+
+        
+
+        <div class="modal-overlay"></div>
+        <div class="overlay">
+            <div class="overlay-close trackevent" data-trackeventcategory="videopopup" data-trackeventaction="close popup" data-trackeventlabel="click naast video"></div>
+            <div class="overlay-inner">
+                <div class="overlay-content-container">
+                    <div class="overlay-content-boundary clearfix">
+                        <div id="overlay_leaderboard_adspot"></div>
+                        <i class="fa fa-times overlay-close trackevent" data-trackeventcategory="videopopup" data-trackeventaction="close popup" data-trackeventlabel="kruisje"></i>
+                        <div class="overlay-title"></div>
+                        <div class="overlay-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">try { tagging.render('overlay_top'); } catch (err) {}</script>
+        
+
+<script type="text/javascript" src="/static/CACHE/js/d9f5dd98e2da.js"></script>
+
+<!-- BLOCK JS -->
+<script type="text/javascript" src="/static/CACHE/js/49a6cca72949.js"></script>
+
+<script>
+    
+    // add Gigya dynamically.
+    var sanoma_account_global_config = {
+        api_key: '3_pNK9L9zU_Sx2BKzTUJuAmy1im2zN0pOkwM-Ui3AgrneVzSpyQqioWy_iZ1cbQzS5',
+        screenset_prefix: 'nunlv2',
+        events: NU.account.events || {}
+    };
+
+    jQuery.cachedScript('http://account.sanomaservices.nl/js/sanoma_account.min.js');
+    
+
+    
+    // Sanoma search, hidden and disabled without consent.
+    ConsentUtility.consent_given(function() {
+        jQuery.cachedScript('http://zoeken.startpagina.nl/nu/sanomasearch.min.js').done(function(){
+            if(jQuery('#sanoma_search').length > 0){
+                SANOMASEARCH.init(['autocomplete', 'serp']);
+            } else {
+                SANOMASEARCH.init(['autocomplete']);
+            }
+        });
+    });
+    
+</script>
+    </body>
+</html>
