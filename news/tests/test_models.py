@@ -1,12 +1,50 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.test import TestCase, override_settings
 from django.utils import timezone
 
 from news.tests.factory_models import ArticleFactory, VersionFactory
 
 
-
 class ArticleTests(TestCase):
+    def test_article_create(self):
+        article = ArticleFactory.create()
+        self.assertEquals(article._latest_date, None)
+        self.assertEquals(article._sum_versions, 0)
+
+    def test_version_create(self):
+        tz = timezone.get_current_timezone()
+
+        article = ArticleFactory.create()
+
+        VersionFactory.create(
+            article=article,
+            date=tz.localize(datetime(2015, 1, 2)),
+        )
+
+        article = article.__class__.objects.get(pk=article.pk)
+
+        self.assertEquals(
+            article._latest_date, tz.localize(datetime(2015, 1, 2)))
+        self.assertEquals(article._sum_versions, 1)
+
+        VersionFactory.create(
+            article=article,
+            date=tz.localize(datetime(2015, 1, 1)),
+        )
+
+        self.assertEquals(
+            article._latest_date, tz.localize(datetime(2015, 1, 2)))
+        self.assertEquals(article._sum_versions, 2)
+
+        VersionFactory.create(
+            article=article,
+            date=tz.localize(datetime(2016, 1, 1)),
+        )
+
+        self.assertEquals(
+            article._latest_date, tz.localize(datetime(2016, 1, 1)))
+        self.assertEquals(article._sum_versions, 3)
+
     @override_settings(NEWS_SOURCES=['news.parsers.mock.MockParser', ])
     def test_needs_update_equal(self):
         current_time = timezone.now()

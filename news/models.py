@@ -22,6 +22,9 @@ class Article(models.Model):
 
     source = models.CharField(max_length=255, blank=False, db_index=True)
 
+    _latest_date = models.DateTimeField(blank=True, null=True)
+    _sum_versions = models.IntegerField(default=0)
+
     def filename(self):
         return self.url[len('http://'):].rstrip('/')
 
@@ -77,6 +80,19 @@ class Version(models.Model):
         db_table = 'version'
         get_latest_by = 'date'
         ordering = ['-date', ]
+
+    def save(self, *args, **kwargs):
+        super(Version, self).save(*args, **kwargs)
+
+        try:
+            latest_date = \
+                self.article.version_set.latest('date').date
+        except Version.DoesNotExist:
+            latest_date = None
+
+        self.article._latest_date = latest_date
+        self.article._sum_versions = self.article.version_set.count()
+        self.article.save()
 
     def text(self):
         return self.content

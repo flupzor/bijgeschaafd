@@ -77,11 +77,9 @@ def browse(request, source=''):
     if source:
         articles = articles.filter(source=source)
 
-    articles = articles.annotate(
-        version_count=Count('version'), age=Max('version__date')
-    ).filter(
-        version_count__gte=2,
-    ).order_by('-age')
+    articles = articles.filter(
+        _sum_versions__gte=2,
+    ).order_by('-_latest_date')
 
     paginator = Paginator(articles, 10)
 
