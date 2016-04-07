@@ -44,15 +44,23 @@ class BaseParser(object):
             # If this is a relative URL construct an absolute one.
             if scheme == '' and netloc == '':
                 scheme, netloc, path = \
-                     doc_scheme, doc_netloc, urljoin(doc_path, path)
+                    doc_scheme, doc_netloc, urljoin(doc_path, path)
 
             # We forget the fragment, to normalize the url.
             absolute_urls.append(urlunsplit((scheme, netloc, path, query, '')))
 
-        filtered_urls = [url for url in absolute_urls if re.search(cls.url_filter, url)]
+        url_filter_list = cls.url_filter
+        if not (type(cls.url_filter) is list or type(cls.url_filter) is tuple):
+            url_filter_list = [cls.url_filter, ]
+
+        filtered_urls = []
+        for url_filter in url_filter_list:
+            filtered_urls += [url for url in absolute_urls
+                              if re.search(url_filter, url)]
 
         for exclude in cls.url_exclude:
-            filtered_urls = [url for url in filtered_urls if not re.search(exclude, url)]
+            filtered_urls = [url for url in filtered_urls
+                             if not re.search(exclude, url)]
 
         return set(filtered_urls)
 
