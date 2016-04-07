@@ -28,21 +28,18 @@ class ViewTests(WebTest):
         article1_version1 = VersionFactory.create(
             title="article1 revision1",
             article=article1,
-            boring=False,
             date=update_time - timedelta(hours=2),
         )
 
         article1_version2 = VersionFactory.create(
             title="article1 revision 2",
             article=article1,
-            boring=False,
             date=update_time - timedelta(hours=3),
         )
 
         article1_version3 = VersionFactory.create(
             title="article 1 revision 3",
             article=article1,
-            boring=False,
             date=update_time - timedelta(days=1, hours=3),
         )
 
@@ -55,14 +52,12 @@ class ViewTests(WebTest):
         article2_version1 = VersionFactory.create(
             title="article2 revision1",
             article=article2,
-            boring=False,
             date=update_time - timedelta(hours=3),
         )
 
         article2_version2 = VersionFactory.create(
             title="article2 revision1",
             article=article2,
-            boring=False,
             date=update_time - timedelta(hours=4),
         )
 

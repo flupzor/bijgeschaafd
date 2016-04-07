@@ -34,7 +34,7 @@ class Article(models.Model):
         return parser.full_name
 
     def versions(self):
-        return self.version_set.filter(boring=False).order_by('date')
+        return self.version_set.all().order_by('date')
 
     def latest_version(self):
         return self.versions().latest()
@@ -66,7 +66,6 @@ class Version(models.Model):
     title = models.CharField(max_length=255, blank=False)
     byline = models.CharField(max_length=255, blank=False)
     date = models.DateTimeField(blank=False)
-    boring = models.BooleanField(blank=False, default=False)
     diff_json = models.CharField(max_length=255, null=True)
 
     modified_date_in_article = models.DateTimeField(blank=True, null=True, default=None)

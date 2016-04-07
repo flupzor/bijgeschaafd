@@ -31,7 +31,6 @@ class MockParserTests(TestCase):
 
         # TODO: CHECK DATES
         v1 = Version.objects.get(
-            boring=False,
             byline='',
             title=u'\u1d90rticle http://www.mock.nl/mock_article1.html 1',
             diff_json=None,
@@ -39,7 +38,6 @@ class MockParserTests(TestCase):
         a1 = v1.article
 
         v2 = Version.objects.get(
-            boring=False,
             byline='',
             title=u'\u1d90rticle http://www.mock.nl/mock_article2.html 1',
             diff_json=None,
@@ -64,14 +62,12 @@ class MockParserTests(TestCase):
         self.assertEquals(a2.version_set.count(), 2)
 
         self.assertEquals(a1.version_set.exclude(pk=v1.pk).filter(
-            boring=False,
             byline='',
             diff_json=u'{"chars_removed": 1, "chars_added": 1}',
             title=u'\u1d90rticle http://www.mock.nl/mock_article1.html 2'
         ).count(), 1)
 
         self.assertEquals(a2.version_set.exclude(pk=v2.pk).filter(
-            boring=False,
             byline='',
             diff_json=u'{"chars_removed": 1, "chars_added": 1}',
             title=u'\u1d90rticle http://www.mock.nl/mock_article2.html 2'

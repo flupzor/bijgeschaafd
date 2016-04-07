@@ -17,7 +17,6 @@ class VersionFactory(factory.django.DjangoModelFactory):
     title = factory.LazyAttribute(lambda x: factory.Faker('sentence', nb_words=4))
     byline = ''
     date = factory.Faker('date_time_between', start_date="-1y", end_date="now")
-    boring = factory.Faker('boolean', chance_of_getting_true=95)
     diff_json = '{}'
 
     class Meta:

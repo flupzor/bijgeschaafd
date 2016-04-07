@@ -72,7 +72,7 @@ def browse(request, source=''):
         raise Http404
 
     first_update = get_first_update(source)
-    articles = Article.objects.filter(version__boring=False)
+    articles = Article.objects.filter()
 
     if source:
         articles = articles.filter(source=source)

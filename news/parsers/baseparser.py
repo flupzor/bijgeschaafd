@@ -107,7 +107,6 @@ class BaseParser(object):
         to_store = unicode(
             canonicalize(parsed_data.get('content', ''))).encode('utf-8')
         to_store_sha1 = hashlib.sha1(to_store).hexdigest()
-        boring = parsed_data.get('boring', False)
 
         diff_info = None
 
@@ -132,7 +131,6 @@ class BaseParser(object):
             diff_info = get_diff_info(latest_version_content, to_store)
 
         version = Version(
-            boring=boring,
             title=parsed_data.get('title'),
             modified_date_in_article=parsed_data.get('date'),
             byline='',
