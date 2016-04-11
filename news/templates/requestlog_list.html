@@ -1,0 +1,32 @@
+{% extends 'template.html' %}
+
+{% load pagination %}
+
+{% block active_about %} active{% endblock %}
+
+{% block content %}
+<a href="?period=day">Per day</a> - <a href="?period=week">Per week</a> - <a href="?">Everything</a>
+<table class="table table-condensed">
+  <thead>
+    <tr><th>Source</th><th>Total</th><th>With version</th><th>Factor</th></tr>
+  </thead>
+  <tbody>
+{% for item in count_per_source %}
+  <tr><td>{{ item.source }}</td><td>{{ item.total }}</td><td>{{ item.with_version }}</td><td>{{ item.factor}}</td></tr>
+{% endfor %}
+  </tbody>
+</table>
+<table class="table table-condensed">
+  <thead>
+    <tr><th>Date</th><th>Sourc</th><th>URL</th><th>Server</th><th>Version</th></tr>
+  </thead>
+  <tbody>
+  {% for requestlog in page_obj %}
+    <tr><td>{{ requestlog.date }}</td><td>{{ requestlog.source}}</td><td>{{requestlog.url}}</td><td>{{ requestlog.server_address}}</td><td>{{ requestlog.version }}</tr>
+  {% endfor %}
+  </tbody>
+</table>
+<div class="pull-xs-right">
+{% pagination page_obj 'requestlog_list' %}
+</div>
+{% endblock %}

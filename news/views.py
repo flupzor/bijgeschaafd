@@ -1,18 +1,19 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
-from django.db.models import Count, Max
+from django.db.models import Count, Max, F
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import Context, RequestContext, loader
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
+from django.views.generic import ListView
 
 import models
-from models import Article, Version
+from models import Article, RequestLog, Version
 from .parsers import all_parsers
 
 SEARCH_ENGINES = """
@@ -64,6 +65,32 @@ def is_valid_source(source):
     valid_sources = [parser.short_name for parser in all_parsers()]
 
     return any(source.endswith(valid_source) for valid_source in valid_sources)
+
+
+class RequestLogListView(ListView):
+    template_name = 'requestlog_list.html'
+    model = RequestLog
+    paginate_by = 100
+
+    def get_context_data(self):
+        context = super(RequestLogListView, self).get_context_data()
+
+        qs = self.object_list
+
+        period = self.request.GET.get('period')
+
+        if period == 'day':
+            qs = qs.filter(date__gt=timezone.now() - timedelta(days=1))
+        if period == 'week':
+            qs = qs.filter(date__gt=timezone.now() - timedelta(days=7))
+
+        context['count_per_source'] = qs.values(
+            'source'
+        ).annotate(
+            total=Count('source'), with_version=Count('version')
+        ).annotate(factor=F('total') / F('with_version'))
+
+        return context
 
 
 @cache_page(60 * 30)  #30 minute cache
