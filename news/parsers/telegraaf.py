@@ -19,6 +19,7 @@ class TelegraafParser(BaseParser):
     "^http://www.telegraaf.nl/vaarkrant/",
     "^http://www.telegraaf.nl/telesport/",
     "^http://www.telegraaf.nl/vrouw/",
+    "^http://www.telegraaf.nl/avond/",
     ]
 
     @classmethod
