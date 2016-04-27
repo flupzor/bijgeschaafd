@@ -1,3 +1,5 @@
+from pyquery import PyQuery as pq
+
 from django.utils import timezone
 from baseparser import BaseParser
 
@@ -12,35 +14,20 @@ class MockParser(BaseParser):
     url_filter = '^http://www.mock.nl/\w+/'
     url_exclude = []
 
-    version_counter = {}
-
-    updates = True
-
-    set_to_boring = False
-
-    @classmethod
-    def _http_get(cls, url):
-        return '', {'addr': None, 'port': None}
-
     @classmethod
     def parse_new_version(cls, url, html):
-        cls.version_counter.setdefault(url, 0)
+        d = pq(html)
 
-        if cls.updates:
-            MockParser.version_counter[url] += 1
+        title = d.find('#title').text()
+        content = d.find('#content').text()
 
-        current_article = cls.version_counter[url]
-
-        title = u'\u1d90rticle {} {}'.format(url, current_article)
-        date = timezone.now().date()
-        content = u'Body \u1d00 {} {}'.format(url, current_article)
-        if cls.set_to_boring:
+        if len(d.find('#boring')) > 0:
             raise NotInteresting()
 
         return {
             'title': title,
-            'date': date,
             'content': content,
+            'date': None
         }
 
     @classmethod
