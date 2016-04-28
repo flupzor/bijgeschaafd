@@ -2,8 +2,9 @@ from datetime import timedelta
 
 from django.core.management import call_command
 from django.test import TestCase, override_settings
+from Levenshtein import ratio as levenshtein_ratio
 
-from ..models import Article, Version
+from ..models import Article, Version, SimilarArticle
 import responses
 
 
@@ -240,3 +241,71 @@ class MockParserTests(TestCase):
         call_command('scraper')
 
         self.assertEquals(Version.objects.count(), 0)
+
+    @override_settings(NEWS_SOURCES=[
+        'news.parsers.mock.MockParser', 'news.parsers.mock.SimilarMockParser'])
+    @responses.activate
+    def test_similarity_checking(self):
+        quote1 = \
+            "Winston kept his back turned to the telescreen. It was safer; " \
+            "though, as he well knew, even a back can be revealing. A " \
+            "kilometre away the Ministry of Truth, his place of work, " \
+            "towered vast and white above the grimy landscape. This, he " \
+            "thought with a sort of vague distaste - this was London, " \
+            "chief city of Airstrip One, itself the third most populous of " \
+            "the provinces of Oceania. He tried to squeeze out some " \
+            "childhood memory that should tell him whether London had " \
+            "always been quite like this. Were there always these vistas " \
+            "of rotting nineteenth-century houses, their sides shored up " \
+            "with baulks of timber, their windows patched with cardboard " \
+            "and their roofs with corrugated iron, their crazy garden walls " \
+            "sagging in all directions? And the bombed sites where the plaster " \
+            "dust swirled in the air and the willow-herb straggled over the " \
+            "heaps of rubble; and the places where the bombs had cleared a " \
+            "larger patch and there had sprung up sordid colonies of wooden " \
+            "dwellings like chicken-houses? But it was no use, he could not " \
+            "remember: nothing remained of his childhood except a series of " \
+            "bright-lit tableaux occurring against no background and mostly " \
+            "unintelligible.\n"
+
+        quote2 = \
+            "The Ministry of Truth - Minitrue, in Newspeak - was " \
+            "startlingly different from any other object in sight. It was " \
+            "an enormous pyramidal structure of glittering white concrete, " \
+            "soaring up, terrace after terrace, 300 metres into the air. " \
+            "From where Winston stood it was just possible to read, picked " \
+            "out on its white face in elegant lettering, the three slogans " \
+            "of the Party:\n" \
+            "WAR IS PEACE\n" \
+            "FREEDOM IS SLAVERY\n" \
+            "IGNORANCE IS STRENGTH\n"
+
+        article1_content = quote1
+        article2_content = quote1 + quote2
+
+        self._create_response(
+            'http://www.mock.nl/mock_article1.html',
+            u'\u1d90rticle 1', article1_content)
+
+        self._create_response(
+            'http://www.similarmock.nl/mock_article1.html',
+            u'\u1d90rticle 1', article2_content)
+
+        call_command('scraper')
+
+        version1 = Version.objects.get(content=article1_content)
+        article1 = version1.article
+        version2 = Version.objects.get(content=article2_content)
+        article2 = version2.article
+
+        ratio = levenshtein_ratio(
+            [int(x) for x in version1.content_words_hashed],
+            [int(x) for x in version2.content_words_hashed])
+
+        expected = {
+            'to_article': max(article1.pk, article2.pk),
+            'from_article': min(article1.pk, article2.pk),
+            'ratio': ratio,
+        }
+
+        self.assertEquals(SimilarArticle.objects.filter(**expected).count(), 1)

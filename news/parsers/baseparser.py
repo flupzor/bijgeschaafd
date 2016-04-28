@@ -9,6 +9,7 @@ import time
 from pyquery import PyQuery as pq
 from django.db import transaction
 from django.utils import timezone
+from Levenshtein import ratio as levenshtein_ratio
 from raven.contrib.django.raven_compat.models import client
 
 from news.models import RequestLog, Article, Version
@@ -16,6 +17,7 @@ from news.parsers.exceptions import NotInteresting
 from news.utils import get_diff_info, is_boring, canonicalize, http_get
 
 from urlparse import urljoin, urlsplit, urlunsplit
+
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +32,11 @@ class BaseParser(object):
 
     @classmethod
     def request_urls(cls):
+        logger.debug(
+            "Retrieving the article list for source: %s from: %s",
+            cls.short_name, cls.article_list
+        )
+
         html, _ = cls._http_get(cls.article_list)
         d = pq(html)
 
@@ -130,7 +137,7 @@ class BaseParser(object):
 
             diff_info = get_diff_info(latest_version_content, to_store)
 
-        version = Version(
+        version = Version.new(
             title=parsed_data.get('title'),
             modified_date_in_article=parsed_data.get('date'),
             byline='',
@@ -155,6 +162,7 @@ class BaseParser(object):
     def _create_new_version(cls, article):
         current_time = timezone.now()
 
+        logger.debug("Retrieving article: %s", article.url)
         content, request_info = cls._http_get(article.url)
 
         try:
@@ -179,20 +187,74 @@ class BaseParser(object):
             server_address="{addr}:{port}".format(addr=request_info['addr'], port=request_info['port'])
         )
 
+        return _new_version
+
     @classmethod
     def create_new_version(cls, article):
         try:
-            cls._create_new_version(article)
-        except Exception as e:
+            return cls._create_new_version(article)
+        except Exception:
             client.captureException(extra={
                 'article_url': article.url,
             })
 
+            return None
+
+    @classmethod
+    def compare_articles(cls, a1, a2):
+        if a1.content == a2.content:
+            return 1.0
+
+        # TODO: For some reason these numbers are returned
+        # as a long integer. While a BigIntegerField should
+        # always fit into a normal Integer.
+        return levenshtein_ratio(
+            [int(x) for x in a1.content_words_hashed],
+            [int(x) for x in a2.content_words_hashed])
+
+    @classmethod
+    def find_similar_articles(cls, new_articles):
+        current_time = timezone.now()
+        yesterday = current_time - timedelta(days=1)
+
+        articles = Article.objects.filter(
+            initial_date__gte=yesterday,
+        )
+
+        logger.debug("Comparing against %d articles", articles.count())
+
+        for new_article in new_articles:
+            for article in articles:
+                # We don't care if websites copy from themselves.
+                if new_article.source == article.source:
+                    continue
+
+                try:
+                    new_version = new_article.version_set.earliest('date')
+                    version = article.version_set.earliest('date')
+                except Version.DoesNotExist:
+                    continue
+
+                ratio = cls.compare_articles(new_version, version)
+                if ratio > 0.6:
+                    logger.debug("Found one that is intersting. %d -> %d", new_article.pk, article.pk)
+                    new_article.add_similar_article(article, ratio)
+
     @classmethod
     def update(cls):
-        for new_article in cls.get_or_instantiate_articles():
-            cls.create_new_version(new_article)
+        new_articles = []
 
+        # Scrape the frontpage and download the articles found.
+        for unsaved_new_article in cls.get_or_instantiate_articles():
+            new_version = cls.create_new_version(unsaved_new_article)
+            if new_version:
+                new_article = new_version.article
+                new_articles.append(new_article)
+
+        cls.find_similar_articles(new_articles)
+
+        # Look for existing articles that need an update, an download them
+        # if they do.
         for article in Article.objects.filter(source=cls.short_name):
             if article.needs_update:
                 cls.create_new_version(article)

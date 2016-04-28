@@ -8,6 +8,13 @@ from bijgeschaafd import diff_match_patch
 logger = logging.getLogger('parsers')
 
 
+def hash_djb2(s):
+    hash = 5381
+    for x in s:
+        hash = ((hash << 5) + hash) + ord(x)
+    return hash & 0xFFFFFFFF
+
+
 CHARSET_LIST = """EUC-JP GB2312 EUC-KR Big5 SHIFT_JIS windows-1252
 IBM855
 IBM866

@@ -20,7 +20,7 @@ class NOSNLParserTests(TestCase):
 
     @responses.activate
     @override_settings(NEWS_SOURCES=['news.parsers.nosnl.NOSNLParser', ])
-    def test_nu_nl_urls(self):
+    def test_nos_nl_urls(self):
         page_name = 'www_nos_nl'
         page_path = os.path.join(TEST_DIR, page_name)
         page_file = open(page_path, 'rb')
