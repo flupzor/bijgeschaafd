@@ -5,6 +5,7 @@ from django.test import TestCase, override_settings
 from Levenshtein import ratio as levenshtein_ratio
 
 from ..models import Article, Version, SimilarArticle
+from .. import parsers
 import responses
 
 
@@ -35,6 +36,7 @@ class MockParserTests(TestCase):
     @override_settings(NEWS_SOURCES=['news.parsers.mock.MockParser', ])
     @responses.activate
     def test_parser(self):
+        parsers.reset()
 
         self._create_response(
             u'http://www.mock.nl/mock_article1.html',
@@ -141,6 +143,7 @@ class MockParserTests(TestCase):
         content2
         content1 # now we refuse to store, because we've seen content1 before.
         """
+        parsers.reset()
 
         a1_url = 'http://www.mock.nl/mock_article1.html'
         a2_url = 'http://www.mock.nl/mock_article2.html'
@@ -235,6 +238,8 @@ class MockParserTests(TestCase):
     @override_settings(NEWS_SOURCES=['news.parsers.mock.MockParser', ])
     @responses.activate
     def test_boring(self):
+        parsers.reset()
+
         self._create_response(
             'http://www.mock.nl/mock_article1.html',
             u'\u1d90rticle 1', u"Body \u1d00 1\n", boring=True)
@@ -246,9 +251,6 @@ class MockParserTests(TestCase):
         'news.parsers.mock.MockParser', 'news.parsers.mock.SimilarMockParser'])
     @responses.activate
     def test_similarity_checking(self):
-
-        # TODO: This is a hack to reset the cache for NEWS_SOURCES.
-        from news import parsers
         parsers.reset()
 
         quote1 = \
