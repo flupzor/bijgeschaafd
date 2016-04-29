@@ -8,6 +8,8 @@ from news.parsers.exceptions import NotInteresting
 class BaseMockParser(BaseParser):
     @classmethod
     def parse_new_version(cls, url, html):
+        print url
+
         d = pq(html)
 
         title = d.find('#title').text()

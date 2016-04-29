@@ -143,6 +143,9 @@ class MockParserTests(TestCase):
         content2
         content1 # now we refuse to store, because we've seen content1 before.
         """
+
+        print 'ohai'
+
         parsers.reset()
 
         a1_url = 'http://www.mock.nl/mock_article1.html'
