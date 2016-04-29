@@ -77,12 +77,8 @@ class BaseParser(object):
             return timedelta(minutes=15)
         elif time_since_update < timedelta(days=1):
             return timedelta(hours=1)
-        elif time_since_update < timedelta(days=7):
+        elif time_since_update < timedelta(days=10):
             return timedelta(hours=3)
-        elif time_since_update < timedelta(days=30):
-            return timedelta(days=3)
-        elif time_since_update < timedelta(days=360):
-            return timedelta(days=30)
         else:
             return None
 

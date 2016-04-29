@@ -126,29 +126,19 @@ class ArticleTests(TestCase):
 
         # Every 3 hours
         self._needs_update(
-            timedelta(hours=3), timedelta(days=1), timedelta(days=6, hours=23, minutes=59)
-        )
-
-        # Every 3 days
-        self._needs_update(
-            timedelta(days=3), timedelta(days=7), timedelta(days=29, hours=23, minutes=59)
-        )
-
-        # Every 30 days
-        self._needs_update(
-            timedelta(days=30), timedelta(days=30), timedelta(days=359, hours=23, minutes=59)
+            timedelta(hours=3), timedelta(days=1), timedelta(days=9, hours=23, minutes=59)
         )
 
         # Do not download
         current_time = timezone.now()
-        initial_date = current_time - timedelta(days=360) - timedelta(days=365)
+        initial_date = current_time - timedelta(days=10) - timedelta(days=365)
 
         article = ArticleFactory.create(
             source='mock.nl',
             last_check=current_time - timedelta(days=360),
             last_update=current_time - timedelta(days=360),
         )
-        article.initial_date=initial_date
+        article.initial_date = initial_date
         article.save()
         self.assertEquals(article.needs_update, False)
 

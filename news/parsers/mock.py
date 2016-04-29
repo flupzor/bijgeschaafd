@@ -16,7 +16,6 @@ class BaseMockParser(BaseParser):
         if len(d.find('#boring')) > 0:
             raise NotInteresting()
 
-
         return {
             'title': title,
             'content': content,

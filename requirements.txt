@@ -13,4 +13,5 @@ pytz==2015.7
 requests==2.9.1
 raven==5.11.1
 responses==0.5.1
+psycopg2==2.6.1
 -e git+https://github.com/flupzor/python-Levenshtein.git@levenshtein_list_support#egg=python-Levenshtein
