@@ -246,6 +246,11 @@ class MockParserTests(TestCase):
         'news.parsers.mock.MockParser', 'news.parsers.mock.SimilarMockParser'])
     @responses.activate
     def test_similarity_checking(self):
+
+        # TODO: This is a hack to reset the cache for NEWS_SOURCES.
+        from news import parsers
+        parsers.reset()
+
         quote1 = \
             "Winston kept his back turned to the telescreen. It was safer; " \
             "though, as he well knew, even a back can be revealing. A " \

@@ -31,6 +31,10 @@ def __init_cache():
         __parsers[parser.short_name] = parser
 
 
+def reset():
+    __init_cache()
+
+
 def get_parser(source):
     if __parsers is None:
         __init_cache()
@@ -68,4 +72,4 @@ def load_article(article):
         return
     return parsed_article
 
-__all__ = ['parsers', 'get_parser', 'get_all_article_urls', 'load_article']
+__all__ = ['parsers', 'get_parser', 'get_all_article_urls', 'load_article', 'reset']
