@@ -156,6 +156,8 @@ class MockParserTests(TestCase):
         self._create_response(a2_url, u'\u1d90rticle 1', u"Body \u1d00 1\n")
         call_command('scraper')
 
+        print 'end scraper test_parser_flapping'
+
         self.assertEquals(Version.objects.count(), 2)
 
         a1 = Article.objects.get(url=a1_url)
