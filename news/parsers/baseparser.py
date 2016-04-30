@@ -175,10 +175,16 @@ class BaseParser(object):
             _new_article, _new_version = None, None
         else:
             print 'saving: {}'.format(article.url)
-            with transaction.atomic():
-                _new_article.save()
-                _new_version.article = _new_article
-                _new_version.save()
+            try:
+                with transaction.atomic():
+                    _new_article.save()
+                    _new_version.article = _new_article
+                    _new_version.save()
+            except Exception as e:
+                print 'exception {}'.format(e)
+                raise e
+
+            print 'saved {}'.format(article.url)
 
         requestlog = RequestLog.objects.create(
             date=timezone.now(),
