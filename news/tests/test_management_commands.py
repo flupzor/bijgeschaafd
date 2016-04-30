@@ -144,7 +144,7 @@ class MockParserTests(TestCase):
         content1 # now we refuse to store, because we've seen content1 before.
         """
 
-        print 'ohai'
+        print 'start test_parser_flapping'
 
         parsers.reset()
 
@@ -237,6 +237,8 @@ class MockParserTests(TestCase):
 
         call_command('scraper')
         self.assertEquals(Version.objects.count(), 14)
+
+        print 'end test_parser_flapping'
 
     @override_settings(NEWS_SOURCES=['news.parsers.mock.MockParser', ])
     @responses.activate

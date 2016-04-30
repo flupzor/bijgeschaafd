@@ -90,6 +90,7 @@ class BaseParser(object):
 
                 assert article.source == cls.short_name, "The same URL is used for two different sources"
             except Article.DoesNotExist:
+                print 'NEW ARTICLE: {} for {}'.format(url, cls.short_name)
                 article = Article(
                     url=url,
                     source=cls.short_name
@@ -145,6 +146,8 @@ class BaseParser(object):
         article.last_update = current_time
         article.last_check = current_time
 
+        print 'request_new_version {}'.format(article.url)
+
         return article, version
 
     @classmethod
@@ -164,12 +167,14 @@ class BaseParser(object):
         try:
             _new_article, _new_version = cls.request_new_version(article, content)
         except NotInteresting:
+            print 'notintersting {}'.format(article.url)
             if article.pk:
                 article.last_check = current_time
                 article.save()
 
             _new_article, _new_version = None, None
         else:
+            print 'saving: {}'.format(article.url)
             with transaction.atomic():
                 _new_article.save()
                 _new_version.article = _new_article
@@ -239,6 +244,8 @@ class BaseParser(object):
     @classmethod
     def update(cls):
         new_articles = []
+
+        print '{}->update'.format(cls.__name__)
 
         # Scrape the frontpage and download the articles found.
         for unsaved_new_article in cls.get_or_instantiate_articles():
