@@ -12,3 +12,9 @@ install:
   - pip install -r requirements.txt --use-mirrors
 
 script: ./build.sh
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database bijgeschaafd_test;' -U postgres
