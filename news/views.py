@@ -13,7 +13,7 @@ from django.views.decorators.cache import cache_page
 from django.views.generic import ListView
 
 import models
-from models import Article, RequestLog, Version
+from models import Article, RequestLog, SimilarArticle, Version
 from .parsers import all_parsers
 
 SEARCH_ENGINES = """
@@ -93,6 +93,17 @@ class RequestLogListView(ListView):
         return context
 
 
+class SimilarArticleListView(ListView):
+    template_name = 'similararticle_list.html'
+    model = SimilarArticle
+    paginate_by = 100
+
+    def get_queryset(self):
+        qs = super(SimilarArticleListView, self).get_queryset()
+
+        return qs.order_by('-from_article___latest_date', '-to_article___latest_date')
+
+
 @cache_page(60 * 30)  #30 minute cache
 def browse(request, source=''):
     if not (source == '' or is_valid_source(source)):
@@ -125,6 +136,23 @@ def browse(request, source=''):
         'page': page,
         'first_update': first_update,
         'sources': [parser.short_name for parser in all_parsers()]
+    })
+
+
+def diffview2(request, vid1, vid2):
+    try:
+        v1 = Version.objects.get(id=int(vid1))
+        v2 = Version.objects.get(id=int(vid2))
+    except Version.DoesNotExist:
+        raise Http404
+
+    title = '{} met {}'.format(v1.article.source, v2.article.source)
+
+    return render_to_response('diffview.html', {
+        'similarity_nav': True,
+        'title': title,
+        'v1': v1, 'v2': v2,
+        'text1': v1.text, 'text2': v2.text
     })
 
 
@@ -183,6 +211,7 @@ def diffview(request, vid1, vid2, urlarg):
             'article_shorturl': article.filename(),
             'article_url': article.url, 'v1': v1, 'v2': v2,
             'display_search_banner': came_from_search_engine(request),
+            'article_nav': True
             })
 
 

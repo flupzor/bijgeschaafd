@@ -56,6 +56,13 @@ de artikelen online zijn gepubliceerd. Je kan ons archief bekijken in het
 {% endif %}
 
     <h2>Comparing: {{title}}</h2>
+    {% if similarity_nav %}
+    <ul>
+      <li><del>Gearchiveerd {{v1.title}} ({{ v1.article.source}})</del></li>
+      <li><ins>Gearchiveerd {{v2.title}} ({{ v2.article.source}})</ins></li>
+    </ul>
+    {% endif %}
+    {% if article_nav %}
     <h3><a href="{{article_url}}">{{article_url}}</a></h3>
     <ul>
       <li><del>Gearchiveerd {{date1}}</del></li>
@@ -75,6 +82,7 @@ de artikelen online zijn gepubliceerd. Je kan ons archief bekijken in het
       Geen latere wijziging
       {% endif %}
     </p>
+    {% endif %}
 
 <hr>
     <div>

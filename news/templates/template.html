@@ -21,6 +21,7 @@
         <a class="navbar-brand" href="{% url 'root' %}">Bijgeschaafd</a>
         <ul class="nav navbar-nav">
           <li class="nav-item"><a class="nav-link{% block active_browse %}{% endblock %}" href="{% url 'browse' %}">Browse</a></li>
+          <li class="nav-item"><a class="nav-link{% block active_verwant %}{% endblock %}" href="{% url 'similararticle_list' %}">Verwant</a></li>
           <li class="nav-item"><a class="nav-link{% block active_about %}{% endblock %}" href="{% url 'about' %}">About</a></li>
         </ul>
     </div>
