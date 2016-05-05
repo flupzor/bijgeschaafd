@@ -91,6 +91,9 @@ class Article(models.Model):
     def time_since_check(self):
         return timezone.now() - self.last_check
 
+    def __unicode__(self):
+        return 'Article(pk={})'.format(self.pk)
+
 
 class SimilarArticle(models.Model):
     from_article = models.ForeignKey(Article, related_name='from_article')
@@ -158,6 +161,9 @@ class Version(models.Model):
         else:
             self.diff_json = json.dumps(val)
     diff_info = property(get_diff_info, set_diff_info)
+
+    def __unicode__(self):
+        return 'Version(pk={})'.format(self.pk)
 
 
 class RequestLog(models.Model):
