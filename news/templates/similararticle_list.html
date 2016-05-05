@@ -1,0 +1,28 @@
+{% extends 'template.html' %}
+
+{% load pagination %}
+
+{% block active_verwant %} active{% endblock %}
+
+{% block content %}
+<table class="table table-condensed">
+  <thead>
+    <tr><th>From</th><th>To</th><th>ratio</th><th>Diff</th></tr>
+  </thead>
+  <tbody>
+  {% for similarity in page_obj %}
+    {% with from_version=similarity.from_article.first_version to_version=similarity.to_article.first_version %}
+    <tr>
+      <td>{{ from_version.title }} ({{ from_version.article.source }})</td>
+      <td>{{ to_version.title }} ({{ to_version.article.source }}) </td>
+      <td>{{ similarity.ratio }}</td>
+      <td><a href="{% url "diffview2" vid1=from_version.pk vid2=to_version.pk %}">(Vergelijk)</a></td>
+    </tr>
+    {% endwith %}
+  {% endfor %}
+  </tbody>
+</table>
+<div class="pull-xs-right">
+{% pagination page_obj 'requestlog_list' %}
+</div>
+{% endblock %}
