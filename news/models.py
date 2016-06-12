@@ -11,6 +11,8 @@ from news.parsers import get_parser
 from news.parsers.exceptions import ParserDoesNotExist
 from news.utils import hash_djb2
 
+from managers import SimilarArticleManager
+
 
 class Article(models.Model):
     class Meta:
@@ -26,32 +28,6 @@ class Article(models.Model):
 
     _latest_date = models.DateTimeField(blank=True, null=True)
     _sum_versions = models.IntegerField(default=0)
-
-    # What i've implemented is a undirected weighted graph. Since the edges
-    # are undirected the ordering of source and destination doesn't matter.
-    # This means: SimilarArticle(from, to, weight) == SimilarArticle(to, from,
-    # weight)
-
-    # Which means we have to decide which of the two we want to store. I've
-    # decided to store the the article with the lowest id as the source and
-    # the article with the highest id as the destination.
-
-    def add_similar_article(self, article, ratio):
-
-        from_article = min(self, article, key=lambda a: a.id)
-        to_article = max(self, article, key=lambda a: a.id)
-
-        if from_article == to_article:
-            raise Exception("It's not possible to create a similarity relation"
-                            "to from and to the same Article. An Article is"
-                            "always 100% similar to itself.")
-
-        # XXX: This should throw an Exception when a relation already exists.
-
-        return SimilarArticle.objects.get_or_create(
-            from_article=from_article, to_article=to_article,
-            ratio=ratio)
-
 
     def filename(self):
         return self.url[len('http://'):].rstrip('/')
@@ -91,18 +67,35 @@ class Article(models.Model):
     def time_since_check(self):
         return timezone.now() - self.last_check
 
+    def add_similar_article(self, article, ratio):
+        return SimilarArticle.objects.add_similar_article(self, article, ratio)
+
     def __unicode__(self):
         return 'Article(pk={})'.format(self.pk)
 
 
+class Cluster(models.Model):
+    latest_date = models.DateTimeField(blank=False, null=True)
+
+
 class SimilarArticle(models.Model):
+    cluster = models.ForeignKey(Cluster)
+
     from_article = models.ForeignKey(Article, related_name='from_article')
     to_article = models.ForeignKey(Article, related_name='to_article')
 
     ratio = models.FloatField()
 
+    objects = SimilarArticleManager()
+
+    class Meta:
+        unique_together = ('from_article', 'to_article',)
+
     def __str__(self):
         return "{0} to {1} weight: {2}".format(self.from_article, self.to_article, self.ratio);
+
+    def get_ratio_percentage(self):
+        return round(self.ratio * 100, 2)
 
 
 class Version(models.Model):

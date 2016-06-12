@@ -1,19 +1,19 @@
 from datetime import datetime, timedelta
 import json
 
-from django.conf import settings
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
-from django.db.models import Count, Max, F
+from django.db.models import Count
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import Context, RequestContext, loader
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
-from django.views.generic import ListView
+from django.views.generic import ListView, View
 
 import models
-from models import Article, RequestLog, SimilarArticle, Version
+from models import Article, Cluster, RequestLog, SimilarArticle, Version
 from .parsers import all_parsers
 
 SEARCH_ENGINES = """
@@ -95,13 +95,13 @@ class RequestLogListView(ListView):
 
 class SimilarArticleListView(ListView):
     template_name = 'similararticle_list.html'
-    model = SimilarArticle
+    model = Cluster
     paginate_by = 100
 
     def get_queryset(self):
         qs = super(SimilarArticleListView, self).get_queryset()
 
-        return qs.order_by('-from_article___latest_date', '-to_article___latest_date')
+        return qs.order_by('-latest_date')
 
 
 @cache_page(60 * 30)  #30 minute cache

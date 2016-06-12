@@ -1,6 +1,7 @@
 import factory
+import factory.fuzzy
 
-from ..models import Article, Version
+from ..models import Article, Cluster, SimilarArticle, Version
 
 
 class ArticleFactory(factory.django.DjangoModelFactory):
@@ -21,3 +22,19 @@ class VersionFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Version
+
+class ClusterFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Cluster
+
+
+
+class SimilarArticleFactory(factory.django.DjangoModelFactory):
+    cluster = factory.SubFactory(ClusterFactory)
+    from_article = factory.SubFactory(ArticleFactory)
+    to_article = factory.SubFactory(ArticleFactory)
+
+    ratio = factory.fuzzy.FuzzyDecimal(0.6, 1)
+
+    class Meta:
+        model = SimilarArticle

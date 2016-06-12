@@ -7,18 +7,21 @@
 {% block content %}
 <table class="table table-condensed">
   <thead>
-    <tr><th>From</th><th>To</th><th>ratio</th><th>Diff</th></tr>
+    <tr><th>Artikel</th><th>Lijkt op</th><th>Gelijkenis</th><th>Vergelijking</th></tr>
   </thead>
   <tbody>
-  {% for similarity in page_obj %}
+  {% cycle "white" "lightgrey" as rowcolors silent %}
+  {% for cluster in page_obj %}
+  {% for similarity in cluster.similararticle_set.all %}
+    <tr style="background-color: {% ifchanged cluster %}{% cycle rowcolors %}{{ rowcolors }}{% else %}{{ rowcolors }}{% endifchanged %}">
     {% with from_version=similarity.from_article.first_version to_version=similarity.to_article.first_version %}
-    <tr>
       <td>{{ from_version.title }} ({{ from_version.article.source }})</td>
       <td>{{ to_version.title }} ({{ to_version.article.source }}) </td>
-      <td>{{ similarity.ratio }}</td>
+      <td>{{ similarity.get_ratio_percentage }}%</td>
       <td><a href="{% url "diffview2" vid1=from_version.pk vid2=to_version.pk %}">(Vergelijk)</a></td>
-    </tr>
     {% endwith %}
+    </tr>
+  {% endfor %}
   {% endfor %}
   </tbody>
 </table>
