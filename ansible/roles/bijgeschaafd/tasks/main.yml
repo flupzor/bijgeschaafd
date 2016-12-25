@@ -27,62 +27,62 @@
 - name: Make sure the git repository exists and is up to date.
   become: yes
   become_user: "{{ application_user }}"
-  git: repo=https://github.com/flupzor/bijgeschaafd.git dest=/usr/django/newsdiffs version=master
+  git: repo=https://github.com/flupzor/bijgeschaafd.git dest=/usr/django/bijgeschaafd version=master
   notify: restart gunicorn
 - name: setup virtualenv
   become: yes
   become_user: "{{ application_user }}"
-  pip: requirements=/usr/django/newsdiffs/requirements.txt virtualenv=/usr/django/newsdiffs/env/ virtualenv_site_packages=yes
-- name: setup newsdiffs configuration
+  pip: requirements=/usr/django/bijgeschaafd/requirements.txt virtualenv=/usr/django/bijgeschaafd/env/ virtualenv_site_packages=yes
+- name: setup bijgeschaafd configuration
   become: yes
   become_user: "{{ application_user }}"
-  template: src=settings_local.py.j2 dest=/usr/django/newsdiffs/bijgeschaafd/settings_local.py
+  template: src=settings_local.py.j2 dest=/usr/django/bijgeschaafd/bijgeschaafd/settings_local.py
   notify: restart gunicorn
 # syncdb is needed for Django 1.5
-- name: run newsdiffs db syncdb
+- name: run bijgeschaafd db syncdb
   become: yes
   become_user: "{{ application_user }}"
   django_manage: >
       command=syncdb
-      app_path=/usr/django/newsdiffs/
+      app_path=/usr/django/bijgeschaafd/
       settings=bijgeschaafd.settings
-      pythonpath=/usr/django/newsdiffs/
-      virtualenv=/usr/django/newsdiffs/env/
-- name: run newsdiffs db migrations
+      pythonpath=/usr/django/bijgeschaafd/
+      virtualenv=/usr/django/bijgeschaafd/env/
+- name: run bijgeschaafd db migrations
   become: yes
   become_user: "{{ application_user }}"
   django_manage: >
       command=migrate
-      app_path=/usr/django/newsdiffs/
+      app_path=/usr/django/bijgeschaafd/
       settings=bijgeschaafd.settings
-      pythonpath=/usr/django/newsdiffs/
-      virtualenv=/usr/django/newsdiffs/env/
+      pythonpath=/usr/django/bijgeschaafd/
+      virtualenv=/usr/django/bijgeschaafd/env/
 - name: install bower
   become: yes
   npm: name=bower global=yes
 - name: install bower dependencies
   become: yes
   become_user: "{{ application_user }}"
-  bower: path=/usr/django/newsdiffs/
-- name: run newsdiffs collectstatic
+  bower: path=/usr/django/bijgeschaafd/
+- name: run bijgeschaafd collectstatic
   become: yes
   become_user: "{{ application_user }}"
   django_manage: >
       command=collectstatic
-      app_path=/usr/django/newsdiffs/
+      app_path=/usr/django/bijgeschaafd/
       settings=bijgeschaafd.settings
-      pythonpath=/usr/django/newsdiffs/
-      virtualenv=/usr/django/newsdiffs/env/
+      pythonpath=/usr/django/bijgeschaafd/
+      virtualenv=/usr/django/bijgeschaafd/env/
 - name: make sure gunicorn is installed
   apt: name=gunicorn state=present
 - name: setup gunicorn configuration
   become: yes
-  template: src=gunicorn.j2 dest=/etc/gunicorn.d/newsdiffs
+  template: src=gunicorn.j2 dest=/etc/gunicorn.d/bijgeschaafd
   notify: restart gunicorn
 - name: install gitconfig
   become: yes
   become_user: "{{ application_user }}"
-  template: src=gitconfig.j2 dest=/home/newsdiffs/.gitconfig
+  template: src=gitconfig.j2 dest=/home/bijgeschaafd/.gitconfig
 - name: install crontab
   become: yes
   become_user: "{{ application_user }}"

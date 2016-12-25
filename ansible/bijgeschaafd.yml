@@ -1,0 +1,11 @@
+---
+
+- hosts: bijgeschaafd_servers
+  vars:
+    app_path: "/usr/django/bijgeschaafd"
+  roles:
+   - common
+   - db
+   - web
+   - bijgeschaafd
+
