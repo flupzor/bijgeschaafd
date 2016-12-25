@@ -8,8 +8,8 @@ env:
 install:
   - sudo apt-get update
   - sudo apt-get install libxml2
-  - pip install $DJANGO --use-mirrors
-  - pip install -r requirements.txt --use-mirrors
+  - pip install $DJANGO
+  - pip install -r requirements.txt
 
 script: ./build.sh
 
