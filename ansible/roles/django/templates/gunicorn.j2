@@ -1,0 +1,18 @@
+CONFIG = {
+    'environment': {
+       'VIRTUAL_ENV': '/usr/django/{{ app_name }}/env',
+       'PATH': '/usr/django/{{ app_name }}/env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',
+    },
+    'python': '/usr/django/{{ app_name }}/env/bin/python',
+    'mode': 'wsgi',
+    'working_dir': '/usr/django/{{ app_name }}/',
+    'user': '{{ app_name }}',
+    'group': '{{ app_name }}',
+    'args': (
+        '--bind=127.0.0.1:{{ gunicorn_port }}',
+        '--workers=4',
+	'--timeout=90',
+        '{{ app_name }}.wsgi',
+    ),
+}
+

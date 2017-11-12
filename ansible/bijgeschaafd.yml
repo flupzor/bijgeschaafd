@@ -3,9 +3,10 @@
 - hosts: bijgeschaafd_servers
   vars:
     app_path: "/usr/django/bijgeschaafd"
+    app_name: bijgeschaafd
   roles:
    - common
    - db
    - web
-   - bijgeschaafd
+   - django
 

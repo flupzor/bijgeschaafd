@@ -2,8 +2,8 @@
   apt: name=nginx state=present
 - name: Add nignx configuration
   become: yes
-  template: src=bijgeschaafd.j2 dest=/etc/nginx/sites-available/bijgeschaafd
+  template: src=django.j2 dest=/etc/nginx/sites-available/{{ app_name }}
 - name: Enable nginx configuration
   become: yes
-  file: src=/etc/nginx/sites-available/bijgeschaafd dest=/etc/nginx/sites-enabled/bijgeschaafd state=link
+  file: src=/etc/nginx/sites-available/{{ app_name }} dest=/etc/nginx/sites-enabled/{{ app_name }} state=link
   notify: restart nginx

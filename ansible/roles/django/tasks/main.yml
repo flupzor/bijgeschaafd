@@ -3,7 +3,7 @@
   file: path=/usr/django/ state=directory mode="u=rwx,g=rwx,o=x" owner=root group=root
 - name: Create directory for static data
   become: yes
-  file: path=/var/www/html/bijgeschaafd/static/ state=directory mode="u=rwx,g=rx,o=r" owner={{ application_user }} group=www-data
+  file: path=/var/www/html/{{ app_name }}/static/ state=directory mode="u=rwx,g=rx,o=r" owner={{ application_user }} group=www-data
 - name: make sure memcached is installed
   apt: name=memcached state=present
 - name: make sure git is installed
@@ -27,67 +27,62 @@
 - name: Make sure the git repository exists and is up to date.
   become: yes
   become_user: "{{ application_user }}"
-  git: repo=https://github.com/flupzor/bijgeschaafd.git dest=/usr/django/bijgeschaafd version=master
+  git: repo=https://github.com/flupzor/{{ app_name }}.git dest=/usr/django/{{ app_name }} version=master
   notify: restart gunicorn
 - name: setup virtualenv
   become: yes
   become_user: "{{ application_user }}"
-  pip: requirements=/usr/django/bijgeschaafd/requirements.txt virtualenv=/usr/django/bijgeschaafd/env/ virtualenv_site_packages=yes
-- name: setup bijgeschaafd configuration
+  pip: requirements=/usr/django/{{ app_name }}/requirements.txt virtualenv=/usr/django/{{ app_name }}/env/ virtualenv_site_packages=yes
+- name: setup {{ app_name }} configuration
   become: yes
   become_user: "{{ application_user }}"
-  template: src=settings_local.py.j2 dest=/usr/django/bijgeschaafd/bijgeschaafd/settings_local.py
+  template: src=settings_local.py.j2 dest=/usr/django/{{ app_name }}/{{ app_name }}/settings_local.py
   notify: restart gunicorn
-# syncdb is needed for Django 1.5
-- name: run bijgeschaafd db syncdb
-  become: yes
-  become_user: "{{ application_user }}"
-  django_manage: >
-      command=syncdb
-      app_path=/usr/django/bijgeschaafd/
-      settings=bijgeschaafd.settings
-      pythonpath=/usr/django/bijgeschaafd/
-      virtualenv=/usr/django/bijgeschaafd/env/
-- name: run bijgeschaafd db migrations
+- name: run {{ app_name }} db migrate
   become: yes
   become_user: "{{ application_user }}"
   django_manage: >
       command=migrate
-      app_path=/usr/django/bijgeschaafd/
-      settings=bijgeschaafd.settings
-      pythonpath=/usr/django/bijgeschaafd/
-      virtualenv=/usr/django/bijgeschaafd/env/
+      app_path=/usr/django/{{ app_name }}/
+      settings={{ app_name }}.settings
+      pythonpath=/usr/django/{{ app_name }}/
+      virtualenv=/usr/django/{{ app_name }}/env/
+- name: run {{ app_name }} db migrations
+  become: yes
+  become_user: "{{ application_user }}"
+  django_manage: >
+      command=migrate
+      app_path=/usr/django/{{ app_name }}/
+      settings={{ app_name }}.settings
+      pythonpath=/usr/django/{{ app_name }}/
+      virtualenv=/usr/django/{{ app_name }}/env/
 - name: install bower
   become: yes
   npm: name=bower global=yes
 - name: install bower dependencies
   become: yes
   become_user: "{{ application_user }}"
-  bower: path=/usr/django/bijgeschaafd/
-- name: run bijgeschaafd collectstatic
+  bower: path=/usr/django/{{ app_name }}/
+- name: run {{ app_name }} collectstatic
   become: yes
   become_user: "{{ application_user }}"
   django_manage: >
       command=collectstatic
-      app_path=/usr/django/bijgeschaafd/
-      settings=bijgeschaafd.settings
-      pythonpath=/usr/django/bijgeschaafd/
-      virtualenv=/usr/django/bijgeschaafd/env/
+      app_path=/usr/django/{{ app_name }}/
+      settings={{ app_name }}.settings
+      pythonpath=/usr/django/{{ app_name }}/
+      virtualenv=/usr/django/{{ app_name }}/env/
 - name: make sure gunicorn is installed
   apt: name=gunicorn state=present
 - name: setup gunicorn configuration
   become: yes
-  template: src=gunicorn.j2 dest=/etc/gunicorn.d/bijgeschaafd
+  template: src=gunicorn.j2 dest=/etc/gunicorn.d/{{ app_name }}
   notify: restart gunicorn
-- name: install gitconfig
-  become: yes
-  become_user: "{{ application_user }}"
-  template: src=gitconfig.j2 dest=/home/bijgeschaafd/.gitconfig
 - name: install crontab
   become: yes
   become_user: "{{ application_user }}"
   cron:
-    name: "newsdiff crontab"
+    name: "{{ app_name}} crontab"
     job: PATH="{{ app_path }}/env/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" PYTHONPATH="{{ app_path }}" VIRTUAL_ENV="{{ app_path }}/env/" {{ app_path }}/manage.py scraper
     hour: "*/3"
     minute: "7"
