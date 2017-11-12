@@ -62,7 +62,7 @@ def get_diff_info(old, new):
 
 
 def http_get(url):
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, timeout=120)
 
     addr, port = None, None
 # Does not work for SSL connections
