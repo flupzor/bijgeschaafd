@@ -65,8 +65,9 @@ def http_get(url):
     response = requests.get(url, stream=True)
 
     addr, port = None, None
-    if isinstance(response.raw._fp, httplib.HTTPResponse):
-        addr, port = response.raw._fp.fp._sock.getpeername()
+# Does not work for SSL connections
+#    if isinstance(response.raw._fp, httplib.HTTPResponse):
+#        addr, port = response.raw._fp.fp._sock.getpeername()
 
     request_info = {
         'addr': addr,
