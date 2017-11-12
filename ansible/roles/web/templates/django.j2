@@ -1,7 +1,18 @@
 server {
         listen 80;
 
-	root /var/www/html;
+        # Make site accessible from http://{{ server_hostname }}
+        server_name www.{{ server_hostname }} {{ server_hostname }};
+
+        return 301 https://$host$request_uri;
+}
+
+server {
+        listen 443 ssl;
+        ssl_certificate /etc/letsencrypt/live/{{ server_hostname }}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/{{ server_hostname }}/privkey.pem;
+
+        root /var/www/html;
 
         # Make site accessible from http://{{ server_hostname }}
         server_name www.{{ server_hostname }} {{ server_hostname }};
@@ -10,7 +21,7 @@ server {
 		proxy_connect_timeout 300s;
 		proxy_read_timeout 300s;
 
-                proxy_pass http://127.0.0.1:8000;
+                proxy_pass http://127.0.0.1:{{ gunicorn_port }};
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -18,5 +29,9 @@ server {
 	location /static {
 		alias /var/www/html/{{ app_name }}/static/;
 	}
+
+        location /.well-known {
+                alias /var/www/html/{{ app_name }}/.well-known/;
+        }
 }
 
