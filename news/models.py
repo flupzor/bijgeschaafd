@@ -99,6 +99,8 @@ class SimilarArticle(models.Model):
 
 
 class Version(models.Model):
+    indexed = models.BooleanField(default=False)
+
     article = models.ForeignKey('Article', null=False)
     title = models.CharField(max_length=255, blank=False)
     byline = models.CharField(max_length=255, blank=False)
