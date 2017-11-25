@@ -1,11 +1,11 @@
-from django.test import TestCase, override_settings
-
 import os
+
+from django.test import TestCase, override_settings
 from django.utils._os import upath
 
-from ..telegraaf import TelegraafParser
 import responses
 
+from ..telegraaf import TelegraafParser
 
 TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 

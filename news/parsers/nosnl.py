@@ -1,9 +1,8 @@
+from baseparser import BaseParser
 from pyquery import PyQuery as pq
 
-from baseparser import BaseParser
-
-from .utils import html_to_text
 from ..dateparsers import NosNLDateParser
+from .utils import html_to_text
 
 
 class NOSNLParser(BaseParser):

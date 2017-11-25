@@ -2,11 +2,12 @@ from datetime import timedelta
 
 from django.core.management import call_command
 from django.test import TestCase, override_settings
+
+import responses
 from Levenshtein import ratio as levenshtein_ratio
 
-from ..models import Article, Version, SimilarArticle
 from .. import parsers
-import responses
+from ..models import Article, SimilarArticle, Version
 
 
 class MockParserTests(TestCase):

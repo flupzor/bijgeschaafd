@@ -1,12 +1,13 @@
-from django.test import TestCase, override_settings
-from datetime import datetime
 import os
-import pytz
+from datetime import datetime
+
+from django.test import TestCase, override_settings
 from django.utils._os import upath
 
-from ..nosnl import NOSNLParser
+import pytz
 import responses
 
+from ..nosnl import NOSNLParser
 
 TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 
@@ -142,4 +143,3 @@ class NOSNLParserTests(TestCase):
         expected_date = self.timezone.localize(datetime(2015, 11, 14, 19, 28, 38))
 
         self.assertEquals(parsed_article.get('date'), expected_date)
-

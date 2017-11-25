@@ -2,9 +2,11 @@ from datetime import datetime
 
 from django.test import TestCase
 
-from ..dateparsers import TelegraafDateParser, NuNLDateParser, NosNLDateParser, MetroDateParser
-
 from pytz import timezone
+
+from ..dateparsers import (
+    MetroDateParser, NosNLDateParser, NuNLDateParser, TelegraafDateParser
+)
 
 
 class DateParserTests(TestCase):

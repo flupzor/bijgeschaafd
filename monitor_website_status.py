@@ -1,11 +1,12 @@
 #!/usr/bin/python
 
-import urllib2
-from BeautifulSoup import BeautifulSoup
-from StringIO import StringIO
-from datetime import datetime, timedelta
-import dateutil.parser
 import subprocess
+import urllib2
+from datetime import datetime, timedelta
+from StringIO import StringIO
+
+import dateutil.parser
+from BeautifulSoup import BeautifulSoup
 
 WEBSITE = 'http://www.newsdiffs.org/browse/'
 if datetime.now().hour < 8: #Overnight, less frequent updates
@@ -51,4 +52,3 @@ if __name__ == '__main__':
         traceback.print_exc()
         send_alert_email('Trouble with newsdiffs.org',
                          'Cannot check website\n%s' % traceback.format_exc())
-

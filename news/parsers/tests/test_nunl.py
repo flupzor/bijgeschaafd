@@ -1,15 +1,14 @@
-from django.test import TestCase, override_settings
-
-from datetime import datetime
 import os
-import pytz
+from datetime import datetime
+
+from django.test import TestCase, override_settings
 from django.utils._os import upath
 
-from ..nunl import NuNLParser
-
-from news.parsers.exceptions import NotInteresting
+import pytz
 import responses
+from news.parsers.exceptions import NotInteresting
 
+from ..nunl import NuNLParser
 
 TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 

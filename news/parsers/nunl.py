@@ -1,11 +1,10 @@
-from pyquery import PyQuery as pq
 import lxml
-
 from baseparser import BaseParser
+from pyquery import PyQuery as pq
 
-from .utils import html_to_text
-from .exceptions import NotInteresting
 from ..dateparsers import NuNLDateParser
+from .exceptions import NotInteresting
+from .utils import html_to_text
 
 
 class NuNLParser(BaseParser):
@@ -73,4 +72,3 @@ class NuNLParser(BaseParser):
             'content': content,
             'date': date,
         }
-

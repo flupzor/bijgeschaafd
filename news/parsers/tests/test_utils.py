@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from pyquery import PyQuery as pq
 
-from ..utils import html_to_text, collapse_whitespace
+from ..utils import collapse_whitespace, html_to_text
 
 
 class UtilsTests(TestCase):

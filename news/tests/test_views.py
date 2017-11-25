@@ -1,9 +1,10 @@
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.utils.formats import localize
 from django.utils.timezone import localtime
+
 from django_webtest import WebTest
 
 from .factory_models import ArticleFactory, VersionFactory

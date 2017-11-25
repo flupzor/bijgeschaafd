@@ -125,4 +125,3 @@ class SimilarArticleQuerySet(models.QuerySet):
 
 class SimilarArticleManager(models.Manager.from_queryset(SimilarArticleQuerySet)):
     use_in_migrations = True
-

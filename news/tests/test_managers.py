@@ -1,12 +1,15 @@
 from datetime import timedelta
 
+from django.db.utils import IntegrityError
 from django.test import TestCase
 from django.utils import timezone
-from django.db.utils import IntegrityError
 
-from news.tests.factory_models import ArticleFactory, SimilarArticleFactory, VersionFactory
+from news.tests.factory_models import (
+    ArticleFactory, SimilarArticleFactory, VersionFactory
+)
 
 from ..models import Cluster, SimilarArticle
+
 
 class SimilarArticleManagerTests(TestCase):
     def test_direct_related(self):

@@ -7,11 +7,10 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils import timezone
 
+from managers import SimilarArticleManager
 from news.parsers import get_parser
 from news.parsers.exceptions import ParserDoesNotExist
 from news.utils import hash_djb2
-
-from managers import SimilarArticleManager
 
 
 class Article(models.Model):
@@ -28,6 +27,7 @@ class Article(models.Model):
 
     _latest_date = models.DateTimeField(blank=True, null=True)
     _sum_versions = models.IntegerField(default=0)
+
 
     def filename(self):
         return self.url[len('http://'):].rstrip('/')
@@ -167,4 +167,3 @@ class RequestLog(models.Model):
     server_address = models.CharField(max_length=255, blank=False, db_index=True)
 
     version = models.ForeignKey('Version', null=True)
-

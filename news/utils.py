@@ -1,8 +1,7 @@
+import httplib
 import logging
 
 import requests
-import httplib
-
 from bijgeschaafd import diff_match_patch
 
 logger = logging.getLogger('parsers')
@@ -84,4 +83,3 @@ def strip_whitespace(text):
 
 def canonicalize(text):
     return strip_whitespace(text)
-

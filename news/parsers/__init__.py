@@ -15,7 +15,6 @@ from django.conf import settings
 
 from .exceptions import ParserDoesNotExist
 
-
 logger = logging.getLogger('parsers')
 
 __parsers = None

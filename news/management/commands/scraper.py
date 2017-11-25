@@ -26,4 +26,3 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for parser in all_parsers():
             parser.update()
-

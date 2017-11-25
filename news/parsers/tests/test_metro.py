@@ -1,13 +1,13 @@
-from django.test import TestCase, override_settings
-
-from datetime import datetime
 import os
-import pytz
+from datetime import datetime
+
+from django.test import TestCase, override_settings
 from django.utils._os import upath
 
-from ..metro import MetroParser
+import pytz
 import responses
 
+from ..metro import MetroParser
 
 TEST_DIR = os.path.join(os.path.dirname(upath(__file__)), 'data')
 
@@ -193,4 +193,3 @@ class MetroParserTests(TestCase):
         expected_date = self.timezone.localize(datetime(2016, 3, 11, 22, 43))
 
         self.assertEquals(parsed_article.get('date'), expected_date)
-

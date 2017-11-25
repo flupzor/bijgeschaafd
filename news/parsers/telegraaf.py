@@ -1,9 +1,8 @@
+from baseparser import BaseParser
 from pyquery import PyQuery as pq
 
-from baseparser import BaseParser
-
-from .utils import html_to_text
 from .exceptions import NotInteresting
+from .utils import html_to_text
 
 
 class TelegraafParser(BaseParser):

@@ -1,23 +1,21 @@
 import hashlib
-from datetime import timedelta
 import logging
 import re
 import socket
 import sys
 import time
-
-from pyquery import PyQuery as pq
-from django.db import transaction
-from django.utils import timezone
-from Levenshtein import ratio as levenshtein_ratio
-from raven.contrib.django.raven_compat.models import client
-
-from news.models import RequestLog, Article, Version
-from news.parsers.exceptions import NotInteresting
-from news.utils import get_diff_info, is_boring, canonicalize, http_get
-
+from datetime import timedelta
 from urlparse import urljoin, urlsplit, urlunsplit
 
+from django.db import transaction
+from django.utils import timezone
+
+from Levenshtein import ratio as levenshtein_ratio
+from news.models import Article, RequestLog, Version
+from news.parsers.exceptions import NotInteresting
+from news.utils import canonicalize, get_diff_info, http_get, is_boring
+from pyquery import PyQuery as pq
+from raven.contrib.django.raven_compat.models import client
 
 logger = logging.getLogger(__name__)
 

@@ -141,4 +141,3 @@ class ArticleTests(TestCase):
         article.initial_date = initial_date
         article.save()
         self.assertEquals(article.needs_update, False)
-
