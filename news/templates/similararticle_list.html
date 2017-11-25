@@ -26,6 +26,7 @@
   </tbody>
 </table>
 <div class="pull-xs-right">
-{% pagination page_obj 'requestlog_list' %}
+{% url 'similararticle_list' as similararticle_list_url %}
+{% pagination page_obj similararticle_list_url %}
 </div>
 {% endblock %}

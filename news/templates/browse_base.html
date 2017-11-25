@@ -47,7 +47,8 @@
     </tbody>
   </table>
   <div class="pull-xs-right">
-  {% pagination articles 'browse' source %}
+  {% url 'browse' source as browse_url %}
+  {% pagination articles browse_url %}
   </div>
 </div>
 

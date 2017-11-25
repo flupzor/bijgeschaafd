@@ -1,11 +1,22 @@
+from urllib import urlencode
+
 from django import template
 from django.core.urlresolvers import reverse
 
 register = template.Library()
 
+
+@register.simple_tag
+def build_url(url, base_qs, **extra):
+    new_dict = base_qs.copy()
+    new_dict.update(extra)
+    querystring = urlencode(new_dict)
+    return '{url}?{querystring}'.format(
+        url=url, querystring=querystring
+    )
+
 @register.inclusion_tag('include/pagination.html', takes_context=True)
-def pagination(context, page, label, *args):
-    url = reverse(label, args=args)
+def pagination(context, page, url, base_qs=None):
     paginator = page.paginator
     current_page = page.number
     pages_each_side = 3
@@ -17,6 +28,7 @@ def pagination(context, page, label, *args):
 
     return {
         'paginator': paginator,
+        'base_qs': base_qs or {},
         'page': page,
         'pages': pages,
         'url': url,
