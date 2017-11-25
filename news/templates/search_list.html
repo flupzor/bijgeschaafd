@@ -1,0 +1,31 @@
+{% extends 'template.html' %}
+
+{% load pagination %}
+
+{% block active_search %} active{% endblock %}
+
+{% block content %}
+<form action="/search/" method="GET">
+  <input type="text" name="q" value="{{ query }}" />
+  <input type="submit" value="search">
+</form>
+<table class="table table-condensed">
+  <thead>
+    <tr><th>Artikel</th><th>Versie</th></tr>
+  </thead>
+  <tbody>
+    {% for version in object_list %}
+      <tr>
+        <td>
+          <a href="{% url "article_history" version.article.filename %}">{{ version.title}}</a> (<a href="{{ version.article.url }}">{{ version.article.publication }}</a>)
+        </td>
+        <td>{{ version.date }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="pull-xs-right">
+{% url 'search' as search_url %}
+{% pagination page_obj search_url base_qs %}
+</div>
+{% endblock %}

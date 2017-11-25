@@ -13,7 +13,10 @@ from django.views.generic import ListView, View
 
 import models
 from models import Article, Cluster, RequestLog, SimilarArticle, Version
+
+from .es import ESObjectList
 from .parsers import all_parsers
+
 
 SEARCH_ENGINES = """
 http://www.ask.com
@@ -101,6 +104,46 @@ class SimilarArticleListView(ListView):
         qs = super(SimilarArticleListView, self).get_queryset()
 
         return qs.order_by('-latest_date')
+
+
+class SearchView(ListView):
+    template_name = 'search_list.html'
+    model = Version
+    paginate_by = 10
+
+    def get_query(self):
+        return self.request.GET.get('q', '')
+
+    def get_page(self):
+        try:
+            return int(self.request.GET.get(self.page_kwarg, ''))
+        except ValueError:
+            return 1
+
+    def get_context_data(self):
+        context = super(SearchView, self).get_context_data()
+        context.update({'query': self.get_query()})
+        context.update({
+            'base_qs': {
+                'q': self.get_query(),
+            }
+        })
+        return context
+
+    def get_queryset(self):
+        qs = super(SearchView, self).get_queryset()
+
+        query = {
+            "from": (self.get_page()-1) * self.paginate_by,
+            "size": 10,
+            "query": {
+                "match_phrase": {"body": self.get_query()},
+            },
+            "sort": [
+                {"date": "desc"},
+            ]
+        }
+        return ESObjectList.search('bijgeschaafd', query, Version)
 
 
 @cache_page(60 * 30)  #30 minute cache
