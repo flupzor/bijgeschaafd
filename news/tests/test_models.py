@@ -1,8 +1,11 @@
 from datetime import datetime, timedelta
+
 from django.test import TestCase, override_settings
 from django.utils import timezone
 
 from news.tests.factory_models import ArticleFactory, VersionFactory
+
+from .. import parsers
 
 
 class ArticleTests(TestCase):
@@ -47,6 +50,8 @@ class ArticleTests(TestCase):
 
     @override_settings(NEWS_SOURCES=['news.parsers.mock.MockParser', ])
     def test_needs_update_equal(self):
+        parsers.reset()
+
         current_time = timezone.now()
 
         last_check=current_time - timedelta(minutes=1)
@@ -113,6 +118,7 @@ class ArticleTests(TestCase):
         30 days     360 days    30 days
         360 days    forever     do not download
         """
+        parsers.reset()
 
         # Every 15 minutes
         self._needs_update(
