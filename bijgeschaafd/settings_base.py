@@ -71,3 +71,7 @@ NEWS_SOURCES = [
     'news.parsers.telegraaf.TelegraafParser',
     'news.parsers.metro.MetroParser',
 ]
+
+import warnings
+
+warnings.filterwarnings("error")
