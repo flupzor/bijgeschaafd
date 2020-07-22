@@ -1,6 +1,9 @@
 - name: Create directory for Django sites.
   become: yes
   file: path=/usr/django/ state=directory mode="u=rwx,g=rwx,o=x" owner=root group=root
+- name: Create directory.
+  become: yes
+  file: path=/usr/django/{{ app_name }} state=directory mode="u=rwx,g=rwx,o=x" owner=bijgeschaafd group=bijgeschaafd
 - name: Create directory for static data
   become: yes
   file: path=/var/www/html/{{ app_name }}/static/ state=directory mode="u=rwx,g=rx,o=r" owner={{ application_user }} group=www-data
