@@ -120,7 +120,7 @@ class DateParserTests(TestCase):
         self.assertEquals(
             'The given timezone was: +0300, while the timezone '
             'expected was: +0200',
-            context.exception.message
+            str(context.exception)
         )
 
         with self.assertRaises(ValueError) as context:
@@ -128,5 +128,5 @@ class DateParserTests(TestCase):
 
         self.assertEquals(
             'day is out of range for month',
-            context.exception.message
+            str(context.exception)
         )

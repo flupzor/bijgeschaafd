@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='requestlog',
             name='version',
-            field=models.ForeignKey(to='news.Version', null=True),
+            field=models.ForeignKey(to='news.Version', null=True, on_delete=models.CASCADE),
         ),
     ]

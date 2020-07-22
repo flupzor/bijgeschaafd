@@ -32,6 +32,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='similararticle',
             name='cluster',
-            field=models.ForeignKey(to='news.Cluster', null=True),
+            field=models.ForeignKey(to='news.Cluster', null=True, on_delete=models.CASCADE),
         ),
     ]

@@ -15,14 +15,6 @@ logger = logging.getLogger('scraper')
 class Command(BaseCommand):
     help = "Scrape articles which need updating."
 
-    option_list = BaseCommand.option_list + (
-        make_option(
-            '--all',
-            action='store_true',
-            default=False,
-            help='Update _all_ stored articles'),
-        )
-
     def handle(self, *args, **options):
         for parser in all_parsers():
             parser.update()

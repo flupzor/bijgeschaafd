@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.formats import localize
 from django.utils.timezone import localtime

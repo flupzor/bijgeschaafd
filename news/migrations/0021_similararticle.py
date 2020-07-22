@@ -16,8 +16,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('ratio', models.FloatField()),
-                ('from_article', models.ForeignKey(related_name='from_article', to='news.Article')),
-                ('to_article', models.ForeignKey(related_name='to_article', to='news.Article')),
+                ('from_article', models.ForeignKey(related_name='from_article', to='news.Article', on_delete=models.CASCADE)),
+                ('to_article', models.ForeignKey(related_name='to_article', to='news.Article', on_delete=models.CASCADE)),
             ],
         ),
     ]

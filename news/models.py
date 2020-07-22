@@ -79,10 +79,10 @@ class Cluster(models.Model):
 
 
 class SimilarArticle(models.Model):
-    cluster = models.ForeignKey(Cluster)
+    cluster = models.ForeignKey(Cluster, on_delete=models.CASCADE)
 
-    from_article = models.ForeignKey(Article, related_name='from_article')
-    to_article = models.ForeignKey(Article, related_name='to_article')
+    from_article = models.ForeignKey(Article, related_name='from_article', on_delete=models.CASCADE)
+    to_article = models.ForeignKey(Article, related_name='to_article', on_delete=models.CASCADE)
 
     ratio = models.FloatField()
 
@@ -101,7 +101,7 @@ class SimilarArticle(models.Model):
 class Version(models.Model):
     indexed = models.BooleanField(default=False)
 
-    article = models.ForeignKey('Article', null=False)
+    article = models.ForeignKey('Article', null=False, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, blank=False)
     byline = models.CharField(max_length=255, blank=False)
     date = models.DateTimeField(blank=False)
@@ -168,4 +168,4 @@ class RequestLog(models.Model):
     url = models.CharField(max_length=255, blank=False, db_index=True)
     server_address = models.CharField(max_length=255, blank=False, db_index=True)
 
-    version = models.ForeignKey('Version', null=True)
+    version = models.ForeignKey('Version', null=True, on_delete=models.CASCADE)

@@ -4,6 +4,6 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^', include('news.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^robots.txt$', RedirectView.as_view(url='/static/robots.txt', permanent=False)),
 ]

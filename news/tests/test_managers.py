@@ -115,6 +115,6 @@ class SimilarArticleManagerTests(TestCase):
             SimilarArticle.objects.add_similar_article(article1, article2, 0.8)
 
         self.assertIn(
-            'duplicate key value violates unique constraint', context.exception.message)
+            'duplicate key value violates unique constraint', str(context.exception))
 
         self.assertEquals(SimilarArticle.objects.count(), 1)
