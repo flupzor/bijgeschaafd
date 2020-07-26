@@ -9,7 +9,6 @@ mock
 django-webtest
 python-memcached
 pytz==2015.7
-requests==2.9.1
 raven==5.11.1
 requests==2.24.0
 responses==0.10.15
