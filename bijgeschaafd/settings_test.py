@@ -1,6 +1,6 @@
 import os
 
-from settings_base import *
+from .settings_base import *
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 DATABASES = {

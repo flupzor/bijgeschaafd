@@ -2,6 +2,7 @@ import os
 
 from django.test import TestCase, override_settings
 from django.utils._os import upath
+from pyquery import PyQuery as pq
 
 import responses
 
@@ -87,7 +88,7 @@ class TelegraafParserTests(TestCase):
         'http://www.telegraaf.nl/binnenland/25429518/__Buschauffeur_overvallen__.html',
         ])
 
-        self.assertEquals(urls, expected)
+        self.assertEqual(urls, expected)
 
     def test_telegraaf_buitenland(self):
         """
@@ -101,76 +102,76 @@ class TelegraafParserTests(TestCase):
         parsed_article = TelegraafParser.parse_new_version('', article_file.read())
 
         expected = \
-            u'De dreiging in Brussel betreft een concrete dreiging van ' \
-            u'aanslagen met wapens en explosieven, te vergelijken met ' \
-            u'de aanslagen in Parijs. Dat zei de Belgische premier ' \
-            u'Charles Michel zaterdag tijdens een persconferentie.\n' \
-            u'Hij reageerde op het verhogen van het dreigingsniveau in ' \
-            u'het Brussels Gewest van 3 naar 4, het hoogste niveau. ' \
-            u'Waar de dreiging vandaan komt, wilde Michel niet zeggen. ' \
-            u'De dreiging is volgens de premier vooral gericht op de ' \
-            u'winkelstraten, het openbaar vervoer en in het algemeen ' \
-            u'evenementen waar veel volk op af komt.\n' \
-            u'De regering heeft vier maatregelen genomen: het ' \
-            u'afgelasten van grote evenementen, het stilleggen van het ' \
-            u'metroverkeer, en meer politie en militairen op straat. ' \
-            u'Ten slotte is er een telefoonnummer geopend waar ' \
-            u'Brusselaars informatie en advies kunnen krijgen.\n' \
-            u'De maatregelen gelden volgens Michel vooralsnog tot ' \
-            u'zondagmiddag. Dan maakt antiterreurdienst OCAD een nieuwe ' \
-            u'inschatting van de veiligheidsssituatie en komt opnieuw ' \
-            u'de Belgische Veiligheidsraad bijeen. Daarin hebben ' \
-            u'behalve de premier ook de ministers van Binnenlandse ' \
-            u'Zaken, Justitie, Defensie en Buitenlandse Zaken zitting.\n' \
-            u'Het Belgische Co\xf6rdinatieorgaan voor de ' \
-            u'Dreigingsanalyse (OCAD) raadde mensen in de nacht van ' \
-            u'vrijdag op zaterdag aan veiligheidsmaatregelen te nemen. ' \
-            u'Zo moeten ze plekken waar veel mensen samenkomen zoals ' \
-            u'concerten, stations, luchthavens en drukke winkelstraten ' \
-            u'vermijden. Ook moet de bevolking veiligheidscontroles ' \
-            u'respecteren en geen geruchten verspreiden, maar alleen ' \
-            u'informatie van overheden en de politie.\n' \
-            u'Ook het ministerie van Buitenlandse Zaken in Den Haag ' \
-            u'heeft het reisadvies naar Belgi\xeb aangepast. Het ' \
-            u'ministerie roept mensen daarom op plaatsen te vermijden ' \
-            u'waar veel mensen komen en altijd instructies van de ' \
-            u'autoriteiten op te volgen.\n' \
-            u'Overzicht stilgelegde activiteiten\n' \
-            u'In het Vlaams parlement in Brussel zijn alle activiteiten ' \
-            u'zaterdag afgelast vanwege het dreigingsniveau. Ook het ' \
-            u'bezoekerscentrum van het Europees Parlement, het ' \
-            u'Parlamentarium, blijft zaterdag dicht.\n' \
-            u'Een belangrijke attractie in de Belgische hoofdstad, het ' \
-            u'Atomium, gaat zaterdag ook niet open in verband met de ' \
-            u'afkondiging van het het hoogste terreuralarm. Dat was ' \
-            u'acht jaar geleden voor het laatst van kracht in Brussel.\n' \
-            u'Veel musea blijven dit weekend gesloten, meldt de ' \
-            u'Museumraad van de Belgische hoofdstad. Onder meer de ' \
-            u'Koninklijke Musea voor Schone Kunsten en voor Kunst en ' \
-            u'Geschiedenis blijven zaterdag en zondag dicht. Ook het ' \
-            u'Muziekinstrumentenmuseum, het Museum voor ' \
-            u'Natuurwetenschappen en de Koninklijke Bibliotheek van ' \
-            u'Belgi\xeb houden de deuren gesloten. Ook Train World, de ' \
-            u'grote Kinepolis-bioscoop, het Museum van Elsene en het ' \
-            u'Kindermuseum gaan zaterdag niet open. De raad zegt ervan ' \
-            u'overtuigd te zijn "dat de bezoekers begrip hebben voor ' \
-            u'deze preventieve maatregel".\n' \
-            u'De Vrije Universiteit Brussel heeft alle lessen en ' \
-            u'evenementen op haar campussen gecanceld. Diverse muzikale ' \
-            u'evenementen gaan niet door. Ook zijn alle ' \
-            u'hockeywedstrijden afgelast. De voetbalwedstrijd ' \
-            u'Lokeren-Anderlecht is afgelast wegens te weinig politie.\n' \
-            u'Het metroverkeer is volledig stilgelegd, maar de trams en ' \
-            u'bussen rijden wel. Op het treinstation Schuman, het ' \
-            u'centrum van de Europese instellingen, stoppen geen ' \
-            u'treinen.\n' \
-            u'Het vliegverkeer op Zaventem, de luchthaven van Brussel, ' \
-            u'verloopt zaterdag vooralsnog wel zoals gepland. Brussels ' \
-            u'Airport neemt voorlopig geen extra maatregelen.\n'
+            'De dreiging in Brussel betreft een concrete dreiging van ' \
+            'aanslagen met wapens en explosieven, te vergelijken met ' \
+            'de aanslagen in Parijs. Dat zei de Belgische premier ' \
+            'Charles Michel zaterdag tijdens een persconferentie.\n' \
+            'Hij reageerde op het verhogen van het dreigingsniveau in ' \
+            'het Brussels Gewest van 3 naar 4, het hoogste niveau. ' \
+            'Waar de dreiging vandaan komt, wilde Michel niet zeggen. ' \
+            'De dreiging is volgens de premier vooral gericht op de ' \
+            'winkelstraten, het openbaar vervoer en in het algemeen ' \
+            'evenementen waar veel volk op af komt.\n' \
+            'De regering heeft vier maatregelen genomen: het ' \
+            'afgelasten van grote evenementen, het stilleggen van het ' \
+            'metroverkeer, en meer politie en militairen op straat. ' \
+            'Ten slotte is er een telefoonnummer geopend waar ' \
+            'Brusselaars informatie en advies kunnen krijgen.\n' \
+            'De maatregelen gelden volgens Michel vooralsnog tot ' \
+            'zondagmiddag. Dan maakt antiterreurdienst OCAD een nieuwe ' \
+            'inschatting van de veiligheidsssituatie en komt opnieuw ' \
+            'de Belgische Veiligheidsraad bijeen. Daarin hebben ' \
+            'behalve de premier ook de ministers van Binnenlandse ' \
+            'Zaken, Justitie, Defensie en Buitenlandse Zaken zitting.\n' \
+            'Het Belgische Co\xf6rdinatieorgaan voor de ' \
+            'Dreigingsanalyse (OCAD) raadde mensen in de nacht van ' \
+            'vrijdag op zaterdag aan veiligheidsmaatregelen te nemen. ' \
+            'Zo moeten ze plekken waar veel mensen samenkomen zoals ' \
+            'concerten, stations, luchthavens en drukke winkelstraten ' \
+            'vermijden. Ook moet de bevolking veiligheidscontroles ' \
+            'respecteren en geen geruchten verspreiden, maar alleen ' \
+            'informatie van overheden en de politie.\n' \
+            'Ook het ministerie van Buitenlandse Zaken in Den Haag ' \
+            'heeft het reisadvies naar Belgi\xeb aangepast. Het ' \
+            'ministerie roept mensen daarom op plaatsen te vermijden ' \
+            'waar veel mensen komen en altijd instructies van de ' \
+            'autoriteiten op te volgen.\n' \
+            'Overzicht stilgelegde activiteiten\n' \
+            'In het Vlaams parlement in Brussel zijn alle activiteiten ' \
+            'zaterdag afgelast vanwege het dreigingsniveau. Ook het ' \
+            'bezoekerscentrum van het Europees Parlement, het ' \
+            'Parlamentarium, blijft zaterdag dicht.\n' \
+            'Een belangrijke attractie in de Belgische hoofdstad, het ' \
+            'Atomium, gaat zaterdag ook niet open in verband met de ' \
+            'afkondiging van het het hoogste terreuralarm. Dat was ' \
+            'acht jaar geleden voor het laatst van kracht in Brussel.\n' \
+            'Veel musea blijven dit weekend gesloten, meldt de ' \
+            'Museumraad van de Belgische hoofdstad. Onder meer de ' \
+            'Koninklijke Musea voor Schone Kunsten en voor Kunst en ' \
+            'Geschiedenis blijven zaterdag en zondag dicht. Ook het ' \
+            'Muziekinstrumentenmuseum, het Museum voor ' \
+            'Natuurwetenschappen en de Koninklijke Bibliotheek van ' \
+            'Belgi\xeb houden de deuren gesloten. Ook Train World, de ' \
+            'grote Kinepolis-bioscoop, het Museum van Elsene en het ' \
+            'Kindermuseum gaan zaterdag niet open. De raad zegt ervan ' \
+            'overtuigd te zijn "dat de bezoekers begrip hebben voor ' \
+            'deze preventieve maatregel".\n' \
+            'De Vrije Universiteit Brussel heeft alle lessen en ' \
+            'evenementen op haar campussen gecanceld. Diverse muzikale ' \
+            'evenementen gaan niet door. Ook zijn alle ' \
+            'hockeywedstrijden afgelast. De voetbalwedstrijd ' \
+            'Lokeren-Anderlecht is afgelast wegens te weinig politie.\n' \
+            'Het metroverkeer is volledig stilgelegd, maar de trams en ' \
+            'bussen rijden wel. Op het treinstation Schuman, het ' \
+            'centrum van de Europese instellingen, stoppen geen ' \
+            'treinen.\n' \
+            'Het vliegverkeer op Zaventem, de luchthaven van Brussel, ' \
+            'verloopt zaterdag vooralsnog wel zoals gepland. Brussels ' \
+            'Airport neemt voorlopig geen extra maatregelen.\n'
 
-        self.assertEquals(parsed_article.get('content'), expected)
+        self.assertEqual(parsed_article.get('content'), expected)
 
-        self.assertEquals(parsed_article.get('date'), None)
+        self.assertEqual(parsed_article.get('date'), None)
 
     def test_telegraaf_twitter(self):
         """
@@ -186,19 +187,19 @@ class TelegraafParserTests(TestCase):
             TelegraafParser.parse_new_version('', article_file.read())
 
         expected = \
-            u'DEN HAAG -  Identificatie van twee slachtoffers van de ' \
-            u'MH17-ramp is vrijwel uitgesloten. Dat stelde premier ' \
-            u'Mark Rutte dinsdagavond in de Tweede Kamer tijdens een debat ' \
-            u'over de MH17.\n' \
-            u'Rutte noemde de kans ,,helaas heel klein\'\' dat die twee ' \
-            u'personen alsnog worden ge\xefdentificeerd. Op 21 maart 2015 ' \
-            u'was van 296 van de 298 slachtoffers de identiteit vastgesteld. ' \
-            u'Onder de doden waren bijna 200 Nederlanders.\n' \
-            u'Midden vorig jaar liet minister Ard van der Steur (Veiligheid ' \
-            u'en Justitie) al weten de kans zeer klein te achten dat de ' \
-            u'laatste twee niet-ge\xefdentificeerde slachtoffers worden ' \
-            u'ge\xefdentificeerd.\n'
+            'DEN HAAG -  Identificatie van twee slachtoffers van de ' \
+            'MH17-ramp is vrijwel uitgesloten. Dat stelde premier ' \
+            'Mark Rutte dinsdagavond in de Tweede Kamer tijdens een debat ' \
+            'over de MH17.\n' \
+            'Rutte noemde de kans ,,helaas heel klein\'\' dat die twee ' \
+            'personen alsnog worden ge\xefdentificeerd. Op 21 maart 2015 ' \
+            'was van 296 van de 298 slachtoffers de identiteit vastgesteld. ' \
+            'Onder de doden waren bijna 200 Nederlanders.\n' \
+            'Midden vorig jaar liet minister Ard van der Steur (Veiligheid ' \
+            'en Justitie) al weten de kans zeer klein te achten dat de ' \
+            'laatste twee niet-ge\xefdentificeerde slachtoffers worden ' \
+            'ge\xefdentificeerd.\n'
 
-        self.assertEquals(parsed_article.get('content'), expected)
+        self.assertEqual(parsed_article.get('content'), expected)
 
-        self.assertEquals(parsed_article.get('date'), None)
+        self.assertEqual(parsed_article.get('date'), None)

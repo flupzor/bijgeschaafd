@@ -44,7 +44,8 @@ class SimilarArticleQuerySet(models.QuerySet):
         _latest_dates += list(Article.objects.filter(
             pk__in=similarities.article_pks()
         ).values_list('_latest_date', flat=True).order_by('-_latest_date')[:1])
-        _latest_date = max(_latest_dates)
+        _latest_dates = [d for d in _latest_dates if d is not None]
+        _latest_date = max(_latest_dates) if _latest_dates else None
 
         clusters = list(similarities.values_list('cluster', flat=True).distinct())
         try:

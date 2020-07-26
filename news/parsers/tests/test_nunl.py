@@ -77,7 +77,7 @@ class NuNLParserTests(TestCase):
         'http://www.nu.nl/achterklap/4232212/vrouw-simon-keizer-kreeg-miskraam.html',
         'http://www.nu.nl/mobiel/4232183/windows-10-beschikbaar-gesteld-oudere-telefoons.html'])
 
-        self.assertEquals(urls, expected)
+        self.assertEqual(urls, expected)
 
     def test_nu_nl_lifeblog(self):
         """
@@ -106,86 +106,86 @@ class NuNLParserTests(TestCase):
 
         # Hint for a update: I used fold -s -w 58 and some regex
         expected = \
-            u"Het presidium, het dagelijks bestuur van de Tweede Kamer, " \
-            u"stelt een onderzoekscommissie in naar het lekken uit de " \
-            u"zogenoemde commissie-Stiekem. \n" \
-            u"Dat is donderdag bekendgemaakt door Kamervoorzitter Anouchka van " \
-            u"Miltenburg na afloop van een vergadering van het " \
-            u"presidium.\xa0\n" \
-            u"Eerder deze week werd bekend dat er aangifte is " \
-            u"gedaan wegens het lekken uit de\xa0Commissie voor de " \
-            u"Inlichtingen- en Veiligheidsdiensten, oftewel de " \
-            u"commissie-Stiekem,\xa0naar\xa0NRC Handelsblad. De " \
-            u"commissie-Stiekem\xa0bestaat uit de fractievoorzitters " \
-            u"van de gekozen partijen.\xa0Lekken uit deze commissie " \
-            u"geldt als een ambtsmisdrijf.\n" \
-            u"Woensdag liet het OM weten dat " \
-            u"zij de zaak, die al anderhalf jaar speelt, niet verder " \
-            u"behandelt en neerlegt bij de Kamer.\xa0De Grondwet " \
-            u"bepaalt dat de opdracht tot vervolging van een Kamerlid " \
-            u"alleen door de regering of de Tweede Kamer kan worden " \
-            u"gegeven.\n" \
-            u"Voldoende gronden\n" \
-            u"Van Miltenburg maakte donderdag bekend dat " \
-            u"de\xa0onderzoekscommissie moet\xa0onderzoeken\xa0of er " \
-            u"voldoende gronden zijn om tot vervolging over te gaan. " \
-            u"Van Miltenburg zei niet te weten wie van de " \
-            u"fractieleiders gelekt heeft. \"Door het OM is geen " \
-            u"inhoudelijke informatie overgedragen over deze zaak. Noch " \
-            u"de kamer, noch het presidium, noch de Kamervoorzitter " \
-            u"beschikt over het dossier.\"\n" \
-            u"Zij zal later op de avond een " \
-            u"brief sturen naar de Tweede Kamer met nadere details over " \
-            u"het onderzoek. Volgende week stemmen de Kamerleden over " \
-            u"de samenstelling en de taakopdracht van de " \
-            u"onderzoekscommissie.\n" \
-            u"Aanleiding\n" \
-            u"Aanleiding is de rel die " \
-            u"vorig jaar speelde rond minister van Binnenlandse Zaken " \
-            u"Ronald Plasterk en de aangifte die vervolgens werd gedaan " \
-            u"door VVD-fractievoorzitter Halbe Zijlstra in zijn rol als " \
-            u"voorzitter van de zogeheten commissie-Stiekem.\n" \
-            u"In 2014 kwam Plasterk in grote\xa0politieke problemen\xa0doordat hij de " \
-            u"Amerikanen verweet 1,8 miljoen tapgegevens\xa0te hebben " \
-            u"opgehaald\xa0in Nederland. In werkelijkheid bleek dat " \
-            u"Nederland deze taps zelf had uitgevoerd en geleverd aan " \
-            u"de Amerikanen.\n" \
-            u"Hij zou de Kamer hierover echter niet " \
-            u"direct\xa0hebben ge\xefnformeerd toen hij zijn fout " \
-            u"ontdekte.\xa0In de Kamer kreeg hij van een groot deel " \
-            u"van\xa0de oppositie daarom een motie van wantrouwen aan " \
-            u"de broek, inclusief van toenmalig gedoogpartner D66.\xa0\n" \
-            u"Het zorgde voor een behoorlijke ruzie tussen PvdA-leider " \
-            u"Diederik Samsom en D66-leider Alexander Pechtold. Vlak na " \
-            u"het debat bleek waarom.\n" \
-            u"Commissie-Stiekem\n" \
-            u"NRC\xa0wist te melden dat de Commissie voor de Inlichtingen- " \
-            u"en Veiligheidsdiensten, oftewel de commissie-Stiekem, wel " \
-            u"degelijk eerder vertrouwelijk was ge\xefnformeerd over de " \
-            u"werkelijke herkomst van de taps.\n" \
-            u"En aangezien lekken uit deze commissie strafbaar is " \
-            u"deed Zijlstra aangifte. Nu, ruim anderhalf jaar later, " \
-            u"komt het Openbaar Ministerie er pas achter dat het niet " \
-            u"bevoegd is om te beslissen over de vervolging van een " \
-            u"Kamerlid.\xa0\n" \
-            u"Wel zijn er aanwijzingen dat \xe9\xe9n of " \
-            u"meerdere fractievoorzitters zich mogelijk schuldig hebben " \
-            u"gemaakt aan een ambtsmisdrijf, zo liet het OM " \
-            u"weten.\n" \
-            u"Presidium\n" \
-            u"Daarom is het dossier\xa0overgedragen aan " \
-            u"het presidium, het orgaan waar bijna alle fracties en de " \
-            u"Kamervoorzitter in zijn vertegenwoordigd.\xa0\n" \
-            u"Een besluit om " \
-            u"tot vervolging over te gaan kan grote gevolgen hebben, " \
-            u"aangezien \xe9\xe9n of meerdere fractievoorzitters dan " \
-            u"voor de Hoge Raad zullen moeten verschijnen.\n"
+            "Het presidium, het dagelijks bestuur van de Tweede Kamer, " \
+            "stelt een onderzoekscommissie in naar het lekken uit de " \
+            "zogenoemde commissie-Stiekem. \n" \
+            "Dat is donderdag bekendgemaakt door Kamervoorzitter Anouchka van " \
+            "Miltenburg na afloop van een vergadering van het " \
+            "presidium.\xa0\n" \
+            "Eerder deze week werd bekend dat er aangifte is " \
+            "gedaan wegens het lekken uit de\xa0Commissie voor de " \
+            "Inlichtingen- en Veiligheidsdiensten, oftewel de " \
+            "commissie-Stiekem,\xa0naar\xa0NRC Handelsblad. De " \
+            "commissie-Stiekem\xa0bestaat uit de fractievoorzitters " \
+            "van de gekozen partijen.\xa0Lekken uit deze commissie " \
+            "geldt als een ambtsmisdrijf.\n" \
+            "Woensdag liet het OM weten dat " \
+            "zij de zaak, die al anderhalf jaar speelt, niet verder " \
+            "behandelt en neerlegt bij de Kamer.\xa0De Grondwet " \
+            "bepaalt dat de opdracht tot vervolging van een Kamerlid " \
+            "alleen door de regering of de Tweede Kamer kan worden " \
+            "gegeven.\n" \
+            "Voldoende gronden\n" \
+            "Van Miltenburg maakte donderdag bekend dat " \
+            "de\xa0onderzoekscommissie moet\xa0onderzoeken\xa0of er " \
+            "voldoende gronden zijn om tot vervolging over te gaan. " \
+            "Van Miltenburg zei niet te weten wie van de " \
+            "fractieleiders gelekt heeft. \"Door het OM is geen " \
+            "inhoudelijke informatie overgedragen over deze zaak. Noch " \
+            "de kamer, noch het presidium, noch de Kamervoorzitter " \
+            "beschikt over het dossier.\"\n" \
+            "Zij zal later op de avond een " \
+            "brief sturen naar de Tweede Kamer met nadere details over " \
+            "het onderzoek. Volgende week stemmen de Kamerleden over " \
+            "de samenstelling en de taakopdracht van de " \
+            "onderzoekscommissie.\n" \
+            "Aanleiding\n" \
+            "Aanleiding is de rel die " \
+            "vorig jaar speelde rond minister van Binnenlandse Zaken " \
+            "Ronald Plasterk en de aangifte die vervolgens werd gedaan " \
+            "door VVD-fractievoorzitter Halbe Zijlstra in zijn rol als " \
+            "voorzitter van de zogeheten commissie-Stiekem.\n" \
+            "In 2014 kwam Plasterk in grote\xa0politieke problemen\xa0doordat hij de " \
+            "Amerikanen verweet 1,8 miljoen tapgegevens\xa0te hebben " \
+            "opgehaald\xa0in Nederland. In werkelijkheid bleek dat " \
+            "Nederland deze taps zelf had uitgevoerd en geleverd aan " \
+            "de Amerikanen.\n" \
+            "Hij zou de Kamer hierover echter niet " \
+            "direct\xa0hebben ge\xefnformeerd toen hij zijn fout " \
+            "ontdekte.\xa0In de Kamer kreeg hij van een groot deel " \
+            "van\xa0de oppositie daarom een motie van wantrouwen aan " \
+            "de broek, inclusief van toenmalig gedoogpartner D66.\xa0\n" \
+            "Het zorgde voor een behoorlijke ruzie tussen PvdA-leider " \
+            "Diederik Samsom en D66-leider Alexander Pechtold. Vlak na " \
+            "het debat bleek waarom.\n" \
+            "Commissie-Stiekem\n" \
+            "NRC\xa0wist te melden dat de Commissie voor de Inlichtingen- " \
+            "en Veiligheidsdiensten, oftewel de commissie-Stiekem, wel " \
+            "degelijk eerder vertrouwelijk was ge\xefnformeerd over de " \
+            "werkelijke herkomst van de taps.\n" \
+            "En aangezien lekken uit deze commissie strafbaar is " \
+            "deed Zijlstra aangifte. Nu, ruim anderhalf jaar later, " \
+            "komt het Openbaar Ministerie er pas achter dat het niet " \
+            "bevoegd is om te beslissen over de vervolging van een " \
+            "Kamerlid.\xa0\n" \
+            "Wel zijn er aanwijzingen dat \xe9\xe9n of " \
+            "meerdere fractievoorzitters zich mogelijk schuldig hebben " \
+            "gemaakt aan een ambtsmisdrijf, zo liet het OM " \
+            "weten.\n" \
+            "Presidium\n" \
+            "Daarom is het dossier\xa0overgedragen aan " \
+            "het presidium, het orgaan waar bijna alle fracties en de " \
+            "Kamervoorzitter in zijn vertegenwoordigd.\xa0\n" \
+            "Een besluit om " \
+            "tot vervolging over te gaan kan grote gevolgen hebben, " \
+            "aangezien \xe9\xe9n of meerdere fractievoorzitters dan " \
+            "voor de Hoge Raad zullen moeten verschijnen.\n"
 
-        self.assertEquals(parsed_article.get('content'), expected)
+        self.assertEqual(parsed_article.get('content'), expected)
 
         expected_date = self.timezone.localize(datetime(2015, 11, 12, 12, 7))
 
-        self.assertEquals(parsed_article.get('date'), expected_date)
+        self.assertEqual(parsed_article.get('date'), expected_date)
 
     def test_nu_nl_review(self):
         """
@@ -201,129 +201,129 @@ class NuNLParserTests(TestCase):
         parsed_article = NuNLParser.parse_new_version('', article_file.read())
 
         expected = \
-            u'Supersnel, supercompleet en supercool - superlatieven ' \
-            u'schieten tekort om Trackmania Turbo te beschrijven. Het spel ' \
-            u'is makkelijk op te pikken maar blijft uitdagingen bieden. De ' \
-            u'vele multiplayermogelijkheden zorgen ervoor dat de game lang ' \
-            u'leuk blijft. \n' \
-            u'Trackmania Turbo bevindt zich op het snijpunt tussen ' \
-            u'bikkelharde competitie en puur plezier.\xa0Pc-gamers die de ' \
-            u'eerdere versies van Trackmania hebben gespeeld wisten dat ' \
-            u'allang, maar met dit consoledebuut van Trackmania maken ' \
-            u'ook PlayStation 4- en Xbox One-bezitters kennis met de ' \
-            u'bijzondere snelle gamereeks.\n' \
-            u'Simpel gezegd draait Trackmania om weinig anders dan zo ' \
-            u'snel mogelijke tijden noteren. In de praktijk dien je ' \
-            u'daarvoor extreme hindernissen op de circuits te bedwingen: ' \
-            u'reuzensprongen, loopings en halfpipes, maar ook onverharde ' \
-            u'paden, plotselinge tempowisselingen en eindeloos ' \
-            u'doordraaiende bochtencombinaties.\xa0\n' \
-            u'Je kunt het zo gek niet bedenken of je komt het tegen in de ' \
-            u'tweehonderd verschillende parcoursen (veelal van A naar B, ' \
-            u'maar ook circuits die rondlopen) die worden meegeleverd.\n' \
-            u'De game bevat vier kleurrijke thema\'s: de geasfalteerde ' \
-            u'woestenij van Canyon Grand Drift, de modderpaden van Valley ' \
-            u'Down & Dirty, het exotische Rollercoaster Lagoon en het ' \
-            u'sensationele International Stadium.\xa0In elke omgeving ' \
-            u'gebruik je een specifieke auto, die je slechts beperkt ' \
-            u'naar eigen smaak kunt aanpassen met verschillende kleurtjes ' \
-            u'en logo\'s.\n' \
-            u'Stuurmanskunst\n' \
-            u'Je input is in de basis beperkt tot gas geven, remmen en ' \
-            u'een gevoelig stuur. Belangrijker nog is je racelijn over ' \
-            u'elk parcours: neem je meer snelheid mee over een schans, ' \
-            u'of rem je eerst even af om beter uit te komen voor de ' \
-            u'daaropvolgende bocht? Ook kun je vloeiend door bochten ' \
-            u'driften.\xa0\n' \
-            u'Uiteindelijk komt het allemaal aan op je eigen vaardigheden: ' \
-            u'geen powerups, maar pure stuurmanskunst \u2013 al kun je met ' \
-            u'genoeg vindingrijkheid ook mooie stukken afsnijden.\n' \
-            u'Lukt het een keer niet, dan kun je met een druk op de knop ' \
-            u'zonder vertraging opnieuw starten. Dat houdt het tempo erin ' \
-            u'wanneer je om medailles strijdt in de hoofdmodus, of als ' \
-            u'je vrienden probeert te verslaan nadat ze je een uitdaging ' \
-            u'hebben gestuurd.\n' \
-            u'Multiplayer\n' \
-            u'Trackmania staat niet voor niets al jaren hoog ' \
-            u'aangeschreven binnen de eSports-wereld. De ontwikkelaars ' \
-            u'hebben een online multiplayerstand gebouwd waarin maar ' \
-            u'liefst honderd spelers het tegelijkertijd tegen elkaar ' \
-            u'kunnen opnemen.\n' \
-            u'In de praktijk betekent dat dat je maximaal 99 anderen ' \
-            u'als spoken over de baan ziet gaan, om te voorkomen dat je ' \
-            u'elkaar in de weg zit op jacht naar een perfecte run.\xa0\n' \
-            u'Dat klinkt misschien minder spannend, maar in de praktijk ' \
-            u'werkt het erg motiverend om jezelf tijdens een potje direct ' \
-            u'en constant te kunnen meten met een groot aantal ' \
-            u'tegenstanders. Bovendien wordt je positie op de ' \
-            u'internationale, nationale en zelfs regionale ranglijst ' \
-            u'constant bijgehouden, waardoor de snelheidsstrijd lang ' \
-            u'kan aanhouden.\n' \
-            u'Double Driver\n' \
-            u'Ook op lokaal niveau is er genoeg competitie mogelijk. ' \
-            u'Maximaal zestien spelers kunnen het \xe9\xe9n voor ' \
-            u'\xe9\xe9n tegen elkaar opnemen, of je kunt met maximaal ' \
-            u'vier man op een gedeeld scherm racen -\xa0een functie\xa0die ' \
-            u'we binnen dit genre nog maar weinig zien.\xa0\n' \
-            u'Nog origineler is de Double Driver-stand, waarin je met twee ' \
-            u'spelers \xe9\xe9n auto bestuurt. De auto luistert in deze ' \
-            u'stand naar de besturing van beide chauffeurs en voert het ' \
-            u'\u2018gemiddelde\u2019 uit.\n' \
-            u'Om de gekkigheid compleet te maken, is er een veelvoud aan ' \
-            u'speciale standen te kiezen door \'geheime\' toetsencombinaties ' \
-            u'in te voeren. Zo kun je plots in een Mario Kart-achtige race ' \
-            u'm\xe9t power-ups terechtkomen of alle spelers verplichten ' \
-            u'binnen het scherm van de snelste te blijven.\n' \
-            u'Bouwen\n' \
-            u'Er is ook een uitgebreide modus om je eigen circuits op te ' \
-            u'bouwen. De mogelijkheden zijn dusdanig uitgebreid dat we maar ' \
-            u'wat blij zijn dat de game je ze op verschillende niveaus laat ' \
-            u'benutten: instappers kunnen met plezier aan de slag en een ' \
-            u'baantje in elkaar knutselen, terwijl diehards uit hun dak ' \
-            u'kunnen met de meest knotsgekke creaties.\xa0\n' \
-            u'Ook de functie die willekeurig een circuit genereert werkt ' \
-            u'goed. Je kunt alle banen online delen en via een website ' \
-            u'toevoegen aan je favorietenlijst, waarna ze gemakkelijk te ' \
-            u'selecteren zijn voor een potje.\n' \
-            u'Uiterlijk\n' \
-            u'Bij de combinatie van al die verschillende ' \
-            u'gameplaymogelijkheden past de kleurrijke, frisse en coole ' \
-            u'audiovisuele stijl, die de arcade-insteek van Trackmania ' \
-            u'Turbo onderstreept.\n' \
-            u'Blauwe luchten, grote neonreclameborden, zeppelins en ' \
-            u'retro-lettertypes vormen -\xa0in samenwerking met het ' \
-            u'rijgedrag -\xa0een dikke knipoog richting de hoogtijdagen ' \
-            u'van OutRun, Daytona USA en Ridge Racer.\xa0\n' \
-            u'De pompende electromuziek is een perfecte match, al is ' \
-            u'het wat jammer dat er telkens een nieuw nummer wordt ' \
-            u'ingestart wanneer je een nieuwe run begint. Voor de ' \
-            u'techniek vooral respect: de framerate van de ' \
-            u'PlayStation 4-versie (met een resolutie van 1080p) is ' \
-            u'nagenoeg rotsvast, de Xbox One-versie (in 900p) kent iets ' \
-            u'meer (kleine) haperingen.\n' \
-            u'Conclusie\n' \
-            u'De kwaliteiten van Trackmania waren racefans op zich ' \
-            u'al bekend. Maar het is juist de uitvoering in de vorm ' \
-            u'van Trackmania Turbo, nota bene als debuut op de ' \
-            u'spelcomputers van Sony en Microsoft, waar we heel erg ' \
-            u'blij van kunnen worden.\n' \
-            u'Dit is niet alleen een razendsnelle, uitdagende en ' \
-            u'zeer complete arcaderacer, maar ook een flitsend en ' \
-            u'levendig eerbetoon aan de kunst van zo hard mogelijk gaan.\n' \
-            u'Razendsnelle gameplay\n' \
-            u'Zowel toegankelijk als uitdagend\n' \
-            u'Veel multiplayermodi\n' \
-            u'Uitgebreide circuitbouwer\n' \
-            u'Kleine audiovisuele problemen\n' \
-            u'BEOORDELING\n' \
-            u'Trackmania Turbo is vanaf donderdag beschikbaar voor ' \
-            u'PlayStation 4, Xbox One en pc. Voor deze review zijn ' \
-            u'enkel de consoleversies gespeeld.\n'
+            'Supersnel, supercompleet en supercool - superlatieven ' \
+            'schieten tekort om Trackmania Turbo te beschrijven. Het spel ' \
+            'is makkelijk op te pikken maar blijft uitdagingen bieden. De ' \
+            'vele multiplayermogelijkheden zorgen ervoor dat de game lang ' \
+            'leuk blijft. \n' \
+            'Trackmania Turbo bevindt zich op het snijpunt tussen ' \
+            'bikkelharde competitie en puur plezier.\xa0Pc-gamers die de ' \
+            'eerdere versies van Trackmania hebben gespeeld wisten dat ' \
+            'allang, maar met dit consoledebuut van Trackmania maken ' \
+            'ook PlayStation 4- en Xbox One-bezitters kennis met de ' \
+            'bijzondere snelle gamereeks.\n' \
+            'Simpel gezegd draait Trackmania om weinig anders dan zo ' \
+            'snel mogelijke tijden noteren. In de praktijk dien je ' \
+            'daarvoor extreme hindernissen op de circuits te bedwingen: ' \
+            'reuzensprongen, loopings en halfpipes, maar ook onverharde ' \
+            'paden, plotselinge tempowisselingen en eindeloos ' \
+            'doordraaiende bochtencombinaties.\xa0\n' \
+            'Je kunt het zo gek niet bedenken of je komt het tegen in de ' \
+            'tweehonderd verschillende parcoursen (veelal van A naar B, ' \
+            'maar ook circuits die rondlopen) die worden meegeleverd.\n' \
+            'De game bevat vier kleurrijke thema\'s: de geasfalteerde ' \
+            'woestenij van Canyon Grand Drift, de modderpaden van Valley ' \
+            'Down & Dirty, het exotische Rollercoaster Lagoon en het ' \
+            'sensationele International Stadium.\xa0In elke omgeving ' \
+            'gebruik je een specifieke auto, die je slechts beperkt ' \
+            'naar eigen smaak kunt aanpassen met verschillende kleurtjes ' \
+            'en logo\'s.\n' \
+            'Stuurmanskunst\n' \
+            'Je input is in de basis beperkt tot gas geven, remmen en ' \
+            'een gevoelig stuur. Belangrijker nog is je racelijn over ' \
+            'elk parcours: neem je meer snelheid mee over een schans, ' \
+            'of rem je eerst even af om beter uit te komen voor de ' \
+            'daaropvolgende bocht? Ook kun je vloeiend door bochten ' \
+            'driften.\xa0\n' \
+            'Uiteindelijk komt het allemaal aan op je eigen vaardigheden: ' \
+            'geen powerups, maar pure stuurmanskunst \u2013 al kun je met ' \
+            'genoeg vindingrijkheid ook mooie stukken afsnijden.\n' \
+            'Lukt het een keer niet, dan kun je met een druk op de knop ' \
+            'zonder vertraging opnieuw starten. Dat houdt het tempo erin ' \
+            'wanneer je om medailles strijdt in de hoofdmodus, of als ' \
+            'je vrienden probeert te verslaan nadat ze je een uitdaging ' \
+            'hebben gestuurd.\n' \
+            'Multiplayer\n' \
+            'Trackmania staat niet voor niets al jaren hoog ' \
+            'aangeschreven binnen de eSports-wereld. De ontwikkelaars ' \
+            'hebben een online multiplayerstand gebouwd waarin maar ' \
+            'liefst honderd spelers het tegelijkertijd tegen elkaar ' \
+            'kunnen opnemen.\n' \
+            'In de praktijk betekent dat dat je maximaal 99 anderen ' \
+            'als spoken over de baan ziet gaan, om te voorkomen dat je ' \
+            'elkaar in de weg zit op jacht naar een perfecte run.\xa0\n' \
+            'Dat klinkt misschien minder spannend, maar in de praktijk ' \
+            'werkt het erg motiverend om jezelf tijdens een potje direct ' \
+            'en constant te kunnen meten met een groot aantal ' \
+            'tegenstanders. Bovendien wordt je positie op de ' \
+            'internationale, nationale en zelfs regionale ranglijst ' \
+            'constant bijgehouden, waardoor de snelheidsstrijd lang ' \
+            'kan aanhouden.\n' \
+            'Double Driver\n' \
+            'Ook op lokaal niveau is er genoeg competitie mogelijk. ' \
+            'Maximaal zestien spelers kunnen het \xe9\xe9n voor ' \
+            '\xe9\xe9n tegen elkaar opnemen, of je kunt met maximaal ' \
+            'vier man op een gedeeld scherm racen -\xa0een functie\xa0die ' \
+            'we binnen dit genre nog maar weinig zien.\xa0\n' \
+            'Nog origineler is de Double Driver-stand, waarin je met twee ' \
+            'spelers \xe9\xe9n auto bestuurt. De auto luistert in deze ' \
+            'stand naar de besturing van beide chauffeurs en voert het ' \
+            '\u2018gemiddelde\u2019 uit.\n' \
+            'Om de gekkigheid compleet te maken, is er een veelvoud aan ' \
+            'speciale standen te kiezen door \'geheime\' toetsencombinaties ' \
+            'in te voeren. Zo kun je plots in een Mario Kart-achtige race ' \
+            'm\xe9t power-ups terechtkomen of alle spelers verplichten ' \
+            'binnen het scherm van de snelste te blijven.\n' \
+            'Bouwen\n' \
+            'Er is ook een uitgebreide modus om je eigen circuits op te ' \
+            'bouwen. De mogelijkheden zijn dusdanig uitgebreid dat we maar ' \
+            'wat blij zijn dat de game je ze op verschillende niveaus laat ' \
+            'benutten: instappers kunnen met plezier aan de slag en een ' \
+            'baantje in elkaar knutselen, terwijl diehards uit hun dak ' \
+            'kunnen met de meest knotsgekke creaties.\xa0\n' \
+            'Ook de functie die willekeurig een circuit genereert werkt ' \
+            'goed. Je kunt alle banen online delen en via een website ' \
+            'toevoegen aan je favorietenlijst, waarna ze gemakkelijk te ' \
+            'selecteren zijn voor een potje.\n' \
+            'Uiterlijk\n' \
+            'Bij de combinatie van al die verschillende ' \
+            'gameplaymogelijkheden past de kleurrijke, frisse en coole ' \
+            'audiovisuele stijl, die de arcade-insteek van Trackmania ' \
+            'Turbo onderstreept.\n' \
+            'Blauwe luchten, grote neonreclameborden, zeppelins en ' \
+            'retro-lettertypes vormen -\xa0in samenwerking met het ' \
+            'rijgedrag -\xa0een dikke knipoog richting de hoogtijdagen ' \
+            'van OutRun, Daytona USA en Ridge Racer.\xa0\n' \
+            'De pompende electromuziek is een perfecte match, al is ' \
+            'het wat jammer dat er telkens een nieuw nummer wordt ' \
+            'ingestart wanneer je een nieuwe run begint. Voor de ' \
+            'techniek vooral respect: de framerate van de ' \
+            'PlayStation 4-versie (met een resolutie van 1080p) is ' \
+            'nagenoeg rotsvast, de Xbox One-versie (in 900p) kent iets ' \
+            'meer (kleine) haperingen.\n' \
+            'Conclusie\n' \
+            'De kwaliteiten van Trackmania waren racefans op zich ' \
+            'al bekend. Maar het is juist de uitvoering in de vorm ' \
+            'van Trackmania Turbo, nota bene als debuut op de ' \
+            'spelcomputers van Sony en Microsoft, waar we heel erg ' \
+            'blij van kunnen worden.\n' \
+            'Dit is niet alleen een razendsnelle, uitdagende en ' \
+            'zeer complete arcaderacer, maar ook een flitsend en ' \
+            'levendig eerbetoon aan de kunst van zo hard mogelijk gaan.\n' \
+            'Razendsnelle gameplay\n' \
+            'Zowel toegankelijk als uitdagend\n' \
+            'Veel multiplayermodi\n' \
+            'Uitgebreide circuitbouwer\n' \
+            'Kleine audiovisuele problemen\n' \
+            'BEOORDELING\n' \
+            'Trackmania Turbo is vanaf donderdag beschikbaar voor ' \
+            'PlayStation 4, Xbox One en pc. Voor deze review zijn ' \
+            'enkel de consoleversies gespeeld.\n'
 
-        self.assertEquals(parsed_article.get('content'), expected)
+        self.assertEqual(parsed_article.get('content'), expected)
 
         expected_date = self.timezone.localize(datetime(2016, 3, 24, 12, 15))
-        self.assertEquals(parsed_article.get('date'), expected_date)
+        self.assertEqual(parsed_article.get('date'), expected_date)
 
     def test_nu_nl_algemeen(self):
         """
@@ -338,24 +338,24 @@ class NuNLParserTests(TestCase):
         parsed_article = NuNLParser.parse_new_version('', article_file.read())
 
         expected = \
-            u'Automobilisten krijgen zaterdagavond en -nacht weer te maken met ' \
-            u'gladheid \n' \
-            u'Tijdens opklaringen kunnen natte wegen bevriezen. Vooral in ' \
-            u'het midden, oosten en noorden van het land kan mist ontstaan. ' \
-            u'Lokaal is er kans op dichte mist met minder dan 200 ' \
-            u'meter zicht.\n' \
-            u'Later in de nacht raakt het in het westen en zuiden van ' \
-            u'Nederland bewolkt en volgt er regen of iets verder ' \
-            u'landinwaarts natte sneeuw. "Ook in de rest van het land ' \
-            u'is richting de ochtend een beetje regen of een vlokje ' \
-            u'(natte) sneeuw niet uitgesloten. In combinatie met ' \
-            u'wegdektemperaturen onder nul kan het dan verraderlijk ' \
-            u'glad worden", aldus Weeronline.\n' \
-            u'Zondag overdag breiden bewolking en neerslag zich verder ' \
-            u'uit over het hele land. Vooral in de middag wordt er ' \
-            u'regen verwacht, met in het binnenland ook natte sneeuw.\n'
+            'Automobilisten krijgen zaterdagavond en -nacht weer te maken met ' \
+            'gladheid \n' \
+            'Tijdens opklaringen kunnen natte wegen bevriezen. Vooral in ' \
+            'het midden, oosten en noorden van het land kan mist ontstaan. ' \
+            'Lokaal is er kans op dichte mist met minder dan 200 ' \
+            'meter zicht.\n' \
+            'Later in de nacht raakt het in het westen en zuiden van ' \
+            'Nederland bewolkt en volgt er regen of iets verder ' \
+            'landinwaarts natte sneeuw. "Ook in de rest van het land ' \
+            'is richting de ochtend een beetje regen of een vlokje ' \
+            '(natte) sneeuw niet uitgesloten. In combinatie met ' \
+            'wegdektemperaturen onder nul kan het dan verraderlijk ' \
+            'glad worden", aldus Weeronline.\n' \
+            'Zondag overdag breiden bewolking en neerslag zich verder ' \
+            'uit over het hele land. Vooral in de middag wordt er ' \
+            'regen verwacht, met in het binnenland ook natte sneeuw.\n'
 
-        self.assertEquals(parsed_article.get('content'), expected)
+        self.assertEqual(parsed_article.get('content'), expected)
 
         expected_date = self.timezone.localize(datetime(2016, 3, 5, 17, 4))
-        self.assertEquals(parsed_article.get('date'), expected_date)
+        self.assertEqual(parsed_article.get('date'), expected_date)

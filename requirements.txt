@@ -1,7 +1,6 @@
 Django==1.11
 simplejson
 beautifulsoup4
-beautifulsoup
 html5lib
 pyquery==1.2.9
 git+https://github.com/rbarrois/factory_boy.git
@@ -13,5 +12,5 @@ pytz==2015.7
 requests==2.9.1
 raven==5.11.1
 responses==0.5.1
-psycopg2==2.6.1
+psycopg2==2.8.5
 -e git+https://github.com/flupzor/python-Levenshtein.git@levenshtein_list_support#egg=python-Levenshtein

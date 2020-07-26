@@ -1,4 +1,4 @@
-import httplib
+import http.client
 import logging
 
 import requests
@@ -9,8 +9,8 @@ logger = logging.getLogger('parsers')
 
 def hash_djb2(s):
     hash = 5381
-    for x in s:
-        hash = ((hash << 5) + hash) + ord(x)
+    for x in s.encode('utf-8'):
+        hash = ((hash << 5) + hash) + x
     return hash & 0xFFFFFFFF
 
 
@@ -78,7 +78,7 @@ def http_get(url):
 
 def strip_whitespace(text):
     lines = text.split('\n')
-    return '\n'.join(x.strip().rstrip(u'\xa0') for x in lines).strip() + '\n'
+    return '\n'.join(x.strip().rstrip('\xa0') for x in lines).strip() + '\n'
 
 
 def canonicalize(text):

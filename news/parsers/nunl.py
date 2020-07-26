@@ -1,5 +1,5 @@
 import lxml
-from baseparser import BaseParser
+from .baseparser import BaseParser
 from pyquery import PyQuery as pq
 
 from ..dateparsers import NuNLDateParser
@@ -59,7 +59,7 @@ class NuNLParser(BaseParser):
         excerpt = html_to_text(d.find("div[data-sac-marker='block.article.header'] div.item-excerpt"))
         body = html_to_text(d.find("div[data-sac-marker='block.article.body']"), exclude_fn=exclude_cb)
 
-        content = u'{excerpt}{body}'.format(excerpt=excerpt, body=body)
+        content = '{excerpt}{body}'.format(excerpt=excerpt, body=body)
         date = cls.dateparser.process(
             d.find("div[data-sac-marker='block.article.header'] div.dates span.published span.small").text()
         )

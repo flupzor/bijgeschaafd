@@ -36,7 +36,7 @@ def migrate_dates(apps, schema_editor, source):
     total = versions.count()
     failures = 0
     for start, end, total, qs in batch_qs(versions):
-        print "Now processing %s - %s of %s" % (start + 1, end, total)
+        print("Now processing %s - %s of %s" % (start + 1, end, total))
 
         for version in qs:
             parser = date_parser_mapping[version.article.source]

@@ -1,4 +1,4 @@
-from baseparser import BaseParser
+from .baseparser import BaseParser
 from news.parsers.exceptions import NotInteresting
 from pyquery import PyQuery as pq
 

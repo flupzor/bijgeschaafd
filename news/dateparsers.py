@@ -42,7 +42,7 @@ class DateParser(object):
 
         raise ValueError(
             "{} on position {} not one of {}".format(
-                key, self._position(size), ",".join(mapping.keys())))
+                key, self._position(size), ",".join(list(mapping.keys()))))
 
     def assert_string(self, expected_string):
         size = len(expected_string)

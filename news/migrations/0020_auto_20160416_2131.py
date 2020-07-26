@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 from django.db import models, migrations
 
@@ -40,7 +40,7 @@ def hash_words(apps, schema_editor):
 
     versions = Version.objects.filter(content_words_hashed__isnull=True)
     for start, end, total, qs in batch_qs(versions):
-        print "Now processing %s - %s of %s" % (start + 1, end, total)
+        print("Now processing %s - %s of %s" % (start + 1, end, total))
         for version in qs:
             version.content_words_hashed = hash_content(version.content)
             version.save(update_fields=['content_words_hashed', ])

@@ -1,11 +1,12 @@
 import factory
 import factory.fuzzy
+from factory.django import DjangoModelFactory
 
 from ..models import Article, Cluster, SimilarArticle, Version
 from django.utils import timezone
 
 
-class ArticleFactory(factory.django.DjangoModelFactory):
+class ArticleFactory(DjangoModelFactory):
     url = factory.Faker('url')
     last_check = factory.Faker('date_time_between', start_date="-1y", end_date="now", tzinfo=timezone.get_current_timezone())
     last_update = factory.Faker('date_time_between', start_date="-1y", end_date="now", tzinfo=timezone.get_current_timezone())
@@ -14,7 +15,7 @@ class ArticleFactory(factory.django.DjangoModelFactory):
         model = Article
 
 
-class VersionFactory(factory.django.DjangoModelFactory):
+class VersionFactory(DjangoModelFactory):
     article = factory.SubFactory(ArticleFactory)
     title = factory.LazyAttribute(lambda x: factory.Faker('sentence', nb_words=4))
     byline = ''
@@ -24,13 +25,13 @@ class VersionFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Version
 
-class ClusterFactory(factory.django.DjangoModelFactory):
+class ClusterFactory(DjangoModelFactory):
     class Meta:
         model = Cluster
 
 
 
-class SimilarArticleFactory(factory.django.DjangoModelFactory):
+class SimilarArticleFactory(DjangoModelFactory):
     cluster = factory.SubFactory(ClusterFactory)
     from_article = factory.SubFactory(ArticleFactory)
     to_article = factory.SubFactory(ArticleFactory)

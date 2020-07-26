@@ -7,7 +7,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils import timezone
 
-from managers import SimilarArticleManager
+from .managers import SimilarArticleManager
 from news.parsers import get_parser
 from news.parsers.exceptions import ParserDoesNotExist
 from news.utils import hash_djb2

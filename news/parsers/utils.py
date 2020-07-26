@@ -9,7 +9,7 @@ def is_whitespace(c):
     # carriage return (\r)
     # line feed (\n)
     if c == ' ' or  c == '\t' or c == '\f' or \
-        c == u"\u200b" or \
+        c == "\u200b" or \
         c == '\n' or c == '\r':
         return True
 
@@ -20,7 +20,7 @@ def collapse_whitespace(text):
     """
     http://www.w3.org/TR/REC-html40/struct/text.html#h-9.1
     """
-    new_text = u''
+    new_text = ''
 
     for i, char in enumerate(text):
         next_char = text[i + 1] if i + 1 < len(text) else None
@@ -40,7 +40,7 @@ def collapse_whitespace(text):
 
 
 def collapse_newline(text):
-    new_text = u''
+    new_text = ''
 
     for i, char in enumerate(text):
         next_char = text[i + 1] if i + 1 < len(text) else None
@@ -55,7 +55,7 @@ def collapse_newline(text):
 
 def remove_whitespace_after_newline(text):
     newline = True
-    new_text = u''
+    new_text = ''
 
     for c in text:
         if c == '\n':
@@ -119,7 +119,7 @@ def _html_to_text(element, parent=None, level=0, exclude_fn=None):
         add_newline = True
         look_at_children = True
 
-    text = u''
+    text = ''
 
 #    print "{} tag: {}: text: '{}' ({}) tail: '{}' ({}) newline: {} {}".format(
 #        level,
@@ -157,9 +157,9 @@ def html_to_text(elements, exclude_fn=None):
     """
 
     if isinstance(elements, lxml.etree._Element) and elements.tag == 'script':
-        return u''
+        return ''
 
-    text = u''
+    text = ''
     for element in elements:
         text += _html_to_text(element, exclude_fn=exclude_fn)
 

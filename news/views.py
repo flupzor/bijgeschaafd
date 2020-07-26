@@ -11,8 +11,8 @@ from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, View
 
-import models
-from models import Article, Cluster, RequestLog, SimilarArticle, Version
+from . import models
+from .models import Article, Cluster, RequestLog, SimilarArticle, Version
 
 from .es import ESObjectList
 from .parsers import all_parsers
@@ -224,7 +224,7 @@ def diffview(request, vid1, vid2, urlarg):
         texts.append(v.text())
         dates.append(v.date)
 
-        indices = [i for i, x in versions.items() if x == v]
+        indices = [i for i, x in list(versions.items()) if x == v]
         if not indices:
             # One of these versions doesn't exist / is boring
             return Http400()

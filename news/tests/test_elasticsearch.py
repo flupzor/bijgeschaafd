@@ -34,8 +34,8 @@ class ESObjectListTests(TestCase):
 
         object_list = ESObjectList(example_request, example_results, Version)
 
-        self.assertEquals(object_list.count(), 500)
-        self.assertEquals(len(object_list), 500)
-        self.assertEquals(
+        self.assertEqual(object_list.count(), 500)
+        self.assertEqual(len(object_list), 500)
+        self.assertEqual(
             set(object_list[100:105].values_list('pk', flat=True)),
             set([v1.pk, v2.pk, v3.pk, v4.pk,v5.pk]))

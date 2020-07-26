@@ -1,4 +1,4 @@
-from baseparser import BaseParser
+from .baseparser import BaseParser
 from pyquery import PyQuery as pq
 
 from ..dateparsers import MetroDateParser

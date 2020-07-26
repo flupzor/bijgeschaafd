@@ -1,4 +1,4 @@
-from urllib import urlencode
+from urllib.parse import urlencode
 
 from django import template
 from django.urls import reverse
@@ -22,9 +22,9 @@ def pagination(context, page, url, base_qs=None):
     pages_each_side = 3
 
     if current_page <= pages_each_side + 1:
-        pages = range(1, min(pages_each_side*2 + 1, paginator.num_pages) + 1)
+        pages = list(range(1, min(pages_each_side*2 + 1, paginator.num_pages) + 1))
     else:
-        pages = range(current_page-pages_each_side, min(current_page + pages_each_side, paginator.num_pages) + 1)
+        pages = list(range(current_page-pages_each_side, min(current_page + pages_each_side, paginator.num_pages) + 1))
 
     return {
         'paginator': paginator,

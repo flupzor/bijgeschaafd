@@ -5,20 +5,18 @@ import socket
 import sys
 import time
 from datetime import timedelta
-from urlparse import urljoin, urlsplit, urlunsplit
+from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from django.db import transaction
 from django.utils import timezone
+from pyquery import PyQuery as pq
 
-from Levenshtein import ratio as levenshtein_ratio
+from Levenshtein import seqratio as levenshtein_seqratio
 from news.models import Article, RequestLog, Version
 from news.parsers.exceptions import NotInteresting
 from news.utils import canonicalize, get_diff_info, http_get, is_boring
-from pyquery import PyQuery as pq
-from raven.contrib.django.raven_compat.models import client
 
 logger = logging.getLogger(__name__)
-
 
 class BaseParser(object):
     short_name = None
@@ -105,7 +103,7 @@ class BaseParser(object):
 
         parsed_data = cls.parse_new_version(article.url, content)
 
-        to_store = unicode(
+        to_store = str(
             canonicalize(parsed_data.get('content', ''))).encode('utf-8')
         to_store_sha1 = hashlib.sha1(to_store).hexdigest()
 
@@ -129,14 +127,14 @@ class BaseParser(object):
             if is_boring(latest_version_content, to_store):
                 raise NotInteresting()
 
-            diff_info = get_diff_info(latest_version_content, to_store)
+            diff_info = get_diff_info(latest_version_content.decode('utf-8'), to_store.decode('utf-8'))
 
         version = Version.new(
             title=parsed_data.get('title'),
             modified_date_in_article=parsed_data.get('date'),
             byline='',
             date=current_time,
-            content=to_store,
+            content=to_store.decode('utf-8'),
             content_sha1=to_store_sha1,
         )
         version.diff_info = diff_info
@@ -185,14 +183,7 @@ class BaseParser(object):
 
     @classmethod
     def create_new_version(cls, article):
-        try:
-            return cls._create_new_version(article)
-        except Exception:
-            client.captureException(extra={
-                'article_url': article.url,
-            })
-
-            return None
+        return cls._create_new_version(article)
 
     @classmethod
     def compare_articles(cls, a1, a2):
@@ -202,9 +193,9 @@ class BaseParser(object):
         # TODO: For some reason these numbers are returned
         # as a long integer. While a BigIntegerField should
         # always fit into a normal Integer.
-        return levenshtein_ratio(
-            [int(x) for x in a1.content_words_hashed],
-            [int(x) for x in a2.content_words_hashed])
+        return levenshtein_seqratio(
+            [str(x) for x in a1.content_words_hashed],
+            [str(x) for x in a2.content_words_hashed])
 
     @classmethod
     def find_similar_articles(cls, new_articles):
@@ -250,5 +241,6 @@ class BaseParser(object):
         # Look for existing articles that need an update, an download them
         # if they do.
         for article in Article.objects.filter(source=cls.short_name):
+
             if article.needs_update:
                 cls.create_new_version(article)

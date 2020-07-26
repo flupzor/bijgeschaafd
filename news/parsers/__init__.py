@@ -6,10 +6,10 @@
 # Test with test_parser.py
 
 # List of parsers to import and use based on parser.domains
-import httplib
+import http.client
 import logging
 import traceback
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 from django.conf import settings
 
@@ -50,7 +50,7 @@ def all_parsers():
     if __parsers is None:
         __init_cache()
 
-    return __parsers.values()
+    return list(__parsers.values())
 
 def load_article(article):
     try:
@@ -60,8 +60,8 @@ def load_article(article):
         return
     try:
         parsed_article = parser(article.url)
-    except (AttributeError, urllib2.HTTPError, httplib.HTTPException), e:
-        if isinstance(e, urllib2.HTTPError) and e.msg == 'Gone':
+    except (AttributeError, urllib.error.HTTPError, http.client.HTTPException) as e:
+        if isinstance(e, urllib.error.HTTPError) and e.msg == 'Gone':
             return
         logger.error('Exception when parsing %s', url)
         logger.error(traceback.format_exc())

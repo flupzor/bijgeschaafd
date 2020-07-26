@@ -72,17 +72,17 @@ class ViewTests(WebTest):
             article_title = column1.find('a').eq(0).text()
             expected_article_link = reverse(
                 'article_history', args=[article.filename(), ])
-            self.assertEquals(article_link, expected_article_link)
-            self.assertEquals(article_title, article.latest_version().title)
+            self.assertEqual(article_link, expected_article_link)
+            self.assertEqual(article_title, article.latest_version().title)
 
             column2 = row.find('td').eq(1)
-            self.assertEquals(
+            self.assertEqual(
                 column2.text(),
                 localize(localtime(article.latest_version().date))
             )
 
-            self.assertEquals(version1, article.version_set.all()[0])
-            self.assertEquals(version2, article.version_set.all()[1])
+            self.assertEqual(version1, article.version_set.all()[0])
+            self.assertEqual(version2, article.version_set.all()[1])
 
             column3 = row.find('td').eq(2)
             expected_diff_link = reverse(
@@ -92,11 +92,11 @@ class ViewTests(WebTest):
                     'urlarg': article.filename()
                 })
             diff_link = column3.find('a').attr('href')
-            self.assertEquals(diff_link, expected_diff_link)
+            self.assertEqual(diff_link, expected_diff_link)
 
         def assert_version_row(row, version1, version2):
             column1 = row.find('td').eq(0)
-            self.assertEquals(
+            self.assertEqual(
                 column1.text(),
                 localize(localtime(version1.date))
             )
@@ -111,7 +111,7 @@ class ViewTests(WebTest):
                     })
                 diff_link = column2.find('a').attr('href')
 
-                self.assertEquals(expected_diff_link, diff_link)
+                self.assertEqual(expected_diff_link, diff_link)
 
         assert_article_row(
             rows.eq(0), article1, article1_version1, article1_version2)

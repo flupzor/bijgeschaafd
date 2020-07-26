@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 from django.db import models, migrations
 import news.managers
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.AlterModelManagers(
             name='similararticle',
             managers=[
-                (b'objects', news.managers.SimilarArticleManager()),
+                ('objects', news.managers.SimilarArticleManager()),
             ],
         ),
         migrations.AlterUniqueTogether(

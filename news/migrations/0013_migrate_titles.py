@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 from django.db import models, migrations
 from django.db.models import F
@@ -30,7 +30,7 @@ def migrate_titles(apps, schema_editor):
 
     versions = Version.objects.filter(content__startswith=F('title'))
     for start, end, total, qs in batch_qs(versions):
-        print "Now processing %s - %s of %s" % (start + 1, end, total)
+        print("Now processing %s - %s of %s" % (start + 1, end, total))
         for version in qs:
             version.content = version.content.replace(version.title, '').lstrip()
             version.save()

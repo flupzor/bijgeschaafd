@@ -7,14 +7,14 @@ class Command(BaseCommand):
     help = 'Parse a specific website'
 
     def add_arguments(self, parser):
-        parser.add_argument('parser', nargs='?', type=unicode)
-        parser.add_argument('url', nargs='?', type=unicode)
+        parser.add_argument('parser', nargs='?', type=str)
+        parser.add_argument('url', nargs='?', type=str)
 
     def handle(self, *args, **options):
 
         if options['parser'] is None and options['url'] is None:
             self.stdout.write("Available parsers")
-            for parser_name in parsers.parser_dict.keys():
+            for parser_name in list(parsers.parser_dict.keys()):
                 self.stdout.write(parser_name)
         elif options['parser'] is not None and options['url'] is None:
             parser = parsers.parser_dict[options['parser']]
@@ -27,4 +27,4 @@ class Command(BaseCommand):
 
             parsed_article = parser(options['url'])
 
-            self.stdout.write(unicode(parsed_article))
+            self.stdout.write(str(parsed_article))

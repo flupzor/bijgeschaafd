@@ -27,7 +27,7 @@ class SimilarArticleManagerTests(TestCase):
         similarities = SimilarArticle.objects.direct_related(article1.pk)
         article_pks = similarities.article_pks()
 
-        self.assertEquals(len(article_pks), 2)
+        self.assertEqual(len(article_pks), 2)
         self.assertIn(article1.pk, article_pks)
         self.assertIn(article2.pk, article_pks)
 
@@ -52,7 +52,7 @@ class SimilarArticleManagerTests(TestCase):
         similarities = SimilarArticle.objects.indirect_related(article1.pk)
         article_pks = similarities.article_pks()
 
-        self.assertEquals(len(article_pks), 5)
+        self.assertEqual(len(article_pks), 5)
         self.assertIn(article1.pk, article_pks)
         self.assertIn(article2.pk, article_pks)
         self.assertIn(article3.pk, article_pks)
@@ -69,13 +69,13 @@ class SimilarArticleManagerTests(TestCase):
         irrelevant_article2._latest_date = current_time - timedelta(hours=1)
         irrelevant_article2.save()
 
-        self.assertEquals(Cluster.objects.count(), 0)
-        self.assertEquals(SimilarArticle.objects.count(), 0)
+        self.assertEqual(Cluster.objects.count(), 0)
+        self.assertEqual(SimilarArticle.objects.count(), 0)
 
         SimilarArticle.objects.add_similar_article(irrelevant_article1, irrelevant_article2, 0.8)
 
-        self.assertEquals(Cluster.objects.count(), 1)
-        self.assertEquals(SimilarArticle.objects.count(), 1)
+        self.assertEqual(Cluster.objects.count(), 1)
+        self.assertEqual(SimilarArticle.objects.count(), 1)
 
         irrelevant_cluster = Cluster.objects.get()
 
@@ -88,22 +88,22 @@ class SimilarArticleManagerTests(TestCase):
         article3._latest_date = current_time
         article3.save()
 
-        self.assertEquals(Cluster.objects.count(), 1)
-        self.assertEquals(SimilarArticle.objects.count(), 1)
+        self.assertEqual(Cluster.objects.count(), 1)
+        self.assertEqual(SimilarArticle.objects.count(), 1)
 
         SimilarArticle.objects.add_similar_article(article2, article3, 0.8)
 
-        self.assertEquals(Cluster.objects.count(), 2)
-        self.assertEquals(SimilarArticle.objects.count(), 2)
+        self.assertEqual(Cluster.objects.count(), 2)
+        self.assertEqual(SimilarArticle.objects.count(), 2)
 
         SimilarArticle.objects.add_similar_article(article1, article2, 0.8)
 
-        self.assertEquals(Cluster.objects.count(), 2)
-        self.assertEquals(SimilarArticle.objects.count(), 3)
+        self.assertEqual(Cluster.objects.count(), 2)
+        self.assertEqual(SimilarArticle.objects.count(), 3)
 
         c = Cluster.objects.exclude(pk=irrelevant_cluster.pk).get()
         # The latest latest_date should be given to the cluster.
-        self.assertEquals(c.latest_date, article3._latest_date)
+        self.assertEqual(c.latest_date, article3._latest_date)
 
     def test_add_similar_article_existing(self):
         """
@@ -117,4 +117,4 @@ class SimilarArticleManagerTests(TestCase):
         self.assertIn(
             'duplicate key value violates unique constraint', str(context.exception))
 
-        self.assertEquals(SimilarArticle.objects.count(), 1)
+        self.assertEqual(SimilarArticle.objects.count(), 1)
