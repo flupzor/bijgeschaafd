@@ -1,9 +1,9 @@
-Django==1.11
+Django==2.2
 simplejson
 beautifulsoup4
 html5lib
 pyquery==1.2.9
-git+https://github.com/rbarrois/factory_boy.git
+git+https://github.com/rbarrois/factory_boy.git@59ee6584d8788af065a86aa168e8f42a4e9f3801
 fake-factory==0.5.3
 mock
 django-webtest
@@ -11,6 +11,8 @@ python-memcached
 pytz==2015.7
 requests==2.9.1
 raven==5.11.1
-responses==0.5.1
+requests==2.24.0
+responses==0.10.15
 psycopg2==2.8.5
--e git+https://github.com/flupzor/python-Levenshtein.git@levenshtein_list_support#egg=python-Levenshtein
+python-Levenshtein==0.12.0
+PyStemmer==2.0.1
